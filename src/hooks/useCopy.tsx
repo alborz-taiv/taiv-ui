@@ -1,5 +1,5 @@
 import { useClipboard } from '@mantine/hooks';
-import { useNotifications } from '../Info/Notifications/Notifications';
+import { useNotifications } from './useNotifications';
 
 export const useCopy = () => {
   const clipboard = useClipboard();

@@ -5,10 +5,7 @@ export { RemovableItemList } from "./Data/RemovableItemList";
 //Info
 export { ModalProvider } from "./Info/Modals/ModalProvider";
 export { Modal } from "./Info/Modals/Modal";
-export { useConfirmationModal } from "./Info/Modals/ConfirmationModal";
-export { useInfoModal } from "./Info/Modals/InfoModal";
 export { NotificationProvider } from "./Info/Notifications/NotificationProvider";
-export { useNotifications } from "./Info/Notifications/Notifications";
 export { InfoTooltip } from "./Info/Tooltips/InfoTooltip";
 export { Tooltip } from "./Info/Tooltips/Tooltip";
 
@@ -44,5 +41,3 @@ export { Title } from "./Typography/Title";
 
 //Misc
 export { Transition } from "./Misc/Transition";
-export { useCopy } from "./Misc/Copy";
-export { useMediaQuery } from "./Misc/MediaQuery";

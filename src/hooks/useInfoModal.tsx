@@ -1,44 +1,25 @@
 import React from 'react';
 import { modals } from '@mantine/modals';
-import { neutral } from '../../../constants/colors';
-import { Title } from '../../Typography/Title';
-import { Stack } from '../../Layout/Stack';
-import { Center } from '../../Layout/Center';
-import { modalVariants } from './variants';
-import { Button } from '../../Inputs/Buttons/Button';
-import { Group } from '../../Layout/Group';
+import { neutral } from '../constants/colors';
+import { Title } from '../components/Typography/Title';
+import { Stack } from '../components/Layout/Stack';
+import { Center } from '../components/Layout/Center';
+import { modalVariants } from '../components/Info/Modals/variants';
+import { Button } from '../components/Inputs/Buttons/Button';
 
-export const useConfirmationModal = () => {
+export const useInfoModal = () => {
   const show = (options: {
-    variant?: Exclude<keyof typeof modalVariants, 'error'>;
+    variant?: keyof typeof modalVariants;
     title?: string;
     message?: string;
-    confirmLabel?: string;
-    cancelLabel?: string;
     icon?: React.ReactNode;
     onConfirm?: () => void;
-    onCancel?: () => void;
     size?: string | number;
   }) => {
-    const {
-      variant = 'confirm',
-      title,
-      message,
-      confirmLabel,
-      cancelLabel,
-      icon,
-      onConfirm,
-      onCancel,
-      size = '40rem',
-    } = options;
+    const { variant = 'info', title, message, icon, onConfirm, size = '35rem' } = options;
 
     const handleConfirm = () => {
       if (onConfirm) onConfirm();
-      modals.closeAll();
-    };
-
-    const handleCancel = () => {
-      if (onCancel) onCancel();
       modals.closeAll();
     };
 
@@ -56,7 +37,7 @@ export const useConfirmationModal = () => {
       <i className={selectedVariant.icon} style={{ color: selectedVariant.iconColor, fontSize: '2rem' }} />
     );
 
-    const ConfirmModalContent = () => {
+    const InfoModalContent = () => {
       return (
         <Center h="100%" w="100%">
           <Stack gap="2rem" h="100%" w="100%" align="center">
@@ -72,14 +53,9 @@ export const useConfirmationModal = () => {
               </Stack>
             </Stack>
             <Center h="100%" w="100%">
-              <Group gap="1rem" align="center">
-                <Button onClick={handleCancel} variant="secondary">
-                  {cancelLabel || selectedVariant.cancelLabel}
-                </Button>
-                <Button onClick={handleConfirm} variant={selectedVariant.buttonVariant}>
-                  {confirmLabel || selectedVariant.confirmLabel}
-                </Button>
-              </Group>
+              <Button onClick={handleConfirm} variant={selectedVariant.buttonVariant}>
+                OK
+              </Button>
             </Center>
           </Stack>
         </Center>
@@ -87,7 +63,7 @@ export const useConfirmationModal = () => {
     };
 
     modals.open({
-      children: <ConfirmModalContent />,
+      children: <InfoModalContent />,
       size,
       styles: {
         content: {

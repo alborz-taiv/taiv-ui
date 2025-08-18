@@ -15,6 +15,7 @@ interface ModalProps {
   width?: string | number;
 }
 
+// Base modal is intended to be extended and customized - use InfoModal or ConfirmationModal for common use cases
 export const Modal = ({ opened, onClose, icon, title, subtitle, children, width = '40rem' }: ModalProps) => {
   return (
     <MantineModal

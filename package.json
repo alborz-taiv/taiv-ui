@@ -1,6 +1,6 @@
 {
   "name": "@taiv/ui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Taiv",
   "description": "Taiv's web UI Toolkit built on Mantine v6",
   "main": "dist/index.js",
@@ -30,8 +30,7 @@
     "typescript": "^5.0.2"
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./core": "./dist/components/index.js",
+    ".": "./dist/components/index.js",
     "./hooks": "./dist/hooks/index.js",
     "./constants": "./dist/constants/index.js"
   }

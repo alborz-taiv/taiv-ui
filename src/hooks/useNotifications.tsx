@@ -1,6 +1,6 @@
 import React from 'react';
 import { notifications as mantineNotifications } from '@mantine/notifications';
-import { componentVariants } from './variants';
+import { componentVariants } from '../components/Info/Notifications/variants';
 
 export const useNotifications = () => {
   const hide = async (id: string) => {
