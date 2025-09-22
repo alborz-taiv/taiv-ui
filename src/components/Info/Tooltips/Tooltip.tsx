@@ -6,7 +6,7 @@ import { fontBase, fontSize, fontWeight } from '../../../constants/font';
 
 interface TooltipProps {
   children: React.ReactNode;
-  text: string;
+  text?: React.ReactNode;
   position?: 'top-end' | 'bottom-end' | 'top-start' | 'bottom-start';
   offset?: number;
   className?: string;
@@ -56,6 +56,7 @@ const Tooltip = ({ children, text, position = 'top-start', offset, className, st
       styles={tooltipStyle}
       offset={offset}
       className={className}
+      withinPortal={true}
     >
       <Box sx={wrapperStyle}>{children}</Box>
     </MantineTooltip>

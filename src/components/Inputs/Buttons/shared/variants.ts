@@ -13,6 +13,10 @@ export const componentVariants = {
       border: `1px solid ${primary[200]}`,
       color: primary[200],
     },
+    '&:toggled': {
+      background: `linear-gradient(to right, ${primary[300]}, ${primary[300]})`,
+      color: 'white',
+    },
     '&:disabled': {
       background: neutral[50],
       color: neutral[100],
@@ -37,6 +41,10 @@ export const componentVariants = {
       border: `1px solid ${neutral[200]}`,
       color: neutral[200],
     },
+    '&:toggled': {
+      background: neutral[100],
+      color: 'neutral[200]',
+    },
     '&:disabled': {
       background: neutral[50],
       border: `1px solid ${neutral[50]}`,
@@ -58,6 +66,10 @@ export const componentVariants = {
       background: 'white',
       border: `1px solid ${error[200]}`,
       color: error[200],
+    },
+    '&:toggled': {
+      background: error[100],
+      color: 'white',
     },
     '&:disabled': {
       background: error[50],
@@ -81,6 +93,9 @@ export const componentVariants = {
       border: `1px solid ${success[200]}`,
       color: success[200],
     },
+    '&:toggled': {
+      background: success[100],
+    },
     '&:disabled': {
       background: success[50],
       border: `1px solid ${success[50]}`,
@@ -102,6 +117,9 @@ export const componentVariants = {
       background: 'white',
       border: `1px solid ${warning[200]}`,
       color: warning[200],
+    },
+    '&:toggled': {
+      background: warning[100],
     },
     '&:disabled': {
       background: warning[50],
@@ -129,8 +147,40 @@ export const componentVariants = {
       background: 'transparent',
       color: primary[200],
     },
+    '&:toggled': {
+      background: 'transparent',
+      color: primary[300],
+    },
     '&:disabled': {
       background: 'transparent',
+      color: neutral[100],
+    },
+    '&[data-loading]': {
+      '& .mantine-Button-icon svg': {
+        stroke: neutral[200],
+      },
+    },
+  },
+  nav: {
+    background: 'white',
+    paddingLeft: '0.8rem',
+    color: neutral[200],
+    '& .mantine-Button-inner': {
+      justifyContent: 'flex-start',
+    },
+    '&:hover': {
+      background: neutral[50],
+    },
+    '&:active': {
+      background: neutral[100],
+      color: neutral[200],
+    },
+    '&:toggled': {
+      background: neutral[50],
+      color: neutral[200],
+    },
+    '&:disabled': {
+      background: neutral[50],
       color: neutral[100],
     },
     '&[data-loading]': {

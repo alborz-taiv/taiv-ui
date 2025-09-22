@@ -1,59 +1,78 @@
-// Neutral Colors - Grays
-export const neutral = {
+
+export const gray = {
   25: '#F8FAFC',
   50: '#EDEDED',
   100: '#D9D9D9',
   200: '#6D6D6D',
   300: '#3F3F3F',
 } as const;
+export const neutral = gray;
 
-// Primary Colors - Blues
-export const primary = {
+export const blue = {
   25: '#EEFAFF',
   50: '#BDEAFF',
   100: '#74D4FF',
   200: '#00A6F4',
   300: '#0081CE',
 } as const;
+export const primary = blue;
 
-// Secondary Colors - Blues (temp)
-export const secondary = {
-  50: '#E8F5E9',
-  100: '#C8E6C9',
-  200: '#81C784',
-  300: '#4CAF50',
-} as const;
-
-// Success Colors - Greens
-export const success = {
+export const green = {
+  25: '#E6F4E7',
   50: '#E6F4E7',
   100: '#00C951',
   200: '#00A63E',
   300: '#008236',
 } as const;
+export const success = green;
 
-// Warning Colors - Oranges
-export const warning = {
+export const yellow = {
+  25: '#FFF3E0',
   50: '#FFE5B4',
   100: '#FE9A00',
   200: '#E17100',
   300: '#973C00',
 } as const;
+export const warning = yellow;
 
-// Error Colors - Reds
-export const error = {
+export const red = {
+  25: '#FFE5E6',
   50: '#FFD7D9',
   100: '#FB2C36',
   200: '#C10007',
   300: '#9F0712',
 } as const;
+export const error = red;
 
-// Export for all colors
+// Purple Colors
+export const purple = {
+  50: '#EFEAFF',
+  100: '#D6C8FF',
+  200: '#7D63C8',
+} as const;
+
+export const salmon = {
+  50: '#FFEAE6',
+  100: '#FFD1C7',
+  200: '#FF806F',
+} as const;
+
+// Semantic/functional color exports - for use in UI, actions, states, etc.
 export const colors = {
   neutral,
   primary,
-  secondary,
   success,
   warning,
   error,
+} as const;
+
+// Color palette exports - for purely aesthetic purpose, i.e. icons, backgrounds, etc.
+export const palettes = {
+  blue,
+  green,
+  yellow,
+  red,
+  purple,
+  salmon,
+  gray,
 } as const;

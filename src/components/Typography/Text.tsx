@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { Text as MantineText, TextProps as MantineTextProps } from '@mantine/core';
-import { textStyle, fontSize, fontWeight } from '../../constants/font';
+import { textStyle, fontSize, fontWeight, fontBase } from '../../constants/font';
 
 interface TextProps extends MantineTextProps {
   children: React.ReactNode;
@@ -20,15 +20,27 @@ const Text = ({ variant = 'body', size, children, weight, color, styles, ...prop
   const style = {
     margin: 0,
     padding: 0,
+    ...styles,
     ...selectedVariant,
     ...customSize,
     ...customWeight,
     ...customColor,
-    ...styles,
   };
 
   return (
-    <MantineText style={style} {...props}>
+    <MantineText
+      style={style}
+      sx={{
+        '& b': {
+          ...selectedVariant,
+          ...customSize,
+          ...customWeight,
+          ...customColor,
+          fontWeight: fontWeight.bold,
+        },
+      }}
+      {...props}
+    >
       {children}
     </MantineText>
   );

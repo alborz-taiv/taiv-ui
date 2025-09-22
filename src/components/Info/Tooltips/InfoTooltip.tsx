@@ -4,7 +4,8 @@ import { neutral } from '../../../constants/colors';
 import { Tooltip } from './Tooltip';
 
 interface InfoTooltipProps {
-  text: string;
+  text: React.ReactNode;
+  content?: React.ReactNode;
   position?: 'top-end' | 'bottom-end' | 'top-start' | 'bottom-start';
   size?: keyof typeof componentSizes;
   offset?: number;
@@ -19,7 +20,7 @@ const componentSizes = {
   xl: '2.4rem',
 } as const;
 
-const InfoTooltip = ({ text, position = 'top-start', size = 'md', offset, className, styles }: InfoTooltipProps) => {
+const InfoTooltip = ({ text, content, position = 'top-start', size = 'md', offset, className, styles }: InfoTooltipProps) => {
   const style = {
     icon: {
       color: neutral[100],
@@ -29,7 +30,7 @@ const InfoTooltip = ({ text, position = 'top-start', size = 'md', offset, classN
   };
 
   return (
-    <Tooltip text={text} position={position} offset={offset} className={className}>
+    <Tooltip text={text || content} position={position} offset={offset} className={className}>
       <i className="fas fa-info-circle" style={style.icon} />
     </Tooltip>
   );
