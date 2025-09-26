@@ -229,7 +229,29 @@ export const Chart: React.FC<ChartProps> = ({
                       />
                     );
                   } else if (seriesType === 'bar') {
-                    return <Bar key={s.name} dataKey={s.name} fill={s.color || primary[200]} radius={[2, 2, 0, 0]} style={{ outline: 'none' }} />;
+                    return (
+                      <Bar
+                        key={s.name}
+                        dataKey={s.name}
+                        fill={s.color || primary[200]}
+                        radius={[8, 8, 0, 0]}
+                        style={{ outline: 'none' }}
+                        onMouseEnter={(data, index, event) => {
+                          // Highlight the entire bar on hover
+                          const barElement = event.target as HTMLElement;
+                          if (barElement) {
+                            barElement.style.opacity = '0.8';
+                          }
+                        }}
+                        onMouseLeave={(data, index, event) => {
+                          // Reset bar appearance on mouse leave
+                          const barElement = event.target as HTMLElement;
+                          if (barElement) {
+                            barElement.style.opacity = '1';
+                          }
+                        }}
+                      />
+                    );
                   } else {
                     // Default to line (seriesType === 'line')
                     return <Line key={s.name} type="monotone" dataKey={s.name} stroke={s.color || primary[200]} strokeWidth={2} dot={false} style={{ outline: 'none' }} />;
@@ -238,6 +260,7 @@ export const Chart: React.FC<ChartProps> = ({
 
                 <Tooltip
                   content={tooltipContent || <CustomTooltip />}
+                  cursor={series.some((s) => s.type === 'bar') ? false : true}
                   wrapperStyle={{
                     border: 'none',
                     outline: 'none', // Remove any outline
