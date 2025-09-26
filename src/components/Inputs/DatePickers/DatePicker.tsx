@@ -1,5 +1,6 @@
 import React from 'react';
 import { DatePickerInput as MantineDatePickerInput, DatePickerInputProps as MantineDatePickerInputProps } from '@mantine/dates';
+import { createStyles } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
 import { neutral } from '../../../constants/colors';
 import { fontBase } from '../../../constants/font';
@@ -24,7 +25,7 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
 }: DatePickerProps<T>) => {
   const selectedSize = componentSizes[size];
 
-  const style = {
+  const { classes } = createStyles(() => ({
     root: {
       width: fullWidth ? '100%' : width || `${selectedSize.minWidth}rem`,
     },
@@ -48,15 +49,50 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
       fontSize: `calc(${selectedSize.fontSize} - 0.1rem)`,
       color: neutral[200],
     },
+    calendar: {
+      '& .mantine-UnstyledButton-root': {
+        borderRadius: '8px',
+        fontFamily: 'Poppins, sans-serif',
+      },
+      '& .mantine-Day-day': {
+        borderRadius: '50%',
+      },
+      '& .mantine-Day-day[data-selected="true"]': {
+        fontFamily: 'Poppins, sans-serif',
+        borderRadius: '50%',
+      },
+      '& .mantine-Day-day[data-in-range="true"]': {
+        fontFamily: 'Poppins, sans-serif',
+        borderRadius: '50%',
+      },
+      '& .mantine-Day-day[data-first-in-range="true"]': {
+        fontFamily: 'Poppins, sans-serif',
+        borderRadius: '50%',
+      },
+      '& .mantine-Day-day[data-last-in-range="true"]': {
+        fontFamily: 'Poppins, sans-serif',
+        borderRadius: '50%',
+      },
+      '& .mantine-WeekdaysRow-weekday': {
+        textAlign: 'center',
+        fontFamily: 'Poppins, sans-serif',
+      },
+    },
     ...styles,
-  };
+  }))();
 
   return (
     <MantineDatePickerInput
       icon={showIcon ? <i className="far fa-calendar" style={{ fontSize: 14, marginLeft: '0.25rem' }} /> : undefined}
       radius="lg"
       size="xl"
-      styles={style}
+      classNames={{
+        root: classes.root,
+        input: classes.input,
+        placeholder: classes.placeholder,
+        label: classes.label,
+        calendar: classes.calendar,
+      }}
       placeholder={placeholder}
       popoverProps={{ radius: 'lg' }}
       {...props}
