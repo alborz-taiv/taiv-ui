@@ -1,17 +1,16 @@
 import React from 'react';
-import { palettes } from '../../constants/colors';
+import { primitives } from '../../constants/colors';
 
 export interface IconBadgeProps {
   icon: React.ReactNode;
-  color: keyof typeof palettes;
+  color: keyof typeof primitives;
 }
 
 export const IconBadge = ({ icon, color }: IconBadgeProps) => {
   const getIconColors = () => {
-    const colorPalette = palettes[color];
     return {
-      background: colorPalette[50],
-      icon: colorPalette[200],
+      background: primitives[color][50],
+      icon: primitives[color][200],
     };
   };
 

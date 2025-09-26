@@ -67,7 +67,7 @@ export const colors = {
 } as const;
 
 // Color palette exports - for purely aesthetic purpose, i.e. icons, backgrounds, etc.
-export const palettes = {
+export const primitives = {
   blue,
   green,
   yellow,

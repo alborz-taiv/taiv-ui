@@ -5,7 +5,7 @@ import { Text } from '../Typography/Text';
 import { Title } from '../Typography/Title';
 import { Group } from '../Layout/Group';
 import { Stack } from '../Layout/Stack';
-import { palettes, colors, neutral } from '../../constants/colors';
+import { primitives, success, neutral } from '../../constants/colors';
 import { dataFormats } from './shared/dataFormats';
 import { IconBadge } from '../Misc/IconBadge';
 
@@ -16,7 +16,7 @@ export interface StatsCardProps extends Omit<CardProps, 'children'> {
   format?: keyof typeof dataFormats;
   isDelta?: boolean;
   icon?: React.ReactNode;
-  iconColor?: keyof typeof palettes;
+  iconColor?: keyof typeof primitives;
   tooltip?: React.ReactNode;
   increaseDescription?: string;
 }
@@ -26,7 +26,7 @@ export const StatsCard = ({ value, format = 'decimal', isDelta = false, title, d
     const currentDirection = isDelta ? (value > 0 ? 'positive' : value < 0 ? 'negative' : null) : null;
     return {
       direction: currentDirection,
-      color: currentDirection === 'positive' ? colors.success[200] : currentDirection === 'negative' ? colors.neutral[200] : undefined,
+      color: currentDirection === 'positive' ? success[200] : currentDirection === 'negative' ? neutral[200] : undefined,
       showIncrementalText: currentDirection === 'positive',
     };
   };
