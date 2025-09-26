@@ -1,11 +1,11 @@
 import React from 'react';
 import { Notifications } from '@mantine/notifications';
 import { createStyles } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
 import { neutral } from '../../../constants/colors';
+import { useMobile } from '../../../hooks/useMediaQuery';
 
 export const NotificationProvider = () => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMobile();
 
   const { classes } = createStyles(() => ({
     root: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMediaQuery } from '@mantine/hooks';
+import { useMobile } from '../../hooks/useMediaQuery';
 import { Checkbox } from '../Inputs/Controls/Checkbox';
 import { Group } from '../Layout/Group';
 import { Box } from '../Layout/Box';
@@ -38,7 +38,7 @@ const CheckboxTable = ({
   showColumnTitles = false,
   outlines = false,
 }: CheckboxTableProps) => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMobile();
 
   const style = {
     container: {

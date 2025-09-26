@@ -1,5 +1,5 @@
 export { useCopy } from './useCopy';
-export { useMediaQuery } from './useMediaQuery';
+export { useMediaQuery, useScreenSize, useMobile, useTablet, useLaptop, useDesktop, useWide } from './useMediaQuery';
 export { useNotifications } from './useNotifications';
 export { useConfirmationModal } from './useConfirmationModal';
-export { useInfoModal } from './useInfoModal'; 
+export { useInfoModal } from './useInfoModal';
