@@ -97,6 +97,8 @@ export const PieChart: React.FC<PieChartProps> = ({
             border: `1px solid ${neutral[100]}`,
             borderRadius: '8px',
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            zIndex: 1000,
+            position: 'relative',
           }}
         >
           <Text weight="semibold" color={neutral[300]}>
@@ -109,14 +111,14 @@ export const PieChart: React.FC<PieChartProps> = ({
                   width: '8px',
                   height: '8px',
                   borderRadius: '50%',
-                  backgroundColor: entry.color,
+                  backgroundColor: entry.payload.color,
                 }}
               />
               <Group gap="0.25rem">
                 <Text variant="label" color={neutral[300]}>
-                  {entry.name}:
+                  {entry.payload.name}:
                 </Text>
-                <Text variant="label">{formatValue(entry.value)}</Text>
+                <Text variant="label">{formatValue(entry.payload.value)}</Text>
               </Group>
             </Group>
           ))}
@@ -150,6 +152,7 @@ export const PieChart: React.FC<PieChartProps> = ({
                     border: 'none',
                     outline: 'none',
                     boxShadow: 'none',
+                    zIndex: 1000,
                   }}
                   contentStyle={{
                     border: 'none',
@@ -186,6 +189,8 @@ export const PieChart: React.FC<PieChartProps> = ({
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
                 textAlign: 'center',
+                zIndex: 1,
+                pointerEvents: 'none',
               }}
             >
               <Stack gap="0" align="center">
