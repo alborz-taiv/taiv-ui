@@ -22,7 +22,6 @@ export const IconBadge = ({ icon, color }: IconBadgeProps) => {
     }
   };
 
-
   return (
     <div
       style={{
@@ -39,4 +38,4 @@ export const IconBadge = ({ icon, color }: IconBadgeProps) => {
       {icon}
     </div>
   );
-}; 
+};

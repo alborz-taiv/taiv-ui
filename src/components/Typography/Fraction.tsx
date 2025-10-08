@@ -1,28 +1,27 @@
-// src/components/Typography/Fraction.tsx
 import React from 'react';
-import { Box } from '@mantine/core';
+import { Divider } from '../Layout/Divider';
 import { textStyle } from '../../constants';
 import { Text } from './Text';
+import { Stack } from '../Layout/Stack';
+import { TextProps } from './Text';
 
-interface FractionProps {
+interface FractionProps extends Omit<TextProps, 'children' | 'styles'> {
   numerator: React.ReactNode;
   denominator: React.ReactNode;
-  variant: keyof typeof textStyle;
 }
 
-const Fraction = ({ numerator, denominator, variant }: FractionProps) => {
+const Fraction = ({ numerator, denominator, variant = 'body', color, weight, size }: FractionProps) => {
+  const selectedVariant = textStyle[variant];
   return (
-    <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center', lineHeight: 1 }}>
-      <Box component="span" sx={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', lineHeight: 1 }}>
-        <Text variant={variant} sx={{ display: 'block', textAlign: 'center' }}>
-          {numerator}
-        </Text>
-        <Box component="span" sx={{ width: '100%', borderTop: '1px solid currentColor', margin: '2px 0' }} />
-        <Text variant={variant} sx={{ display: 'block', textAlign: 'center' }}>
-          {denominator}
-        </Text>
-      </Box>
-    </Box>
+    <Stack sx={{ display: 'inline-flex', alignItems: 'center', lineHeight: 1 }} gap="0.25rem">
+      <Text variant={variant} color={color} weight={weight} size={size} sx={{ display: 'block', textAlign: 'center' }}>
+        {numerator}
+      </Text>
+      <Divider color={color || selectedVariant.color} width="100%" />
+      <Text variant={variant} color={color} weight={weight} size={size} sx={{ display: 'block', textAlign: 'center' }}>
+        {denominator}
+      </Text>
+    </Stack>
   );
 };
 

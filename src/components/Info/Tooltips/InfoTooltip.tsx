@@ -11,6 +11,7 @@ interface InfoTooltipProps {
   offset?: number;
   className?: string;
   styles?: Record<string, CSSObject>;
+  maxWidth?: string;
 }
 
 const componentSizes = {
@@ -20,7 +21,7 @@ const componentSizes = {
   xl: '2.4rem',
 } as const;
 
-const InfoTooltip = ({ text, content, position = 'top-start', size = 'md', offset, className, styles }: InfoTooltipProps) => {
+const InfoTooltip = ({ text, content, position = 'top-start', size = 'md', offset, className, styles, maxWidth }: InfoTooltipProps) => {
   const style = {
     icon: {
       color: neutral[100],
@@ -30,7 +31,7 @@ const InfoTooltip = ({ text, content, position = 'top-start', size = 'md', offse
   };
 
   return (
-    <Tooltip text={text || content} position={position} offset={offset} className={className}>
+    <Tooltip text={text || content} position={position} offset={offset} className={className} maxWidth={maxWidth}>
       <i className="fas fa-info-circle" style={style.icon} />
     </Tooltip>
   );

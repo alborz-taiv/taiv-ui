@@ -12,14 +12,7 @@ export interface SelectProps extends MantineSelectProps {
   styles?: Record<string, CSSObject>;
 }
 
-export const Select = ({
-  size = 'md',
-  width,
-  fullWidth = false,
-  placeholder = 'Select an option',
-  styles,
-  ...props
-}: SelectProps) => {
+export const Select = ({ size = 'md', width, fullWidth = false, placeholder = 'Select an option', styles, ...props }: SelectProps) => {
   const selectedSize = componentSizes[size];
 
   const style = {
@@ -50,7 +43,7 @@ export const Select = ({
     },
     item: {
       padding: selectedSize.dropdownPadding,
-      marginBottom: '0.5rem',
+      marginBottom: '0.2rem',
       ...fontBase,
       fontSize: selectedSize.fontSize,
       color: neutral[200],
@@ -76,14 +69,5 @@ export const Select = ({
     ...styles,
   };
 
-  return (
-    <MantineSelect
-      radius="md"
-      size={size}
-      styles={style}
-      placeholder={placeholder}
-      maxDropdownHeight={selectedSize.dropdownHeight}
-      {...props}
-    />
-  );
+  return <MantineSelect radius="md" size={size} styles={style} placeholder={placeholder} maxDropdownHeight={selectedSize.dropdownHeight} {...props} />;
 };

@@ -1,8 +1,8 @@
 import React, { CSSProperties } from 'react';
 import { Text as MantineText, TextProps as MantineTextProps } from '@mantine/core';
-import { textStyle, fontSize, fontWeight, fontBase } from '../../constants/font';
+import { textStyle, fontSize, fontWeight } from '../../constants/font';
 
-interface TextProps extends MantineTextProps {
+export interface TextProps extends MantineTextProps {
   children: React.ReactNode;
   variant?: keyof typeof textStyle;
   size?: keyof typeof fontSize;
@@ -37,6 +37,13 @@ const Text = ({ variant = 'body', size, children, weight, color, styles, ...prop
           ...customWeight,
           ...customColor,
           fontWeight: fontWeight.bold,
+        },
+        '& sub': {
+          ...selectedVariant,
+          ...customColor,
+          fontWeight: fontWeight.medium,
+          fontSize: '0.8em',
+          marginLeft: '0.2em',
         },
       }}
       {...props}

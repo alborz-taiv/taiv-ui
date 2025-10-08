@@ -4,34 +4,21 @@ import { CSSObject } from '@mantine/styles';
 import { neutral } from '../../../constants/colors';
 import { componentSizes } from './shared/sizes';
 import { Select, SelectProps } from './Select';
+import { SelectOption } from '../../../utils/select';
 import Fonts from './shared/fontSelectList';
 
-export type ItemProps = {
-  value: string;
-  label: string;
-};
-
 export interface FontSelectProps extends Omit<SelectProps, 'value' | 'data'> {
-  data?: ItemProps[];
+  data?: SelectOption[];
   value?: string | null;
   width?: string | number;
   fullWidth?: boolean;
 }
 
-const FontSelect = ({
-  data,
-  value,
-  placeholder = 'Select a font',
-  size = 'md',
-  width,
-  fullWidth = false,
-  styles,
-  ...props
-}: FontSelectProps) => {
+const FontSelect = ({ data, value, placeholder = 'Select a font', size = 'md', width, fullWidth = false, styles, ...props }: FontSelectProps) => {
   const selectedSize = componentSizes[size];
   const computedWidth = fullWidth ? '100%' : width || `${selectedSize.minWidth}rem`;
 
-  const DropdownItem = ({ value, label, ...others }: ItemProps) => (
+  const DropdownItem = ({ value, label, ...others }: SelectOption) => (
     <Box title={label}>
       <div
         style={{
@@ -78,18 +65,7 @@ const FontSelect = ({
     },
   };
 
-  return (
-    <Select
-      placeholder={placeholder}
-      width={computedWidth}
-      value={value}
-      size={size}
-      styles={style}
-      itemComponent={DropdownItem}
-      data={data || Fonts.FONTS}
-      {...props}
-    />
-  );
+  return <Select placeholder={placeholder} width={computedWidth} value={value} size={size} styles={style} itemComponent={DropdownItem} data={data || Fonts.FONTS} {...props} />;
 };
 
 export { FontSelect };

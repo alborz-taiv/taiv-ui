@@ -1,4 +1,3 @@
-
 export const gray = {
   25: '#F8FAFC',
   50: '#EDEDED',
@@ -57,7 +56,7 @@ export const salmon = {
   200: '#FF806F',
 } as const;
 
-// Semantic/functional color exports - for use in UI, actions, states, etc.
+// Primary semantic/functional color exports - for use in UI, actions, states, etc. anything that would be affected by theme changes down the line
 export const colors = {
   neutral,
   primary,
@@ -66,7 +65,7 @@ export const colors = {
   error,
 } as const;
 
-// Color palette exports - for purely aesthetic purpose, i.e. icons, backgrounds, etc.
+// Primitive color exports - for purely aesthetic purpose, i.e. icons, backgrounds, etc. anything that we want to hardcode to a specific color
 export const primitives = {
   blue,
   green,

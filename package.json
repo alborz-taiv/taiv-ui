@@ -36,7 +36,9 @@
   "exports": {
     ".": "./dist/components/index.js",
     "./hooks": "./dist/hooks/index.js",
-    "./constants": "./dist/constants/index.js"
+    "./constants": "./dist/constants/index.js",
+    "./utils": "./dist/utils/index.js",
+    "./types": "./dist/types/index.js"
   },
   "overrides": {
     "@reduxjs/toolkit": {

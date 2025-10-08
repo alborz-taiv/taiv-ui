@@ -3,8 +3,7 @@ import { Card as MantineCard, CardProps as MantineCardProps } from '@mantine/cor
 import { colors } from '../../constants/colors';
 import { Stack } from './Stack';
 import { Title } from '../Typography/Title';
-import { Text } from '../Typography/Text';
-
+import { Box } from './Box';
 export interface SectionCardProps extends Omit<MantineCardProps, 'children'> {
   title: string;
   subtitle?: string;
@@ -16,8 +15,8 @@ export const SectionCard = ({ title, subtitle, children, color = 'primary', ...p
   return (
     <MantineCard radius="20px" shadow="lg" withBorder padding={0} {...props}>
       {/* Header Section */}
-      <div
-        style={{
+      <Box
+        sx={{
           // background: `linear-gradient(to right, ${colors[color][300]}, ${colors[color][200]})`,
           backgroundColor: 'white',
           padding: '1.6rem 2rem 0 2rem',
@@ -28,10 +27,10 @@ export const SectionCard = ({ title, subtitle, children, color = 'primary', ...p
           <Title variant="cardHeader">{title}</Title>
           {subtitle && <Title variant="cardSubheader">{subtitle}</Title>}
         </Stack>
-      </div>
+      </Box>
 
       {/* Content Section */}
-      <div style={{ padding: '2rem 3.2rem 3.2rem 3.2rem' }}>{children}</div>
+      <Box sx={{ padding: '2rem 3.2rem 3.2rem 3.2rem' }}>{children}</Box>
     </MantineCard>
   );
 };

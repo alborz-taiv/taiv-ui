@@ -11,9 +11,10 @@ interface TooltipProps {
   offset?: number;
   className?: string;
   styles?: Record<string, CSSObject>;
+  maxWidth?: string;
 }
 
-const Tooltip = ({ children, text, position = 'top-start', offset, className, styles }: TooltipProps) => {
+const Tooltip = ({ children, text, position = 'top-start', offset, className, styles, maxWidth }: TooltipProps) => {
   const positionToTransition: Record<string, MantineTransition> = {
     'top-end': 'slide-up',
     'bottom-end': 'slide-down',
@@ -36,7 +37,7 @@ const Tooltip = ({ children, text, position = 'top-start', offset, className, st
       boxShadow: '0px 0px 19px 0px #00000040',
       borderRadius: '8px',
       textWrap: 'wrap',
-      maxWidth: '375px',
+      maxWidth: maxWidth || '375px',
       padding: '0.75rem 1.125rem',
       ...fontSize['sm'],
       height: 'fit-content',

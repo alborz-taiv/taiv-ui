@@ -6,10 +6,11 @@ import { neutral } from '../../constants/colors';
 interface DividerProps extends MantineDividerProps {
   width?: string | number;
   styles?: Record<string, CSSObject>;
+  color?: string;
 }
 
-const Divider = ({ width, styles, ...props }: DividerProps) => {
-  return <MantineDivider color={neutral[50]} w={width} styles={styles} {...props} />;
+const Divider = ({ width = '100%', styles, color = neutral[50], ...props }: DividerProps) => {
+  return <MantineDivider color={color} w={width} styles={styles} {...props} />;
 };
 
 export { Divider };

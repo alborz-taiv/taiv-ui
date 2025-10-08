@@ -1,19 +1,19 @@
 import React from 'react';
-import { Card, CardProps } from '../Layout/Card';
-import { InfoTooltip } from '../Info/Tooltips/InfoTooltip';
-import { Text } from '../Typography/Text';
-import { Title } from '../Typography/Title';
-import { Group } from '../Layout/Group';
-import { Stack } from '../Layout/Stack';
-import { primitives, success, neutral } from '../../constants/colors';
-import { dataFormats } from './shared/dataFormats';
-import { IconBadge } from '../Misc/IconBadge';
+import { Card, CardProps } from '../../Layout/Card';
+import { InfoTooltip } from '../../Info/Tooltips/InfoTooltip';
+import { Text } from '../../Typography/Text';
+import { Title } from '../../Typography/Title';
+import { Group } from '../../Layout/Group';
+import { Stack } from '../../Layout/Stack';
+import { IconBadge } from '../../Misc/IconBadge';
+import { primitives, success, neutral } from '../../../constants/colors';
+import { formats } from '../../../constants/data';
 
 export interface StatsCardProps extends Omit<CardProps, 'children'> {
   value: number;
   title: string;
   description?: string;
-  format?: keyof typeof dataFormats;
+  format?: keyof typeof formats;
   isDelta?: boolean;
   icon?: React.ReactNode;
   iconColor?: keyof typeof primitives;
@@ -34,7 +34,7 @@ export const StatsCard = ({ value, format = 'decimal', isDelta = false, title, d
   const delta = getDelta();
 
   const formatValue = (): string => {
-    const config = dataFormats[format];
+    const config = formats[format];
     const formattedNumber = value.toLocaleString('en-US', {
       minimumFractionDigits: config.decimalPlaces,
       maximumFractionDigits: config.decimalPlaces,
@@ -66,7 +66,7 @@ export const StatsCard = ({ value, format = 'decimal', isDelta = false, title, d
             <Title variant="cardHeader" color="#6D6D6D" weight="medium">
               {title}
             </Title>
-            {tooltip && <InfoTooltip text={tooltip} />}
+            {tooltip && <InfoTooltip text={tooltip} maxWidth="600px" />}
           </Group>
         </Stack>
 
