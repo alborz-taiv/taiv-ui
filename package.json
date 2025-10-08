@@ -41,6 +41,8 @@
     "./types": "./dist/types/index.js"
   },
   "overrides": {
+    "grpc": "npm:@grpc/grpc-js@^1.9.0",
+    "protobufjs": "^7.2.0",
     "@reduxjs/toolkit": {
       ".": "^1.9.7",
       "dependencies": {
