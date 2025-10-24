@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, CardProps } from '../Layout/Card';
-import { Center } from '../Layout/Center';
+import { Card, CardProps } from '../Layout/Card/Card';
+import { Center } from '../Layout/Center/Center';
 import { colors } from '../../constants/colors';
 
 export interface InfoCardProps extends Omit<CardProps, 'children'> {

@@ -1,0 +1,273 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { MultiSelect } from './MultiSelect';
+import * as MultiSelectStories from './MultiSelect.stories';
+
+<Meta of={MultiSelectStories} />
+
+# MultiSelect
+
+[View Mantine Docs](https://v6.mantine.dev/core/multi-select/)
+
+The MultiSelect component is a customizable wrapper around Mantine's MultiSelect component that provides consistent styling and behavior across your application. It extends Mantine v6's MultiSelectProps while adding custom sizing options and preset styling with built-in search functionality.
+
+### 📦 Import
+
+```tsx
+import { MultiSelect } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={MultiSelectStories.Default} height={900} />
+<Controls of={MultiSelectStories.Default} />
+
+---
+
+### 📐 Variants
+
+Different ways to use the MultiSelect component.
+
+<Story of={MultiSelectStories.Variants} />
+
+The component is perfect for scenarios where users need to select multiple items, such as tags, categories, or any multi-value selection.
+
+## <br />
+
+### 📏 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={MultiSelectStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline actions, tables</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most multi-selects</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent forms</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+The MultiSelect component supports different states to provide visual feedback and control user interaction.
+
+<Story of={MultiSelectStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard multi-selection interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When selection is not available</td>
+    </tr>
+    <tr>
+      <td>Required</td>
+      <td>Required field indicator</td>
+      <td>When at least one selection is mandatory</td>
+    </tr>
+    <tr>
+      <td>With Description</td>
+      <td>Additional context provided</td>
+      <td>When more explanation is needed</td>
+    </tr>
+    <tr>
+      <td>With Error</td>
+      <td>Validation error state</td>
+      <td>Form validation feedback</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### ⚡ Additional Functionality
+
+The MultiSelect component supports additional features for enhanced user experience.
+
+<Story of={MultiSelectStories.AdditionalFunctionality} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clearable</td>
+      <td>Allows users to clear all selections at once</td>
+      <td>When users might want to reset all selections</td>
+    </tr>
+    <tr>
+      <td>Searchable</td>
+      <td>Allows users to search through options (enabled by default)</td>
+      <td>When there are many options to choose from</td>
+    </tr>
+    <tr>
+      <td>Max Selected Values</td>
+      <td>Limits the number of selections allowed</td>
+      <td>When there's a maximum limit on selections</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🛠️ Custom Styling
+
+In the event that you need to custom style your MultiSelect, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={MultiSelectStories.CustomStyling} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-MultiSelect-root</td>
+      <td>Root element</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td>.mantine-MultiSelect-input</td>
+      <td>Input element container</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-MultiSelect-label</td>
+      <td>Label</td>
+    </tr>
+    <tr>
+      <td>dropdown</td>
+      <td>.mantine-MultiSelect-dropdown</td>
+      <td>Dropdown container</td>
+    </tr>
+    <tr>
+      <td>item</td>
+      <td>.mantine-MultiSelect-item</td>
+      <td>Dropdown option item</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>.mantine-MultiSelect-value</td>
+      <td>Selected value tag</td>
+    </tr>
+    <tr>
+      <td>defaultValueRemove</td>
+      <td>.mantine-MultiSelect-defaultValueRemove</td>
+      <td>Remove button for selected values</td>
+    </tr>
+    <tr>
+      <td>searchInput</td>
+      <td>.mantine-MultiSelect-searchInput</td>
+      <td>Search input field</td>
+    </tr>
+    <tr>
+      <td>wrapper</td>
+      <td>.mantine-MultiSelect-wrapper</td>
+      <td>Root Input element</td>
+    </tr>
+    <tr>
+      <td>nothingFound</td>
+      <td>.mantine-MultiSelect-nothingFound</td>
+      <td>Nothing found label</td>
+    </tr>
+    <tr>
+      <td>values</td>
+      <td>.mantine-MultiSelect-values</td>
+      <td>Values wrapper</td>
+    </tr>
+    <tr>
+      <td>defaultValue</td>
+      <td>.mantine-MultiSelect-defaultValue</td>
+      <td>Default value component wrapper</td>
+    </tr>
+    <tr>
+      <td>defaultValueLabel</td>
+      <td>.mantine-MultiSelect-defaultValueLabel</td>
+      <td>Default value label</td>
+    </tr>
+    <tr>
+      <td>itemsWrapper</td>
+      <td>.mantine-MultiSelect-itemsWrapper</td>
+      <td>Wraps all items in dropdown</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>.mantine-MultiSelect-icon</td>
+      <td>Input icon wrapper on the left side</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>.mantine-MultiSelect-description</td>
+      <td>Description element</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>.mantine-MultiSelect-error</td>
+      <td>Error element</td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>.mantine-MultiSelect-required</td>
+      <td>Required asterisk element</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Provide clear labels**: Always include descriptive labels to help users understand what they're selecting.
+
+2. **Handle empty states**: Use meaningful placeholders and consider the clearable prop for better UX.
+
+3. **Search functionality**: Search is enabled by default to help users find options quickly in large datasets.
+
+4. **Limit selections**: Use maxSelectedValues when appropriate to prevent overwhelming selections.
+
+5. **Error handling**: Use the error prop to display validation messages when needed.
+
+6. **Data structure**: Ensure your data array follows the `{value: string, label: string}` format for consistency.
+
+7. **Creation feature**: Use creatable sparingly and provide clear feedback when new items are created.
+
+8. **Performance**: For very large datasets, consider implementing virtualization or server-side filtering.

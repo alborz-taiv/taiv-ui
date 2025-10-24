@@ -1,0 +1,177 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DatePicker } from './DatePicker';
+import * as DatePickerStories from './DatePicker.stories';
+
+<Meta of={DatePickerStories} />
+
+# DatePicker
+
+[View Mantine Docs](https://v6.mantine.dev/dates/date-picker-input/)
+
+The DatePicker component is a customizable wrapper around Mantine's DatePickerInput component that provides consistent styling and behavior across your application. It extends Mantine v6's DatePickerInputProps while adding custom sizing options and preset styling with a clean calendar interface.
+
+### 📦 Import
+
+```tsx
+import { DatePicker } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={DatePickerStories.Default} />
+<Controls of={DatePickerStories.Default} />
+
+---
+
+### 📐 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={DatePickerStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline forms, mobile interfaces</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most date pickers, forms</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent forms, accessibility requirements</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+The DatePicker component supports different states to provide visual feedback and control user interaction.
+
+<Story of={DatePickerStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard date picker interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When date selection is not available</td>
+    </tr>
+    <tr>
+      <td>Required</td>
+      <td>Required field indicator</td>
+      <td>When date selection is mandatory</td>
+    </tr>
+    <tr>
+      <td>With Description</td>
+      <td>Additional context provided</td>
+      <td>When more explanation is needed</td>
+    </tr>
+    <tr>
+      <td>With Error</td>
+      <td>Validation error state</td>
+      <td>Form validation feedback</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🎨 Icon Options
+
+The DatePicker component supports showing or hiding the calendar icon.
+
+<Story of={DatePickerStories.WithAndWithoutIcon} />
+
+## <br />
+
+### 📏 Full Width
+
+The DatePicker can be set to take the full width of its container.
+
+<Story of={DatePickerStories.FullWidth} />
+
+## <br />
+
+### 🛠️ Custom Styles
+
+In the event that you need to custom style your DatePicker, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={DatePickerStories.CustomStyles} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-DatePickerInput-root</td>
+      <td>Root element</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td>.mantine-DatePickerInput-input</td>
+      <td>Input element</td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>.mantine-DatePickerInput-placeholder</td>
+      <td>Placeholder text</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-DatePickerInput-label</td>
+      <td>Label</td>
+    </tr>
+    <tr>
+      <td>calendar</td>
+      <td>.mantine-DatePickerInput-calendar</td>
+      <td>Calendar popup</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Provide clear labels**: Always include descriptive labels to help users understand what date they should select.
+
+2. **Use appropriate placeholders**: Set meaningful placeholder text that indicates the expected date format or purpose.
+
+3. **Handle validation**: Use the error prop to display validation messages when dates are invalid or required.
+
+4. **Consider accessibility**: Ensure labels are descriptive and consider using description for additional context.
+
+5. **Use consistent sizing**: Choose appropriate sizes based on your form layout and user context.
+
+6. **Icon usage**: Use the calendar icon for better visual recognition, but hide it in compact interfaces if needed.
+
+7. **Date formatting**: Consider the expected date format and provide clear examples or formatting hints.

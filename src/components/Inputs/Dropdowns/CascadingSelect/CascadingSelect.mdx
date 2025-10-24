@@ -1,0 +1,289 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { CascadingSelect } from './CascadingSelect';
+import * as CascadingSelectStories from './CascadingSelect.stories';
+
+<Meta of={CascadingSelectStories} />
+
+# CascadingSelect
+
+The CascadingSelect component is a specialized dropdown that displays hierarchical data in a nested structure. It extends the base Select component with support for multi-level options, icons, and visual indentation to represent parent-child relationships.
+
+### 📦 Import
+
+```tsx
+import { CascadingSelect } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={CascadingSelectStories.Default} height={900} />
+<Controls of={CascadingSelectStories.Default} />
+
+---
+
+### 📐 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={CascadingSelectStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline forms, mobile interfaces</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most cascading selects, forms</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent forms, accessibility requirements</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🎨 With Icons
+
+The CascadingSelect supports icons for each option, making it easier to visually distinguish between different categories and items.
+
+<Story of={CascadingSelectStories.WithIcons} />
+
+Icons are displayed alongside the option labels and are particularly useful for:
+
+- Category navigation
+- File system browsing
+- Product categorization
+- Organizational structures
+
+## <br />
+
+### 🔄 States
+
+The CascadingSelect component supports different states to provide visual feedback and control user interaction.
+
+<Story of={CascadingSelectStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard cascading select interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When selection is not available</td>
+    </tr>
+    <tr>
+      <td>Required</td>
+      <td>Required field indicator</td>
+      <td>When selection is mandatory</td>
+    </tr>
+    <tr>
+      <td>With Description</td>
+      <td>Additional context provided</td>
+      <td>When more explanation is needed</td>
+    </tr>
+    <tr>
+      <td>With Error</td>
+      <td>Validation error state</td>
+      <td>Form validation feedback</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### ⚡ Features
+
+The CascadingSelect component supports additional features for enhanced user experience.
+
+<Story of={CascadingSelectStories.WithFeatures} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clearable</td>
+      <td>Allows users to clear their selection</td>
+      <td>When selection is optional and users might want to reset</td>
+    </tr>
+    <tr>
+      <td>Searchable</td>
+      <td>Allows users to search through all options</td>
+      <td>When there are many nested options to choose from</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 📏 Full Width
+
+The CascadingSelect can be set to take the full width of its container.
+
+<Story of={CascadingSelectStories.FullWidth} />
+
+## <br />
+
+### 🌳 Deep Hierarchy
+
+The component supports multiple levels of nesting, making it suitable for complex hierarchical data structures.
+
+<Story of={CascadingSelectStories.DeepHierarchy} />
+
+Perfect for:
+
+- Company organizational charts
+- File system navigation
+- Product category trees
+- Geographic hierarchies
+- Menu structures
+
+## <br />
+
+### 🛠️ Custom Styles
+
+In the event that you need to custom style your CascadingSelect, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={CascadingSelectStories.CustomStyles} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-Select-root</td>
+      <td>Root element</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td>.mantine-Select-input</td>
+      <td>Input element</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-Select-label</td>
+      <td>Label</td>
+    </tr>
+    <tr>
+      <td>dropdown</td>
+      <td>.mantine-Select-dropdown</td>
+      <td>Dropdown container</td>
+    </tr>
+    <tr>
+      <td>item</td>
+      <td>.mantine-Select-item</td>
+      <td>Dropdown option item (with indentation)</td>
+    </tr>
+    <tr>
+      <td>rightSection</td>
+      <td>.mantine-Select-rightSection</td>
+      <td>Right section with dropdown arrow</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 📊 Data Structure
+
+The CascadingSelect expects data in a specific hierarchical format:
+
+```tsx
+interface CascadingSelectItemProps {
+  option: {
+    value: string;
+    label: string;
+  };
+  icon?: React.ReactNode;
+  children?: CascadingSelectItemProps[];
+}
+```
+
+**Example data structure:**
+
+```tsx
+const data = [
+  {
+    option: { value: 'electronics', label: 'Electronics' },
+    icon: '📱',
+    children: [
+      {
+        option: { value: 'phones', label: 'Smartphones' },
+        icon: '📱',
+        children: [
+          { option: { value: 'iphone', label: 'iPhone' }, icon: '🍎' },
+          { option: { value: 'samsung', label: 'Samsung Galaxy' }, icon: '📱' },
+        ],
+      },
+    ],
+  },
+];
+```
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Limit nesting depth**: While the component supports deep nesting, consider limiting to 3-4 levels for better UX.
+
+2. **Use meaningful icons**: Icons help users quickly identify categories and options.
+
+3. **Provide clear labels**: Ensure option labels are descriptive and hierarchical relationships are clear.
+
+4. **Enable search for large datasets**: Use the searchable prop when there are many nested options.
+
+5. **Consider performance**: For very large datasets, consider implementing virtualization or lazy loading.
+
+6. **Handle validation**: Use the error prop to display validation messages when selections are invalid or required.
+
+7. **Use clearable when appropriate**: Enable clearable for optional selections where users might want to reset their choice.
+
+8. **Consistent sizing**: Choose appropriate sizes based on your form layout and user context.
+
+9. **Accessibility**: Ensure labels are descriptive and consider using description for additional context about the hierarchy.
+
+10. **Visual hierarchy**: The component automatically handles indentation, but ensure your data structure makes logical sense to users.
+
+## <br />
+
+### 🎯 Use Cases
+
+- **E-commerce**: Product categorization and filtering
+- **File management**: Directory and file selection
+- **Organizational charts**: Department and team selection
+- **Geographic selection**: Country, state, city hierarchies
+- **Menu systems**: Nested navigation structures
+- **Form builders**: Dynamic field selection with categories
+- **Content management**: Category and tag selection

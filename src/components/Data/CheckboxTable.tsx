@@ -1,10 +1,10 @@
 import React from 'react';
 import { useMobile } from '../../hooks/useMediaQuery';
-import { Checkbox } from '../Inputs/Controls/Checkbox';
-import { Group } from '../Layout/Group';
-import { Box } from '../Layout/Box';
-import { Center } from '../Layout/Center';
-import { Stack } from '../Layout/Stack';
+import { Checkbox } from '../Inputs/Controls/Checkbox/Checkbox';
+import { Group } from '../Layout/Group/Group';
+import { Box } from '../Layout/Box/Box';
+import { Center } from '../Layout/Center/Center';
+import { Stack } from '../Layout/Stack/Stack';
 import { Title } from '../Typography/Title';
 import { neutral } from '../../constants/colors';
 import { fontStyle } from '../../constants/font';
@@ -28,16 +28,7 @@ interface CheckboxTableProps {
   outlines?: boolean;
 }
 
-const CheckboxTable = ({
-  columns,
-  data,
-  className = 'none',
-  onRowClick,
-  title,
-  subtitle,
-  showColumnTitles = false,
-  outlines = false,
-}: CheckboxTableProps) => {
+const CheckboxTable = ({ columns, data, className = 'none', onRowClick, title, subtitle, showColumnTitles = false, outlines = false }: CheckboxTableProps) => {
   const isMobile = useMobile();
 
   const style = {

@@ -2,20 +2,13 @@ import React from 'react';
 import { modals } from '@mantine/modals';
 import { neutral } from '../constants/colors';
 import { Title } from '../components/Typography/Title';
-import { Stack } from '../components/Layout/Stack';
-import { Center } from '../components/Layout/Center';
+import { Stack } from '../components/Layout/Stack/Stack';
+import { Center } from '../components/Layout/Center/Center';
 import { modalVariants } from '../components/Info/Modals/variants';
-import { Button } from '../components/Inputs/Buttons/Button';
+import { Button } from '../components/Inputs/Buttons/Button/Button';
 
 export const useInfoModal = () => {
-  const show = (options: {
-    variant?: keyof typeof modalVariants;
-    title?: string;
-    message?: string;
-    icon?: React.ReactNode;
-    onConfirm?: () => void;
-    size?: string | number;
-  }) => {
+  const show = (options: { variant?: keyof typeof modalVariants; title?: string; message?: string; icon?: React.ReactNode; onConfirm?: () => void; size?: string | number }) => {
     const { variant = 'info', title, message, icon, onConfirm, size = '35rem' } = options;
 
     const handleConfirm = () => {
@@ -33,9 +26,7 @@ export const useInfoModal = () => {
       border: `2px solid ${selectedVariant.iconColor}`,
     };
 
-    const modalIcon = icon || (
-      <i className={selectedVariant.icon} style={{ color: selectedVariant.iconColor, fontSize: '2rem' }} />
-    );
+    const modalIcon = icon || <i className={selectedVariant.icon} style={{ color: selectedVariant.iconColor, fontSize: '2rem' }} />;
 
     const InfoModalContent = () => {
       return (

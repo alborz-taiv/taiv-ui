@@ -1,0 +1,175 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Checkbox } from './Checkbox';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+[View Mantine Docs](https://v6.mantine.dev/core/checkbox/)
+
+The Checkbox component is a customizable wrapper around Mantine's Checkbox component that provides consistent styling and behavior across your application. It extends Mantine v6's CheckboxProps while adding custom sizing options and preset styling.
+
+### 📦 Import
+
+```tsx
+import { Checkbox } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={CheckboxStories.Default} />
+<Controls of={CheckboxStories.Default} />
+
+---
+
+### 📐 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={CheckboxStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline actions, tables</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most checkboxes</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent forms, accessibility requirements</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+The Checkbox component supports different states to provide visual feedback and control user interaction.
+
+<Story of={CheckboxStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard checkbox interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When option is not available</td>
+    </tr>
+    <tr>
+      <td>Indeterminate</td>
+      <td>Partially selected state</td>
+      <td>Parent checkboxes controlling multiple children</td>
+    </tr>
+    <tr>
+      <td>With Description</td>
+      <td>Additional context provided</td>
+      <td>When more explanation is needed</td>
+    </tr>
+    <tr>
+      <td>With Error</td>
+      <td>Validation error state</td>
+      <td>Form validation feedback</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🛠️ Custom Styles
+
+In the event that you need to custom style your Checkbox, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={CheckboxStories.CustomStyles} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-Checkbox-root</td>
+      <td>Root checkbox element</td>
+    </tr>
+    <tr>
+      <td>body</td>
+      <td>.mantine-Checkbox-body</td>
+      <td>Main element of checkbox</td>
+    </tr>
+    <tr>
+      <td>inner</td>
+      <td>.mantine-Checkbox-inner</td>
+      <td>Includes input and label</td>
+    </tr>
+    <tr>
+      <td>labelWrapper</td>
+      <td>.mantine-Checkbox-labelWrapper</td>
+      <td>Include label and description component</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td>.mantine-Checkbox-input</td>
+      <td>Checkbox input element</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>.mantine-Checkbox-icon</td>
+      <td>Checked or indeterminate state icon</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-Checkbox-label</td>
+      <td>Label</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>.mantine-Checkbox-description</td>
+      <td>Description</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>.mantine-Checkbox-error</td>
+      <td>Error message</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Provide clear labels**: Always include descriptive labels to help users understand what they're agreeing to or selecting.
+
+2. **Use controlled state**: Always manage the checked state through props for predictable behavior.
+
+3. **Error handling**: Use the error prop to display validation messages at a field level when needed.
+
+4. **Group related options**: When using multiple checkboxes, group them logically.

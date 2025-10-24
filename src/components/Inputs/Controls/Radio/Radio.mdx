@@ -1,0 +1,151 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Radio } from './Radio';
+import * as RadioStories from './Radio.stories';
+
+<Meta of={RadioStories} />
+
+# Radio
+
+[View Mantine Docs](https://v6.mantine.dev/core/radio/)
+
+The Radio component is a customizable wrapper around Mantine's Radio component that provides consistent styling and behavior across your application. It extends Mantine v6's RadioProps while adding preset styling for form inputs.
+
+### 📦 Import
+
+```tsx
+import { Radio } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={RadioStories.Default} />
+<Controls of={RadioStories.Default} />
+
+---
+
+### 📋 Radio Groups
+
+Radio buttons are typically used in groups where only one option can be selected at a time.
+
+<Story of={RadioStories.RadioGroup} />
+
+## <br />
+
+### 🔄 States
+
+The Radio component supports different states to provide visual feedback and control user interaction.
+
+<Story of={RadioStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard radio button interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When option is not available</td>
+    </tr>
+    <tr>
+      <td>With Description</td>
+      <td>Additional context provided</td>
+      <td>When more explanation is needed</td>
+    </tr>
+    <tr>
+      <td>With Error</td>
+      <td>Validation error state</td>
+      <td>Form validation feedback</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🛠️ Custom Styles
+
+In the event that you need to custom style your Radio, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={RadioStories.CustomStyles} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-Radio-root</td>
+      <td>Root radio element</td>
+    </tr>
+    <tr>
+      <td>body</td>
+      <td>.mantine-Radio-body</td>
+      <td>Main element of radio</td>
+    </tr>
+    <tr>
+      <td>inner</td>
+      <td>.mantine-Radio-inner</td>
+      <td>Includes input and label</td>
+    </tr>
+    <tr>
+      <td>labelWrapper</td>
+      <td>.mantine-Radio-labelWrapper</td>
+      <td>Include label and description component</td>
+    </tr>
+    <tr>
+      <td>radio</td>
+      <td>.mantine-Radio-radio</td>
+      <td>Radio input element</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>.mantine-Radio-icon</td>
+      <td>Checked state icon</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-Radio-label</td>
+      <td>Label</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>.mantine-Radio-description</td>
+      <td>Description</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>.mantine-Radio-error</td>
+      <td>Error message</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Use in groups**: Radio buttons should always be used in groups where only one option can be selected.
+
+2. **Provide clear labels**: Always include descriptive labels to help users understand their options.
+
+3. **Use controlled state**: Always manage the selected value through props for predictable behavior.
+
+4. **Error handling**: Use the error prop to display validation messages when needed.
+
+5. **Accessibility**: Ensure labels are descriptive and consider using description for additional context.
+
+6. **Group related options**: When using multiple radio groups, separate them clearly and consider using fieldsets for screen readers.

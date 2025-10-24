@@ -1,6 +1,6 @@
 import React from 'react';
 import { primary, error, success, warning } from '../../../constants/colors';
-import { Loader } from '../../Layout/Loader';
+import { Loader } from '../../Layout/Loader/Loader';
 
 export const componentVariants = {
   success: {

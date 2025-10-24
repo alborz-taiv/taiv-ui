@@ -1,10 +1,10 @@
 import React from 'react';
-import { Box } from '../../Layout/Box';
+import { Box } from '../../Layout/Box/Box';
 import { Text } from '../../Typography/Text';
 import { Formula } from '../../Typography/Formula';
-import { Stack } from '../../Layout/Stack';
+import { Stack } from '../../Layout/Stack/Stack';
 import { blue } from '../../../constants/colors';
-import { Center } from '../../Layout/Center';
+import { Center } from '../../Layout/Center/Center';
 
 interface FormulaTooltipProps {
   title: string;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Divider } from '../Layout/Divider';
+import { Divider } from '../Layout/Divider/Divider';
 import { textStyle } from '../../constants';
 import { Text } from './Text';
-import { Stack } from '../Layout/Stack';
+import { Stack } from '../Layout/Stack/Stack';
 import { TextProps } from './Text';
 
 interface FractionProps extends Omit<TextProps, 'children' | 'styles'> {

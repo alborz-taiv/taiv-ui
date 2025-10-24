@@ -17,6 +17,9 @@
     "jsx": "react-jsx",
     "declaration": true,
     "declarationMap": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "outDir": "./dist",
     "rootDir": "./src"
   },

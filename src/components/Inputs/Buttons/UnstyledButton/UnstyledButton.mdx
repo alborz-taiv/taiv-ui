@@ -1,0 +1,56 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { UnstyledButton } from './UnstyledButton';
+import * as UnstyledButtonStories from './UnstyledButton.stories';
+
+<Meta of={UnstyledButtonStories} />
+
+# UnstyledButton
+
+[View Mantine Docs](https://v6.mantine.dev/core/unstyled-button/)
+
+The UnstyledButton component is a minimal wrapper around Mantine's UnstyledButton component that provides a clean slate for custom button implementations. Unlike the styled Button component, UnstyledButton has no default styling, giving you complete control over appearance.
+
+### 📦 Import
+
+```tsx
+import { UnstyledButton } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={UnstyledButtonStories.Default} />
+<Controls of={UnstyledButtonStories.Default} />
+
+---
+
+### 🛠️ Custom Styles
+
+Since UnstyledButton has no default styling, you have complete control over its appearance through the `styles` prop.
+You can target the root css selector when customizing your UnstyledButton.
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-UnstyledButton-root</td>
+      <td>Root button element</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Wrap clickable elements with UnstyledButton**: Instead of adding just an onClick prop, wrap the element in an UnstyledButton to ensure proper accessibility.
+
+2. **Provide all styles**: Since there are no defaults, ensure you style all necessary states (hover, focus, active, disabled).
+
+3. **Use styled Button when possible**: For standard button needs, use the styled Button component for consistency.

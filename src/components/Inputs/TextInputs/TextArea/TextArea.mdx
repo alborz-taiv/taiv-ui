@@ -1,0 +1,227 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { TextArea } from './TextArea';
+import * as TextAreaStories from './TextArea.stories';
+
+<Meta of={TextAreaStories} />
+
+# TextArea
+
+[View Mantine Docs](https://v6.mantine.dev/core/textarea/)
+
+The TextArea component is a customizable wrapper around Mantine's Textarea component that provides consistent styling and behavior across your application. It extends Mantine v6's TextareaProps while adding custom sizing options and preset styling with auto-resize functionality.
+
+### 📦 Import
+
+```tsx
+import { TextArea } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={TextAreaStories.Default} height={900} />
+<Controls of={TextAreaStories.Default} />
+
+---
+
+### 📐 Variants
+
+Different ways to use the TextArea component.
+
+<Story of={TextAreaStories.Variants} />
+
+The component supports various configurations including placeholders, labels, and descriptions to provide context to users.
+
+## <br />
+
+### 📏 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={TextAreaStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline actions, tables</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most textareas</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent forms</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+The TextArea component supports different states to provide visual feedback and control user interaction.
+
+<Story of={TextAreaStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard textarea interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When textarea is not available</td>
+    </tr>
+    <tr>
+      <td>Required</td>
+      <td>Required field indicator</td>
+      <td>When textarea is mandatory</td>
+    </tr>
+    <tr>
+      <td>With Description</td>
+      <td>Additional context provided</td>
+      <td>When more explanation is needed</td>
+    </tr>
+    <tr>
+      <td>With Error</td>
+      <td>Validation error state</td>
+      <td>Form validation feedback</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### ⚡ Additional Functionality
+
+The TextArea component supports additional features for enhanced user experience.
+
+<Story of={TextAreaStories.AdditionalFunctionality} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Auto-resize</td>
+      <td>Automatically adjusts height based on content</td>
+      <td>When content length varies significantly</td>
+    </tr>
+    <tr>
+      <td>Fixed Rows</td>
+      <td>Set minimum and maximum number of rows</td>
+      <td>When you need consistent sizing</td>
+    </tr>
+    <tr>
+      <td>Custom Width</td>
+      <td>Override default width with custom sizing</td>
+      <td>When specific width requirements are needed</td>
+    </tr>
+    <tr>
+      <td>Vertical Resize</td>
+      <td>Users can manually resize the textarea vertically</td>
+      <td>For flexible content input</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🛠️ Custom Styling
+
+In the event that you need to custom style your TextArea, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={TextAreaStories.CustomStyling} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-Textarea-root</td>
+      <td>Root element</td>
+    </tr>
+    <tr>
+      <td>wrapper</td>
+      <td>.mantine-Textarea-wrapper</td>
+      <td>Root Input element</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td>.mantine-Textarea-input</td>
+      <td>Main textarea element</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-Textarea-label</td>
+      <td>Label element</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>.mantine-Textarea-description</td>
+      <td>Description element</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>.mantine-Textarea-error</td>
+      <td>Error element</td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>.mantine-Textarea-required</td>
+      <td>Required asterisk element</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Provide clear labels**: Always include descriptive labels to help users understand what content is expected.
+
+2. **Use helpful placeholders**: Use placeholders to give users hints about the expected content format or length.
+
+3. **Handle validation**: Use the error prop to display validation messages when content is invalid or required.
+
+4. **Consider auto-resize**: Use autosize for content that varies significantly in length to improve user experience.
+
+5. **Set appropriate row limits**: Use minRows and maxRows to provide consistent sizing and prevent excessive growth.
+
+6. **Consistent sizing**: Choose appropriate sizes based on your form layout and user context.
+
+7. **Accessibility**: Ensure labels are descriptive and consider using description for additional context.
+
+8. **Form integration**: The component works seamlessly with form libraries and validation frameworks.
+
+9. **Responsive design**: Use fullWidth prop when the textarea should take the full width of its container.
+
+10. **Custom styling**: Use the styles prop to customize appearance while maintaining consistency with your design system.

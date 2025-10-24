@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text } from '../Typography/Text';
-import { Center } from '../Layout/Center';
-import { Box } from '../Layout/Box';
-import { Stack } from '../Layout/Stack';
-import { Group } from '../Layout/Group';
+import { Center } from '../Layout/Center/Center';
+import { Box } from '../Layout/Box/Box';
+import { Stack } from '../Layout/Stack/Stack';
+import { Group } from '../Layout/Group/Group';
 import { Area, Bar, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { formats } from '../../constants/data';
 import { getChartFormatter } from '../../utils/charts';

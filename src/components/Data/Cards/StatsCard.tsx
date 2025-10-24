@@ -1,11 +1,11 @@
 import React from 'react';
-import { Card, CardProps } from '../../Layout/Card';
+import { Card, CardProps } from '../../Layout/Card/Card';
 import { InfoTooltip } from '../../Info/Tooltips/InfoTooltip';
 import { Text } from '../../Typography/Text';
 import { Title } from '../../Typography/Title';
-import { Group } from '../../Layout/Group';
-import { Stack } from '../../Layout/Stack';
-import { IconBadge } from '../../Misc/IconBadge';
+import { Group } from '../../Layout/Group/Group';
+import { Stack } from '../../Layout/Stack/Stack';
+import { IconBadge } from '../../Misc/IconBadge/IconBadge';
 import { primitives, success, neutral } from '../../../constants/colors';
 import { formats } from '../../../constants/data';
 

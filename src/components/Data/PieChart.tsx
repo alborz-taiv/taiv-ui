@@ -1,11 +1,11 @@
 import React from 'react';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, Label } from 'recharts';
 import { Text } from '../Typography/Text';
-import { Center } from '../Layout/Center';
-import { Group } from '../Layout/Group';
+import { Center } from '../Layout/Center/Center';
+import { Group } from '../Layout/Group/Group';
 import { Title } from '../Typography/Title';
-import { Stack } from '../Layout/Stack';
-import { Box } from '../Layout/Box';
+import { Stack } from '../Layout/Stack/Stack';
+import { Box } from '../Layout/Box/Box';
 import { neutral } from '../../constants/colors';
 import { textStyle } from '../../constants/font';
 import { numberFormats } from '../../constants/data';

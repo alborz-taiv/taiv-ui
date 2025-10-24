@@ -1,11 +1,11 @@
 import React from 'react';
 import { IconCaretDownFilled } from '@tabler/icons-react';
 import { primary } from '../../constants/colors';
-import { Box } from '../Layout/Box';
-import { Group } from '../Layout/Group';
+import { Box } from '../Layout/Box/Box';
+import { Group } from '../Layout/Group/Group';
 import { Text } from './Text';
-import { Transition } from '../Misc/Transition';
-import { UnstyledButton } from '../Inputs/Buttons/UnstyledButton';
+import { Transition } from '../Misc/Transition/Transition';
+import { UnstyledButton } from '../Inputs/Buttons/UnstyledButton/UnstyledButton';
 import { textStyle } from '../../constants/font';
 
 interface CollapsibleTextProps {

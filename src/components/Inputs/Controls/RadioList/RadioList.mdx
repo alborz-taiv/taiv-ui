@@ -1,0 +1,168 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { RadioList } from './RadioList';
+import * as RadioListStories from './RadioList.stories';
+
+<Meta of={RadioListStories} />
+
+# RadioList
+
+The RadioList component is a composite component that renders a list of radio buttons in a styled container. It provides a clean, bordered interface for selecting a single option from multiple choices, commonly used in forms and settings panels.
+
+### 📦 Import
+
+```tsx
+import { RadioList } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={RadioListStories.Default} />
+<Controls of={RadioListStories.Default} />
+
+---
+
+### 📋 With Right Content
+
+RadioList supports additional content on the right side of each option, useful for displaying prices, status indicators, or other metadata.
+
+<Story of={RadioListStories.WithRightContent} />
+
+### 🎨 With Icons
+
+You can include icons or status indicators as right content to provide visual feedback.
+
+<Story of={RadioListStories.WithIcons} />
+
+### 🔄 States
+
+The RadioList component supports different states to provide visual feedback and control user interaction.
+
+<Story of={RadioListStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard radio list interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state for all options</td>
+      <td>When the entire list is not available</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 📐 Custom Width
+
+The RadioList component supports custom width to fit different layout requirements.
+
+<Story of={RadioListStories.CustomWidth} />
+
+### 🛠️ Props
+
+The RadioList component accepts the following props:
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>data</td>
+      <td>RadioListOption[]</td>
+      <td>-</td>
+      <td>Array of radio options to display</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td>-</td>
+      <td>Currently selected value</td>
+    </tr>
+    <tr>
+      <td>onChange</td>
+      <td>(value: string) => void</td>
+      <td>-</td>
+      <td>Callback fired when selection changes</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Disables all radio options</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>React.CSSProperties['width']</td>
+      <td>-</td>
+      <td>Custom width for the radio list container</td>
+    </tr>
+  </tbody>
+</table>
+
+### 🛠️ RadioListOption Interface
+
+Each option in the data array should follow this interface:
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>value</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>Unique value for the option</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>Display text for the option</td>
+    </tr>
+    <tr>
+      <td>rightContent</td>
+      <td>React.ReactNode</td>
+      <td>No</td>
+      <td>Additional content displayed on the right side</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Use for single selection**: RadioList is perfect for scenarios where users need to choose one option from multiple choices.
+
+2. **Provide clear labels**: Ensure option labels are descriptive and help users understand their choices.
+
+3. **Use right content wisely**: Use rightContent for additional context like prices, status, or metadata.
+
+4. **Consider width**: Set appropriate width based on your layout and content length.
+
+5. **Handle disabled state**: Use the disabled prop when the entire list should be non-interactive.
+
+6. **Group related options**: Keep related options together and use clear, logical groupings.

@@ -3,7 +3,7 @@ import React from 'react';
 import { fontWeight, fontSize } from '../../constants/font';
 import { Text } from './Text';
 import { Fraction } from './Fraction';
-import { Group } from '../Layout/Group';
+import { Group } from '../Layout/Group/Group';
 
 interface FormulaProps {
   expression: string;

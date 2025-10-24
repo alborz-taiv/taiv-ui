@@ -1,0 +1,68 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Box } from './Box';
+import * as BoxStories from './Box.stories';
+
+<Meta of={BoxStories} />
+
+# Box
+
+[View Mantine Docs](https://v6.mantine.dev/core/box/)
+
+The Box component is a polymorphic component that allows you to add inline styles to any element or component with the `sx` prop. It extends Mantine v6's BoxProps while providing a flexible foundation for custom styling and layout.
+
+### 📦 Import
+
+```tsx
+import { Box } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={BoxStories.Default} height={900} />
+<Controls of={BoxStories.Default} />
+
+---
+
+### 📐 Alignment
+
+Different alignment options for Box content.
+
+<Story of={BoxStories.Alignment} />
+
+The component supports various text alignment options for flexible content positioning.
+
+## <br />
+
+### 🛠️ Custom Styling
+
+The Box component provides complete control over styling through the `sx` prop. You can use any CSS properties and Mantine theme values:
+
+<Story of={BoxStories.CustomStyling} />
+
+The `sx` prop accepts:
+
+- **CSS properties**: Any valid CSS property
+- **Theme values**: Access to Mantine theme colors, spacing, shadows, etc.
+- **Pseudo-selectors**: `:hover`, `:focus`, `:active`, etc.
+- **Media queries**: Responsive design support
+- **Nested selectors**: Complex styling scenarios
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Leverage theme values**: Use theme colors, spacing, and other values for consistent design.
+
+2. **Keep styles organized**: Use the `sx` prop for component-specific styles and external CSS for global styles.
+
+3. **Use semantic elements**: Use the `component` prop to render appropriate HTML elements for better accessibility.
+
+4. **Responsive design**: Use theme breakpoints and media queries for responsive layouts.
+
+5. **Performance**: Avoid complex calculations in the `sx` prop for better performance.
+
+6. **Consistent spacing**: Use theme spacing values for consistent layouts.
+
+7. **Color schemes**: Consider both light and dark themes when using theme colors.
+
+8. **Component composition**: Use Box as a building block for more complex components.

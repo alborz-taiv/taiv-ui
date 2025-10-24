@@ -19,38 +19,38 @@ export { FormulaTooltip } from './Info/Tooltips/FormulaTooltip';
 export { InfoCard } from './Info/InfoCard';
 
 //Inputs
-export { AutoComplete } from './Inputs/TextInputs/AutoComplete';
-export { Button } from './Inputs/Buttons/Button';
-export { UnstyledButton } from './Inputs/Buttons/UnstyledButton';
-export { Checkbox } from './Inputs/Controls/Checkbox';
-export { Radio } from './Inputs/Controls/Radio';
-export { RadioList } from './Inputs/Controls/RadioList';
-export { Toggle } from './Inputs/Controls/Toggle';
-export { FontSelect } from './Inputs/Dropdowns/FontSelect';
-export { MultiSelect } from './Inputs/Dropdowns/MultiSelect';
-export { CascadingSelect } from './Inputs/Dropdowns/CascadingSelect';
-export { SearchBar } from './Inputs/TextInputs/SearchBar';
-export { Select } from './Inputs/Dropdowns/Select';
-export { Slider } from './Inputs/Sliders/Slider';
-export { VolumeSlider } from './Inputs/Sliders/VolumeSlider';
-export { TextArea } from './Inputs/TextInputs/TextArea';
-export { TextInput } from './Inputs/TextInputs/TextInput';
-export { PasswordInput } from './Inputs/TextInputs/PasswordInput';
-export { DatePicker } from './Inputs/Dates/DatePicker';
+export { AutoComplete } from './Inputs/TextInputs/AutoComplete/AutoComplete';
+export { Button } from './Inputs/Buttons/Button/Button';
+export { UnstyledButton } from './Inputs/Buttons/UnstyledButton/UnstyledButton';
+export { Checkbox } from './Inputs/Controls/Checkbox/Checkbox';
+export { Radio } from './Inputs/Controls/Radio/Radio';
+export { RadioList } from './Inputs/Controls/RadioList/RadioList';
+export { Toggle } from './Inputs/Controls/Toggle/Toggle';
+export { FontSelect } from './Inputs/Dropdowns/FontSelect/FontSelect';
+export { MultiSelect } from './Inputs/Dropdowns/MultiSelect/MultiSelect';
+export { CascadingSelect } from './Inputs/Dropdowns/CascadingSelect/CascadingSelect';
+export { SearchBar } from './Inputs/TextInputs/SearchBar/SearchBar';
+export { Select } from './Inputs/Dropdowns/Select/Select';
+export { Slider } from './Inputs/Sliders/Slider/Slider';
+export { VolumeSlider } from './Inputs/Sliders/VolumeSlider/VolumeSlider';
+export { TextArea } from './Inputs/TextInputs/TextArea/TextArea';
+export { TextInput } from './Inputs/TextInputs/TextInput/TextInput';
+export { PasswordInput } from './Inputs/TextInputs/PasswordInput/PasswordInput';
+export { DatePicker } from './Inputs/Dates/DatePicker/DatePicker';
 
 //Layout
-export { AutoGrid } from './Layout/AutoGrid';
-export { Grid } from './Layout/Grid';
-export { Box } from './Layout/Box';
-export { Center } from './Layout/Center';
-export { Divider } from './Layout/Divider';
-export { Frame } from './Layout/Frame';
-export { Group } from './Layout/Group';
-export { Loader } from './Layout/Loader';
-export { Stack } from './Layout/Stack';
-export { Card } from './Layout/Card';
-export { SectionCard } from './Layout/SectionCard';
-export { Tabs } from './Layout/Tabs';
+export { AutoGrid } from './Layout/AutoGrid/AutoGrid';
+export { Grid } from './Layout/Grid/Grid';
+export { Box } from './Layout/Box/Box';
+export { Center } from './Layout/Center/Center';
+export { Divider } from './Layout/Divider/Divider';
+export { Frame } from './Layout/Frame/Frame';
+export { Group } from './Layout/Group/Group';
+export { Loader } from './Layout/Loader/Loader';
+export { Stack } from './Layout/Stack/Stack';
+export { Card } from './Layout/Card/Card';
+export { SectionCard } from './Layout/SectionCard/SectionCard';
+export { Tabs } from './Layout/Tabs/Tabs';
 
 //Typography
 export { CollapsibleText } from './Typography/CollapsibleText';
@@ -60,5 +60,5 @@ export { Fraction } from './Typography/Fraction';
 export { Formula } from './Typography/Formula';
 
 //Misc
-export { Transition } from './Misc/Transition';
-export { IconBadge } from './Misc/IconBadge';
+export { Transition } from './Misc/Transition/Transition';
+export { IconBadge } from './Misc/IconBadge/IconBadge';

@@ -1,0 +1,212 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { FontSelect } from './FontSelect';
+import * as FontSelectStories from './FontSelect.stories';
+
+<Meta of={FontSelectStories} />
+
+# FontSelect
+
+The FontSelect component is a specialized wrapper around the custom Select component that provides font selection functionality with live font previews. It displays each font option in its actual typeface and applies the selected font to the input field for immediate visual feedback.
+
+Data is automatically retrieved from the FONTS constants, but custom data can also be supplied to it.
+
+### 📦 Import
+
+```tsx
+import { FontSelect } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={FontSelectStories.Default} height={900} />
+<Controls of={FontSelectStories.Default} />
+
+---
+
+### 📐 Variants
+
+Different ways to use the FontSelect component.
+
+<Story of={FontSelectStories.Variants} />
+
+The component comes with a comprehensive list of fonts by default, but you can also provide custom font data when needed.
+
+## <br />
+
+### 📏 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={FontSelectStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline forms, mobile interfaces</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most font selects, forms</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent forms, accessibility requirements</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+The FontSelect component supports different states to provide visual feedback and control user interaction.
+
+<Story of={FontSelectStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard font selection</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When font selection is not available</td>
+    </tr>
+    <tr>
+      <td>Required</td>
+      <td>Required field indicator</td>
+      <td>When font selection is mandatory</td>
+    </tr>
+    <tr>
+      <td>With Description</td>
+      <td>Additional context provided</td>
+      <td>When more explanation is needed</td>
+    </tr>
+    <tr>
+      <td>With Error</td>
+      <td>Validation error state</td>
+      <td>Form validation feedback</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### ⚡ Additional Functionality
+
+The FontSelect component supports additional features for enhanced user experience.
+
+<Story of={FontSelectStories.AdditionalFunctionality} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Clearable</td>
+      <td>Allows users to clear their selection</td>
+      <td>When font selection is optional and users might want to reset</td>
+    </tr>
+    <tr>
+      <td>Searchable</td>
+      <td>Allows users to search through fonts</td>
+      <td>When there are many fonts to choose from</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🛠️ Custom Styling
+
+In the event that you need to custom style your FontSelect, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={FontSelectStories.CustomStyling} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-Select-root</td>
+      <td>Root element</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td>.mantine-Select-input</td>
+      <td>Input element (shows selected font)</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-Select-label</td>
+      <td>Label</td>
+    </tr>
+    <tr>
+      <td>dropdown</td>
+      <td>.mantine-Select-dropdown</td>
+      <td>Dropdown container</td>
+    </tr>
+    <tr>
+      <td>item</td>
+      <td>.mantine-Select-item</td>
+      <td>Dropdown option item (shows font preview)</td>
+    </tr>
+    <tr>
+      <td>rightSection</td>
+      <td>.mantine-Select-rightSection</td>
+      <td>Right section with dropdown arrow</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Use searchable for large font lists**: Enable the searchable prop when there are many fonts to improve usability.
+
+2. **Provide clear labels**: Always include descriptive labels to help users understand what they should select.
+
+3. **Handle validation**: Use the error prop to display validation messages when font selections are invalid or required.
+
+4. **Use clearable when appropriate**: Enable clearable for optional font selections where users might want to reset their choice.
+
+5. **Consistent sizing**: Choose appropriate sizes based on your form layout and user context.
+
+6. **Accessibility**: Ensure labels are descriptive and consider using description for additional context.
+
+7. **Font preview**: The component automatically shows font previews in the dropdown, making it easy for users to see how fonts will look.
+
+8. **Custom font data**: You can provide custom font data if you need to limit or extend the available font options.
+
+9. **Performance**: For very large font lists, consider implementing virtualization or lazy loading.
+
+10. **Fallback fonts**: Always ensure selected fonts have appropriate fallbacks for better cross-platform compatibility.

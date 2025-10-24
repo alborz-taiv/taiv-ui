@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/How to Contribute" />
+
+# How to Contribute
+
+<br />
+
+### Getting Started with UI Changes
+
+To implement UI Toolkit changes, you will need to npm link to your web project so that any changes you make to the toolkit are reflected in your web project.
+
+1. In the toolkit repo, start a new terminal and run `npm link`
+2. In your project repo (i.e. web app), run `npm link @taiv/ui`
+3. Done! Make any changes and test them in your project.
+
+You can also use Storybook as a starting point for your development by running `npm run storybook` in the toolkit repo.
+
+<br />
+
+### Publishing UI Changes
+
+1. If you created a new component, hook, etc, make sure you added it to the appropriate `index.ts`
+2. Once you're satisfied, `npm run build` and commit your changes to the toolkit repo
+3. If this is the first time you're contributing to the toolkit, run `npm login` to open a browser tab and log in. You can also doublecheck if you're logged into npm with `npm whoami`.
+4. Version bump the package by running `npm version [patch | minor | major]` (depending on the type of version update)
+5. In the toolkit repo, run `npm publish` to update npm
+6. In your consuming project, run `npm i @taiv/ui` to get your new version of the package
+7. Test again and make sure that the latest version of the package contains your changes and works as expected
+8. Done! If you created a new component, update Storybook and write a documentation page for it if you have the time.

@@ -2,8 +2,8 @@ import React from 'react';
 import { Modal as MantineModal } from '@mantine/core';
 import { neutral } from '../../../constants/colors';
 import { Title } from '../../Typography/Title';
-import { Stack } from '../../Layout/Stack';
-import { Center } from '../../Layout/Center';
+import { Stack } from '../../Layout/Stack/Stack';
+import { Center } from '../../Layout/Center/Center';
 
 interface ModalProps {
   opened: boolean;

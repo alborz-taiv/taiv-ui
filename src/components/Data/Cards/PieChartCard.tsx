@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardProps } from '../../Layout/Card';
+import { Card, CardProps } from '../../Layout/Card/Card';
 import { PieChart, PieChartProps } from '../PieChart';
-import { Stack } from '../../Layout/Stack';
+import { Stack } from '../../Layout/Stack/Stack';
 import { Title } from '../../Typography/Title';
 import { Text } from '../../Typography/Text';
 

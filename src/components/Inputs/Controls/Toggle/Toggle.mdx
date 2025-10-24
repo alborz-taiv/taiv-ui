@@ -1,0 +1,190 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Toggle } from './Toggle';
+import * as ToggleStories from './Toggle.stories';
+
+<Meta of={ToggleStories} />
+
+# Toggle
+
+[View Mantine Docs](https://v6.mantine.dev/core/switch/)
+
+The Toggle component is a customizable wrapper around Mantine's Switch component that provides consistent styling and behavior across your application. It extends Mantine v6's SwitchProps while adding custom sizing options and preset styling with smooth animations.
+
+### 📦 Import
+
+```tsx
+import { Toggle } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={ToggleStories.Default} />
+<Controls of={ToggleStories.Default} />
+
+---
+
+### 📐 Sizes
+
+Two preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={ToggleStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline actions, tables, mobile interfaces</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most toggles, forms, settings panels</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+The Toggle component supports different states to provide visual feedback and control user interaction.
+
+<Story of={ToggleStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard toggle interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When option is not available</td>
+    </tr>
+    <tr>
+      <td>With Description</td>
+      <td>Additional context provided</td>
+      <td>When more explanation is needed</td>
+    </tr>
+    <tr>
+      <td>With Error</td>
+      <td>Validation error state</td>
+      <td>Form validation feedback</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🎨 Without Label
+
+Toggles can be used without labels for compact interfaces or when the context is clear.
+
+<Story of={ToggleStories.WithoutLabel} />
+
+## <br />
+
+### 🛠️ Custom Styles
+
+In the event that you need to custom style your Toggle, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={ToggleStories.CustomStyles} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-Switch-root</td>
+      <td>Root element</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td>.mantine-Switch-input</td>
+      <td>Checkbox input</td>
+    </tr>
+    <tr>
+      <td>labelWrapper</td>
+      <td>.mantine-Switch-labelWrapper</td>
+      <td>Include label and description component</td>
+    </tr>
+    <tr>
+      <td>body</td>
+      <td>.mantine-Switch-body</td>
+      <td>Container of Switch</td>
+    </tr>
+    <tr>
+      <td>track</td>
+      <td>.mantine-Switch-track</td>
+      <td>Track</td>
+    </tr>
+    <tr>
+      <td>thumb</td>
+      <td>.mantine-Switch-thumb</td>
+      <td>Thumb of Switch</td>
+    </tr>
+    <tr>
+      <td>trackLabel</td>
+      <td>.mantine-Switch-trackLabel</td>
+      <td>onLabel and offLabel</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-Switch-label</td>
+      <td>Label</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>.mantine-Switch-description</td>
+      <td>Description</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>.mantine-Switch-error</td>
+      <td>Error message</td>
+    </tr>
+    <tr>
+      <td>container</td>
+      <td>-</td>
+      <td>Wrapper container</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Provide clear labels**: Always include descriptive labels to help users understand what the toggle controls.
+
+2. **Use controlled state**: Always manage the checked state through props for predictable behavior.
+
+3. **Immediate feedback**: Toggles should take effect immediately without requiring a save action.
+
+4. **Visual consistency**: Use consistent sizing across similar contexts in your application.
+
+5. **Error handling**: Use the error prop to display validation messages when needed.
+
+6. **Accessibility**: Ensure labels are descriptive and consider using description for additional context.
+
+7. **Binary choices**: Use toggles for simple on/off states, not for multiple choice selections.

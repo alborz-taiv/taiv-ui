@@ -1,0 +1,237 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { SearchBar } from './SearchBar';
+import * as SearchBarStories from './SearchBar.stories';
+
+<Meta of={SearchBarStories} />
+
+# SearchBar
+
+[View Mantine Docs](https://v6.mantine.dev/core/text-input/)
+
+The SearchBar component is a specialized wrapper around the custom TextInput component that provides search functionality with a built-in search icon. It extends TextInput with search-specific styling and behavior, offering a consistent search interface across your application.
+
+### 📦 Import
+
+```tsx
+import { SearchBar } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={SearchBarStories.Default} height={900} />
+<Controls of={SearchBarStories.Default} />
+
+---
+
+### 📐 Variants
+
+Different ways to use the SearchBar component.
+
+<Story of={SearchBarStories.Variants} />
+
+The component provides a consistent search interface with built-in search icon and search-specific styling.
+
+## <br />
+
+### 📏 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={SearchBarStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline actions, tables</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most search bars</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent forms</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+The SearchBar component supports different states to provide visual feedback and control user interaction.
+
+<Story of={SearchBarStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard search interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When search is not available</td>
+    </tr>
+    <tr>
+      <td>Required</td>
+      <td>Required field indicator</td>
+      <td>When search is mandatory</td>
+    </tr>
+    <tr>
+      <td>With Description</td>
+      <td>Additional context provided</td>
+      <td>When search scope needs explanation</td>
+    </tr>
+    <tr>
+      <td>With Error</td>
+      <td>Validation error state</td>
+      <td>Search validation feedback</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### ⚡ Additional Functionality
+
+The SearchBar component supports additional features for enhanced user experience.
+
+<Story of={SearchBarStories.AdditionalFunctionality} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Custom Width</td>
+      <td>Override default width with custom sizing in pixels</td>
+      <td>When specific width requirements are needed</td>
+    </tr>
+    <tr>
+      <td>Search Icon</td>
+      <td>Built-in search icon for visual clarity</td>
+      <td>Provides clear indication of search functionality</td>
+    </tr>
+    <tr>
+      <td>Custom Placeholder</td>
+      <td>Customizable placeholder text</td>
+      <td>Context-specific search hints</td>
+    </tr>
+    <tr>
+      <td>Error Handling</td>
+      <td>Display validation errors for search queries</td>
+      <td>When search terms need validation</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🛠️ Custom Styling
+
+In the event that you need to custom style your SearchBar, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={SearchBarStories.CustomStyling} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-TextInput-root</td>
+      <td>Root element</td>
+    </tr>
+    <tr>
+      <td>wrapper</td>
+      <td>.mantine-TextInput-wrapper</td>
+      <td>Root Input element</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td>.mantine-TextInput-input</td>
+      <td>Main input element</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-TextInput-label</td>
+      <td>Label element</td>
+    </tr>
+    <tr>
+      <td>rightSection</td>
+      <td>.mantine-TextInput-rightSection</td>
+      <td>Input right section</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>.mantine-TextInput-description</td>
+      <td>Description element</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>.mantine-TextInput-error</td>
+      <td>Error element</td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>.mantine-TextInput-required</td>
+      <td>Required asterisk element</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>.mantine-TextInput-icon</td>
+      <td>Search icon</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Provide clear labels**: Always include descriptive labels to help users understand what they can search for.
+
+2. **Use helpful placeholders**: Use placeholder text to provide context about what can be searched.
+
+3. **Handle validation**: Use the error prop to display validation messages when search queries are invalid.
+
+4. **Consider accessibility**: Ensure labels are descriptive and consider using description for search scope.
+
+5. **Custom width**: Use the width prop when you need specific sizing requirements for your search interface.
+
+6. **Consistent sizing**: Choose appropriate sizes based on your layout and user context.
+
+7. **Search icon**: The built-in search icon provides clear visual indication of search functionality.
+
+8. **Form integration**: The component works seamlessly with form libraries and validation frameworks.
+
+9. **Responsive design**: Use fullWidth prop when the search bar should take the full width of its container.
+
+10. **Custom styling**: Use the styles prop to customize appearance while maintaining consistency with your design system.

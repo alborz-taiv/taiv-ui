@@ -1,0 +1,57 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Setup With Your Project" />
+
+# Setup With Your Project
+
+To get started with the toolkit in a new repo, the npm package for the toolkit needs to be installed and setup. Ensure you have the following installed in your project:
+
+- Node 20
+- TypeScript 5
+- React 17
+- Tabler Icons
+
+Then, you can install the package from npm:
+
+```tsx
+npm i @taiv/ui
+```
+
+Once installed, you should also make the following changes to your project.
+
+1. Uninstall any @recharts and @mantine packages if they exist, as they are no longer needed.
+
+2. Add the fonts and icon sheet to your `index.html` file:
+
+```html
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+```
+
+3. Add the modals and notifications providers to your `index.jsx` file, something like:
+
+```tsx
+<ThemeProvider theme={theme}>
+  <ModalProvider />
+  <NotificationProvider />
+  <BrowserRouter>
+    <div>
+      <Switch>
+        <Route path="/" component={Root} />
+      </Switch>
+    </div>
+  </BrowserRouter>
+</ThemeProvider>
+```
+
+Done! You should now be able to use the toolkit in your project.
+
+The npm package is **public** and requires no access keys. It contains **strictly** UI components, constants, etc. so in order to test changes, you will need to npm link to your web project and run that. Continue to the next section to learn how to contribute to the toolkit.

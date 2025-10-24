@@ -1,0 +1,237 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { AutoComplete } from './AutoComplete';
+import * as AutoCompleteStories from './AutoComplete.stories';
+
+<Meta of={AutoCompleteStories} />
+
+# AutoComplete
+
+[View Mantine Docs](https://v6.mantine.dev/core/autocomplete/)
+
+The AutoComplete component is a customizable wrapper around Mantine's Autocomplete component that provides searchable dropdown functionality with autocomplete suggestions. It extends Mantine v6's AutocompleteProps while adding custom sizing options and preset styling.
+
+### 📦 Import
+
+```tsx
+import { AutoComplete } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={AutoCompleteStories.Default} height={900} />
+<Controls of={AutoCompleteStories.Default} />
+
+---
+
+### 📐 Variants
+
+Different ways to use the AutoComplete component.
+
+<Story of={AutoCompleteStories.Variants} />
+
+The component provides searchable dropdown functionality with autocomplete suggestions for better user experience.
+
+## <br />
+
+### 📏 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={AutoCompleteStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline actions, tables</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most autocompletes</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent forms</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+The AutoComplete component supports different states to provide visual feedback and control user interaction.
+
+<Story of={AutoCompleteStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard autocomplete interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When autocomplete is not available</td>
+    </tr>
+    <tr>
+      <td>Required</td>
+      <td>Required field indicator</td>
+      <td>When selection is mandatory</td>
+    </tr>
+    <tr>
+      <td>With Description</td>
+      <td>Additional context provided</td>
+      <td>When more explanation is needed</td>
+    </tr>
+    <tr>
+      <td>With Error</td>
+      <td>Validation error state</td>
+      <td>Form validation feedback</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### ⚡ Additional Functionality
+
+The AutoComplete component supports additional features for enhanced user experience.
+
+<Story of={AutoCompleteStories.AdditionalFunctionality} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Search Functionality</td>
+      <td>Built-in search with autocomplete suggestions</td>
+      <td>When users need to find options quickly</td>
+    </tr>
+    <tr>
+      <td>Custom Width</td>
+      <td>Override default width with custom sizing</td>
+      <td>When specific width requirements are needed</td>
+    </tr>
+    <tr>
+      <td>Large Datasets</td>
+      <td>Efficient handling of large option lists</td>
+      <td>When there are many options to choose from</td>
+    </tr>
+    <tr>
+      <td>Flexible Data</td>
+      <td>Support for both string arrays and object arrays</td>
+      <td>When you need complex option structures</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🛠️ Custom Styling
+
+In the event that you need to custom style your AutoComplete, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={AutoCompleteStories.CustomStyling} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-Autocomplete-root</td>
+      <td>Root element</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td>.mantine-Autocomplete-input</td>
+      <td>Input element</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-Autocomplete-label</td>
+      <td>Label element</td>
+    </tr>
+    <tr>
+      <td>dropdown</td>
+      <td>.mantine-Autocomplete-dropdown</td>
+      <td>Dropdown container</td>
+    </tr>
+    <tr>
+      <td>item</td>
+      <td>.mantine-Autocomplete-item</td>
+      <td>Dropdown option item</td>
+    </tr>
+    <tr>
+      <td>rightSection</td>
+      <td>.mantine-Autocomplete-rightSection</td>
+      <td>Right section with dropdown arrow</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>.mantine-Autocomplete-description</td>
+      <td>Description element</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>.mantine-Autocomplete-error</td>
+      <td>Error element</td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>.mantine-Autocomplete-required</td>
+      <td>Required asterisk element</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Provide clear labels**: Always include descriptive labels to help users understand what they can search for.
+
+2. **Use helpful placeholders**: Use placeholder text to provide context about what can be searched.
+
+3. **Handle validation**: Use the error prop to display validation messages when selections are invalid or required.
+
+4. **Consider data structure**: Use string arrays for simple options or object arrays for complex data structures.
+
+5. **Optimize for large datasets**: For very large datasets, consider implementing server-side filtering or virtualization.
+
+6. **Consistent sizing**: Choose appropriate sizes based on your form layout and user context.
+
+7. **Accessibility**: Ensure labels are descriptive and consider using description for additional context.
+
+8. **Search experience**: The built-in search functionality helps users find options quickly in large lists.
+
+9. **Custom styling**: Use the styles prop to customize appearance while maintaining consistency with your design system.
+
+10. **Performance**: Consider debouncing search queries for better performance with large datasets.
