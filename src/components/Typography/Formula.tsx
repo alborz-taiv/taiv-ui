@@ -179,7 +179,7 @@ const FormulaRenderer: React.FC<{
 
           case 'operator':
             return (
-              <Text key={index} weight={weight} size={size} color={color}>
+              <Text key={index} weight={weight} size={size} color={color} mx="0.25rem">
                 {node.value === '*' ? '×' : node.value}
               </Text>
             );

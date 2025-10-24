@@ -18,8 +18,6 @@ const Text = ({ variant = 'body', size, children, weight, color, styles, ...prop
   const customColor = color ? { color } : {};
 
   const style = {
-    margin: 0,
-    padding: 0,
     ...styles,
     ...selectedVariant,
     ...customSize,

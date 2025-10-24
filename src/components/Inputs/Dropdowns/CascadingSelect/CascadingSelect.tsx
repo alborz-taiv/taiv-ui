@@ -14,14 +14,14 @@ export type CascadingSelectItemProps = {
   children?: CascadingSelectItemProps[];
 };
 
-export interface NestedSelectProps extends Omit<SelectProps, 'value' | 'data'> {
+export interface CascadingSelectProps extends Omit<SelectProps, 'value' | 'data'> {
   data?: CascadingSelectItemProps[];
   value?: string | null;
   width?: string | number;
   fullWidth?: boolean;
 }
 
-const NestedSelect = ({ data = [], value, placeholder = 'Select an option', size = 'md', width, fullWidth = false, styles, ...props }: NestedSelectProps) => {
+const CascadingSelect = ({ data = [], value, placeholder = 'Select an option', size = 'md', width, fullWidth = false, styles, ...props }: CascadingSelectProps) => {
   const selectedSize = componentSizes[size];
   const computedWidth = fullWidth ? '100%' : width || `${selectedSize.minWidth}rem`;
 
@@ -102,4 +102,4 @@ const NestedSelect = ({ data = [], value, placeholder = 'Select an option', size
   return <Select placeholder={placeholder} width={computedWidth} value={value} size={size} styles={style} itemComponent={DropdownItem} data={flattenedData} {...props} />;
 };
 
-export { NestedSelect as CascadingSelect };
+export { CascadingSelect };

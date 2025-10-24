@@ -19,15 +19,15 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
   width,
   fullWidth = false,
   placeholder = 'Pick Date',
-  styles,
   showIcon = true,
+  styles,
   ...props
 }: DatePickerProps<T>) => {
   const selectedSize = componentSizes[size];
 
   const { classes } = createStyles(() => ({
     root: {
-      width: fullWidth ? '100%' : width || `${selectedSize.minWidth}rem`,
+      width: fullWidth ? '100%' : width || (props.type === 'range' ? `${selectedSize.minWidth * 1.2}rem` : `${selectedSize.minWidth}rem`), // Range inputs are slightly wider than regular inputs
     },
     input: {
       height: `${selectedSize.height}rem`,
@@ -38,6 +38,9 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
       borderRadius: '8px',
       border: `1px solid ${neutral[100]}`,
       transition: 'all 200ms ease-in-out',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
     },
     placeholder: {
       ...fontBase,

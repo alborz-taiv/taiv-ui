@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@mantine/core';
-import { fontBase, fontWeight } from '@/constants/font';
+import { fontBase, fontWeight } from '../../../../constants/font';
 import { componentSizes } from './sizes';
 import { componentVariants } from './variants';
 
