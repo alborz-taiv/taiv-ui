@@ -142,6 +142,7 @@ export const Chart: React.FC<ChartProps> = ({ series, yAxisFormat = 'decimal', x
                         dataKey={s.name}
                         fill={s.color || primary[200]}
                         radius={[8, 8, 0, 0]}
+                        maxBarSize={140}
                         style={{ outline: 'none' }}
                         onMouseEnter={(data, index, event) => {
                           const barElement = event.target as HTMLElement;
