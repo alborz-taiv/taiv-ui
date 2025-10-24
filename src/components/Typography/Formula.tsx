@@ -63,22 +63,17 @@ class FormulaParser {
 
     // Strip whitespace from all tokens
     const cleanedTokens = tokens.map((token) => token.trim()).filter((token) => token.length > 0);
-
-    console.log('Tokenized tokens:', cleanedTokens);
     return cleanedTokens;
   }
 
   private parseExpression(): ParsedNode[] {
-    console.log('parseExpression - current token:', this.peek(), 'position:', this.current);
     return this.parseAddition();
   }
 
   private parseAddition(): ParsedNode[] {
     let left = this.parseMultiplication();
-    console.log('parseAddition - after parseMultiplication, current token:', this.peek(), 'position:', this.current);
 
     while (this.current < this.tokens.length && (this.peek() === '+' || this.peek() === '-' || this.peek() === '=')) {
-      console.log('parseAddition - found operator:', this.peek());
       const operator = this.advance();
       const right = this.parseMultiplication();
       left = [...left, { type: 'operator', value: operator }, ...right];
