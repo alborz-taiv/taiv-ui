@@ -16,7 +16,7 @@ const FormulaTooltip = ({ title, description, expression }: FormulaTooltipProps)
   return (
     <Box p="0.8rem">
       <Stack gap="1.6rem">
-        <Stack gap="0.8rem" sx={{ maxWidth: '375px' }}>
+        <Stack gap="0.8rem" sx={{ maxWidth: '500px' }}>
           <Text weight="semibold">{title}</Text>
           <Text variant="label">{description}</Text>
         </Stack>
