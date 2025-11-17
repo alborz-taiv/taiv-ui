@@ -9,6 +9,7 @@ export const NotificationProvider = () => {
 
   const { classes } = createStyles(() => ({
     root: {
+      zIndex: 2000,
       '& .mantine-Notification-root': {
         backgroundColor: 'white',
         padding: '1.2rem 1.6rem',
