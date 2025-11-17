@@ -4,7 +4,7 @@ import { error, neutral, warning } from '../../../constants/colors';
 import { Tooltip } from './Tooltip';
 
 interface InfoTooltipProps {
-  text: React.ReactNode;
+  text?: React.ReactNode;
   content?: React.ReactNode;
   position?: 'top-end' | 'bottom-end' | 'top-start' | 'bottom-start';
   size?: keyof typeof componentSizes;
