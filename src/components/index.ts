@@ -62,3 +62,4 @@ export { Formula } from './Typography/Formula';
 //Misc
 export { Transition } from './Misc/Transition/Transition';
 export { IconBadge } from './Misc/IconBadge/IconBadge';
+export { LoadingOverlay } from './Misc/LoadingOverlay/LoadingOverlay';
