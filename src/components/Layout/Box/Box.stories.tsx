@@ -3,7 +3,7 @@ import { Box } from './Box';
 import { Group } from '../Group/Group';
 
 const meta: Meta<typeof Box> = {
-  title: 'Components/Layout/Box',
+  title: 'Layouts/Box',
   component: Box,
   argTypes: {
     width: {

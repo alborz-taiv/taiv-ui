@@ -2,7 +2,7 @@ import React from 'react';
 import { CSSObject } from '@mantine/core';
 import { ReactNode } from 'react';
 import { Stack } from '../Stack/Stack';
-import { Title } from '../../Typography/Title';
+import { Title } from '../../Typography/Title/Title';
 
 interface FrameProps {
   title: string;

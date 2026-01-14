@@ -1,22 +1,22 @@
 //Data
-export { CheckboxTable } from './Data/CheckboxTable';
-export { Chart } from './Data/Chart';
-export { ChartCard } from './Data/Cards/ChartCard';
-export { PieChart } from './Data/PieChart';
-export { PieChartCard } from './Data/Cards/PieChartCard';
-export { RemovableItemList } from './Data/RemovableItemList';
-export { StatsCard } from './Data/Cards/StatsCard';
-export { StatsBadge } from './Data/StatsBadge';
+export { CheckboxTable } from './Data/CheckboxTable/CheckboxTable';
+export { Chart } from './Data/Chart/Chart';
+export { ChartCard } from './Data/Cards/ChartCard/ChartCard';
+export { PieChart } from './Data/PieChart/PieChart';
+export { PieChartCard } from './Data/Cards/PieChartCard/PieChartCard';
+export { RemovableItemList } from './Data/RemovableItemList/RemovableItemList';
+export { StatsCard } from './Data/Cards/StatsCard/StatsCard';
+export { StatsBadge } from './Data/StatsBadge/StatsBadge';
 
 //Info
-export { Modal } from './Info/Modals/Modal';
-export { ModalProvider } from './Info/Modals/ModalProvider';
-export { NotificationProvider } from './Info/Notifications/NotificationProvider';
-export { Badge } from './Info/Badge';
-export { Tooltip } from './Info/Tooltips/Tooltip';
-export { InfoTooltip } from './Info/Tooltips/InfoTooltip';
-export { FormulaTooltip } from './Info/Tooltips/FormulaTooltip';
-export { InfoCard } from './Info/InfoCard';
+export { Modal } from './Info/Modals/Modal/Modal';
+export { ModalProvider } from './Info/Modals/ModalProvider/ModalProvider';
+export { NotificationProvider } from './Info/Notifications/NotificationProvider/NotificationProvider';
+export { Badge } from './Info/Badge/Badge';
+export { Tooltip } from './Info/Tooltips/Tooltip/Tooltip';
+export { InfoTooltip } from './Info/Tooltips/InfoTooltip/InfoTooltip';
+export { FormulaTooltip } from './Info/Tooltips/FormulaTooltip/FormulaTooltip';
+export { InfoCard } from './Info/InfoCard/InfoCard';
 
 //Inputs
 export { AutoComplete } from './Inputs/TextInputs/AutoComplete/AutoComplete';
@@ -53,11 +53,11 @@ export { SectionCard } from './Layout/SectionCard/SectionCard';
 export { Tabs } from './Layout/Tabs/Tabs';
 
 //Typography
-export { CollapsibleText } from './Typography/CollapsibleText';
-export { Text } from './Typography/Text';
-export { Title } from './Typography/Title';
-export { Fraction } from './Typography/Fraction';
-export { Formula } from './Typography/Formula';
+export { CollapsibleText } from './Typography/CollapsibleText/CollapsibleText';
+export { Text } from './Typography/Text/Text';
+export { Title } from './Typography/Title/Title';
+export { Fraction } from './Typography/Fraction/Fraction';
+export { Formula } from './Typography/Formula/Formula';
 
 //Misc
 export { Transition } from './Misc/Transition/Transition';

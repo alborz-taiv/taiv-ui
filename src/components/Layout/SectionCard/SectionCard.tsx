@@ -2,7 +2,7 @@ import React from 'react';
 import { Card as MantineCard, CardProps as MantineCardProps } from '@mantine/core';
 import { colors } from '../../../constants/colors';
 import { Stack } from '../Stack/Stack';
-import { Title } from '../../Typography/Title';
+import { Title } from '../../Typography/Title/Title';
 import { Box } from '../Box/Box';
 export interface SectionCardProps extends Omit<MantineCardProps, 'children'> {
   title: string;

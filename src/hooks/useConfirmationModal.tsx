@@ -1,7 +1,7 @@
 import React from 'react';
 import { modals } from '@mantine/modals';
 import { neutral } from '../constants/colors';
-import { Title } from '../components/Typography/Title';
+import { Title } from '../components/Typography/Title/Title';
 import { Stack } from '../components/Layout/Stack/Stack';
 import { Center } from '../components/Layout/Center/Center';
 import { modalVariants } from '../components/Info/Modals/variants';

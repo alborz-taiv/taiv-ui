@@ -4,7 +4,7 @@ import { CSSObject } from '@mantine/styles';
 import { neutral } from '../../../../constants/colors';
 import { componentSizes } from '../shared/sizes';
 import { Select, SelectProps } from '../Select/Select';
-import { Text } from '../../../Typography/Text';
+import { Text } from '../../../Typography/Text/Text';
 import { fontBase } from '../../../../constants/font';
 import { SelectOption } from '../../../../utils/select';
 
