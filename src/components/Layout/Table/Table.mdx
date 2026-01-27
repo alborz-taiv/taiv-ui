@@ -1,0 +1,201 @@
+# Table
+
+The `Table` component is a generic, flexible table component that can display any type of data. It accepts a `ListItem` component that renders each row, allowing for complete customization of row content and styling.
+
+## Overview
+
+The Table component provides a consistent table structure with customizable columns and row rendering. It handles the table header automatically based on your column configuration, while giving you full control over how each row is rendered through a custom `ListItem` component.
+
+## Props
+
+### `columnConfigs: ColumnConfig[]`
+An array of column configuration objects. Each `ColumnConfig` extends `React.CSSProperties`, allowing you to style individual columns. Each column config should include:
+- `heading?: string` - The column header text
+- Any valid CSS properties for styling the column
+
+### `data: T[]`
+An array of data items to display in the table. The type `T` is generic, allowing you to use any data structure.
+
+### `ListItem: React.ComponentType<{ data: T; columnConfigs: ColumnConfig[] }>`
+A component that renders a single table row. It receives:
+- `data: T` - The data item for the current row
+- `columnConfigs: ColumnConfig[]` - The column configurations (useful for applying consistent styling)
+
+## Best Practices for ListItem Components
+
+### Build ListItem Components in Application Repos
+
+Due to the complexity and variety of use cases across different features, **it is recommended to build your `ListItem` components within your application repositories** rather than in the design system. This approach provides:
+
+- **Flexibility**: Each feature can have its own specific row rendering logic
+- **Maintainability**: Row components stay close to the features that use them
+- **Customization**: Easy to add feature-specific interactions, styling, and business logic
+
+### Use Semantic HTML Elements
+
+When building your `ListItem` component, always use semantic HTML elements:
+
+- **`<tr>`** - For the table row element
+- **`<td>`** - For each table cell element
+
+This ensures proper accessibility, semantic meaning, and table structure.
+
+### Example ListItem Component Structure
+
+```tsx
+import React from 'react';
+import { ColumnConfig } from '@taiv-ui/components';
+
+interface UserData {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  status: 'active' | 'inactive';
+}
+
+interface UserListItemProps {
+  data: UserData;
+  columnConfigs: ColumnConfig[];
+}
+
+export const UserListItem: React.FC<UserListItemProps> = ({ data, columnConfigs }) => {
+  return (
+    <tr>
+      <td style={columnConfigs[0]}>{data.name}</td>
+      <td style={columnConfigs[1]}>{data.email}</td>
+      <td style={columnConfigs[2]}>{data.role}</td>
+      <td style={columnConfigs[3]}>
+        <Badge color={data.status === 'active' ? 'success' : 'neutral'}>
+          {data.status}
+        </Badge>
+      </td>
+    </tr>
+  );
+};
+```
+
+### Key Guidelines
+
+1. **Always return a `<tr>` element** - This is required for proper table structure
+2. **Use `<td>` for cells** - Match the number of cells to your column configurations
+3. **Apply column styles** - Use `columnConfigs[index]` to apply consistent column styling
+4. **Handle empty states** - Consider how to display missing or null data
+5. **Add interactions carefully** - If rows are clickable, ensure proper accessibility attributes
+
+## Examples
+
+### Basic Table with Text Data
+
+```tsx
+import { Table, ColumnConfig } from '@taiv-ui/components';
+
+const columnConfigs: ColumnConfig[] = [
+  { heading: 'Name', width: '30%' },
+  { heading: 'Email', width: '40%' },
+  { heading: 'Role', width: '30%' },
+];
+
+const data = [
+  { id: '1', name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { id: '2', name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+];
+
+const BasicListItem = ({ data, columnConfigs }) => (
+  <tr>
+    <td style={columnConfigs[0]}>{data.name}</td>
+    <td style={columnConfigs[1]}>{data.email}</td>
+    <td style={columnConfigs[2]}>{data.role}</td>
+  </tr>
+);
+
+<Table columnConfigs={columnConfigs} data={data} ListItem={BasicListItem} />
+```
+
+### Table with Custom Components
+
+The Table component excels when you need to display custom components within cells, such as badges, buttons, or other interactive elements.
+
+```tsx
+import { Table, ColumnConfig } from '@taiv-ui/components';
+import { Badge } from '@taiv-ui/components';
+import { Button } from '@taiv-ui/components';
+
+const columnConfigs: ColumnConfig[] = [
+  { heading: 'Product', width: '25%' },
+  { heading: 'Status', width: '20%' },
+  { heading: 'Price', width: '20%' },
+  { heading: 'Actions', width: '35%', textAlign: 'center' },
+];
+
+const data = [
+  { 
+    id: '1', 
+    product: 'Widget A', 
+    status: 'active', 
+    price: '$29.99',
+    stock: 150 
+  },
+  { 
+    id: '2', 
+    product: 'Widget B', 
+    status: 'low-stock', 
+    price: '$39.99',
+    stock: 5 
+  },
+];
+
+const ProductListItem = ({ data, columnConfigs }) => (
+  <tr>
+    <td style={columnConfigs[0]}>{data.product}</td>
+    <td style={columnConfigs[1]}>
+      <Badge 
+        color={data.status === 'active' ? 'success' : 'warning'}
+        variant="filled"
+      >
+        {data.status === 'active' ? 'In Stock' : 'Low Stock'}
+      </Badge>
+    </td>
+    <td style={columnConfigs[2]}>{data.price}</td>
+    <td style={columnConfigs[3]}>
+      <Button size="sm" variant="primary">Edit</Button>
+    </td>
+  </tr>
+);
+
+<Table columnConfigs={columnConfigs} data={data} ListItem={ProductListItem} />
+```
+
+## Styling Columns
+
+You can style individual columns using CSS properties in the `columnConfigs`:
+
+```tsx
+const columnConfigs: ColumnConfig[] = [
+  { 
+    heading: 'Name', 
+    width: '30%',
+    textAlign: 'left',
+    paddingLeft: '16px'
+  },
+  { 
+    heading: 'Amount', 
+    width: '20%',
+    textAlign: 'right',
+    fontWeight: 'bold'
+  },
+  { 
+    heading: 'Date', 
+    width: '50%',
+    textAlign: 'center'
+  },
+];
+```
+
+## Accessibility
+
+The Table component uses semantic HTML (`<table>`, `<thead>`, `<tbody>`, `<tr>`, `<th>`, `<td>`) to ensure proper accessibility. When building your `ListItem` components:
+
+- Ensure all cells contain content (use `&nbsp;` or empty string if needed)
+- Add `aria-label` attributes if rows are interactive
+- Maintain proper table structure with matching cell counts
