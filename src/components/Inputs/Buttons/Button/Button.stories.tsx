@@ -92,6 +92,14 @@ const meta: Meta<typeof Button> = {
         type: { summary: '() => void' },
       },
     },
+    shadow: {
+      control: { type: 'boolean' },
+      description: 'Adds shadow to the button',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      }
+    }
   },
 };
 
@@ -106,6 +114,7 @@ export const Default: Story = {
     disabled: false,
     loading: false,
     fullWidth: false,
+    shadow: false,
     leftIcon: undefined,
     rightIcon: undefined,
     styles: {},

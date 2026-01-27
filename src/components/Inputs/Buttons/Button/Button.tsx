@@ -10,9 +10,10 @@ export interface ButtonProps extends MantineButtonProps {
   variant?: keyof typeof componentVariants;
   fullWidth?: boolean;
   toggled?: boolean;
+  shadow?: boolean;
 }
 
-export const Button = ({ onClick, size = 'md', variant = 'primary', fullWidth = false, toggled = false, styles, ...props }: ButtonProps) => {
+export const Button = ({ onClick, size = 'md', variant = 'primary', fullWidth = false, toggled = false, shadow = false, styles, ...props }: ButtonProps) => {
   const selectedVariant = componentVariants[variant];
   const selectedSize = componentSizes[size];
 
@@ -36,6 +37,7 @@ export const Button = ({ onClick, size = 'md', variant = 'primary', fullWidth = 
       padding: selectedSize.padding,
       minWidth: `${selectedSize.minWidth}rem`,
       fontSize: selectedSize.fontSize,
+      boxShadow: shadow ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
       ...getVariantStyles(),
     },
     label: {
