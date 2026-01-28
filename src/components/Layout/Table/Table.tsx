@@ -77,13 +77,12 @@ const Table = <T,>({ columnConfigs, data, ListItem }: TableProps<T>) => {
         </thead>
         <tbody>
           {data.map((item) => (
-            <ListItem data={item} key={String(item)} />
+            <ListItem data={item} key={String(item).slice(0, 10)} />
           ))}
         </tbody>
       </table>
     </Box>
   );
-};
 };
 
 export { Table, type ColumnConfig, type TableProps };
