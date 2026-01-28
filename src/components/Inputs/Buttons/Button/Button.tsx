@@ -17,7 +17,6 @@ export const Button = ({ onClick, size = 'md', variant = 'primary', fullWidth = 
   const selectedVariant = componentVariants[variant];
   const selectedSize = componentSizes[size];
 
-  // Apply active styles for nav variant when isActive is true
   const getVariantStyles = () => {
     if (toggled) {
       return {
@@ -31,13 +30,13 @@ export const Button = ({ onClick, size = 'md', variant = 'primary', fullWidth = 
   const style = {
     root: {
       borderRadius: '8px',
-      border: '1px solid white',
       width: fullWidth ? '100%' : 'fit-content',
       height: `${selectedSize.height}rem`,
       padding: selectedSize.padding,
       minWidth: `${selectedSize.minWidth}rem`,
       fontSize: selectedSize.fontSize,
       boxShadow: shadow ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
+      transition: 'background 0.1s ease-in-out',
       ...getVariantStyles(),
     },
     label: {
