@@ -1,5 +1,6 @@
 import React, { CSSProperties, useEffect, useRef } from 'react';
 import { Box } from '../Box/Box';
+import { fontWeight, neutral } from '../../../constants';
 
 interface ColumnConfig  {
     heading?: string;
@@ -26,6 +27,7 @@ function Table<T>({ columnConfigs, data, ListItem }: TableProps<T>) {
       if (!tbody) return;
 
       const rows = tbody.querySelectorAll('tr');
+      if (!rows || !rows.length) return
       
       rows.forEach((row) => {
         const cells = row.querySelectorAll('td');
@@ -59,10 +61,10 @@ function Table<T>({ columnConfigs, data, ListItem }: TableProps<T>) {
                 <th
                   key={column.heading || `column-${index}`}
                   style={{
-                    backgroundColor: '#d9d9d9',
-                    color: '#000000',
+                    backgroundColor: neutral[50],
+                    color: neutral[300],
                     fontSize: '14px',
-                    fontWeight: 800,
+                    fontWeight: fontWeight.bold,
                     paddingBottom: '9px',
                     paddingTop: '9px',
                     ...column.style,
