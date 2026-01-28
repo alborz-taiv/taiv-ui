@@ -153,23 +153,23 @@ const projectData: Project[] = [
 ];
 
 // ListItem Components
-const UserListItem: React.FC<{ data: User; columnConfigs: ColumnConfig[] }> = ({ data, columnConfigs }) => {
+const UserListItem: React.FC<{ data: User }> = ({ data }) => {
   return (
     <tr>
-      <td style={columnConfigs[0]}>{data.name}</td>
-      <td style={columnConfigs[1]}>{data.email}</td>
-      <td style={columnConfigs[2]}>{data.role}</td>
-      <td style={columnConfigs[3]}>
+      <td>{data.name}</td>
+      <td>{data.email}</td>
+      <td>{data.role}</td>
+      <td>
         <Badge color={data.status === 'active' ? 'success' : 'neutral'} variant="filled" size="sm">
           {data.status === 'active' ? 'Active' : 'Inactive'}
         </Badge>
       </td>
-      <td style={columnConfigs[4]}>{data.lastLogin}</td>
+      <td>{data.lastLogin}</td>
     </tr>
   );
 };
 
-const ProductListItem: React.FC<{ data: Product; columnConfigs: ColumnConfig[] }> = ({ data, columnConfigs }) => {
+const ProductListItem: React.FC<{ data: Product }> = ({ data }) => {
   const getStatusColor = (status: Product['status']) => {
     switch (status) {
       case 'in-stock':
@@ -198,16 +198,16 @@ const ProductListItem: React.FC<{ data: Product; columnConfigs: ColumnConfig[] }
 
   return (
     <tr>
-      <td style={columnConfigs[0]}>{data.name}</td>
-      <td style={columnConfigs[1]}>{data.category}</td>
-      <td style={columnConfigs[2]}>${data.price.toFixed(2)}</td>
-      <td style={columnConfigs[3]}>{data.stock}</td>
-      <td style={columnConfigs[4]}>
+      <td>{data.name}</td>
+      <td>{data.category}</td>
+      <td>${data.price.toFixed(2)}</td>
+      <td>{data.stock}</td>
+      <td>
         <Badge color={getStatusColor(data.status)} variant="filled" size="sm">
           {getStatusLabel(data.status)}
         </Badge>
       </td>
-      <td style={columnConfigs[5]}>
+      <td>
         <div style={{ display: 'flex', gap: '8px' }}>
           <Button size="sm" variant="primary">
             Edit
@@ -221,7 +221,7 @@ const ProductListItem: React.FC<{ data: Product; columnConfigs: ColumnConfig[] }
   );
 };
 
-const ProjectListItem: React.FC<{ data: Project; columnConfigs: ColumnConfig[] }> = ({ data, columnConfigs }) => {
+const ProjectListItem: React.FC<{ data: Project }> = ({ data }) => {
   const getPriorityColor = (priority: Project['priority']) => {
     switch (priority) {
       case 'high':
@@ -237,9 +237,9 @@ const ProjectListItem: React.FC<{ data: Project; columnConfigs: ColumnConfig[] }
 
   return (
     <tr>
-      <td style={columnConfigs[0]}>{data.title}</td>
-      <td style={columnConfigs[1]}>{data.team.join(', ')}</td>
-      <td style={columnConfigs[2]}>
+      <td>{data.title}</td>
+      <td>{data.team.join(', ')}</td>
+      <td>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div
             style={{
@@ -262,8 +262,8 @@ const ProjectListItem: React.FC<{ data: Project; columnConfigs: ColumnConfig[] }
           <span style={{ fontSize: '12px', minWidth: '35px' }}>{data.progress}%</span>
         </div>
       </td>
-      <td style={columnConfigs[3]}>{data.deadline}</td>
-      <td style={columnConfigs[4]}>
+      <td>{data.deadline}</td>
+      <td>
         <Badge color={getPriorityColor(data.priority)} variant="outline" size="sm">
           {data.priority.charAt(0).toUpperCase() + data.priority.slice(1)}
         </Badge>
@@ -276,14 +276,14 @@ const ProjectListItem: React.FC<{ data: Project; columnConfigs: ColumnConfig[] }
 export const BasicTable: Story = {
   args: {
     columnConfigs: [
-      { heading: 'Name', width: '25%' },
-      { heading: 'Email', width: '30%' },
-      { heading: 'Role', width: '20%' },
-      { heading: 'Status', width: '15%' },
-      { heading: 'Last Login', width: '10%' },
+      { heading: 'Name', style: { width: '25%' } },
+      { heading: 'Email', style: { width: '30%' } },
+        { heading: 'Role', style: { width: '20%' } },
+      { heading: 'Status', style: { width: '15%' } },
+      { heading: 'Last Login', style: { width: '10%' } },
     ],
     data: userData,
-    ListItem: UserListItem as React.ComponentType<{ data: unknown; columnConfigs: ColumnConfig[] }>,
+    ListItem: UserListItem as React.ComponentType<{ data: unknown }>,
   },
   parameters: {
     docs: {
@@ -297,15 +297,15 @@ export const BasicTable: Story = {
 export const TableWithCustomComponents: Story = {
   args: {
     columnConfigs: [
-      { heading: 'Product Name', width: '20%' },
-      { heading: 'Category', width: '15%' },
-      { heading: 'Price', width: '15%' },
-      { heading: 'Stock', width: '10%', textAlign: 'center' },
-      { heading: 'Status', width: '15%' },
-      { heading: 'Actions', width: '25%', textAlign: 'center' },
+      { heading: 'Product Name', style: { width: '20%' } },
+      { heading: 'Category', style: { width: '15%' } },
+      { heading: 'Price', style: { width: '15%' } },
+      { heading: 'Stock', style: { width: '10%', textAlign: 'center' } },
+      { heading: 'Status', style: { width: '15%' } },
+      { heading: 'Actions', style: { width: '25%', textAlign: 'center' } },
     ],
     data: productData,
-    ListItem: ProductListItem as React.ComponentType<{ data: unknown; columnConfigs: ColumnConfig[] }>,
+    ListItem: ProductListItem as React.ComponentType<{ data: unknown }>,
   },
   parameters: {
     docs: {
@@ -320,14 +320,14 @@ export const TableWithCustomComponents: Story = {
 export const TableWithProgressBars: Story = {
   args: {
     columnConfigs: [
-      { heading: 'Project Title', width: '25%' },
-      { heading: 'Team Members', width: '25%' },
-      { heading: 'Progress', width: '20%' },
-      { heading: 'Deadline', width: '15%' },
-      { heading: 'Priority', width: '15%' },
+      { heading: 'Project Title', style: { width: '25%' } },
+        { heading: 'Team Members', style: { width: '25%' } },
+      { heading: 'Progress', style: { width: '20%' } },
+      { heading: 'Deadline', style: { width: '15%' } },
+      { heading: 'Priority', style: { width: '15%' } },
     ],
     data: projectData,
-    ListItem: ProjectListItem as React.ComponentType<{ data: unknown; columnConfigs: ColumnConfig[] }>,
+    ListItem: ProjectListItem as React.ComponentType<{ data: unknown }>,
   },
   parameters: {
     docs: {
@@ -342,14 +342,14 @@ export const TableWithProgressBars: Story = {
 export const StyledColumns: Story = {
   args: {
     columnConfigs: [
-      { heading: 'Name', width: '25%', paddingLeft: '20px', fontWeight: '600' },
-      { heading: 'Email', width: '30%', textAlign: 'left' },
-      { heading: 'Role', width: '20%', textAlign: 'center' },
-      { heading: 'Status', width: '15%', textAlign: 'center' },
-      { heading: 'Last Login', width: '10%', textAlign: 'right', paddingRight: '20px' },
+      { heading: 'Name', style: { width: '25%', paddingLeft: '20px', fontWeight: '600' } },
+      { heading: 'Email', style: { width: '30%', textAlign: 'left' } },
+      { heading: 'Role', style: { width: '20%', textAlign: 'center' } },
+      { heading: 'Status', style: { width: '15%', textAlign: 'center' } },
+      { heading: 'Last Login', style: { width: '10%', textAlign: 'right', paddingRight: '20px' }   },
     ],
     data: userData,
-    ListItem: UserListItem as React.ComponentType<{ data: unknown; columnConfigs: ColumnConfig[] }>,
+    ListItem: UserListItem as React.ComponentType<{ data: unknown }>,
   },
   parameters: {
     docs: {
