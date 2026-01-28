@@ -50,7 +50,8 @@ export { Loader } from './Layout/Loader/Loader';
 export { Stack } from './Layout/Stack/Stack';
 export { Card } from './Layout/Card/Card';
 export { SectionCard } from './Layout/SectionCard/SectionCard';
-export { Table, type ColumnConfig } from './Layout/Table/Table';
+export { Table } from './Layout/Table/Table';
+export type { ColumnConfig } from './Layout/Table/Table';
 export { Tabs } from './Layout/Tabs/Tabs';
 
 //Typography
