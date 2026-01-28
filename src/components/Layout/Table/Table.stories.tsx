@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ColumnConfig, Table } from './Table';
+import { Table } from './Table';
 import { Badge } from '../../Info/Badge/Badge';
 import { Button } from '../../Inputs/Buttons/Button/Button';
 import React from 'react';
@@ -153,7 +153,7 @@ const projectData: Project[] = [
 ];
 
 // ListItem Components
-const UserListItem: React.FC<{ data: User }> = ({ data }) => {
+const UserListItem = ({ data }: { data: User }) => {
   return (
     <tr>
       <td>{data.name}</td>
@@ -169,7 +169,7 @@ const UserListItem: React.FC<{ data: User }> = ({ data }) => {
   );
 };
 
-const ProductListItem: React.FC<{ data: Product }> = ({ data }) => {
+const ProductListItem = ({ data }: { data: Product }) => {
   const getStatusColor = (status: Product['status']) => {
     switch (status) {
       case 'in-stock':
@@ -221,7 +221,7 @@ const ProductListItem: React.FC<{ data: Product }> = ({ data }) => {
   );
 };
 
-const ProjectListItem: React.FC<{ data: Project }> = ({ data }) => {
+const ProjectListItem = ({ data }: { data: Project }) => {
   const getPriorityColor = (priority: Project['priority']) => {
     switch (priority) {
       case 'high':
@@ -278,7 +278,7 @@ export const BasicTable: Story = {
     columnConfigs: [
       { heading: 'Name', style: { width: '25%' } },
       { heading: 'Email', style: { width: '30%' } },
-        { heading: 'Role', style: { width: '20%' } },
+      { heading: 'Role', style: { width: '20%' } },
       { heading: 'Status', style: { width: '15%' } },
       { heading: 'Last Login', style: { width: '10%' } },
     ],
@@ -321,7 +321,7 @@ export const TableWithProgressBars: Story = {
   args: {
     columnConfigs: [
       { heading: 'Project Title', style: { width: '25%' } },
-        { heading: 'Team Members', style: { width: '25%' } },
+      { heading: 'Team Members', style: { width: '25%' } },
       { heading: 'Progress', style: { width: '20%' } },
       { heading: 'Deadline', style: { width: '15%' } },
       { heading: 'Priority', style: { width: '15%' } },
@@ -346,7 +346,7 @@ export const StyledColumns: Story = {
       { heading: 'Email', style: { width: '30%', textAlign: 'left' } },
       { heading: 'Role', style: { width: '20%', textAlign: 'center' } },
       { heading: 'Status', style: { width: '15%', textAlign: 'center' } },
-      { heading: 'Last Login', style: { width: '10%', textAlign: 'right', paddingRight: '20px' }   },
+      { heading: 'Last Login', style: { width: '10%', textAlign: 'right', paddingRight: '20px' } },
     ],
     data: userData,
     ListItem: UserListItem as React.ComponentType<{ data: unknown }>,
