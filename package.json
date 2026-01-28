@@ -1,6 +1,6 @@
 {
   "name": "@taiv/ui",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "author": "Taiv",
   "description": "Taiv's web UI Toolkit built on Mantine v6",
   "main": "dist/index.js",
