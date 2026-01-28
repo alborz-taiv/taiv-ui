@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput as MantineTextInput, TextInputProps as MantineTextInputProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral } from '../../../../constants/colors';
+import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { componentSizes } from '../shared/sizes';
 
@@ -25,6 +25,13 @@ const TextInput = ({ size = 'md', width, fullWidth = false, styles, ...props }: 
       color: neutral[200],
       transition: 'all 200ms ease-in-out',
       borderRadius: '8px',
+      '&[data-invalid]': {
+        borderColor: red[200],
+        color: neutral[200],
+        '&::placeholder': {
+          color: red[200],
+        },
+      },
     },
     label: {
       ...fontBase,
@@ -34,6 +41,7 @@ const TextInput = ({ size = 'md', width, fullWidth = false, styles, ...props }: 
     error: {
       ...fontBase,
       fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      color: red[200]
     },
     ...styles,
   };
