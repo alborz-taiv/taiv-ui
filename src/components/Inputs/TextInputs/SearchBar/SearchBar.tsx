@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput } from '../TextInput/TextInput';
 import { TextInputProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral } from '../../../../constants/colors';
+import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { componentSizes } from '../shared/sizes';
 
@@ -23,6 +23,13 @@ const SearchBar = ({ width, fullWidth = false, size = 'md', styles, ...props }: 
       borderRadius: '8px',
       height: `${selectedSize.height}rem`,
       transition: 'all 200ms ease-in-out',
+      '&[data-invalid]': {
+        borderColor: red[200],
+        color: neutral[200],
+        '&::placeholder': {
+          color: red[200],
+        },
+      },
     },
     ...styles,
   };

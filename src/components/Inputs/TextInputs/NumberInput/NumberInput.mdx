@@ -1,0 +1,234 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { NumberInput } from './NumberInput';
+import * as NumberInputStories from './NumberInput.stories';
+
+<Meta of={NumberInputStories} />
+
+# NumberInput
+
+[View Mantine Docs](https://v6.mantine.dev/core/number-input/)
+
+The NumberInput component is a customizable wrapper around Mantine's NumberInput component that provides numeric input with stepper controls and consistent styling. It extends Mantine v6's NumberInputProps while adding custom sizing options and preset styling.
+
+### 📦 Import
+
+```tsx
+import { NumberInput } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={NumberInputStories.Default} height={900} />
+<Controls of={NumberInputStories.Default} />
+
+---
+
+### 📐 Variants
+
+Different ways to use the NumberInput component.
+
+<Story of={NumberInputStories.Variants} />
+
+The component supports various configurations including placeholders, labels, descriptions, and min/max constraints to provide context to users.
+
+## <br />
+
+### 📏 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={NumberInputStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline actions, tables</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most number inputs</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent forms</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+The NumberInput component supports different states to provide visual feedback and control user interaction.
+
+<Story of={NumberInputStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard number input interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When numeric input is not available</td>
+    </tr>
+    <tr>
+      <td>Required</td>
+      <td>Required field indicator</td>
+      <td>When a value is mandatory</td>
+    </tr>
+    <tr>
+      <td>With Description</td>
+      <td>Additional context provided</td>
+      <td>When more explanation is needed</td>
+    </tr>
+    <tr>
+      <td>With Error</td>
+      <td>Validation error state</td>
+      <td>Form validation feedback</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### ⚡ Additional Functionality
+
+The NumberInput component supports additional features for enhanced user experience.
+
+<Story of={NumberInputStories.AdditionalFunctionality} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Step Control</td>
+      <td>Increment/decrement values by a configurable step</td>
+      <td>When users need precise numeric adjustments</td>
+    </tr>
+    <tr>
+      <td>Decimals Support</td>
+      <td>Control decimal precision for fractional values</td>
+      <td>When working with prices, percentages, or measurements</td>
+    </tr>
+    <tr>
+      <td>Min/Max Constraints</td>
+      <td>Restrict values to a specific range</td>
+      <td>When inputs must stay within valid bounds</td>
+    </tr>
+    <tr>
+      <td>Custom Width</td>
+      <td>Override default width with custom sizing</td>
+      <td>When specific width requirements are needed</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🛠️ Custom Styling
+
+In the event that you need to custom style your NumberInput, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={NumberInputStories.CustomStyling} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-NumberInput-root</td>
+      <td>Root element</td>
+    </tr>
+    <tr>
+      <td>wrapper</td>
+      <td>.mantine-NumberInput-wrapper</td>
+      <td>Root Input element</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td>.mantine-NumberInput-input</td>
+      <td>Main input element</td>
+    </tr>
+    <tr>
+      <td>controls</td>
+      <td>.mantine-NumberInput-controls</td>
+      <td>Vertical controls container</td>
+    </tr>
+    <tr>
+      <td>control</td>
+      <td>.mantine-NumberInput-control</td>
+      <td>Single up/down control button</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-NumberInput-label</td>
+      <td>Label element</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>.mantine-NumberInput-description</td>
+      <td>Description element</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>.mantine-NumberInput-error</td>
+      <td>Error element</td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>.mantine-NumberInput-required</td>
+      <td>Required asterisk element</td>
+    </tr>
+    <tr>
+      <td>rightSection</td>
+      <td>.mantine-NumberInput-rightSection</td>
+      <td>Optional right section container</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Provide clear labels**: Always include descriptive labels to help users understand what numeric value is expected.
+2. **Use helpful placeholders**: Use placeholders to give users hints about valid ranges or formats.
+3. **Handle validation**: Use the error prop to display validation messages when values are invalid or required.
+4. **Set appropriate ranges**: Use min and max to enforce valid ranges and prevent invalid submissions.
+5. **Choose logical steps**: Set the step value based on the expected adjustment size (e.g., 1 for counts, 0.5 for ratings).
+6. **Control precision**: Use precision for decimal values to avoid confusing rounding behavior.
+7. **Accessibility**: Ensure labels are descriptive and consider using description for additional context.
+8. **Consistent sizing**: Use consistent sizes across related forms for better visual hierarchy.
+9. **Form integration**: The component works seamlessly with form libraries and validation frameworks.
+10. **Responsive design**: Use the fullWidth and width props to adapt to different layouts and containers.
+

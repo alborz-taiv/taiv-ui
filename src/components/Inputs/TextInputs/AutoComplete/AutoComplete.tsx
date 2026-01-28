@@ -1,7 +1,7 @@
 import React from 'react';
 import { Autocomplete as MantineAutocomplete, AutocompleteProps as MantineAutocompleteProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral } from '../../../../constants/colors';
+import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { componentSizes } from '../../Dropdowns/shared/sizes';
 
@@ -25,6 +25,13 @@ export const AutoComplete = ({ size = 'md', width, fullWidth = false, placeholde
       color: neutral[300],
       transition: 'all 200ms ease-in-out',
       borderRadius: '8px',
+      '&[data-invalid]': {
+        borderColor: red[200],
+        color: neutral[200],
+        '&::placeholder': {
+          color: red[200],
+        },
+      },
     },
     label: {
       ...fontBase,

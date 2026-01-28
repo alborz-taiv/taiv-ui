@@ -1,7 +1,7 @@
 import React from 'react';
 import { Textarea as MantineTextarea, TextareaProps as MantineTextareaProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral } from '../../../../constants/colors';
+import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { componentSizes } from '../shared/sizes';
 
@@ -26,6 +26,13 @@ const TextArea = ({ size = 'md', width, fullWidth = false, styles, ...props }: T
       transition: 'all 200ms ease-in-out',
       borderRadius: '8px',
       resize: 'vertical',
+      '&[data-invalid]': {
+        borderColor: red[200],
+        color: neutral[200],
+        '&::placeholder': {
+          color: red[200],
+        },
+      },
     },
     label: {
       ...fontBase,
@@ -35,6 +42,7 @@ const TextArea = ({ size = 'md', width, fullWidth = false, styles, ...props }: T
     error: {
       ...fontBase,
       fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      color: red[200],
     },
     ...styles,
   };

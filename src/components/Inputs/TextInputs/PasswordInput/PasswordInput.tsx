@@ -1,7 +1,7 @@
 import React from 'react';
 import { PasswordInput as MantinePasswordInput, PasswordInputProps as MantinePasswordInputProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral } from '../../../../constants/colors';
+import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { componentSizes } from '../shared/sizes';
 
@@ -32,6 +32,12 @@ const PasswordInput = ({ size = 'md', width, fullWidth = false, styles, placehol
       height: `${selectedSize.height}rem`,
       fontSize: selectedSize.fontSize,
       padding: '0 1rem',
+      '&[data-invalid]': {
+        borderColor: red[200],
+        '&::placeholder': {
+          color: red[200],
+        },
+      },
     },
     label: {
       ...fontBase,
@@ -41,6 +47,7 @@ const PasswordInput = ({ size = 'md', width, fullWidth = false, styles, placehol
     error: {
       ...fontBase,
       fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      color: red[200],
     },
     innerInput: {
       ...fontBase,
@@ -48,6 +55,12 @@ const PasswordInput = ({ size = 'md', width, fullWidth = false, styles, placehol
       height: `${selectedSize.height}rem`,
       fontSize: selectedSize.fontSize,
       padding: '0 1rem',
+      '&[data-invalid]': {
+        color: neutral[200],
+        '&::placeholder': {
+          color: red[200],
+        },
+      },
     },
     visibilityToggle: {
       color: neutral[200],
