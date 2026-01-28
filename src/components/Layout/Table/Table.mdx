@@ -1,0 +1,224 @@
+# Table
+
+The `Table` component is a generic, flexible table component that can display any type of data. It accepts a `ListItem` component that renders each row, allowing for complete customization of row content. **Column styles are automatically applied** by the Table component, so you don't need to manage styles in your ListItem components.
+
+## Overview
+
+The Table component provides a consistent table structure with customizable columns and row rendering. It handles the table header automatically based on your column configuration, and **automatically applies column styles to table cells** using DOM manipulation. This means your `ListItem` components can focus purely on content without worrying about column styling.
+
+## Props
+
+### `columnConfigs: ColumnConfig[]`
+An array of column configuration objects. Each `ColumnConfig` includes:
+- `heading?: string` - The column header text
+- `style?: CSSProperties` - CSS properties that will be automatically applied to all `<td>` elements in that column position
+
+**Note:** The styles defined in `columnConfigs` are automatically applied to the corresponding `<td>` elements based on their position in the row (0-indexed). You don't need to manually apply these styles in your ListItem components.
+
+### `data: T[]`
+An array of data items to display in the table. The type `T` is generic, allowing you to use any data structure.
+
+### `ListItem: React.ComponentType<{ data: T }>`
+A component that renders a single table row. It receives:
+- `data: T` - The data item for the current row
+
+**Note:** Column styles are automatically applied by the Table component, so you don't need to pass or use `columnConfigs` in your ListItem component. Simply use plain `<td>` elements - the Table component will apply the appropriate column styles based on each cell's position in the row.
+
+## Best Practices for ListItem Components
+
+### Build ListItem Components in Application Repos
+
+Due to the complexity and variety of use cases across different features, **it is recommended to build your `ListItem` components within your application repositories** rather than in the design system. This approach provides:
+
+- **Flexibility**: Each feature can have its own specific row rendering logic
+- **Maintainability**: Row components stay close to the features that use them
+- **Customization**: Easy to add feature-specific interactions, styling, and business logic
+
+### Use Semantic HTML Elements
+
+When building your `ListItem` component, always use semantic HTML elements:
+
+- **`<tr>`** - For the table row element
+- **`<td>`** - For each table cell element (no style props needed - column styles are applied automatically)
+
+This ensures proper accessibility, semantic meaning, and table structure. **The order of your `<td>` elements must match the order of your `columnConfigs` array**, as styles are applied based on the cell's index position (0, 1, 2, etc.).
+
+### Example ListItem Component Structure
+
+```tsx
+import React from 'react';
+
+interface UserData {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  status: 'active' | 'inactive';
+}
+
+interface UserListItemProps {
+  data: UserData;
+}
+
+export const UserListItem: React.FC<UserListItemProps> = ({ data }) => {
+  return (
+    <tr>
+      <td>{data.name}</td>
+      <td>{data.email}</td>
+      <td>{data.role}</td>
+      <td>
+        <Badge color={data.status === 'active' ? 'success' : 'neutral'}>
+          {data.status}
+        </Badge>
+      </td>
+    </tr>
+  );
+};
+```
+
+**Key points:**
+- No `columnConfigs` prop needed
+- No manual style application on `<td>` elements
+- Column styles from `columnConfigs` are automatically applied based on cell position
+- The first `<td>` gets styles from `columnConfigs[0]`, second from `columnConfigs[1]`, etc.
+
+### Key Guidelines
+
+1. **Always return a `<tr>` element** - This is required for proper table structure
+2. **Use plain `<td>` elements** - Match the number of cells to your column configurations. **No style props needed** - column styles are automatically applied
+3. **Maintain column order** - The order of your `<td>` elements must match the order of `columnConfigs`. The first `<td>` gets styles from `columnConfigs[0]`, second from `columnConfigs[1]`, etc.
+4. **Column styles are automatic** - The Table component uses DOM manipulation to apply column styles, so you don't need to manage styles in your ListItem components
+5. **Handle empty states** - Consider how to display missing or null data
+6. **Add interactions carefully** - If rows are clickable, ensure proper accessibility attributes
+7. **Row-level styles are fine** - You can still apply styles to the `<tr>` element if needed (e.g., borders, height)
+
+## Examples
+
+### Basic Table with Text Data
+
+```tsx
+import { Table, ColumnConfig } from '@taiv-ui/components';
+
+const columnConfigs: ColumnConfig[] = [
+  { heading: 'Name', style: { width: '30%' } },
+  { heading: 'Email', style: { width: '40%' } },
+  { heading: 'Role', style: { width: '30%' } },
+];
+
+const data = [
+  { id: '1', name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { id: '2', name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+];
+
+const BasicListItem = ({ data }) => (
+  <tr>
+    <td>{data.name}</td>
+    <td>{data.email}</td>
+    <td>{data.role}</td>
+  </tr>
+);
+
+<Table columnConfigs={columnConfigs} data={data} ListItem={BasicListItem} />
+```
+
+Notice how the ListItem component uses plain `<td>` elements without any style props. The Table component automatically applies the column styles from `columnConfigs` based on each cell's position.
+
+### Table with Custom Components
+
+The Table component excels when you need to display custom components within cells, such as badges, buttons, or other interactive elements.
+
+```tsx
+import { Table, ColumnConfig } from '@taiv-ui/components';
+import { Badge } from '@taiv-ui/components';
+import { Button } from '@taiv-ui/components';
+
+const columnConfigs: ColumnConfig[] = [
+  { heading: 'Product', style: { width: '25%' } },
+  { heading: 'Status', style: { width: '20%' } },
+  { heading: 'Price', style: { width: '20%' } },
+  { heading: 'Actions', style: { width: '35%', textAlign: 'center' } },
+];
+
+const data = [
+  { 
+    id: '1', 
+    product: 'Widget A', 
+    status: 'active', 
+    price: '$29.99',
+    stock: 150 
+  },
+  { 
+    id: '2', 
+    product: 'Widget B', 
+    status: 'low-stock', 
+    price: '$39.99',
+    stock: 5 
+  },
+];
+
+const ProductListItem = ({ data }) => (
+  <tr>
+    <td>{data.product}</td>
+    <td>
+      <Badge 
+        color={data.status === 'active' ? 'success' : 'warning'}
+        variant="filled"
+      >
+        {data.status === 'active' ? 'In Stock' : 'Low Stock'}
+      </Badge>
+    </td>
+    <td>{data.price}</td>
+    <td>
+      <Button size="sm" variant="primary">Edit</Button>
+    </td>
+  </tr>
+);
+
+<Table columnConfigs={columnConfigs} data={data} ListItem={ProductListItem} />
+```
+
+The column styles (width, textAlign, etc.) are automatically applied to the `<td>` elements. Your ListItem component focuses purely on rendering the content.
+
+## Styling Columns
+
+You can style individual columns using CSS properties in the `columnConfigs`. These styles are **automatically applied** to all `<td>` elements in the corresponding column position:
+
+```tsx
+const columnConfigs: ColumnConfig[] = [
+  { 
+    heading: 'Name', 
+    style: {
+      width: '30%',
+      textAlign: 'left',
+      paddingLeft: '16px'
+    }
+  },
+  { 
+    heading: 'Amount', 
+    style: {
+      width: '20%',
+      textAlign: 'right',
+      fontWeight: 'bold'
+    }
+  },
+  { 
+    heading: 'Date', 
+    style: {
+      width: '50%',
+      textAlign: 'center'
+    }
+  },
+];
+```
+
+**How it works:** The Table component uses a `useEffect` hook to find all `<td>` elements in the table body and applies the corresponding column styles based on each cell's index position (0, 1, 2, etc.). This happens automatically after the component renders, so you don't need to manage styles in your ListItem components.
+
+**Important:** The order of your `<td>` elements in the ListItem component must match the order of `columnConfigs`. The first `<td>` will receive styles from `columnConfigs[0]`, the second from `columnConfigs[1]`, and so on.
+
+## Accessibility
+
+The Table component uses semantic HTML (`<table>`, `<thead>`, `<tbody>`, `<tr>`, `<th>`, `<td>`) to ensure proper accessibility. When building your `ListItem` components:
+
+- Ensure all cells contain content (use `&nbsp;` or empty string if needed)
+- Add `aria-label` attributes if rows are interactive
+- Maintain proper table structure with matching cell counts

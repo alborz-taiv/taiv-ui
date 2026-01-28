@@ -1,3 +1,4 @@
+export const white = '#FFFFFF';
 export const gray = {
   25: '#F8FAFC',
   50: '#EDEDED',
@@ -58,6 +59,7 @@ export const salmon = {
 
 // Primary semantic/functional color exports - for use in UI, actions, states, etc. anything that would be affected by theme changes down the line
 export const colors = {
+  white,
   neutral,
   primary,
   success,
