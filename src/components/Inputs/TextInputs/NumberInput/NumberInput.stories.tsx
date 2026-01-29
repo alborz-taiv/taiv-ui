@@ -215,7 +215,7 @@ export const AdditionalFunctionality: Story = {
       <NumberInput label="Step of 1" placeholder="Integer values" step={1} />
       <NumberInput label="Step of 0.5" placeholder="Decimal values" step={0.5} precision={1} />
       <NumberInput label="With Min/Max" placeholder="Between 0 and 10" min={0} max={10} step={1} />
-      <NumberInput label="Custom Width" placeholder="Custom width" width="300px" />
+      <NumberInput label="Custom Width" placeholder="Custom width" width="300rem" />
     </Group>
   ),
   parameters: {
