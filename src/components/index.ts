@@ -37,6 +37,7 @@ export { TextArea } from './Inputs/TextInputs/TextArea/TextArea';
 export { TextInput } from './Inputs/TextInputs/TextInput/TextInput';
 export { PasswordInput } from './Inputs/TextInputs/PasswordInput/PasswordInput';
 export { DatePicker } from './Inputs/Dates/DatePicker/DatePicker';
+export { NumberInput } from './Inputs/TextInputs/NumberInput/NumberInput';
 
 //Layout
 export { AutoGrid } from './Layout/AutoGrid/AutoGrid';
