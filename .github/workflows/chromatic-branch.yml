@@ -37,10 +37,13 @@ jobs:
           CHROMATIC_SHA: ${{ github.event.pull_request.head.sha }}
           CHROMATIC_SLUG: ${{ github.repository }}
 
-      - name: Comment Chromatic links on PR
-        uses: dannyhw/storybook-chromatic-link-comment@v0.10
+      - name: Comment Storybook URL on PR
+        uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          build-url: ${{ steps.chromatic.outputs.buildUrl }}
-          review-url: ${{ steps.chromatic.outputs.url }}
-          storybook-url: ${{ steps.chromatic.outputs.storybookUrl }}
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `**View this branch's Storybook:** ${{ steps.chromatic.outputs.storybookUrl }}`
+            })
