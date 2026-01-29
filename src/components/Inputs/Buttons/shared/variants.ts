@@ -191,7 +191,7 @@ export const buttonVariants = {
   },
 } as const;
 
-export const coloredIconButtonVariants = {
+export const subtleButtonVariants = {
   primary: {
     ...buttonVariants.primary,
     background: 'white',

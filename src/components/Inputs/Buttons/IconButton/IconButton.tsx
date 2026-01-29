@@ -1,14 +1,14 @@
 import { ReactElement } from 'react';
 import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@mantine/core';
 import { componentSizes } from './sizes';
-import { buttonVariants, coloredIconButtonVariants } from '../shared/variants';
+import { buttonVariants, subtleButtonVariants } from '../shared/variants';
 import { neutral } from '../../../../constants/colors';
 import { Tooltip } from '../../../Info/Tooltips/Tooltip/Tooltip';
 
 export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | 'rightIcon'> {
   onClick?: () => void;
   size?: keyof typeof componentSizes;
-  variant?: keyof typeof buttonVariants | keyof typeof coloredIconButtonVariants;
+  variant?: keyof typeof buttonVariants | keyof typeof subtleButtonVariants;
   toggled?: boolean;
   shadow?: boolean;
   subtle?: boolean;
@@ -17,7 +17,7 @@ export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | '
 }
 
 export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, subtle = false, tooltip = '', styles, children, ...props }: IconButtonProps) => {
-  const selectedVariant = subtle && !props.loading ? coloredIconButtonVariants[variant] : buttonVariants[variant];
+  const selectedVariant = subtle && !props.loading ? subtleButtonVariants[variant] : buttonVariants[variant];
   const selectedSize = componentSizes[size];
 
   // Apply active styles for nav variant when isActive is true
