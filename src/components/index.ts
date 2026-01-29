@@ -21,6 +21,7 @@ export { InfoCard } from './Info/InfoCard/InfoCard';
 //Inputs
 export { AutoComplete } from './Inputs/TextInputs/AutoComplete/AutoComplete';
 export { Button } from './Inputs/Buttons/Button/Button';
+export { IconButton } from './Inputs/Buttons/IconButton/IconButton';
 export { UnstyledButton } from './Inputs/Buttons/UnstyledButton/UnstyledButton';
 export { Checkbox } from './Inputs/Controls/Checkbox/Checkbox';
 export { Radio } from './Inputs/Controls/Radio/Radio';
