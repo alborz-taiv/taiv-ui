@@ -17,6 +17,7 @@ export { Tooltip } from './Info/Tooltips/Tooltip/Tooltip';
 export { InfoTooltip } from './Info/Tooltips/InfoTooltip/InfoTooltip';
 export { FormulaTooltip } from './Info/Tooltips/FormulaTooltip/FormulaTooltip';
 export { InfoCard } from './Info/InfoCard/InfoCard';
+export { StatusBadge } from './Info/StatusBadge/StatusBadge';
 
 //Inputs
 export { AutoComplete } from './Inputs/TextInputs/AutoComplete/AutoComplete';

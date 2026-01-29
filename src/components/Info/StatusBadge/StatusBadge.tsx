@@ -1,13 +1,15 @@
 import { Badge as MantineBadge, BadgeProps as MantineBadgeProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
 import { fontBase, fontSize, fontWeight } from '../../../constants/font';
-import { green, red } from '../../../constants/colors';
-import { IconCircleDot } from '@tabler/icons-react';
-
-export type StatusBadgeVariant = 'online' | 'offline';
+import { IconCircleFilled } from '@tabler/icons-react';
+import { defaultIconColor, titleMap, variantStyles } from './shared/variants';
+import { statusBadgeSizes } from './shared/sizes';
+import type { StatusBadgeVariant } from './shared/variants';
+import type { StatusBadgeSize } from './shared/sizes';
 
 interface StatusBadgeProps extends Omit<MantineBadgeProps, 'children' | 'color' | 'variant'> {
   variant?: StatusBadgeVariant;
+  size?: StatusBadgeSize;
   width?: string;
   height?: string;
   title?: React.ReactNode;
@@ -16,33 +18,11 @@ interface StatusBadgeProps extends Omit<MantineBadgeProps, 'children' | 'color' 
   color?: string;
 }
 
-const titleMap: Record<StatusBadgeVariant, string> = {
-  online: 'Online',
-  offline: 'Offline',
-};
-
-const variantStyles: Record<StatusBadgeVariant, CSSObject> = {
-  online: {
-    backgroundColor: green[25],
-    color: green[300],
-    border: 'none',
-  },
-  offline: {
-    backgroundColor: red[25],
-    color: red[300],
-    border: 'none',
-  },
-};
-
-const defaultIconColor: Record<StatusBadgeVariant, string> = {
-  online: green[300],
-  offline: red[300],
-};
-
 const StatusBadge = ({
   variant = 'offline',
-  width = '9rem',
-  height = '3rem',
+  size = 'md',
+  width,
+  height,
   title,
   icon,
   backgroundColor,
@@ -50,20 +30,24 @@ const StatusBadge = ({
   styles,
   ...rest
 }: StatusBadgeProps) => {
+  const sizeConfig = statusBadgeSizes[size];
+  const resolvedWidth = width ?? sizeConfig.width;
+  const resolvedHeight = height ?? sizeConfig.height;
+
   const rootVariantStyles = { ...variantStyles[variant] };
   if (backgroundColor != null) rootVariantStyles.backgroundColor = backgroundColor;
   if (color != null) rootVariantStyles.color = color;
 
   const iconColor = color ?? defaultIconColor[variant];
-  const defaultIcon = <IconCircleDot color={iconColor} size="1.6rem" />;
+  const defaultIcon = <IconCircleFilled color={iconColor} size={sizeConfig.iconSize} />;
 
   const style: Partial<Record<'root' | 'inner' | 'leftSection', CSSObject>> = {
     root: {
       borderRadius: '10rem',
-      width,
-      height,
-      minWidth: width,
-      minHeight: height,
+      width: resolvedWidth,
+      height: resolvedHeight,
+      minWidth: resolvedWidth,
+      minHeight: resolvedHeight,
       padding: 0,
       gap: '0.4rem',
       display: 'inline-flex',
@@ -94,5 +78,4 @@ const StatusBadge = ({
   );
 };
 
-export { StatusBadge };
-export type { StatusBadgeProps };
+export { StatusBadge, type StatusBadgeProps, type StatusBadgeVariant, type StatusBadgeSize };

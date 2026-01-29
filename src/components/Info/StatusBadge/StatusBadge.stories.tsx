@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { IconMoodHappy, IconWifi } from '@tabler/icons-react';
 import { StatusBadge } from './StatusBadge';
 import { Group } from '../../Layout/Group/Group';
 
@@ -10,7 +11,7 @@ const meta: Meta<typeof StatusBadge> = {
     docs: {
       description: {
         component:
-          'A pill-shaped badge for showing online or offline status. Default size is 9rem × 3rem with border radius 10rem.',
+          'A pill-shaped badge for showing online or offline status. Size presets: sm, md (default), lg. Border radius 10rem.',
       },
     },
   },
@@ -24,6 +25,15 @@ const meta: Meta<typeof StatusBadge> = {
         defaultValue: { summary: "'offline'" },
       },
     },
+    size: {
+      control: { type: 'select' },
+      options: ['sm', 'md', 'lg'],
+      description: 'Preset size (width, height, icon size)',
+      table: {
+        type: { summary: "'sm' | 'md' | 'lg'" },
+        defaultValue: { summary: "'md'" },
+      },
+    },
     title: {
       control: { type: 'text' },
       description: 'Custom label; defaults to "Online" or "Offline" based on variant',
@@ -33,18 +43,16 @@ const meta: Meta<typeof StatusBadge> = {
     },
     width: {
       control: { type: 'text' },
-      description: 'Badge width',
+      description: 'Override width (overrides size preset)',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: "'7.1rem'" },
       },
     },
     height: {
       control: { type: 'text' },
-      description: 'Badge height',
+      description: 'Override height (overrides size preset)',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: "'2.3rem'" },
       },
     },
   },
@@ -56,8 +64,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     variant: 'offline',
-    width: '7.1rem',
-    height: '2.3rem',
+    size: 'md',
   },
 };
 
@@ -70,11 +77,21 @@ export const Variants: Story = {
   ),
 };
 
+export const Sizes: Story = {
+  render: () => (
+    <Group gap="1.6rem" align="flex-end">
+      <StatusBadge variant="online" size="sm" />
+      <StatusBadge variant="offline" size="md" />
+      <StatusBadge variant="online" size="lg" />
+    </Group>
+  ),
+};
+
 export const CustomSize: Story = {
   render: () => (
     <Group gap="1.6rem" align="flex-end">
       <StatusBadge variant="online" width="6rem" height="1.8rem" />
-      <StatusBadge variant="offline" />
+      <StatusBadge variant="offline" size="md" />
       <StatusBadge variant="online" width="9rem" height="2.8rem" />
     </Group>
   ),
@@ -86,6 +103,16 @@ export const CustomTitle: Story = {
       <StatusBadge variant="online" title="Available" />
       <StatusBadge variant="offline" title="Away" />
       <StatusBadge variant="online" title="Connected" />
+    </Group>
+  ),
+};
+
+export const CustomIcon: Story = {
+  render: () => (
+    <Group gap="1.6rem">
+      <StatusBadge variant="online" icon={<IconMoodHappy size={20} />} />
+      <StatusBadge variant="offline" icon={<IconWifi size={20} />} />
+      <StatusBadge variant="online" icon={<IconWifi size={20} />} title="Connected" />
     </Group>
   ),
 };

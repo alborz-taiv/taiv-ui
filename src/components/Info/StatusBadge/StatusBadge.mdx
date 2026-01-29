@@ -14,9 +14,13 @@ A pill-shaped badge for showing **online** or **offline** status (for now, more 
 ```tsx
 import { StatusBadge } from '@taiv/ui';
 
-// Default variants
+// Default variants (size defaults to "md")
 <StatusBadge variant="online" />
 <StatusBadge variant="offline" />
+
+// Size presets: sm, md, lg
+<StatusBadge variant="online" size="sm" />
+<StatusBadge variant="offline" size="lg" />
 
 // With custom title
 <StatusBadge variant="online" title="Available" />
@@ -39,19 +43,56 @@ import { StatusBadge } from '@taiv/ui';
   <StatusBadge variant="offline" />
 </Group>
 
-## Default size
+## Sizes
 
-- Width: **9rem**
-- Height: **3rem**
-- Border radius: **10rem** (pill shape)
+Preset sizes are defined in `shared/sizes.ts`. Use the `size` prop (`sm`, `md`, `lg`). Default is `md`.
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Width</th>
+      <th>Height</th>
+      <th>Icon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>7rem</td>
+      <td>2.3rem</td>
+      <td>1.2rem</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>9rem</td>
+      <td>3rem</td>
+      <td>1.6rem</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>11rem</td>
+      <td>3.5rem</td>
+      <td>1.8rem</td>
+    </tr>
+  </tbody>
+</table>
+
+<Group gap="1.6rem" align="flex-end" style={{ marginTop: '1rem' }}>
+  <StatusBadge variant="online" size="sm" />
+  <StatusBadge variant="offline" size="md" />
+  <StatusBadge variant="online" size="lg" />
+</Group>
+
+Border radius is **10rem** (pill shape) for all sizes.
 
 ## Custom size
 
-Use the `width` and `height` props to adjust the badge size:
+Use the `width` and `height` props to override the preset dimensions:
 
 <Group gap="1.6rem" align="flex-end" style={{ marginTop: '1rem' }}>
   <StatusBadge variant="online" width="6rem" height="1.8rem" />
-  <StatusBadge variant="offline" />
+  <StatusBadge variant="offline" size="md" />
   <StatusBadge variant="online" width="9rem" height="2.8rem" />
 </Group>
 
