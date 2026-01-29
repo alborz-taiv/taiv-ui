@@ -47,6 +47,11 @@ jobs:
       - name: Build package
         run: npm run build
 
+      - name: Publish to Chromatic
+        run: npx chromatic --exit-zero-on-changes
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN_TAIV_UI }}
+
       - name: Bump version and push tag
         run: |
           npm version ${{ github.event.inputs.version_type }} -m "chore: release %s"
