@@ -108,7 +108,7 @@ export const Default: Story = {
   },
 };
 
-export const Variants: Story = {
+export const NormalVariants: Story = {
   render: () => (
     <Group gap="1.6rem">
       <IconButton variant="primary"><Icon12Hours /></IconButton>
@@ -117,6 +117,27 @@ export const Variants: Story = {
       <IconButton variant="success"><IconCheck /></IconButton>
       <IconButton variant="warning"><IconAlertCircle /></IconButton>
       <IconButton variant="text"><IconClock2 /></IconButton>
+    </Group>
+  ),
+};
+
+export const ColoredIconVariants: Story = {
+  render: () => (
+    <Group gap="1.6rem">
+      <IconButton variant="primary" colorIcon><Icon12Hours /></IconButton>
+      <IconButton variant="secondary" colorIcon><Icon24Hours /></IconButton>
+      <IconButton variant="cancel" colorIcon><IconClock /></IconButton>
+      <IconButton variant="success" colorIcon><IconCheck /></IconButton>
+      <IconButton variant="warning" colorIcon><IconAlertCircle /></IconButton>
+      <IconButton variant="text" colorIcon><IconClock2 /></IconButton>
+    </Group>
+  ),
+};
+
+export const Tooltip: Story = {
+  render: () => (
+    <Group gap="1.6rem">
+      <IconButton tooltip="Tooltip"><Icon12Hours /></IconButton>
     </Group>
   ),
 };
@@ -137,6 +158,18 @@ export const States: Story = {
       <IconButton><IconArrowLeft /></IconButton>
       <IconButton disabled><IconCaretDown /></IconButton>
       <IconButton loading><IconLoader2 /></IconButton>
+      <IconButton shadow><IconArrowLeft /></IconButton>
+    </Group>
+  ),
+};
+
+export const ColorIconStates: Story = {
+  render: () => (
+    <Group gap="1.6rem">
+      <IconButton colorIcon><IconArrowLeft /></IconButton>
+      <IconButton colorIcon disabled><IconCaretDown /></IconButton>
+      <IconButton colorIcon loading><IconLoader2 /></IconButton>
+      <IconButton colorIcon shadow><IconArrowLeft /></IconButton>
     </Group>
   ),
 };

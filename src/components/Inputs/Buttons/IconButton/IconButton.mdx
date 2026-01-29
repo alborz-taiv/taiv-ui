@@ -29,7 +29,7 @@ import { IconButton } from '@taiv/ui';
 
 The IconButton component provides six semantic variants designed for different use cases.
 
-<Story of={ButtonStories.Variants} />
+<Story of={ButtonStories.NormalVariants} />
 
 <table>
   <thead>
@@ -72,6 +72,70 @@ The IconButton component provides six semantic variants designed for different u
     </tr>
   </tbody>
 </table>
+
+## <br />
+
+### 🎨 Colored Icon Variants
+
+Use the `colorIcon` prop to invert the color scheme - the icon takes on the variant color while the background remains white. This provides a lighter, less prominent appearance while maintaining the semantic meaning.
+
+<Story of={ButtonStories.ColoredIconVariants} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>Icon Color</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>primary</td>
+      <td>Blue Icon</td>
+      <td>Subtle primary actions</td>
+    </tr>
+    <tr>
+      <td>secondary</td>
+      <td>Neutral Icon</td>
+      <td>Subtle secondary actions</td>
+    </tr>
+    <tr>
+      <td>cancel</td>
+      <td>Red Icon</td>
+      <td>Subtle destructive actions</td>
+    </tr>
+    <tr>
+      <td>success</td>
+      <td>Green Icon</td>
+      <td>Subtle confirmations</td>
+    </tr>
+    <tr>
+      <td>warning</td>
+      <td>Orange Icon</td>
+      <td>Subtle warnings</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>Neutral Icon</td>
+      <td>Minimal actions</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💬 Tooltip
+
+Add a tooltip to provide additional context on hover using the `tooltip` prop.
+
+<Story of={ButtonStories.Tooltip} />
+
+```tsx
+<IconButton tooltip="Click to save">
+  <IconDeviceFloppy />
+</IconButton>
+```
 
 ## <br />
 
@@ -135,6 +199,51 @@ The IconButton component supports different states to provide visual feedback an
       <td>Loading</td>
       <td>Processing state</td>
       <td>Async operations, form submissions</td>
+    </tr>
+    <tr>
+      <td>Shadow</td>
+      <td>Elevated appearance with drop shadow</td>
+      <td>Floating actions, emphasis on important buttons</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 Colored Icon States
+
+The same states are available when using the `colorIcon` prop.
+
+<Story of={ButtonStories.ColorIconStates} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state with colored icon</td>
+      <td>Standard subtle button interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When action is not available</td>
+    </tr>
+    <tr>
+      <td>Loading</td>
+      <td>Processing state</td>
+      <td>Async operations</td>
+    </tr>
+    <tr>
+      <td>Shadow</td>
+      <td>Elevated appearance with drop shadow</td>
+      <td>Floating actions with subtle styling</td>
     </tr>
   </tbody>
 </table>
@@ -205,4 +314,8 @@ In the event that you need to custom style your IconButton, you can provide styl
 3. **Don't type out defaults**: The default style is primary, and default size is medium. For most buttons, you can ignore these props to simplify code.
 
 4. **Icon placement**: Use Icons as children.
+
+5. **Use colorIcon for subtlety**: When you need a less prominent button but still want to convey semantic meaning, use the `colorIcon` prop.
+
+6. **Add tooltips for clarity**: Icon-only buttons can be ambiguous - use the `tooltip` prop to provide context on hover.
 

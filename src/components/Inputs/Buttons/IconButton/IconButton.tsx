@@ -1,9 +1,9 @@
-import { cloneElement, isValidElement, ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@mantine/core';
 import { componentSizes } from './sizes';
 import { buttonVariants, coloredIconButtonVariants } from '../shared/variants';
-import { Loader } from '../../../Layout/Loader/Loader';
 import { neutral } from '../../../../constants/colors';
+import { Tooltip } from '../../../Info/Tooltips/Tooltip/Tooltip';
 
 export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | 'rightIcon'> {
   onClick?: () => void;
@@ -44,7 +44,18 @@ export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled 
     ...styles,
   };
 
-  const InnerIcon = props.loading ? <></> : children;
+  const Button = (
+    <MantineButton
+      styles={style}
+      size={size}
+      onClick={onClick}
+      loaderPosition="center"
+      loaderProps={{ size: selectedSize.iconSize }}
+      {...props}
+    >
+      {props.loading ? <></> : children}
+    </MantineButton>
+  );
 
-  return <MantineButton styles={style} size={size} onClick={onClick} loaderPosition="center" loaderProps={{ size: selectedSize.iconSize }} {...props}>{InnerIcon}</MantineButton>;
+  return tooltip ? <Tooltip text={tooltip}>{Button}</Tooltip> : Button;
 };

@@ -151,6 +151,7 @@ export const States: Story = {
       <Button>Normal</Button>
       <Button disabled>Disabled</Button>
       <Button loading>Loading</Button>
+      <Button shadow>Shadow</Button>
     </Group>
   ),
 };
