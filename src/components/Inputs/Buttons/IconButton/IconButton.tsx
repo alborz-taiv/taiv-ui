@@ -1,0 +1,50 @@
+import { cloneElement, isValidElement, ReactElement } from 'react';
+import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@mantine/core';
+import { componentSizes } from './sizes';
+import { buttonVariants, coloredIconButtonVariants } from '../shared/variants';
+import { Loader } from '../../../Layout/Loader/Loader';
+import { neutral } from '../../../../constants/colors';
+
+export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | 'rightIcon'> {
+  onClick?: () => void;
+  size?: keyof typeof componentSizes;
+  variant?: keyof typeof buttonVariants | keyof typeof coloredIconButtonVariants;
+  toggled?: boolean;
+  shadow?: boolean;
+  colorIcon?: boolean;
+  tooltip?: string;
+  children?: ReactElement<{ size?: number }>;
+}
+
+export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, colorIcon = false, tooltip = '', styles, children, ...props }: IconButtonProps) => {
+  const selectedVariant = colorIcon && !props.loading ? coloredIconButtonVariants[variant] : buttonVariants[variant];
+  const selectedSize = componentSizes[size];
+
+  // Apply active styles for nav variant when isActive is true
+  const getVariantStyles = () => {
+    if (toggled) {
+      return {
+        ...selectedVariant,
+        ...selectedVariant['&:toggled'],
+      };
+    }
+    return selectedVariant;
+  };
+
+  const style = {
+    root: {
+      borderRadius: '8px',
+      border: colorIcon ? `1px solid ${neutral[50]}` : '1px solid white',
+      height: `${selectedSize.borderLength}rem`,
+      padding: selectedSize.padding,
+      width: `${selectedSize.borderLength}rem`,
+      boxShadow: shadow ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
+      ...getVariantStyles(),
+    },
+    ...styles,
+  };
+
+  const InnerIcon = props.loading ? <></> : children;
+
+  return <MantineButton styles={style} size={size} onClick={onClick} loaderPosition="center" loaderProps={{ size: selectedSize.iconSize }} {...props}>{InnerIcon}</MantineButton>;
+};

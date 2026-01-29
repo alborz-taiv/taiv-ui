@@ -1,0 +1,208 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { IconButton } from './IconButton';
+import * as ButtonStories from './IconButton.stories';
+
+<Meta of={ButtonStories} />
+
+# IconButton
+
+[View Mantine Docs](https://v6.mantine.dev/core/button/)
+
+The IconButton component is a customizable wrapper around Mantine's Button component that provides consistent styling and behavior across your application. It extends Mantine v6's ButtonProps while adding custom variants and sizing options.
+
+Use IconButton when you need to trigger some sort of logical action via a click through an Icon. See variants below for different use cases.
+
+### 📦 Import
+
+```tsx
+import { IconButton } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={ButtonStories.Default} />
+<Controls of={ButtonStories.Default} />
+
+---
+
+### 🎨 Variants
+
+The IconButton component provides six semantic variants designed for different use cases.
+
+<Story of={ButtonStories.Variants} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>Color</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>primary</td>
+      <td>Blue</td>
+      <td>Primary actions</td>
+    </tr>
+    <tr>
+      <td>secondary</td>
+      <td>Neutral Outlined</td>
+      <td>Secondary actions, alternative options</td>
+    </tr>
+    <tr>
+      <td>cancel</td>
+      <td>Red</td>
+      <td>Destructive actions, cancellations</td>
+    </tr>
+    <tr>
+      <td>success</td>
+      <td>Green</td>
+      <td>Confirmations, positive actions</td>
+    </tr>
+    <tr>
+      <td>warning</td>
+      <td>Orange</td>
+      <td>Cautionary actions, warnings</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>Text Only</td>
+      <td>Subtle actions, links</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 📐 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={ButtonStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline actions, tables</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most buttons</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent actions</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+The IconButton component supports different states to provide visual feedback and control user interaction.
+
+<Story of={ButtonStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+      <td>Standard button interactions</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive state</td>
+      <td>When action is not available, i.e. form is invalid</td>
+    </tr>
+    <tr>
+      <td>Loading</td>
+      <td>Processing state</td>
+      <td>Async operations, form submissions</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🛠️ Custom Styles
+
+In the event that you need to custom style your IconButton, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Story of={ButtonStories.CustomStyles} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-Button-root</td>
+      <td>Root button element</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>.mantine-Button-icon</td>
+      <td>Shared icon styles</td>
+    </tr>
+    <tr>
+      <td>leftIcon</td>
+      <td>.mantine-Button-leftIcon</td>
+      <td>Left icon</td>
+    </tr>
+    <tr>
+      <td>rightIcon</td>
+      <td>.mantine-Button-rightIcon</td>
+      <td>Right icon</td>
+    </tr>
+    <tr>
+      <td>centerLoader</td>
+      <td>.mantine-Button-centerLoader</td>
+      <td>Center loader</td>
+    </tr>
+    <tr>
+      <td>inner</td>
+      <td>.mantine-Button-inner</td>
+      <td>Contains label, left and right icons</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-Button-label</td>
+      <td>Contains button children</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Use semantic variants**: Choose variants that match the action's intent. For example - destructive actions, like deletions, should use a red 'cancel' button.
+
+2. **Manage states**: Always show loading states for async actions, like form submissions. Use disabled to keep buttons from being clicked until a form is valid.
+
+3. **Don't type out defaults**: The default style is primary, and default size is medium. For most buttons, you can ignore these props to simplify code.
+
+4. **Icon placement**: Use Icons as children.
+
