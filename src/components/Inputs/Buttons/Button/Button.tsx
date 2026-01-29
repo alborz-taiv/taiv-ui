@@ -2,19 +2,19 @@ import React from 'react';
 import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@mantine/core';
 import { fontBase, fontWeight } from '../../../../constants/font';
 import { componentSizes } from './sizes';
-import { componentVariants } from './variants';
+import { buttonVariants } from '../shared/variants';
 
 export interface ButtonProps extends MantineButtonProps {
   onClick?: () => void;
   size?: keyof typeof componentSizes;
-  variant?: keyof typeof componentVariants;
+  variant?: keyof typeof buttonVariants;
   fullWidth?: boolean;
   toggled?: boolean;
   shadow?: boolean;
 }
 
 export const Button = ({ onClick, size = 'md', variant = 'primary', fullWidth = false, toggled = false, shadow = false, styles, ...props }: ButtonProps) => {
-  const selectedVariant = componentVariants[variant];
+  const selectedVariant = buttonVariants[variant];
   const selectedSize = componentSizes[size];
 
   // Apply active styles for nav variant when isActive is true
