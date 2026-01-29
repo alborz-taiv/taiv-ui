@@ -50,7 +50,7 @@ jobs:
       - name: Publish to Chromatic
         run: npx chromatic --exit-zero-on-changes
         env:
-          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN_TAIV_UI }}
+          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
       - name: Bump version and push tag
         run: |
