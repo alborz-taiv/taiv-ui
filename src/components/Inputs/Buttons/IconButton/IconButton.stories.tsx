@@ -108,7 +108,7 @@ export const Default: Story = {
   },
 };
 
-export const NormalVariants: Story = {
+export const Variants: Story = {
   render: () => (
     <Group gap="1.6rem">
       <IconButton variant="primary"><Icon12Hours /></IconButton>
@@ -121,7 +121,7 @@ export const NormalVariants: Story = {
   ),
 };
 
-export const SubtleVariants: Story = {
+export const Subtle: Story = {
   render: () => (
     <Group gap="1.6rem">
       <IconButton variant="primary" subtle><Icon12Hours /></IconButton>
