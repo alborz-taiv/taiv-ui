@@ -8,6 +8,10 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alborz-taiv/taiv-ui"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "npm link && tsc --watch",
