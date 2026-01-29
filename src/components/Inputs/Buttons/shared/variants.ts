@@ -15,7 +15,7 @@ const disabled = {
   color: neutral[100],
 } as const;
 
-export const componentVariants = {
+export const buttonVariants = {
   primary: {
     background: `linear-gradient(to right, ${primary[300]}, ${primary[200]})`,
     border: `1px solid ${primary[200]}`,
@@ -199,5 +199,63 @@ export const componentVariants = {
       },
       '&:before': loading,
     },
+  },
+} as const;
+
+export const subtleVariants = {
+  primary: {
+    ...buttonVariants.primary,
+    background: 'white',
+    color: primary[200],
+    '&:hover': {
+      background: primary[100],
+      transition: 'background 0.3s ease-in-out',
+    },
+    '&:active': {
+      background: 'white',
+      border: `1px solid ${primary[200]}`,
+      color: primary[200],
+    },
+    '&:toggled': {
+      background: primary[300],
+      color: 'white',
+    },
+  },
+  secondary: {
+    ...buttonVariants.secondary,
+    background: 'white',
+    color: neutral[200],
+    border: `1px solid ${neutral[50]}`,
+  },
+  cancel: {
+    ...buttonVariants.cancel,
+    background: 'white',
+    color: error[200],
+  },
+  success: {
+    ...buttonVariants.success,
+    background: 'white',
+    color: success[200],
+  },
+  warning: {
+    ...buttonVariants.warning,
+    background: 'white',
+    color: warning[200],
+  },
+  text: {
+    ...buttonVariants.text,
+    background: 'transparent',
+    color: neutral[200],
+    border: 'none',
+    padding: '0',
+    height: 'auto',
+    minWidth: 'unset',
+  },
+  nav: {
+    ...buttonVariants.nav,
+    background: 'white',
+    paddingLeft: '0.8rem',
+    color: neutral[200],
+    border: 'none',
   },
 } as const;
