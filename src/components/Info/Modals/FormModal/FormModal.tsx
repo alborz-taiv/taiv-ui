@@ -7,7 +7,7 @@ import { modalVariants } from "../variants";
 import { Group } from "../../../Layout/Group/Group";
 import { Button } from "../../../Inputs/Buttons/Button/Button";
 
-interface FourmModalProps {
+export interface FormModalProps {
 	opened: boolean;
 	onClose: () => void;
 	icon?: React.ReactNode;
@@ -20,7 +20,7 @@ interface FourmModalProps {
 	confirmLabel?: string;
 }
 
-export const FourmModal = ({
+export const FormModal = ({
 	opened,
 	onClose,
 	icon,
@@ -31,7 +31,7 @@ export const FourmModal = ({
 	handleConfirm,
 	cancelLabel,
 	confirmLabel,
-}: FourmModalProps) => {
+}: FormModalProps) => {
 	const selectedVariant = modalVariants[modalVariant];
 	const iconContainer = {
 		width: "4.2rem",
