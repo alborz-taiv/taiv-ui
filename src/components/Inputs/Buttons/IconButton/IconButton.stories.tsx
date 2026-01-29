@@ -80,7 +80,7 @@ const meta: Meta<typeof IconButton> = {
         defaultValue: { summary: 'false' },
       }
     },
-    colorIcon: {
+    subtle: {
       control: { type: 'boolean' },
       description: 'Colors the icon instead of the background and reverses the color based on the variant',
       table: {
@@ -102,7 +102,7 @@ export const Default: Story = {
     disabled: false,
     loading: false,
     shadow: false,
-    colorIcon: false,
+    subtle: false,
     styles: {},
     onClick: () => {},
   },
@@ -121,15 +121,15 @@ export const NormalVariants: Story = {
   ),
 };
 
-export const ColoredIconVariants: Story = {
+export const SubtleVariants: Story = {
   render: () => (
     <Group gap="1.6rem">
-      <IconButton variant="primary" colorIcon><Icon12Hours /></IconButton>
-      <IconButton variant="secondary" colorIcon><Icon24Hours /></IconButton>
-      <IconButton variant="cancel" colorIcon><IconClock /></IconButton>
-      <IconButton variant="success" colorIcon><IconCheck /></IconButton>
-      <IconButton variant="warning" colorIcon><IconAlertCircle /></IconButton>
-      <IconButton variant="text" colorIcon><IconClock2 /></IconButton>
+      <IconButton variant="primary" subtle><Icon12Hours /></IconButton>
+      <IconButton variant="secondary" subtle><Icon24Hours /></IconButton>
+      <IconButton variant="cancel" subtle><IconClock /></IconButton>
+      <IconButton variant="success" subtle><IconCheck /></IconButton>
+      <IconButton variant="warning" subtle><IconAlertCircle /></IconButton>
+      <IconButton variant="text" subtle><IconClock2 /></IconButton>
     </Group>
   ),
 };
@@ -163,13 +163,13 @@ export const States: Story = {
   ),
 };
 
-export const ColorIconStates: Story = {
+export const SubtleStates: Story = {
   render: () => (
     <Group gap="1.6rem">
-      <IconButton colorIcon><IconArrowLeft /></IconButton>
-      <IconButton colorIcon disabled><IconCaretDown /></IconButton>
-      <IconButton colorIcon loading><IconLoader2 /></IconButton>
-      <IconButton colorIcon shadow><IconArrowLeft /></IconButton>
+      <IconButton subtle><IconArrowLeft /></IconButton>
+      <IconButton subtle disabled><IconCaretDown /></IconButton>
+      <IconButton subtle loading><IconLoader2 /></IconButton>
+      <IconButton subtle shadow><IconArrowLeft /></IconButton>
     </Group>
   ),
 };

@@ -11,13 +11,13 @@ export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | '
   variant?: keyof typeof buttonVariants | keyof typeof coloredIconButtonVariants;
   toggled?: boolean;
   shadow?: boolean;
-  colorIcon?: boolean;
+  subtle?: boolean;
   tooltip?: string;
   children?: ReactElement<{ size?: number }>;
 }
 
-export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, colorIcon = false, tooltip = '', styles, children, ...props }: IconButtonProps) => {
-  const selectedVariant = colorIcon && !props.loading ? coloredIconButtonVariants[variant] : buttonVariants[variant];
+export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, subtle = false, tooltip = '', styles, children, ...props }: IconButtonProps) => {
+  const selectedVariant = subtle && !props.loading ? coloredIconButtonVariants[variant] : buttonVariants[variant];
   const selectedSize = componentSizes[size];
 
   // Apply active styles for nav variant when isActive is true
@@ -34,7 +34,7 @@ export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled 
   const style = {
     root: {
       borderRadius: '8px',
-      border: colorIcon ? `1px solid ${neutral[50]}` : '1px solid white',
+      border: subtle ? `1px solid ${neutral[50]}` : '1px solid white',
       height: `${selectedSize.borderLength}rem`,
       padding: selectedSize.padding,
       width: `${selectedSize.borderLength}rem`,

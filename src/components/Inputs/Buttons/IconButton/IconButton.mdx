@@ -77,9 +77,9 @@ The IconButton component provides six semantic variants designed for different u
 
 ### 🎨 Colored Icon Variants
 
-Use the `colorIcon` prop to invert the color scheme - the icon takes on the variant color while the background remains white. This provides a lighter, less prominent appearance while maintaining the semantic meaning.
+Use the `subtle` prop to invert the color scheme - the icon takes on the variant color while the background remains white. This provides a lighter, less prominent appearance while maintaining the semantic meaning.
 
-<Story of={ButtonStories.ColoredIconVariants} />
+<Story of={ButtonStories.SubtleVariants} />
 
 <table>
   <thead>
@@ -210,11 +210,11 @@ The IconButton component supports different states to provide visual feedback an
 
 ## <br />
 
-### 🔄 Colored Icon States
+### 🔄 Subtle States
 
-The same states are available when using the `colorIcon` prop.
+The same states are available when using the `subtle` prop.
 
-<Story of={ButtonStories.ColorIconStates} />
+<Story of={ButtonStories.SubtleStates} />
 
 <table>
   <thead>
@@ -315,7 +315,7 @@ In the event that you need to custom style your IconButton, you can provide styl
 
 4. **Icon placement**: Use Icons as children.
 
-5. **Use colorIcon for subtlety**: When you need a less prominent button but still want to convey semantic meaning, use the `colorIcon` prop.
+5. **Use subtle for inverted colors**: When you need a less prominent button but still want to convey semantic meaning, use the `subtle` prop.
 
 6. **Add tooltips for clarity**: Icon-only buttons can be ambiguous - use the `tooltip` prop to provide context on hover.
 

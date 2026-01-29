@@ -214,7 +214,7 @@ export const coloredIconButtonVariants = {
     ...buttonVariants.secondary,
     background: 'white',
     color: neutral[200],
-    border: `1px solid ${neutral[200]}`,
+    border: `1px solid ${neutral[50]}`,
   },
   cancel: {
     ...buttonVariants.cancel,
