@@ -8,12 +8,12 @@ import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { componentSizes } from '../shared/sizes';
 
-type NumberInputProps = MantineNumberInputProps & {
+interface NumberInputProps extends MantineNumberInputProps {
   size?: keyof typeof componentSizes;
   width?: string | number;
   fullWidth?: boolean;
   styles?: Record<string, CSSObject>;
-};
+}
 
 const NumberInput = ({
   size = 'md',
