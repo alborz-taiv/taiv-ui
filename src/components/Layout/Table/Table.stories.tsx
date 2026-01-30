@@ -29,6 +29,10 @@ const meta: Meta<typeof Table> = {
       control: { type: 'object' },
       description: 'Placeholder to display when no data is available',
     },
+    shadow: {
+      control: { type: 'boolean' },
+      description: 'Adds shadow to the table',
+    },
   },
 };
 
@@ -407,5 +411,20 @@ export const TableWithoutPlaceholder: Story = {
         story: 'A table with no placeholder displayed when no data is available.',
       },
     },
+  },
+};
+
+export const TableWithShadow: Story = {
+  args: {
+    columnConfigs: [
+      { heading: 'Name', style: { width: '25%', paddingLeft: '20px', fontWeight: '600' } },
+      { heading: 'Email', style: { width: '30%', textAlign: 'left' } },
+      { heading: 'Role', style: { width: '20%', textAlign: 'center' } },
+      { heading: 'Status', style: { width: '15%', textAlign: 'center' } },
+      { heading: 'Last Login', style: { width: '10%', textAlign: 'right', paddingRight: '20px' } },
+    ],
+    data: userData,
+    ListItem: UserListItem as React.ComponentType<{ data: unknown }>,
+    shadow: true,
   },
 };
