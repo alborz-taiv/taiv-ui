@@ -1,6 +1,6 @@
 {
   "name": "@taiv/ui",
-  "version": "1.6.1",
+  "version": "1.9.1",
   "author": "Taiv",
   "description": "Taiv's web UI Toolkit built on Mantine v6",
   "main": "dist/index.js",
@@ -8,13 +8,16 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alborz-taiv/taiv-ui"
+  },
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch",
+    "dev": "npm link && tsc --watch",
     "clean": "rm -rf dist",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_8fb53e9533016b9"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

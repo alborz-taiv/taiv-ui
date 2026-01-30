@@ -1,16 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button } from './Button';
+import { IconButton } from './IconButton';
+import { Icon12Hours, Icon24Hours, Icon360View, IconAdjustments, IconAlertCircle, IconArrowLeft, IconArrowRight, IconArrowsMaximize, IconCaretDown, IconCheck, IconClock, IconClock2, IconHistory, IconLoader2 } from '@tabler/icons-react';
 import { Group } from '../../../Layout/Group/Group';
 
-const meta: Meta<typeof Button> = {
-  title: 'Components/Inputs/Buttons/Button',
-  component: Button,
+const meta: Meta<typeof IconButton> = {
+  title: 'Components/Inputs/Buttons/IconButton',
+  component: IconButton,
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          "[View Mantine Docs](https://v6.mantine.dev/core/button/)\n\nThe Button component is a customizable wrapper around Mantine's Button component that provides consistent styling and behavior across your application. It extends Mantine v6's ButtonProps while adding custom variants and sizing options.",
+          "[View Mantine Docs](https://v6.mantine.dev/core/button/)\n\nThe IconButton component is a customizable wrapper around Mantine's Button component that provides consistent styling and behavior across your application. It extends Mantine v6's ButtonProps while adding custom variants and sizing options.",
       },
     },
   },
@@ -18,7 +19,7 @@ const meta: Meta<typeof Button> = {
     size: {
       control: { type: 'select' },
       options: ['sm', 'md', 'lg'],
-      description: "Controls the button's height, padding, and font size",
+      description: "Controls the button's height and padding. These values are square sizes.",
       table: {
         type: { summary: "'sm' | 'md' | 'lg'" },
         defaultValue: { summary: "'md'" },
@@ -34,32 +35,11 @@ const meta: Meta<typeof Button> = {
       },
     },
     children: {
-      control: { type: 'text' },
-      description: 'Button label or content',
+      control: { type: 'object' },
+      description: 'Icon to be displayed in the button',
       table: {
         type: { summary: 'ReactNode' },
-      },
-    },
-    fullWidth: {
-      control: { type: 'boolean' },
-      description: 'Makes the button span the full width of its container. Useful for modals, forms, etc. with a proper Grid layout',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    leftIcon: {
-      control: { type: 'text' },
-      description: 'Adds icon before button label',
-      table: {
-        type: { summary: 'ReactNode' },
-      },
-    },
-    rightIcon: {
-      control: { type: 'text' },
-      description: 'Adds icon after button label',
-      table: {
-        type: { summary: 'ReactNode' },
+        defaultValue: { summary: '<IconHistory />' },
       },
     },
     styles: {
@@ -99,6 +79,14 @@ const meta: Meta<typeof Button> = {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       }
+    },
+    subtle: {
+      control: { type: 'boolean' },
+      description: 'Colors the icon instead of the background and reverses the color based on the variant',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      }
     }
   },
 };
@@ -108,15 +96,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'Button',
+    children: <IconHistory />,
     size: 'md',
     variant: 'primary',
     disabled: false,
     loading: false,
-    fullWidth: false,
     shadow: false,
-    leftIcon: undefined,
-    rightIcon: undefined,
+    subtle: false,
     styles: {},
     onClick: () => {},
   },
@@ -125,12 +111,33 @@ export const Default: Story = {
 export const Variants: Story = {
   render: () => (
     <Group gap="1.6rem">
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="cancel">Cancel</Button>
-      <Button variant="success">Success</Button>
-      <Button variant="warning">Warning</Button>
-      <Button variant="text">Text</Button>
+      <IconButton variant="primary"><Icon12Hours /></IconButton>
+      <IconButton variant="secondary"><Icon24Hours /></IconButton>
+      <IconButton variant="cancel"><IconClock /></IconButton>
+      <IconButton variant="success"><IconCheck /></IconButton>
+      <IconButton variant="warning"><IconAlertCircle /></IconButton>
+      <IconButton variant="text"><IconClock2 /></IconButton>
+    </Group>
+  ),
+};
+
+export const Subtle: Story = {
+  render: () => (
+    <Group gap="1.6rem">
+      <IconButton variant="primary" subtle><Icon12Hours /></IconButton>
+      <IconButton variant="secondary" subtle><Icon24Hours /></IconButton>
+      <IconButton variant="cancel" subtle><IconClock /></IconButton>
+      <IconButton variant="success" subtle><IconCheck /></IconButton>
+      <IconButton variant="warning" subtle><IconAlertCircle /></IconButton>
+      <IconButton variant="text" subtle><IconClock2 /></IconButton>
+    </Group>
+  ),
+};
+
+export const Tooltip: Story = {
+  render: () => (
+    <Group gap="1.6rem">
+      <IconButton tooltip="Tooltip"><Icon12Hours /></IconButton>
     </Group>
   ),
 };
@@ -138,9 +145,9 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: () => (
     <Group gap="1.6rem">
-      <Button size="sm">Small</Button>
-      <Button size="md">Medium</Button>
-      <Button size="lg">Large</Button>
+      <IconButton size="sm"><Icon360View /></IconButton>
+      <IconButton size="md"><IconAdjustments /></IconButton>
+      <IconButton size="lg"><IconArrowsMaximize /></IconButton>
     </Group>
   ),
 };
@@ -148,10 +155,21 @@ export const Sizes: Story = {
 export const States: Story = {
   render: () => (
     <Group gap="1.6rem">
-      <Button>Normal</Button>
-      <Button disabled>Disabled</Button>
-      <Button loading>Loading</Button>
-      <Button shadow>Shadow</Button>
+      <IconButton><IconArrowLeft /></IconButton>
+      <IconButton disabled><IconCaretDown /></IconButton>
+      <IconButton loading><IconLoader2 /></IconButton>
+      <IconButton shadow><IconArrowLeft /></IconButton>
+    </Group>
+  ),
+};
+
+export const SubtleStates: Story = {
+  render: () => (
+    <Group gap="1.6rem">
+      <IconButton subtle><IconArrowLeft /></IconButton>
+      <IconButton subtle disabled><IconCaretDown /></IconButton>
+      <IconButton subtle loading><IconLoader2 /></IconButton>
+      <IconButton subtle shadow><IconArrowLeft /></IconButton>
     </Group>
   ),
 };
@@ -159,7 +177,7 @@ export const States: Story = {
 export const CustomStyles: Story = {
   render: () => (
     <Group gap="1.6rem">
-      <Button
+      <IconButton
         styles={{
           root: {
             borderRadius: '20px',
@@ -170,9 +188,9 @@ export const CustomStyles: Story = {
           },
         }}
       >
-        Gradient Button
-      </Button>
-      <Button
+        <IconArrowLeft />
+      </IconButton>
+      <IconButton
         styles={{
           root: {
             borderRadius: '0px',
@@ -186,14 +204,14 @@ export const CustomStyles: Story = {
           },
         }}
       >
-        Custom Border
-      </Button>
+        <IconArrowRight />
+      </IconButton>
     </Group>
   ),
   parameters: {
     docs: {
       source: {
-        code: `<Button
+        code: `<IconButton
   styles={{
     root: {
       borderRadius: '20px',
@@ -204,10 +222,10 @@ export const CustomStyles: Story = {
     },
   }}
 >
-  Gradient Button
-</Button>
+  <IconArrowLeft />
+</IconButton>
 
-<Button
+<IconButton
   styles={{
     root: {
       borderRadius: '0px',
@@ -221,8 +239,8 @@ export const CustomStyles: Story = {
     },
   }}
 >
-  Custom Border
-</Button>`,
+  <IconArrowRight />
+</IconButton>`,
       },
     },
   },

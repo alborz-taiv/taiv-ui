@@ -22,6 +22,7 @@ export { InfoCard } from './Info/InfoCard/InfoCard';
 //Inputs
 export { AutoComplete } from './Inputs/TextInputs/AutoComplete/AutoComplete';
 export { Button } from './Inputs/Buttons/Button/Button';
+export { IconButton } from './Inputs/Buttons/IconButton/IconButton';
 export { UnstyledButton } from './Inputs/Buttons/UnstyledButton/UnstyledButton';
 export { Checkbox } from './Inputs/Controls/Checkbox/Checkbox';
 export { Radio } from './Inputs/Controls/Radio/Radio';
@@ -38,6 +39,7 @@ export { TextArea } from './Inputs/TextInputs/TextArea/TextArea';
 export { TextInput } from './Inputs/TextInputs/TextInput/TextInput';
 export { PasswordInput } from './Inputs/TextInputs/PasswordInput/PasswordInput';
 export { DatePicker } from './Inputs/Dates/DatePicker/DatePicker';
+export { NumberInput } from './Inputs/TextInputs/NumberInput/NumberInput';
 
 //Layout
 export { AutoGrid } from './Layout/AutoGrid/AutoGrid';
