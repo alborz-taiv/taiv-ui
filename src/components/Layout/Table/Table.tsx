@@ -12,9 +12,10 @@ interface TableProps<T> {
   data: T[];
   ListItem: React.ComponentType<{ data: T }>;
   placeholder?: React.ReactNode;
+  shadow?: boolean;
 }
 
-const Table = <T,>({ columnConfigs, data, ListItem, placeholder }: TableProps<T>) => {
+const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false }: TableProps<T>) => {
   const tableRef = useRef<HTMLTableElement>(null);
 
   /**
@@ -46,7 +47,7 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder }: TableProps<T>
       sx={{
         borderTopLeftRadius: '8px',
         borderTopRightRadius: '8px',
-        boxShadow: '0px 2px 6px -3px #AFAFAF',
+        boxShadow: shadow ? '0 8px 40px 0 rgba(112, 144, 176, 0.20)' : 'none',
         overflow: 'hidden',
       }}
     >
