@@ -46,9 +46,9 @@ const meta: Meta<typeof FormModal> = {
         type: { summary: "ReactNode" },
       },
     },
-    width: {
+    size: {
       control: { type: "text" },
-      description: "Modal width (CSS value or number in px).",
+      description: "Modal size (CSS value or number in px).",
       table: {
         type: { summary: "string | number" },
         defaultValue: { summary: "'40rem'" },
@@ -101,7 +101,7 @@ type Story = StoryObj<typeof FormModal>;
 export const Default: Story = {
   args: {
     modalVariant: "info",
-    width: "40rem",
+    size: "40rem",
     cancelLabel: "",
     confirmLabel: "",
   },
@@ -143,7 +143,7 @@ return (
       onCancel={() => setOpened(false)}
       onConfirm={() => setOpened(false)}
       modalVariant={'info'}
-      width={'40rem'}
+      size={'40rem'}
       children={
         <Title variant="cardSubheader" align="center">
           Example message.
@@ -249,11 +249,11 @@ export const Variants: Story = {
   },
 };
 
-export const Widths: Story = {
+export const Sizes: Story = {
   render: () => {
     const [opened, setOpened] = useState(false);
-    const [width, setWidth] = useState<string>("40rem");
-    const widths = [
+    const [size, setSize] = useState<string>("40rem");
+    const sizes = [
       { label: "30rem", value: "30rem" },
       { label: "40rem (Default)", value: "40rem" },
       { label: "60rem", value: "60rem" },
@@ -262,11 +262,11 @@ export const Widths: Story = {
       <>
         <Center>
           <Group gap="1rem">
-            {widths.map(({ label, value }) => (
+            {sizes.map(({ label, value }) => (
               <Button
                 key={value}
                 onClick={() => {
-                  setWidth(value);
+                  setSize(value);
                   setOpened(true);
                 }}
               >
@@ -280,10 +280,10 @@ export const Widths: Story = {
           onClose={() => setOpened(false)}
           onCancel={() => setOpened(false)}
           onConfirm={() => setOpened(false)}
-          width={width}
+          size={size}
           children={
             <Title variant="cardSubheader" align="center">
-              Modal width: {width}
+              Modal size: {size}
             </Title>
           }
         />

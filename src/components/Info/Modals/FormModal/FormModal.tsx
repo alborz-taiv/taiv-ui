@@ -12,7 +12,7 @@ export interface FormModalProps {
   onClose: () => void;
   icon?: React.ReactNode;
   children?: React.ReactNode;
-  width?: string | number;
+  size?: string | number;
   modalVariant?: keyof typeof modalVariants;
   onCancel?: () => void;
   onConfirm?: () => void;
@@ -25,7 +25,7 @@ export const FormModal = ({
   onClose,
   icon,
   children,
-  width = "40rem",
+  size = "40rem",
   modalVariant = "info",
   onCancel,
   onConfirm,
@@ -58,7 +58,7 @@ export const FormModal = ({
         opacity: 0,
         blur: 4,
       }}
-      size={width}
+      size={size}
       transitionProps={{
         transition: "pop",
         duration: 200,
