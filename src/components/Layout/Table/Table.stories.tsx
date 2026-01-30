@@ -2,10 +2,15 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Table } from './Table';
 import { Badge } from '../../Info/Badge/Badge';
 import { Button } from '../../Inputs/Buttons/Button/Button';
+import { Text } from '../../Typography/Text/Text';
 import React from 'react';
+import { Center } from '../Center/Center';
+import { IconInfoCircle } from '@tabler/icons-react';
+import { neutral } from '../../../constants/colors';
+import { Group } from '../Group/Group';
 
 const meta: Meta<typeof Table> = {
-  title: 'Layouts/Table',
+  title: 'Components/Layout/Table',
   component: Table,
   argTypes: {
     columnConfigs: {
@@ -19,6 +24,10 @@ const meta: Meta<typeof Table> = {
     ListItem: {
       control: false,
       description: 'Component that renders each table row',
+    },
+    placeholder: {
+      control: { type: 'object' },
+      description: 'Placeholder to display when no data is available',
     },
   },
 };
@@ -355,6 +364,47 @@ export const StyledColumns: Story = {
     docs: {
       description: {
         story: 'A table with custom column styling including padding, text alignment, and font weights.',
+      },
+    },
+  },
+};
+
+export const TableWithPlaceholder: Story = {
+  args: {
+    columnConfigs: [
+      { heading: 'Name', style: { width: '50%' } },
+      { heading: 'Email', style: { width: '50%' } },
+    ],
+    placeholder: (
+      <Center py='5rem'>
+        <Group gap='0.5rem' align='center'>
+          <IconInfoCircle color={neutral[200]} size='2rem' />
+          <Text>No data available at this time</Text>
+        </Group>
+      </Center>
+    ),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A table with a placeholder displayed when no data is available.',
+      },
+    },
+  },
+};
+
+export const TableWithoutPlaceholder: Story = {
+  args: {
+    columnConfigs: [
+      { heading: 'Name', style: { width: '50%' } },
+      { heading: 'Email', style: { width: '50%' } },
+    ],
+    data: [],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A table with no placeholder displayed when no data is available.',
       },
     },
   },

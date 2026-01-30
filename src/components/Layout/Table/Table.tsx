@@ -11,9 +11,10 @@ interface TableProps<T> {
   columnConfigs: ColumnConfig[];
   data: T[];
   ListItem: React.ComponentType<{ data: T }>;
+  placeholder?: React.ReactNode;
 }
 
-const Table = <T,>({ columnConfigs, data, ListItem }: TableProps<T>) => {
+const Table = <T,>({ columnConfigs, data, ListItem, placeholder }: TableProps<T>) => {
   const tableRef = useRef<HTMLTableElement>(null);
 
   /**
@@ -76,7 +77,7 @@ const Table = <T,>({ columnConfigs, data, ListItem }: TableProps<T>) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
+          {(!data || data.length === 0) && placeholder ? <tr><td colSpan={columnConfigs.length}>{placeholder}</td></tr> : data.map((item) => (
             <ListItem data={item} key={String(item).slice(0, 10)} />
           ))}
         </tbody>
