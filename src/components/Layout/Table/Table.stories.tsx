@@ -372,11 +372,8 @@ export const StyledColumns: Story = {
 export const TableWithPlaceholder: Story = {
   args: {
     columnConfigs: [
-      { heading: 'Name', style: { width: '25%' } },
-      { heading: 'Email', style: { width: '30%' } },
-      { heading: 'Role', style: { width: '20%' } },
-      { heading: 'Status', style: { width: '15%' } },
-      { heading: 'Last Login', style: { width: '10%' } },
+      { heading: 'Name', style: { width: '50%' } },
+      { heading: 'Email', style: { width: '50%' } },
     ],
     placeholder: (
       <Center py='5rem'>
@@ -399,11 +396,8 @@ export const TableWithPlaceholder: Story = {
 export const TableWithoutPlaceholder: Story = {
   args: {
     columnConfigs: [
-      { heading: 'Name', style: { width: '25%' } },
-      { heading: 'Email', style: { width: '30%' } },
-      { heading: 'Role', style: { width: '20%' } },
-      { heading: 'Status', style: { width: '15%' } },
-      { heading: 'Last Login', style: { width: '10%' } },
+      { heading: 'Name', style: { width: '50%' } },
+      { heading: 'Email', style: { width: '50%' } },
     ],
     data: [],
   },
