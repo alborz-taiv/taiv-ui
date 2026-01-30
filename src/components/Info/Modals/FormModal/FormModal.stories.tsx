@@ -11,8 +11,11 @@ import {
 	IconTrash,
 	IconInfoCircle,
 	IconQuestionMark,
+	IconShoppingCart,
 } from "@tabler/icons-react";
 import { TextInput } from "../../../Inputs/TextInputs/TextInput/TextInput";
+import { NumberInput } from "../../../Inputs/TextInputs/NumberInput/NumberInput";
+import { Stack } from "../../../Layout/Stack/Stack";
 import { Title } from "../../../Typography/Title/Title";
 import { Group } from "../../../Layout/Group/Group";
 import { Center } from "../../../Layout/Center/Center";
@@ -327,6 +330,48 @@ export const CustomLabels: Story = {
 						<Title variant="cardSubheader" align="center">
 							Custom cancel and confirm button labels.
 						</Title>
+					}
+				/>
+			</>
+		);
+	},
+};
+
+export const CompleteExample: Story = {
+	render: () => {
+		const [opened, setOpened] = useState(false);
+		const [quantity, setQuantity] = useState<number | "">(1);
+		return (
+			<>
+				<Center>
+					<Button onClick={() => setOpened(true)}>Add to Cart</Button>
+				</Center>
+				<FormModal
+					opened={opened}
+					onClose={() => setOpened(false)}
+					handleCancel={() => setOpened(false)}
+					handleConfirm={() => setOpened(false)}
+					modalVariant="confirm"
+					icon={<IconShoppingCart color={primary[200]} />}
+					cancelLabel="Cancel"
+					confirmLabel="Add to Cart"
+					children={
+						<Stack gap="1rem" align="center">
+							<Title variant="cardHeader" align="center">
+								Add Item to Cart
+							</Title>
+							<Title variant="cardSubheader" align="center">
+								Select the quantity you would like to add.
+							</Title>
+							<NumberInput
+								label="Quantity"
+								value={quantity}
+								onChange={(val) => setQuantity(val ?? 1)}
+								min={1}
+								max={99}
+								step={1}
+							/>
+						</Stack>
 					}
 				/>
 			</>
