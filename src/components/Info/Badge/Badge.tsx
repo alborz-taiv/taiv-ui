@@ -14,7 +14,7 @@ interface BadgeProps extends Omit<MantineBadgeProps, 'color' | 'leftSection'> {
   leftIcon?: React.ReactElement;
 }
 
-const Badge = ({ styles, color = 'primary', variant = 'outline', size = 'md', leftIcon, ...rest }: BadgeProps) => {
+const Badge = ({ styles, color = 'primary', variant = 'outline', size = 'md', leftIcon, ...props }: BadgeProps) => {
   const selectedSize = badgeSizes[size];
   const variantStyles = getVariantStyles(color);
   const selectedVariant = variantStyles[variant];
@@ -49,7 +49,7 @@ const Badge = ({ styles, color = 'primary', variant = 'outline', size = 'md', le
   };
   const badgeIcon = leftIcon ? React.cloneElement(leftIcon, { size: selectedSize.iconSize, color: selectedVariant.color }) : leftIcon;
 
-  return <MantineBadge size={selectedSize.mantineSize} styles={style} leftSection={badgeIcon} {...rest} />;
+  return <MantineBadge size={selectedSize.mantineSize} styles={style} leftSection={badgeIcon} {...props} />;
 };
 
 export { Badge, type BadgeProps };

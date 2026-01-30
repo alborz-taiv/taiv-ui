@@ -1,10 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { IconCheck, IconCircleFilled } from '@tabler/icons-react';
 import { Badge } from './Badge';
+import type { BadgeProps } from './Badge';
 import { Group } from '../../Layout/Group/Group';
 import { Stack } from '../../Layout/Stack/Stack';
 
-const meta: Meta<typeof Badge> = {
+type LeftIconChoice = 'none' | 'IconCheck' | 'IconCircleFilled';
+
+type BadgeStoryArgs = BadgeProps & {
+  leftIconChoice?: LeftIconChoice;
+};
+
+const meta: Meta<BadgeStoryArgs> = {
   title: 'Components/Info/Badge',
   component: Badge,
   parameters: {
@@ -51,17 +58,26 @@ const meta: Meta<typeof Badge> = {
         type: { summary: 'ReactNode' },
       },
     },
-    leftIcon: {
+    leftIconChoice: {
+      control: { type: 'select' },
+      options: ['none', 'IconCheck', 'IconCircleFilled'],
       description: 'Icon shown to the left of the label',
       table: {
-        type: { summary: 'ReactElement' },
+        type: { summary: "'none' | 'IconCheck' | 'IconCircleFilled'" },
+        defaultValue: { summary: "'IconCircleFilled'" },
       },
     },
   },
 };
 
+const leftIconMap: Record<LeftIconChoice, React.ReactElement | undefined> = {
+  none: undefined,
+  IconCheck: <IconCheck />,
+  IconCircleFilled: <IconCircleFilled />,
+};
+
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<BadgeStoryArgs>;
 
 export const Default: Story = {
   args: {
@@ -69,6 +85,11 @@ export const Default: Story = {
     variant: 'outline',
     size: 'md',
     color: 'primary',
+    leftIconChoice: 'IconCircleFilled',
+  },
+  render: (args) => {
+    const { leftIconChoice = 'IconCircleFilled', ...badgeProps } = args;
+    return <Badge {...badgeProps} leftIcon={leftIconMap[leftIconChoice]} />;
   },
 };
 
@@ -104,7 +125,7 @@ export const Sizes: Story = {
   ),
 };
 
-export const WithIcon: Story = {
+export const WithLeftIcon: Story = {
   render: () => (
     <Stack gap="1.6rem">
       <Group gap="1.6rem">
