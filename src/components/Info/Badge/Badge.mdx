@@ -1,9 +1,219 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Badge } from './Badge';
+import * as BadgeStories from './Badge.stories';
 
-<Meta title="Components/Info/Badge" />
+<Meta of={BadgeStories} />
 
 # Badge
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/core/badge/)
 
-In the meantime, you can potentially reference the [Mantine v6 Badge documentation](https://v6.mantine.dev/core/badge/).
+The Badge component is a customizable wrapper around Mantine's Badge component that provides consistent styling and behavior across your application. It extends Mantine v6's BadgeProps while adding custom variants, sizing options, and design system colors.
+
+Use Badge for labels, tags, and status indicators. See variants and colors below for different use cases.
+
+### 📦 Import
+
+```tsx
+import { Badge } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={BadgeStories.Default} />
+<Controls of={BadgeStories.Default} />
+
+---
+
+### 🎨 Variants
+
+The Badge component provides three variants: outline (default), filled, and gradient.
+
+<Story of={BadgeStories.Variants} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>Description</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>outline</td>
+      <td>Border and text in the chosen color, transparent background</td>
+      <td>Default; subtle labels, tags</td>
+    </tr>
+    <tr>
+      <td>filled</td>
+      <td>Background and text in the chosen color</td>
+      <td>Emphasis, status indicators</td>
+    </tr>
+    <tr>
+      <td>gradient</td>
+      <td>Gradient from light to main color, white text</td>
+      <td>Highlight, promotional</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🎨 Colors
+
+Use the `color` prop with design system colors. Available: **primary**, **success**, **warning**, **error**, **neutral**, **white**.
+
+<Story of={BadgeStories.Colors} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>primary</td>
+      <td>Primary actions, links</td>
+    </tr>
+    <tr>
+      <td>success</td>
+      <td>Success states, completed, online</td>
+    </tr>
+    <tr>
+      <td>warning</td>
+      <td>Warnings, pending</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>Errors, destructive, offline</td>
+    </tr>
+    <tr>
+      <td>neutral</td>
+      <td>Neutral labels, secondary info</td>
+    </tr>
+    <tr>
+      <td>white</td>
+      <td>On dark backgrounds</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 📐 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={BadgeStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Height</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>1.5rem</td>
+      <td>Compact spaces, inline labels</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>2.5rem</td>
+      <td>Default size for most badges</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>3rem</td>
+      <td>Prominent labels</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔖 Left icon
+
+Use the `leftIcon` prop to show an icon to the left of the label. Icon container size follows the badge size (sm: 10px, md: 14px, lg: 16px).
+
+<Story of={BadgeStories.WithLeftIcon} />
+
+```tsx
+import { IconCircleFilled } from '@tabler/icons-react';
+
+<Badge leftIcon={<IconCircleFilled />} color="success">
+  Online
+</Badge>
+```
+
+<table>
+  <thead>
+    <tr>
+      <th>Badge size</th>
+      <th>Icon container</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>10px</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>14px</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>16px</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🛠️ Custom Styles
+
+You can provide custom styles via the `styles` prop. Use the following keys:
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>Root badge element</td>
+    </tr>
+    <tr>
+      <td>inner</td>
+      <td>Label text</td>
+    </tr>
+    <tr>
+      <td>leftSection</td>
+      <td>Left icon container</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Use semantic colors**: Choose colors that match the meaning (e.g. success for completed, error for failed).
+
+2. **Don't type out defaults**: The default variant is outline, default size is md, and default color is primary. Omit these props when they're sufficient.
+
+3. **Use leftIcon for status**: For status indicators (e.g. online/offline), use the `leftIcon` prop with a filled circle or similar icon.
+
+4. **Keep labels short**: Badges work best with one or two words.
+
+5. **Match size to context**: Use sm in tables or dense UIs, md for most cases, lg when the badge needs to stand out.
