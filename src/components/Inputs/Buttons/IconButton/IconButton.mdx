@@ -1,21 +1,21 @@
 import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
-import { Button } from './Button';
-import * as ButtonStories from './Button.stories';
+import { IconButton } from './IconButton';
+import * as ButtonStories from './IconButton.stories';
 
 <Meta of={ButtonStories} />
 
-# Button
+# IconButton
 
 [View Mantine Docs](https://v6.mantine.dev/core/button/)
 
-The Button component is a customizable wrapper around Mantine's Button component that provides consistent styling and behavior across your application. It extends Mantine v6's ButtonProps while adding custom variants and sizing options.
+The IconButton component is a customizable wrapper around Mantine's Button component that provides consistent styling and behavior across your application. It extends Mantine v6's ButtonProps while adding custom variants and sizing options.
 
-Use Buttons when you need to trigger some sort of logical action via a click. See variants below for different use cases.
+Use IconButton when you need to trigger some sort of logical action via a click through an Icon. See variants below for different use cases.
 
 ### 📦 Import
 
 ```tsx
-import { Button } from '@taiv/ui';
+import { IconButton } from '@taiv/ui';
 ```
 
 ### ✍️ Basic Usage
@@ -27,7 +27,7 @@ import { Button } from '@taiv/ui';
 
 ### 🎨 Variants
 
-The Button component provides six semantic variants designed for different use cases.
+The IconButton component provides six semantic variants designed for different use cases.
 
 <Story of={ButtonStories.Variants} />
 
@@ -75,6 +75,28 @@ The Button component provides six semantic variants designed for different use c
 
 ## <br />
 
+### 🎨 Subtle
+
+Use the `subtle` prop on top of your selected variant to invert the color scheme - the icon takes on the variant color while the background remains white. This provides a lighter, less prominent appearance while maintaining the semantic meaning.
+
+<Story of={ButtonStories.Subtle} />
+
+## <br />
+
+### 💬 Tooltip
+
+Add a tooltip to provide additional context on hover using the `tooltip` prop.
+
+<Story of={ButtonStories.Tooltip} />
+
+```tsx
+<IconButton tooltip="Click to save">
+  <IconDeviceFloppy />
+</IconButton>
+```
+
+## <br />
+
 ### 📐 Sizes
 
 Three preset sizes are available to match different UI contexts and design requirements.
@@ -108,7 +130,7 @@ Three preset sizes are available to match different UI contexts and design requi
 
 ### 🔄 States
 
-The Button component supports different states to provide visual feedback and control user interaction.
+The IconButton component supports different states to provide visual feedback and control user interaction.
 
 <Story of={ButtonStories.States} />
 
@@ -146,9 +168,17 @@ The Button component supports different states to provide visual feedback and co
 
 ## <br />
 
+### 🔄 Subtle States
+
+The same states are available when using the `subtle` prop.
+
+<Story of={ButtonStories.SubtleStates} />
+
+## <br />
+
 ### 🛠️ Custom Styles
 
-In the event that you need to custom style your Button, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+In the event that you need to custom style your IconButton, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
 
 <Story of={ButtonStories.CustomStyles} />
 
@@ -209,6 +239,9 @@ In the event that you need to custom style your Button, you can provide styles v
 
 3. **Don't type out defaults**: The default style is primary, and default size is medium. For most buttons, you can ignore these props to simplify code.
 
-4. **Icon placement**: Use leftIcon for actions, rightIcon for navigation.
+4. **Icon placement**: Use Icons as children.
 
-5. **Full width**: You can use fullWidth typically when you have a form/modal that uses a consistent grid layout.
+5. **Use subtle for inverted colors**: When you need a less prominent button but still want to convey semantic meaning, use the `subtle` prop.
+
+6. **Add tooltips for clarity**: Icon-only buttons can be ambiguous - use the `tooltip` prop to provide context on hover.
+
