@@ -7,13 +7,13 @@ import { Stack } from '../../Layout/Stack/Stack';
 
 type LeftIconChoice = 'none' | 'IconCheck' | 'IconCircleFilled';
 
-type BadgeStoryArgs = BadgeProps & {
-  leftIconChoice?: LeftIconChoice;
+type BadgeStoryArgs = Omit<BadgeProps, 'leftIcon'> & {
+  leftIcon?: LeftIconChoice;
 };
 
 const meta: Meta<BadgeStoryArgs> = {
   title: 'Components/Info/Badge',
-  component: Badge,
+  component: Badge as React.ComponentType<BadgeStoryArgs>,
   parameters: {
     layout: 'centered',
     docs: {
@@ -58,13 +58,12 @@ const meta: Meta<BadgeStoryArgs> = {
         type: { summary: 'ReactNode' },
       },
     },
-    leftIconChoice: {
+    leftIcon: {
       control: { type: 'select' },
       options: ['none', 'IconCheck', 'IconCircleFilled'],
       description: 'Icon shown to the left of the label',
       table: {
-        type: { summary: "'none' | 'IconCheck' | 'IconCircleFilled'" },
-        defaultValue: { summary: "'IconCircleFilled'" },
+        type: { summary: "'IconCheck' | 'IconCircleFilled' | 'etc'" },
       },
     },
   },
@@ -85,11 +84,11 @@ export const Default: Story = {
     variant: 'outline',
     size: 'md',
     color: 'primary',
-    leftIconChoice: 'IconCircleFilled',
+    leftIcon: 'IconCircleFilled',
   },
   render: (args) => {
-    const { leftIconChoice = 'IconCircleFilled', ...badgeProps } = args;
-    return <Badge {...badgeProps} leftIcon={leftIconMap[leftIconChoice]} />;
+    const { leftIcon = 'none', ...badgeProps } = args;
+    return <Badge {...badgeProps} leftIcon={leftIconMap[leftIcon]} />;
   },
 };
 
