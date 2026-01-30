@@ -1,64 +1,32 @@
+import React from 'react';
 import { Badge as MantineBadge, BadgeProps as MantineBadgeProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { fontBase, inputFontSize } from '../../../constants/font';
-import { colors } from '../../../constants/colors';
+import { fontBase } from '../../../constants/font';
+import { badgeSizes } from './sizes';
+import { getVariantStyles } from './variants';
+import type { BadgeSize } from './sizes';
+import type { BadgeColor, BadgeVariant } from './variants';
 
-interface BadgeProps extends Omit<MantineBadgeProps, 'color'> {
-  size?: 'sm' | 'md' | 'lg';
-  color?: keyof typeof colors;
-  variant?: 'outline' | 'filled' | 'gradient';
+interface BadgeProps extends Omit<MantineBadgeProps, 'color' | 'leftSection'> {
+  size?: BadgeSize;
+  color?: BadgeColor;
+  variant?: BadgeVariant;
+  leftIcon?: React.ReactElement;
 }
 
-const Badge = ({ styles, color = 'primary', variant = 'outline', size = 'md', ...props }: BadgeProps) => {
-  const sizes = {
-    sm: {
-      mantineSize: 'md',
-      padding: '0.4rem 0.8rem',
-      height: '1.5rem',
-      fontSize: inputFontSize['sm'],
-    },
-    md: {
-      mantineSize: 'lg',
-      padding: '0.4rem 0.8rem',
-      height: '2.5rem',
-      fontSize: inputFontSize['md'],
-    },
-    lg: {
-      mantineSize: 'xl',
-      padding: '0.4rem 0.8rem',
-      height: '3rem',
-      fontSize: inputFontSize['lg'],
-    },
-  };
-
-  const variants = {
-    outline: {
-      border: `1.5px solid ${colors[color][200]}`,
-      color: colors[color][200],
-      backgroundColor: 'transparent',
-      borderRadius: '8px',
-      padding: '0.4rem 0.8rem',
-    },
-    filled: {
-      backgroundColor: colors[color][50],
-      color: colors[color][200],
-    },
-    gradient: {
-      background: `linear-gradient(to right, ${colors[color][50]}, ${colors[color][200]})`,
-      color: 'white',
-      borderRadius: '16px',
-      padding: '0.4rem 0.8rem',
-    },
-  };
-
-  const selectedSize = sizes[size];
-  const selectedVariant = variants[variant];
+const Badge = ({ styles, color = 'primary', variant = 'outline', size = 'md', leftIcon, ...rest }: BadgeProps) => {
+  const selectedSize = badgeSizes[size];
+  const variantStyles = getVariantStyles(color);
+  const selectedVariant = variantStyles[variant];
 
   const style: Partial<Record<'leftSection' | 'rightSection' | 'inner' | 'root', CSSObject>> = {
     root: {
       padding: selectedSize.padding,
       height: selectedSize.height,
       cursor: 'default',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       ...selectedVariant,
     },
     inner: {
@@ -67,11 +35,21 @@ const Badge = ({ styles, color = 'primary', variant = 'outline', size = 'md', ..
       textTransform: 'none',
       cursor: 'default',
     },
+    leftSection: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    rightSection: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
     ...styles,
   };
+  const badgeIcon = leftIcon ? React.cloneElement(leftIcon, { size: selectedSize.iconSize, color: selectedVariant.color }) : leftIcon;
 
-  return <MantineBadge size={selectedSize.mantineSize} styles={style} {...props} />;
+  return <MantineBadge size={selectedSize.mantineSize} styles={style} leftSection={badgeIcon} {...rest} />;
 };
 
-export { Badge };
-export type { BadgeProps };
+export { Badge, type BadgeProps };

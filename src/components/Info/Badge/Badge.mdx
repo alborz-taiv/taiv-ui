@@ -1,9 +1,129 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { IconCircleFilled } from '@tabler/icons-react';
+import { Badge } from './Badge';
+import { Group } from '../../Layout/Group/Group';
+import * as BadgeStories from './Badge.stories';
 
-<Meta title="Components/Info/Badge" />
+<Meta of={BadgeStories} />
 
 # Badge
 
-This component exists - but docs are still under construction 🚧
+A customizable badge built on [Mantine Badge](https://v6.mantine.dev/core/badge/). Use it for labels, tags, and status indicators. Supports preset sizes, colors from the design system, outline/filled/gradient variants, and an optional **left icon**.
 
-In the meantime, you can potentially reference the [Mantine v6 Badge documentation](https://v6.mantine.dev/core/badge/).
+## Usage
+
+```tsx
+import { Badge } from '@taiv/ui';
+
+// Variants: outline (default), filled, gradient
+<Badge variant="outline" color="primary">Label</Badge>
+<Badge variant="filled" color="success">Success</Badge>
+<Badge variant="gradient" color="primary">Gradient</Badge>
+
+// Sizes: sm, md (default), lg
+<Badge size="sm">Small</Badge>
+<Badge size="md">Medium</Badge>
+<Badge size="lg">Large</Badge>
+
+// Colors: primary, success, warning, error, neutral, white
+<Badge color="primary">Primary</Badge>
+<Badge color="error">Error</Badge>
+
+// Optional left icon (e.g. filled circle)
+<Badge leftIcon={<IconCircleFilled size={14} />} color="success">Online</Badge>
+```
+
+## Variants
+
+- **Outline** — Border and text in the chosen color, transparent background (default)
+- **Filled** — Background and text in the chosen color
+- **Gradient** — Gradient from light to main color, white text
+
+<Group gap="1.6rem" style={{ marginTop: '1rem' }}>
+  <Badge variant="outline" color="primary">Outline</Badge>
+  <Badge variant="filled" color="primary">Filled</Badge>
+  <Badge variant="gradient" color="primary">Gradient</Badge>
+</Group>
+
+## Colors
+
+Use the `color` prop with design system colors: **primary**, **success**, **warning**, **error**, **neutral**, **white**.
+
+<Group gap="1.6rem" style={{ marginTop: '1rem', flexWrap: 'wrap' }}>
+  <Badge variant="outline" color="primary">Primary</Badge>
+  <Badge variant="outline" color="success">Success</Badge>
+  <Badge variant="outline" color="warning">Warning</Badge>
+  <Badge variant="outline" color="error">Error</Badge>
+  <Badge variant="outline" color="neutral">Neutral</Badge>
+</Group>
+
+## Sizes
+
+Preset sizes control height and font size. Default is **md**.
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>1.5rem</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>2.5rem</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>3rem</td>
+    </tr>
+  </tbody>
+</table>
+
+<Group gap="1.6rem" align="flex-end" style={{ marginTop: '1rem' }}>
+  <Badge size="sm" color="primary">Small</Badge>
+  <Badge size="md" color="primary">Medium</Badge>
+  <Badge size="lg" color="primary">Large</Badge>
+</Group>
+
+## Left icon
+
+Use the `leftIcon` prop to show an icon to the left of the label. The icon container is sized per badge size:
+
+<table>
+  <thead>
+    <tr>
+      <th>Badge size</th>
+      <th>Icon container</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>14px</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>16px</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>18px</td>
+    </tr>
+  </tbody>
+</table>
+
+
+```tsx
+import { IconCircleFilled } from '@tabler/icons-react';
+
+<Badge variant="filled" leftIcon={<IconCircleFilled size={14} />} color="success">
+  Online
+</Badge>
+```
+
+<Story of={BadgeStories.WithIcon} />
