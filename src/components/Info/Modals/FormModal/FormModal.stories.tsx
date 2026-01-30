@@ -3,16 +3,7 @@ import { useState } from "react";
 import { FormModal } from "./FormModal";
 import { Button } from "../../../Inputs/Buttons/Button/Button";
 import { primary } from "../../../../constants/colors";
-import {
-  IconFlask,
-  IconCircleCheck,
-  IconCircleX,
-  IconAlertTriangle,
-  IconTrash,
-  IconInfoCircle,
-  IconQuestionMark,
-  IconShoppingCart,
-} from "@tabler/icons-react";
+import { IconFlask, IconShoppingCart } from "@tabler/icons-react";
 import { TextInput } from "../../../Inputs/TextInputs/TextInput/TextInput";
 import { NumberInput } from "../../../Inputs/TextInputs/NumberInput/NumberInput";
 import { Stack } from "../../../Layout/Stack/Stack";
@@ -43,7 +34,7 @@ const meta: Meta<typeof FormModal> = {
     icon: {
       control: false,
       description:
-        "Optional custom icon shown above the content. When provided, the icon block is displayed.",
+        "Custom icon to display above the content. If not provided, the default variant icon is used.",
       table: {
         type: { summary: "ReactNode" },
       },
@@ -67,7 +58,7 @@ const meta: Meta<typeof FormModal> = {
       control: { type: "select" },
       options: Object.keys(modalVariants) as (keyof typeof modalVariants)[],
       description:
-        "Visual variant (icon background colors, button style, default labels).",
+        "Visual variant (provides default icon, button style, and labels).",
       table: {
         type: {
           summary:
@@ -76,14 +67,14 @@ const meta: Meta<typeof FormModal> = {
         defaultValue: { summary: "'info'" },
       },
     },
-    handleCancel: {
+    onCancel: {
       control: false,
       description: "Handler for the cancel button click.",
       table: {
         type: { summary: "() => void" },
       },
     },
-    handleConfirm: {
+    onConfirm: {
       control: false,
       description: "Handler for the confirm button click.",
       table: {
@@ -125,8 +116,8 @@ export const Default: Story = {
           {...args}
           opened={opened}
           onClose={() => setOpened(false)}
-          handleCancel={() => setOpened(false)}
-          handleConfirm={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={() => setOpened(false)}
           children={
             <Title variant="cardSubheader" align="center">
               Example message.
@@ -149,10 +140,10 @@ return (
     <FormModal
       opened={opened}
       onClose={() => setOpened(false)}
-      handleCancel={() => setOpened(false)}
-      handleConfirm={() => setOpened(false)}
-    modalVariant={'info'}
-    width={'40rem'}
+      onCancel={() => setOpened(false)}
+      onConfirm={() => setOpened(false)}
+      modalVariant={'info'}
+      width={'40rem'}
       children={
         <Title variant="cardSubheader" align="center">
           Example message.
@@ -166,7 +157,7 @@ return (
   },
 };
 
-export const WithIcon: Story = {
+export const WithCustomIcon: Story = {
   render: () => {
     const [opened, setOpened] = useState(false);
     return (
@@ -177,8 +168,8 @@ export const WithIcon: Story = {
         <FormModal
           opened={opened}
           onClose={() => setOpened(false)}
-          handleCancel={() => setOpened(false)}
-          handleConfirm={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={() => setOpened(false)}
           icon={<IconFlask color={primary[200]} />}
           children={
             <Title variant="cardSubheader" align="center">
@@ -209,8 +200,8 @@ export const WithTextInput: Story = {
           }
           opened={opened}
           onClose={() => setOpened(false)}
-          handleCancel={() => setOpened(false)}
-          handleConfirm={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={() => setOpened(false)}
         />
       </>
     );
@@ -221,15 +212,6 @@ export const Variants: Story = {
   render: () => {
     const [opened, setOpened] = useState(false);
     const [variant, setVariant] = useState<keyof typeof modalVariants>("info");
-
-    const variantIcons: Record<keyof typeof modalVariants, React.ReactNode> = {
-      confirm: <IconQuestionMark color={modalVariants.confirm.iconColor} />,
-      info: <IconInfoCircle color={modalVariants.info.iconColor} />,
-      success: <IconCircleCheck color={modalVariants.success.iconColor} />,
-      error: <IconCircleX color={modalVariants.error.iconColor} />,
-      warning: <IconAlertTriangle color={modalVariants.warning.iconColor} />,
-      cancel: <IconTrash color={modalVariants.cancel.iconColor} />,
-    };
 
     return (
       <>
@@ -253,10 +235,9 @@ export const Variants: Story = {
         <FormModal
           opened={opened}
           onClose={() => setOpened(false)}
-          handleCancel={() => setOpened(false)}
-          handleConfirm={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={() => setOpened(false)}
           modalVariant={variant}
-          icon={variantIcons[variant]}
           children={
             <Title variant="cardSubheader" align="center">
               {modalVariants[variant].message}
@@ -273,9 +254,9 @@ export const Widths: Story = {
     const [opened, setOpened] = useState(false);
     const [width, setWidth] = useState<string>("40rem");
     const widths = [
-      { label: "Narrow (30rem)", value: "30rem" },
-      { label: "Default (40rem)", value: "40rem" },
-      { label: "Wide (60rem)", value: "60rem" },
+      { label: "30rem", value: "30rem" },
+      { label: "40rem (Default)", value: "40rem" },
+      { label: "60rem", value: "60rem" },
     ];
     return (
       <>
@@ -297,8 +278,8 @@ export const Widths: Story = {
         <FormModal
           opened={opened}
           onClose={() => setOpened(false)}
-          handleCancel={() => setOpened(false)}
-          handleConfirm={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={() => setOpened(false)}
           width={width}
           children={
             <Title variant="cardSubheader" align="center">
@@ -322,8 +303,8 @@ export const CustomLabels: Story = {
         <FormModal
           opened={opened}
           onClose={() => setOpened(false)}
-          handleCancel={() => setOpened(false)}
-          handleConfirm={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={() => setOpened(false)}
           cancelLabel="No, go back"
           confirmLabel="Yes, continue"
           children={
@@ -349,8 +330,8 @@ export const CompleteExample: Story = {
         <FormModal
           opened={opened}
           onClose={() => setOpened(false)}
-          handleCancel={() => setOpened(false)}
-          handleConfirm={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={() => setOpened(false)}
           modalVariant="confirm"
           icon={<IconShoppingCart color={primary[200]} />}
           cancelLabel="Cancel"

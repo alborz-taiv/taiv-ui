@@ -9,7 +9,7 @@ import * as FormModalStories from './FormModal.stories';
 [View Mantine Docs](https://v6.mantine.dev/core/modal/)
 
 
-The FormModal component is a structured modal built on Mantine's Modal, with an optional icon, content area, and configurable cancel/confirm footer buttons. Use it for confirmations, forms, or short messages that require user action.
+The FormModal component is a structured modal built on Mantine's Modal, with an icon, content area, and configurable cancel/confirm footer buttons. Use it for confirmations, forms, or short messages that require user action.
 
 ### 📦 Import
 
@@ -24,17 +24,11 @@ import { FormModal } from '@taiv/ui';
 
 ---
 
-### 📐 Without Icon
-
-FormModal without a custom icon. No icon block is rendered.
-
-<Story of={FormModalStories.Default} />
-
-### 📐 With Icon
+### 📐 With Custom Icon
 
 Pass a custom `icon` (e.g. `IconFlask`) to show an icon block above the content.
 
-<Story of={FormModalStories.WithIcon} />
+<Story of={FormModalStories.WithCustomIcon} />
 
 ### 📐 With Form Content
 
@@ -42,11 +36,19 @@ Use `children` to render any content—forms, inputs, or messages. Here, a TextI
 
 <Story of={FormModalStories.WithTextInput} />
 
+### 📐 Complete Example
+
+A complete example showing a FormModal with a custom icon, custom message, and NumberInput. This demonstrates how to combine multiple elements for a real-world use case like adding items to a cart.
+
+<Story of={FormModalStories.CompleteExample} />
+
 ## <br />
 
 ### 🎨 Modal Variants
 
-`modalVariant` controls the icon background color, button style, and default labels. A custom icon was added to each variant. Click each button to open the modal with that variant.
+`modalVariant` controls the default icon (with colored background), button style, and default labels. Click each button to open the modal with that variant.
+
+> **Note:** Default icons may not appear in Storybook.
 
 <Story of={FormModalStories.Variants} />
 
@@ -103,22 +105,13 @@ Override the footer button text with `cancelLabel` and `confirmLabel`. Omit them
 
 ## <br />
 
-### 🛒 Complete Example
-
-A complete example showing a FormModal with an icon, custom message, and NumberInput. This demonstrates how to combine multiple elements for a real-world use case like adding items to a cart.
-
-<Story of={FormModalStories.CompleteExample} />
-
-## <br />
-
-
 ### 💡 Best Practices
 
-1. **Control visibility with state**: Use `useState` for `opened` and wire `onClose`, `handleCancel`, and `handleConfirm` to close the modal when appropriate.
+1. **Control visibility with state**: Use `useState` for `opened` and wire `onClose`, `onCancel`, and `onConfirm` to close the modal when appropriate.
 
 2. **Use semantic variants**: Choose `modalVariant` to match intent (e.g. `cancel` for destructive actions, `success` for positive confirmations).
 
-3. **Override labels when needed**: Use `cancelLabel` and `confirmLabel` for context-specific copy; otherwise rely on variant defaults.
+3. **Override labels and icons when needed**: Use `cancelLabel` and `confirmLabel` for context-specific copy; otherwise rely on variant defaults. Use a custom `icon` when you need a specific visual.
 
 4. **Keep content focused**: Use `children` for concise messages or simple forms. Consider dedicated layout components for complex forms.
 

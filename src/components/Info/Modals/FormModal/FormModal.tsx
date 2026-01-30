@@ -14,8 +14,8 @@ export interface FormModalProps {
   children?: React.ReactNode;
   width?: string | number;
   modalVariant?: keyof typeof modalVariants;
-  handleCancel?: () => void;
-  handleConfirm?: () => void;
+  onCancel?: () => void;
+  onConfirm?: () => void;
   cancelLabel?: string;
   confirmLabel?: string;
 }
@@ -27,8 +27,8 @@ export const FormModal = ({
   children,
   width = "40rem",
   modalVariant = "info",
-  handleCancel,
-  handleConfirm,
+  onCancel,
+  onConfirm,
   cancelLabel,
   confirmLabel,
 }: FormModalProps) => {
@@ -100,7 +100,7 @@ export const FormModal = ({
       <Center h="100%" w="100%">
         <Stack gap="2rem" h="100%" w="100%" align="center">
           <Stack gap="1.5rem" align="center">
-            {icon && <Center style={iconContainer}>{modalIcon}</Center>}
+            <Center style={iconContainer}>{modalIcon}</Center>
             {children && (
               <Stack gap="0.25rem" align="center">
                 {children}
@@ -109,11 +109,11 @@ export const FormModal = ({
           </Stack>
           <Center h="100%" w="100%">
             <Group gap="1rem" align="center">
-              <Button onClick={handleCancel} variant="secondary">
+              <Button onClick={onCancel} variant="secondary">
                 {cancelLabel || selectedVariant.cancelLabel}
               </Button>
               <Button
-                onClick={handleConfirm}
+                onClick={onConfirm}
                 variant={selectedVariant.buttonVariant}
               >
                 {confirmLabel || selectedVariant.confirmLabel}
