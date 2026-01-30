@@ -10,6 +10,7 @@ export { StatsBadge } from './Data/StatsBadge/StatsBadge';
 
 //Info
 export { Modal } from './Info/Modals/Modal/Modal';
+export { FormModal } from './Info/Modals/FormModal/FormModal';
 export { ModalProvider } from './Info/Modals/ModalProvider/ModalProvider';
 export { NotificationProvider } from './Info/Notifications/NotificationProvider/NotificationProvider';
 export { Badge } from './Info/Badge/Badge';
