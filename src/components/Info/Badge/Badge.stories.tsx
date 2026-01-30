@@ -84,7 +84,7 @@ export const Default: Story = {
     variant: 'outline',
     size: 'md',
     color: 'primary',
-    leftIcon: 'IconCircleFilled',
+    leftIcon: 'none',
   },
   render: (args) => {
     const { leftIcon = 'none', ...badgeProps } = args;
