@@ -53,7 +53,7 @@ export const FormModal = ({
       opened={opened}
       onClose={onClose}
       centered
-      radius={"16px"}
+      radius="16px"
       overlayProps={{
         opacity: 0,
         blur: 4,

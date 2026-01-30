@@ -142,8 +142,8 @@ return (
       onClose={() => setOpened(false)}
       onCancel={() => setOpened(false)}
       onConfirm={() => setOpened(false)}
-      modalVariant={'info'}
-      size={'40rem'}
+      modalVariant='info'
+      size='40rem'
       children={
         <Title variant="cardSubheader" align="center">
           Example message.
