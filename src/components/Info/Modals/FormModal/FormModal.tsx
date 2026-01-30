@@ -99,15 +99,14 @@ export const FormModal = ({
 		>
 			<Center h="100%" w="100%">
 				<Stack gap="2rem" h="100%" w="100%" align="center">
-					{icon && (
-						<Stack gap="1.5rem" align="center">
-							<Center style={iconContainer}>{modalIcon}</Center>
-							<Stack gap="0.25rem" align="center"></Stack>
-						</Stack>
-					)}
-					<Center h="100%" w="100%">
-						{children}
-					</Center>
+					<Stack gap="1.5rem" align="center">
+						{icon && <Center style={iconContainer}>{modalIcon}</Center>}
+						{children && (
+							<Stack gap="0.25rem" align="center">
+								{children}
+							</Stack>
+						)}
+					</Stack>
 					<Center h="100%" w="100%">
 						<Group gap="1rem" align="center">
 							<Button onClick={handleCancel} variant="secondary">

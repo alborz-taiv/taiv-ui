@@ -1,0 +1,119 @@
+import { Meta, Canvas, Controls, Story, ArgTypes } from '@storybook/addon-docs/blocks';
+import { FormModal } from './FormModal';
+import * as FormModalStories from './FormModal.stories';
+
+<Meta of={FormModalStories} />
+
+# FormModal
+
+[View Mantine Docs](https://v6.mantine.dev/core/modal/)
+
+
+The FormModal component is a structured modal built on Mantine's Modal, with an optional icon, content area, and configurable cancel/confirm footer buttons. Use it for confirmations, forms, or short messages that require user action.
+
+### 📦 Import
+
+```tsx
+import { FormModal } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={FormModalStories.Default} height={900} />
+<Controls of={FormModalStories.Default} />
+
+---
+
+### 📐 Without Icon
+
+FormModal without a custom icon. No icon block is rendered.
+
+<Story of={FormModalStories.Default} />
+
+### 📐 With Icon
+
+Pass a custom `icon` (e.g. `IconFlask`) to show an icon block above the content.
+
+<Story of={FormModalStories.WithIcon} />
+
+### 📐 With Form Content
+
+Use `children` to render any content—forms, inputs, or messages. Here, a TextInput is used inside the modal.
+
+<Story of={FormModalStories.WithTextInput} />
+
+## <br />
+
+### 🎨 Modal Variants
+
+`modalVariant` controls the icon background color, button style, and default labels. A custom icon was added to each variant. Click each button to open the modal with that variant.
+
+<Story of={FormModalStories.Variants} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>confirm</td>
+      <td>Confirmations, "Are you sure?"</td>
+    </tr>
+    <tr>
+      <td>info</td>
+      <td>Neutral information</td>
+    </tr>
+    <tr>
+      <td>success</td>
+      <td>Confirmations, positive actions</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>Errors actions, retry prompts</td>
+    </tr>
+    <tr>
+      <td>warning</td>
+      <td>Cautionary actions, warnings</td>
+    </tr>
+    <tr>
+      <td>cancel</td>
+      <td>Destructive actions, cancellations</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 📏 Width
+
+Control modal width via the `width` prop (CSS value or number in px). Default is `40rem`.
+
+<Story of={FormModalStories.Widths} />
+
+## <br />
+
+### 🏷️ Custom Button Labels
+
+Override the footer button text with `cancelLabel` and `confirmLabel`. Omit them to use the variant defaults.
+
+<Story of={FormModalStories.CustomLabels} />
+
+## <br />
+
+
+### 💡 Best Practices
+
+1. **Control visibility with state**: Use `useState` for `opened` and wire `onClose`, `handleCancel`, and `handleConfirm` to close the modal when appropriate.
+
+2. **Use semantic variants**: Choose `modalVariant` to match intent (e.g. `cancel` for destructive actions, `success` for positive confirmations).
+
+3. **Override labels when needed**: Use `cancelLabel` and `confirmLabel` for context-specific copy; otherwise rely on variant defaults.
+
+4. **Keep content focused**: Use `children` for concise messages or simple forms. Consider dedicated layout components for complex forms.
+
+5. **Width and responsive behavior**: Use `width` for consistency with your layout. Test at different viewport sizes when using fixed widths.
+
+## <br />
