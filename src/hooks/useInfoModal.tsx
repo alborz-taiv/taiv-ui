@@ -8,7 +8,7 @@ import { modalVariants } from '../components/Info/Modals/variants';
 import { Button } from '../components/Inputs/Buttons/Button/Button';
 
 export const useInfoModal = () => {
-  const show = (options: { variant?: keyof typeof modalVariants; title?: string; message?: string; icon?: React.ReactNode; onConfirm?: () => void; size?: string | number }) => {
+  const show = (options: { variant?: keyof typeof modalVariants; title?: string; message?: string; icon?: React.ReactElement; onConfirm?: () => void; size?: string | number }) => {
     const { variant = 'info', title, message, icon, onConfirm, size = '35rem' } = options;
 
     const handleConfirm = () => {
@@ -26,7 +26,9 @@ export const useInfoModal = () => {
       border: `2px solid ${selectedVariant.iconColor}`,
     };
 
-    const modalIcon = icon || <i className={selectedVariant.icon} style={{ color: selectedVariant.iconColor, fontSize: '2rem' }} />;
+    const coloredIcon = icon && React.cloneElement(icon, { color: icon.props.color || selectedVariant.iconColor });
+
+    const modalIcon = coloredIcon || <i className={selectedVariant.icon} style={{ color: selectedVariant.iconColor, fontSize: '2rem' }} />;
 
     const InfoModalContent = () => {
       return (

@@ -10,7 +10,7 @@ import { Button } from "../../../Inputs/Buttons/Button/Button";
 export interface FormModalProps {
   opened: boolean;
   onClose: () => void;
-  icon?: React.ReactNode;
+  icon?: React.ReactElement;
   children?: React.ReactNode;
   size?: string | number;
   modalVariant?: keyof typeof modalVariants;
@@ -41,7 +41,9 @@ export const FormModal = ({
     border: `2px solid ${selectedVariant.iconColor}`,
   };
 
-  const modalIcon = icon || (
+  const coloredIcon = icon && React.cloneElement(icon, { color: icon.props.color || selectedVariant.iconColor });
+
+  const modalIcon = coloredIcon || (
     <i
       className={selectedVariant.icon}
       style={{ color: selectedVariant.iconColor, fontSize: "2rem" }}

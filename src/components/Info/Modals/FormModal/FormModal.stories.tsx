@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { FormModal } from "./FormModal";
 import { Button } from "../../../Inputs/Buttons/Button/Button";
-import { primary } from "../../../../constants/colors";
+import { primary, red } from "../../../../constants/colors";
 import { IconFlask, IconShoppingCart } from "@tabler/icons-react";
 import { TextInput } from "../../../Inputs/TextInputs/TextInput/TextInput";
 import { NumberInput } from "../../../Inputs/TextInputs/NumberInput/NumberInput";
@@ -181,6 +181,31 @@ export const WithCustomIcon: Story = {
     );
   },
 };
+
+export const WithCustomIconColor: Story = {
+  render: () => {
+    const [opened, setOpened] = useState(false);
+    return (
+      <>
+        <Center>
+          <Button onClick={() => setOpened(true)}>Open FormModal</Button>
+        </Center>
+        <FormModal
+          opened={opened}
+          onClose={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={() => setOpened(false)}
+          icon={<IconFlask color={red[200]} />}
+          children={
+            <Title variant="cardSubheader" align="center">
+              Example message.
+            </Title>
+          }
+        />
+      </>
+    );
+  },
+}
 
 export const WithTextInput: Story = {
   render: () => {
