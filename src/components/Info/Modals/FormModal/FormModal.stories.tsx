@@ -67,6 +67,13 @@ const meta: Meta<typeof FormModal> = {
         defaultValue: { summary: "'info'" },
       },
     },
+    confirmDisabled: {
+      control: false,
+      description: "Whether the modal confirm button is disabled.",
+      table: {
+        type: { summary: "boolean" },
+      },
+    },
     onCancel: {
       control: false,
       description: "Handler for the cancel button click.",
@@ -336,6 +343,40 @@ export const CustomLabels: Story = {
             <Title variant="cardSubheader" align="center">
               Custom cancel and confirm button labels.
             </Title>
+          }
+        />
+      </>
+    );
+  },
+};
+
+export const ConfirmDisabled: Story = {
+  render: () => {
+    const [opened, setOpened] = useState(false);
+    const [name, setName] = useState("");
+    return (
+      <>
+        <Center>
+          <Button onClick={() => setOpened(true)}>Open FormModal</Button>
+        </Center>
+        <FormModal
+          opened={opened}
+          onClose={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={() => setOpened(false)}
+          confirmDisabled={name.trim().length === 0}
+          children={
+            <Stack gap="1rem" align="center">
+              <Title variant="cardSubheader" align="center">
+                Enter your name to enable the confirm button.
+              </Title>
+              <TextInput
+                label="Name"
+                placeholder="Enter your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Stack>
           }
         />
       </>

@@ -109,6 +109,14 @@ Override the footer button text with `cancelLabel` and `confirmLabel`. Omit them
 
 ## <br />
 
+### 🚫 Disabled Confirm Button
+
+Use `confirmDisabled` to disable the confirm button, e.g. until required form fields are filled. This is useful for validation before allowing submission.
+
+<Story of={FormModalStories.ConfirmDisabled} />
+
+## <br />
+
 ### 💡 Best Practices
 
 1. **Control visibility with state**: Use `useState` for `opened` and wire `onClose`, `onCancel`, and `onConfirm` to close the modal when appropriate.
