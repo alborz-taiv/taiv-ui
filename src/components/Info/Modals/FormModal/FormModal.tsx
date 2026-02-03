@@ -14,7 +14,7 @@ export interface FormModalProps {
   children?: React.ReactNode;
   size?: string | number;
   modalVariant?: keyof typeof modalVariants;
-  confirmDisabled?: boolean;
+  confirmButtonDisabled?: boolean;
   onCancel?: () => void;
   onConfirm?: () => void;
   cancelLabel?: string;
@@ -28,7 +28,7 @@ export const FormModal = ({
   children,
   size = "40rem",
   modalVariant = "info",
-  confirmDisabled = false,
+  confirmButtonDisabled = false,
   onCancel,
   onConfirm,
   cancelLabel,
@@ -119,7 +119,7 @@ export const FormModal = ({
               <Button
                 onClick={onConfirm}
                 variant={selectedVariant.buttonVariant}
-                disabled={confirmDisabled}
+                disabled={confirmButtonDisabled}
               >
                 {confirmLabel || selectedVariant.confirmLabel}
               </Button>

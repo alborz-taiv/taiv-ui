@@ -67,7 +67,7 @@ const meta: Meta<typeof FormModal> = {
         defaultValue: { summary: "'info'" },
       },
     },
-    confirmDisabled: {
+    confirmButtonDisabled: {
       control: false,
       description: "Whether the modal confirm button is disabled.",
       table: {
@@ -350,7 +350,7 @@ export const CustomLabels: Story = {
   },
 };
 
-export const ConfirmDisabled: Story = {
+export const ConfirmButtonDisabled: Story = {
   render: () => {
     const [opened, setOpened] = useState(false);
     const [name, setName] = useState("");
@@ -364,7 +364,7 @@ export const ConfirmDisabled: Story = {
           onClose={() => setOpened(false)}
           onCancel={() => setOpened(false)}
           onConfirm={() => setOpened(false)}
-          confirmDisabled={name.trim().length === 0}
+          confirmButtonDisabled={name.trim().length === 0}
           children={
             <Stack gap="1rem" align="center">
               <Title variant="cardSubheader" align="center">
