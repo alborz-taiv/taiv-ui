@@ -41,10 +41,8 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false,
         }
       });
 
-      const borderStyle = { borderBottom: 'none' };
-      if (divider && rowIndex < rows.length - 1) {
-        borderStyle.borderBottom = `1px solid ${neutral[100]}`;
-      }
+      const showDivider = divider && rowIndex < rows.length - 1;
+      const borderStyle = { borderBottom: showDivider ? `1px solid ${neutral[100]}` : 'none' };
 
       Object.assign(row.style, borderStyle);
     });
