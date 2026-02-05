@@ -13,9 +13,10 @@ interface TableProps<T> {
   ListItem: React.ComponentType<{ data: T }>;
   placeholder?: React.ReactNode;
   shadow?: boolean;
+  divider?: boolean;
 }
 
-const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false }: TableProps<T>) => {
+const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false, divider = false }: TableProps<T>) => {
   const tableRef = useRef<HTMLTableElement>(null);
 
   /**
@@ -31,7 +32,7 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false 
     const rows = tbody.querySelectorAll('tr');
     if (!rows || !rows.length) return;
 
-    rows.forEach((row) => {
+    rows.forEach((row, rowIndex) => {
       const cells = row.querySelectorAll('td');
       cells.forEach((cell, columnIndex) => {
         const columnStyle = columnConfigs[columnIndex]?.style;
@@ -39,8 +40,13 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false 
           Object.assign(cell.style, columnStyle);
         }
       });
+
+      Object.assign(row.style, { borderBottom: 'none' });
+      if (divider && rowIndex < rows.length - 1) {
+        Object.assign(row.style, { borderBottom: `1px solid ${neutral[100]}` });
+      }
     });
-  }, [columnConfigs, data]);
+  }, [columnConfigs, data, divider]);
 
   return (
     <Box
@@ -55,6 +61,7 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false 
         ref={tableRef}
         style={{
           width: '100%',
+          borderCollapse: 'collapse',
         }}
       >
         <thead>
