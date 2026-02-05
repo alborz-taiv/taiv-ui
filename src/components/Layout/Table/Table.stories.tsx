@@ -33,6 +33,10 @@ const meta: Meta<typeof Table> = {
       control: { type: 'boolean' },
       description: 'Adds shadow to the table',
     },
+    divider: {
+      control: { type: 'boolean' },
+      description: 'Adds divider between rows to the table',
+    },
   },
 };
 
@@ -429,7 +433,7 @@ export const TableWithShadow: Story = {
   },
 };
 
-export const TableWithDivider: Story = {
+export const TableWithoutDivider: Story = {
   args: {
     columnConfigs: [
       { heading: 'Name', style: { width: '25%', paddingLeft: '20px', fontWeight: '600' } },
@@ -440,6 +444,6 @@ export const TableWithDivider: Story = {
     ],
     data: userData,
     ListItem: UserListItem as React.ComponentType<{ data: unknown }>,
-    divider: true,
+    divider: false,
   },
 };

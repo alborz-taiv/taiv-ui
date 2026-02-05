@@ -16,7 +16,7 @@ interface TableProps<T> {
   divider?: boolean;
 }
 
-const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false, divider = false }: TableProps<T>) => {
+const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false, divider = true }: TableProps<T>) => {
   const tableRef = useRef<HTMLTableElement>(null);
 
   /**
