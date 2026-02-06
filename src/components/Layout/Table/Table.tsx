@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useRef } from 'react';
+import React, { CSSProperties, memo, useEffect, useRef } from 'react';
 import { Box } from '../Box/Box';
 import { fontWeight, neutral } from '../../../constants';
 
@@ -7,7 +7,11 @@ interface ColumnConfig {
   style?: CSSProperties;
 }
 
-interface TableProps<T> {
+interface TableItem {
+  key: string | number;
+}
+
+interface TableProps<T extends TableItem> {
   columnConfigs: ColumnConfig[];
   data: T[];
   ListItem: React.ComponentType<{ data: T }>;
@@ -16,7 +20,7 @@ interface TableProps<T> {
   divider?: boolean;
 }
 
-const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false, divider = true }: TableProps<T>) => {
+const TableComponent = <T extends TableItem>({ columnConfigs, data, ListItem, placeholder, shadow = false, divider = true }: TableProps<T>) => {
   const tableRef = useRef<HTMLTableElement>(null);
 
   /**
@@ -86,7 +90,7 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false,
         </thead>
         <tbody>
           {(!data || data.length === 0) && placeholder ? <tr><td colSpan={columnConfigs.length}>{placeholder}</td></tr> : data.map((item) => (
-            <ListItem data={item} key={String(item).slice(0, 10)} />
+            <ListItem data={item} key={item.key} />
           ))}
         </tbody>
       </table>
@@ -94,4 +98,6 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false,
   );
 };
 
-export { Table, type ColumnConfig, type TableProps };
+export const Table = memo(TableComponent) as typeof TableComponent;
+
+export { type ColumnConfig, type TableProps };

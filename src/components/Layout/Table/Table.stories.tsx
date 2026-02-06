@@ -45,6 +45,7 @@ type Story = StoryObj<typeof meta>;
 
 // Mock data types
 interface User {
+  key: string;
   id: string;
   name: string;
   email: string;
@@ -54,6 +55,7 @@ interface User {
 }
 
 interface Product {
+  key: string;
   id: string;
   name: string;
   category: string;
@@ -63,6 +65,7 @@ interface Product {
 }
 
 interface Project {
+  key: string;
   id: string;
   title: string;
   team: string[];
@@ -74,6 +77,7 @@ interface Project {
 // Mock data
 const userData: User[] = [
   {
+    key: 'user-1',
     id: '1',
     name: 'John Doe',
     email: 'john.doe@example.com',
@@ -82,6 +86,7 @@ const userData: User[] = [
     lastLogin: '2024-01-15',
   },
   {
+    key: 'user-2',
     id: '2',
     name: 'Jane Smith',
     email: 'jane.smith@example.com',
@@ -90,6 +95,7 @@ const userData: User[] = [
     lastLogin: '2024-01-14',
   },
   {
+    key: 'user-3',
     id: '3',
     name: 'Bob Johnson',
     email: 'bob.johnson@example.com',
@@ -98,6 +104,7 @@ const userData: User[] = [
     lastLogin: '2024-01-10',
   },
   {
+    key: 'user-4',
     id: '4',
     name: 'Alice Williams',
     email: 'alice.williams@example.com',
@@ -109,6 +116,7 @@ const userData: User[] = [
 
 const productData: Product[] = [
   {
+    key: 'product-1',
     id: '1',
     name: 'Premium Widget',
     category: 'Electronics',
@@ -117,6 +125,7 @@ const productData: Product[] = [
     status: 'in-stock',
   },
   {
+    key: 'product-2',
     id: '2',
     name: 'Standard Widget',
     category: 'Electronics',
@@ -125,6 +134,7 @@ const productData: Product[] = [
     status: 'low-stock',
   },
   {
+    key: 'product-3',
     id: '3',
     name: 'Basic Widget',
     category: 'Accessories',
@@ -133,6 +143,7 @@ const productData: Product[] = [
     status: 'out-of-stock',
   },
   {
+    key: 'product-4',
     id: '4',
     name: 'Deluxe Widget',
     category: 'Electronics',
@@ -144,6 +155,7 @@ const productData: Product[] = [
 
 const projectData: Project[] = [
   {
+    key: 'project-1',
     id: '1',
     title: 'Website Redesign',
     team: ['Alice', 'Bob', 'Charlie'],
@@ -152,6 +164,7 @@ const projectData: Project[] = [
     priority: 'high',
   },
   {
+    key: 'project-2',
     id: '2',
     title: 'Mobile App Update',
     team: ['David', 'Eve'],
@@ -160,6 +173,7 @@ const projectData: Project[] = [
     priority: 'medium',
   },
   {
+    key: 'project-3',
     id: '3',
     title: 'API Documentation',
     team: ['Frank', 'Grace'],
@@ -300,7 +314,7 @@ export const BasicTable: Story = {
       { heading: 'Last Login', style: { width: '10%' } },
     ],
     data: userData,
-    ListItem: UserListItem as React.ComponentType<{ data: unknown }>,
+    ListItem: UserListItem as React.ComponentType<{ data: { key: string | number } }>,
   },
   parameters: {
     docs: {
@@ -322,7 +336,7 @@ export const TableWithCustomComponents: Story = {
       { heading: 'Actions', style: { width: '25%', textAlign: 'center' } },
     ],
     data: productData,
-    ListItem: ProductListItem as React.ComponentType<{ data: unknown }>,
+    ListItem: ProductListItem as React.ComponentType<{ data: { key: string | number } }>,
   },
   parameters: {
     docs: {
@@ -344,7 +358,7 @@ export const TableWithProgressBars: Story = {
       { heading: 'Priority', style: { width: '15%' } },
     ],
     data: projectData,
-    ListItem: ProjectListItem as React.ComponentType<{ data: unknown }>,
+    ListItem: ProjectListItem as React.ComponentType<{ data: { key: string | number } }>,
   },
   parameters: {
     docs: {
@@ -366,7 +380,7 @@ export const StyledColumns: Story = {
       { heading: 'Last Login', style: { width: '10%', textAlign: 'right', paddingRight: '20px' } },
     ],
     data: userData,
-    ListItem: UserListItem as React.ComponentType<{ data: unknown }>,
+    ListItem: UserListItem as React.ComponentType<{ data: { key: string | number } }>,
   },
   parameters: {
     docs: {
@@ -428,7 +442,7 @@ export const TableWithShadow: Story = {
       { heading: 'Last Login', style: { width: '10%', textAlign: 'right', paddingRight: '20px' } },
     ],
     data: userData,
-    ListItem: UserListItem as React.ComponentType<{ data: unknown }>,
+    ListItem: UserListItem as React.ComponentType<{ data: { key: string | number } }>,
     shadow: true,
   },
 };
@@ -443,7 +457,7 @@ export const TableWithoutDivider: Story = {
       { heading: 'Last Login', style: { width: '10%', textAlign: 'right', paddingRight: '20px' } },
     ],
     data: userData,
-    ListItem: UserListItem as React.ComponentType<{ data: unknown }>,
+    ListItem: UserListItem as React.ComponentType<{ data: { key: string | number } }>,
     divider: false,
   },
 };
