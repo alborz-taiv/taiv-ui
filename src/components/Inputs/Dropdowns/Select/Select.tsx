@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral } from '../../../../constants/colors';
+import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { componentSizes } from '../shared/sizes';
 
@@ -24,12 +24,18 @@ export const Select = ({ size = 'md', width, fullWidth = false, placeholder = 'S
       paddingRight: selectedSize.inputPadding,
       ...fontBase,
       fontSize: selectedSize.fontSize,
-      color: neutral[300],
+      color: neutral[200],
       borderRadius: '8px',
-      border: `1px solid ${neutral[100]}`,
       textOverflow: 'ellipsis',
       overflow: 'hidden',
       transition: 'all 200ms ease-in-out',
+      '&[data-invalid]': {
+        borderColor: red[200],
+        color: neutral[200],
+        '&::placeholder': {
+          color: red[200],
+        },
+      },
     },
     label: {
       ...fontBase,
@@ -65,6 +71,11 @@ export const Select = ({ size = 'md', width, fullWidth = false, placeholder = 'S
     },
     rightSection: {
       color: neutral[200],
+    },
+    error: {
+      ...fontBase,
+      fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      color: red[200]
     },
     ...styles,
   };
