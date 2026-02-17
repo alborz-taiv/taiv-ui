@@ -1,6 +1,6 @@
 import React, { CSSProperties, memo, useEffect, useRef } from 'react';
 import { Box } from '../Box/Box';
-import { fontWeight, neutral } from '../../../constants';
+import { fontBase, fontSize, fontWeight, neutral } from '../../../constants';
 
 interface ColumnConfig {
   heading?: string;
@@ -74,10 +74,11 @@ const TableComponent = <T extends TableItem>({ columnConfigs, data, ListItem, pl
               <th
                 key={column.heading || `column-${index}`}
                 style={{
+                  ...fontBase,
+                  ...fontSize['md'],
+                  fontWeight: fontWeight.semibold,
                   backgroundColor: neutral[50],
                   color: neutral[300],
-                  fontSize: '14px',
-                  fontWeight: fontWeight.bold,
                   paddingBottom: '9px',
                   paddingTop: '9px',
                   ...column.style,
