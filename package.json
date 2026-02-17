@@ -17,7 +17,17 @@
     "dev": "npm link && tsc --watch",
     "clean": "rm -rf dist",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "biome check --formatter-enabled=false --assist-enabled=false src",
+    "lint:fix": "biome check --formatter-enabled=false --assist-enabled=false --write src",
+    "format": "biome check --linter-enabled=false --assist-enabled=false src",
+    "format:fix": "biome check --linter-enabled=false --assist-enabled=false --write src",
+    "assist": "biome check --linter-enabled=false --formatter-enabled=false src",
+    "assist:fix": "biome check --linter-enabled=false --formatter-enabled=false --write src",
+    "biome:check": "biome check src",
+    "biome:fix": "biome check --write src",
+    "biome:check:path": "biome check",
+    "biome:fix:path": "biome check --write"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -35,6 +45,7 @@
     "react-dom": "^17.0.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.13",
     "@storybook/addon-docs": "^9.1.10",
     "@storybook/addon-onboarding": "^9.1.10",
     "@storybook/react-vite": "^9.1.10",
