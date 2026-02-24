@@ -59,6 +59,7 @@ export { Tabs } from './Layout/Tabs/Tabs';
 
 //Typography
 export { CollapsibleText } from './Typography/CollapsibleText/CollapsibleText';
+export { CollapsibleTitle } from './Typography/CollapsibleTitle/CollapsibleTitle';
 export { Text } from './Typography/Text/Text';
 export { Title } from './Typography/Title/Title';
 export { Fraction } from './Typography/Fraction/Fraction';
