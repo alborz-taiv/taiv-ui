@@ -22,24 +22,24 @@ const CollapsibleTitle = ({ title, subText, className, opened, setOpened, childr
   return (
     <>
       <UnstyledButton className={className} onClick={() => setOpened(!opened)}>
-        <Group gap="0.4rem" align="center">
-          <Stack gap="0.2rem">
+        <Stack gap="0.2rem">
+          <Group gap="0.4rem" align="center">
             <Title variant="sectionSubheader" size="md" weight="medium">
               {title}
             </Title>
-            <Text variant="caption">
-              {subText}
-            </Text>
-          </Stack>
-          <IconCaretDownFilled
-            size={18}
-            style={{
-              color: neutral[200],
-              transform: opened ? 'rotate(180deg)' : 'none',
-              transition: 'transform 200ms ease',
-            }}
-          />
-        </Group>
+            <IconCaretDownFilled
+              size={18}
+              style={{
+                color: neutral[200],
+                transform: opened ? 'rotate(180deg)' : 'none',
+                transition: 'transform 200ms ease',
+              }}
+            />
+          </Group>
+          <Text variant="caption">
+            {subText}
+          </Text>
+        </Stack>
       </UnstyledButton>
       <Transition mounted={opened} transition="scale-y" duration={300}>
         {(styles) => <Box style={{ overflow: 'hidden' }}>{children}</Box>}
