@@ -1,0 +1,79 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { CollapsibleTitle } from './CollapsibleTitle';
+import * as CollapsibleTitleStories from './CollapsibleTitle.stories';
+
+<Meta of={CollapsibleTitleStories} />
+
+# CollapsibleTitle
+
+CollapsibleTitle shows a title and subtext with a caret; clicking toggles the expanded state and reveals optional children. Use it for section headers that expand to show more content (e.g. settings sections, accordions). The title uses medium-weight header styling and the subtext uses caption styling by default; colors follow your typography tokens.
+
+### 📦 Import
+
+```tsx
+import { CollapsibleTitle } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+Control open state with `opened` and `setOpened`. Pass content as `children` to show when expanded.
+
+<Canvas of={CollapsibleTitleStories.Default} />
+<Controls of={CollapsibleTitleStories.Default} />
+
+---
+
+### 📖 With content
+
+Expanded content can be any React node: text, forms, lists, or nested layout.
+
+<Story of={CollapsibleTitleStories.WithContent} />
+
+---
+
+### 🔄 Open and closed states
+
+The component is controlled: you own `opened` and `setOpened`. The caret rotates when expanded. Use this for accordions or persistent section state.
+
+<Story of={CollapsibleTitleStories.OpenAndClosed} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>title</td>
+      <td>Main heading text (medium weight, md size)</td>
+    </tr>
+    <tr>
+      <td>subText</td>
+      <td>Secondary line below the title (caption variant)</td>
+    </tr>
+    <tr>
+      <td>opened</td>
+      <td>Whether the content is expanded</td>
+    </tr>
+    <tr>
+      <td>setOpened</td>
+      <td>Called when the header is clicked; pass a state setter</td>
+    </tr>
+    <tr>
+      <td>children</td>
+      <td>Content rendered when expanded (optional)</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best practices
+
+1. **Control state at the parent**: Keep `opened` and `setOpened` in the parent so you can sync with URL, form state, or other UI.
+
+2. **Use for sections, not one-off toggles**: Prefer CollapsibleTitle for "section header + expandable block". For a single line of tappable text, use CollapsibleText.
+
+3. **Keep titles and subtext short**: The header is two lines (title + subtext); avoid long copy so the caret stays aligned and the block stays scannable.
