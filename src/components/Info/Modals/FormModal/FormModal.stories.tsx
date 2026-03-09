@@ -74,6 +74,13 @@ const meta: Meta<typeof FormModal> = {
         type: { summary: "boolean" },
       },
     },
+    confirmButtonLoading: {
+      control: false,
+      description: "Whether the modal confirm button shows a loading state.",
+      table: {
+        type: { summary: "boolean" },
+      },
+    },
     onCancel: {
       control: false,
       description: "Handler for the cancel button click.",
@@ -377,6 +384,41 @@ export const ConfirmButtonDisabled: Story = {
                 onChange={(e) => setName(e.target.value)}
               />
             </Stack>
+          }
+        />
+      </>
+    );
+  },
+};
+
+export const ConfirmButtonLoading: Story = {
+  render: () => {
+    const [opened, setOpened] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const handleConfirm = () => {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setOpened(false);
+      }, 2000);
+    };
+
+    return (
+      <>
+        <Center>
+          <Button onClick={() => setOpened(true)}>Open FormModal</Button>
+        </Center>
+        <FormModal
+          opened={opened}
+          onClose={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={handleConfirm}
+          confirmButtonLoading={loading}
+          children={
+            <Title variant="cardSubheader" align="center">
+              Click OK to see the button loading state.
+            </Title>
           }
         />
       </>
