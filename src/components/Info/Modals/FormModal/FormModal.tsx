@@ -15,6 +15,7 @@ export interface FormModalProps {
   size?: string | number;
   modalVariant?: keyof typeof modalVariants;
   confirmButtonDisabled?: boolean;
+  confirmButtonLoading?: boolean;
   onCancel?: () => void;
   onConfirm?: () => void;
   cancelLabel?: string;
@@ -29,6 +30,7 @@ export const FormModal = ({
   size = "40rem",
   modalVariant = "info",
   confirmButtonDisabled = false,
+  confirmButtonLoading = false,
   onCancel,
   onConfirm,
   cancelLabel,
@@ -120,6 +122,7 @@ export const FormModal = ({
                 onClick={onConfirm}
                 variant={selectedVariant.buttonVariant}
                 disabled={confirmButtonDisabled}
+                loading={confirmButtonLoading}
               >
                 {confirmLabel || selectedVariant.confirmLabel}
               </Button>
