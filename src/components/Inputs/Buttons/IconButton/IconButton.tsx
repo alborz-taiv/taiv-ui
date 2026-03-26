@@ -2,8 +2,7 @@ import { ReactElement } from 'react';
 import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@mantine/core';
 import { componentSizes } from './sizes';
 import { componentVariants as baseVariants, subtleVariants } from '../shared/variants';
-import { neutral, primary } from '../../../../constants/colors';
-import { Tooltip } from '../../../Info/Tooltips/Tooltip/Tooltip';
+import { neutral } from '../../../../constants/colors';
 
 export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | 'rightIcon'> {
   onClick?: () => void;
@@ -12,11 +11,10 @@ export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | '
   toggled?: boolean;
   shadow?: boolean;
   subtle?: boolean;
-  tooltip?: string;
   children?: ReactElement<{ size?: number }>;
 }
 
-export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, subtle = false, tooltip = '', styles, children, ...props }: IconButtonProps) => {
+export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, subtle = false, styles, children, ...props }: IconButtonProps) => {
   const selectedVariant = baseVariants[variant];
   const selectedSize = componentSizes[size];
 
@@ -77,5 +75,5 @@ export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled 
     </MantineButton>
   );
 
-  return tooltip ? <Tooltip text={tooltip}>{Button}</Tooltip> : Button;
+  return Button;
 };
