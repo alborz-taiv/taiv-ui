@@ -1,5 +1,7 @@
 //TODO: Maybe move these out into separate files whenever it gets more complex
 
+import { truncation } from "../constants";
+
 export type SelectOption = {
   value: string;
   label: string;
@@ -22,3 +24,8 @@ export type ChartSeries = {
   color?: string;
   type?: 'line' | 'area' | 'bar';
 };
+
+export type ChartFormatOptions = {
+  truncateAt?: keyof typeof truncation;
+  decimalPlaces?: number;
+}

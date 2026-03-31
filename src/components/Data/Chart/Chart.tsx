@@ -9,21 +9,33 @@ import { formats } from '../../../constants/data';
 import { getChartFormatter } from '../../../utils/charts';
 import { fontStyle } from '../../../constants/font';
 import { primary, neutral } from '../../../constants/colors';
-import { ChartSeries } from '../../../types/types';
+import { ChartFormatOptions, ChartSeries } from '../../../types/types';
 import { createStyles } from '@mantine/core';
+
+interface ChartFormat {
+  format: keyof typeof formats;
+  options?: ChartFormatOptions;
+}
 
 export interface ChartProps {
   series: ChartSeries[];
-  yAxisFormat?: keyof typeof formats;
-  xAxisFormat?: keyof typeof formats;
+  yAxisFormat?: ChartFormat;
+  xAxisFormat?: ChartFormat;
   height?: string | number;
   showLegend?: boolean;
   loading?: boolean;
 }
 
-export const Chart: React.FC<ChartProps> = ({ series, yAxisFormat = 'decimal', xAxisFormat = 'string', showLegend = true, loading = false, height = '100%' }) => {
-  const formatYAxisValue: (value: number | string) => string = getChartFormatter(yAxisFormat);
-  const formatXAxisValue: (value: number | string) => string = getChartFormatter(xAxisFormat);
+export const Chart: React.FC<ChartProps> = ({
+  series,
+  yAxisFormat = { format: 'decimal', options: {} },
+  xAxisFormat = { format: 'string', options: {} },
+  showLegend = true,
+  loading = false,
+  height = '100%'
+}) => {
+  const formatYAxisValue: (value: number | string) => string = getChartFormatter(yAxisFormat.format, yAxisFormat.options);
+  const formatXAxisValue: (value: number | string) => string = getChartFormatter(xAxisFormat.format, xAxisFormat.options);
   const hasData = series.some((s) => s.data.length > 0);
 
   // Transform our ChartSeries array to match the Recharts format (just a singular data array keyed by the series name)
