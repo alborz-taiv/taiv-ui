@@ -1,13 +1,8 @@
 import dayjs from 'dayjs';
 import { formats, numberFormats, truncation } from '../constants/data';
-import { DataPoint } from '../types/types';
+import { ChartFormatOptions, DataPoint } from '../types/types';
 
-interface FormatOptions {
-  truncateAt?: keyof typeof truncation;
-  decimalPlaces?: number;
-}
-
-const formatAndTruncate = (value: number, format: keyof typeof numberFormats, options?: FormatOptions): string => {
+const formatAndTruncate = (value: number, format: keyof typeof numberFormats, options?: ChartFormatOptions): string => {
   const absValue = Math.abs(value);
   const config = numberFormats[format];
   const truncateConfig = truncation[options?.truncateAt ?? 'thousand'];
@@ -20,7 +15,7 @@ const formatAndTruncate = (value: number, format: keyof typeof numberFormats, op
   }
 };
 
-export const getChartFormatter = (format: keyof typeof formats, options?: FormatOptions): ((value: string | number) => string) => {
+export const getChartFormatter = (format: keyof typeof formats, options?: ChartFormatOptions): ((value: string | number) => string) => {
   if (format === 'string') {
     return (value: string | number): string => String(value);
   } else if (format in numberFormats) {
