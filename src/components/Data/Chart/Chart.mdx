@@ -7,7 +7,14 @@ import * as ChartStories from './Chart.stories';
 
 [Recharts documentation](https://recharts.org/)
 
-The Chart component composes Recharts line, area, and bar series on a single `ComposedChart` with shared axes, grid, tooltip, and optional legend. Axis tick labels and tooltip values are formatted with `getChartFormatter` using `yAxisFormat` / `xAxisFormat` (`format` plus optional `decimalPlaces` and `truncateAt`).
+The Chart component composes Recharts line, area, and bar series on a single `ComposedChart` with shared axes, grid, tooltip, and optional legend. Tick labels and tooltip values go through `getChartFormatter`.
+
+**`yAxisFormat` and `xAxisFormat`** each accept either:
+
+- A **format key string** — any key of `formats` (`string`, `integer`, `decimal`, `currency`, `percentage`, `multiple`). Defaults match this shape: **`yAxisFormat`** defaults to **`'decimal'`**, **`xAxisFormat`** to **`'string'`**.
+- An **object** — `{ format, options? }` where `options` may include `decimalPlaces` and `truncateAt` (`thousand` | `million`), per `ChartFormatOptions`.
+
+Internally, the chart runs both through **`parseFormat`**: strings become `{ format, options: {} }`; objects keep `format` and use `options ?? {}`.
 
 Use Chart for time-series or categorical metrics where multiple series share the same X categories. For pie or donut data, use **PieChart**.
 
@@ -19,7 +26,16 @@ import { Chart } from '@taiv/ui';
 
 ### ✍️ Basic usage
 
-Use the **Default** story controls to edit `series`, `yAxisFormat`, and `xAxisFormat` (and other props) as the component actually accepts them.
+The **Default** story uses string shorthands (`yAxisFormat="decimal"`, `xAxisFormat="string"`). Controls offer a select per axis for format keys; for **`decimalPlaces`** or **`truncateAt`**, use the object form in code (see **YAxisDecimalPlaces**, **YAxisTruncation**, **XAxisNumericFormats**).
+
+```tsx
+<Chart series={series} yAxisFormat="currency" xAxisFormat="string" />
+
+<Chart
+  series={series}
+  yAxisFormat={{ format: 'decimal', options: { decimalPlaces: 2, truncateAt: 'million' } }}
+/>
+```
 
 <Canvas of={ChartStories.Default} />
 <Controls of={ChartStories.Default} />
@@ -67,9 +83,9 @@ Pass several objects in `series`. Each series must have the same `data` length a
 
 ## <br />
 
-### 🔢 Y-axis formats (`yAxisFormat.format`)
+### 🔢 Y-axis format (`yAxisFormat`)
 
-Numeric Y values support: **integer**, **decimal**, **currency**, **percentage**, and **multiple** (suffix `x`). Tooltip series values use the same Y formatter.
+Numeric Y values support: **integer**, **decimal**, **currency**, **percentage**, and **multiple** (suffix `x`). Tooltip series values use the same Y formatter. Pass a string for default behavior, or `{ format, options }` when you need overrides.
 
 <Story of={ChartStories.YAxisFormats} />
 
@@ -106,9 +122,11 @@ Numeric Y values support: **integer**, **decimal**, **currency**, **percentage**
 
 ## <br />
 
-### 🎛️ Y-axis format options (`yAxisFormat.options`)
+### 🎛️ Y-axis options (`options` on object form)
 
-- **decimalPlaces** — Overrides the default decimal count for that format (see **YAxisDecimalPlaces** story).
+When `yAxisFormat` is an object, **`options`** can include:
+
+- **decimalPlaces** — Overrides the default decimal count for that format (see **YAxisDecimalPlaces**).
 - **truncateAt** — **thousand** or **million**: values at or above the threshold render with a compact suffix (`k` / `M`). See **YAxisTruncation**.
 
 <Story of={ChartStories.YAxisDecimalPlaces} />
@@ -117,30 +135,30 @@ Numeric Y values support: **integer**, **decimal**, **currency**, **percentage**
 
 ## <br />
 
-### 🏷️ X-axis formats (`xAxisFormat`)
+### 🏷️ X-axis format (`xAxisFormat`)
 
-For category labels (month names, etc.), use **string** — values are shown as-is. If `key` strings parse as numbers, you can use the same numeric formats as on Y (e.g. **currency** on the axis for bucket labels).
+Same rules as Y: string key or `{ format, options }`. For category labels (month names, etc.), use **`string`**. If `key` strings parse as numbers, use numeric format keys or objects with options as needed.
 
 <Story of={ChartStories.XAxisNumericFormats} />
 
 <table>
   <thead>
     <tr>
-      <th>Option</th>
+      <th>Form</th>
       <th>Role</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code>format: 'string'</code></td>
-      <td>Default; categorical X keys</td>
+      <td><code>'string'</code> or omitted default</td>
+      <td>Categorical X keys (default)</td>
     </tr>
     <tr>
-      <td><code>format</code> numeric + <code>decimalPlaces</code></td>
-      <td>Fine-tune how numeric X labels render</td>
+      <td>Numeric <code>format</code> + <code>decimalPlaces</code></td>
+      <td>Fine-tune numeric X labels</td>
     </tr>
     <tr>
-      <td><code>truncateAt</code></td>
+      <td><code>truncateAt</code> in <code>options</code></td>
       <td>Compact large numeric X tick labels</td>
     </tr>
   </tbody>
@@ -180,11 +198,11 @@ For category labels (month names, etc.), use **string** — values are shown as-
     </tr>
     <tr>
       <td><code>yAxisFormat</code></td>
-      <td><code>{'{ format, options? }'}</code> — default <code>decimal</code></td>
+      <td><code>ChartFormat | AxisFormat</code> — string key or <code>{'{ format, options? }'}</code>; default <code>'decimal'</code></td>
     </tr>
     <tr>
       <td><code>xAxisFormat</code></td>
-      <td><code>{'{ format, options? }'}</code> — default <code>string</code></td>
+      <td><code>ChartFormat | AxisFormat</code> — string key or <code>{'{ format, options? }'}</code>; default <code>'string'</code></td>
     </tr>
     <tr>
       <td><code>height</code></td>
@@ -207,10 +225,12 @@ For category labels (month names, etc.), use **string** — values are shown as-
 
 1. **Align series keys** — Every series must use the same ordered `key` values so Recharts rows line up.
 
-2. **Pick X format from data** — Use `string` for real categories; use numeric formats only when keys represent amounts or numeric buckets.
+2. **Prefer string shorthands** — Use `yAxisFormat="currency"` when defaults are enough; use the object form only for `decimalPlaces` or `truncateAt`.
 
-3. **Match Y format to semantics** — Use `currency` for revenue, `percentage` for rates, `integer` for counts.
+3. **Pick X format from data** — Use `string` for real categories; use numeric formats only when keys represent amounts or numeric buckets.
 
-4. **Truncate large magnitudes** — Use `truncateAt` for dashboards where axis space is tight.
+4. **Match Y format to semantics** — Use `currency` for revenue, `percentage` for rates, `integer` for counts.
 
-5. **Give the chart a height** — When using `height="100%"`, ensure an ancestor sets a definite height (Storybook examples use a fixed `Box` height).
+5. **Truncate large magnitudes** — Pass `{ format, options: { truncateAt: 'million' } }` (or `thousand`) when axis space is tight.
+
+6. **Give the chart a height** — When using `height="100%"`, ensure an ancestor sets a definite height (Storybook examples use a fixed `Box` height).

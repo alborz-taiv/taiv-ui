@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { formats } from "../../../constants/data";
 import { primary, success, warning } from "../../../constants/colors";
 import type { ChartSeries } from "../../../types/types";
 import { Box } from "../../Layout/Box/Box";
@@ -74,7 +75,7 @@ const meta: Meta<ChartProps> = {
 		docs: {
 			description: {
 				component:
-					"A composed chart (line, area, bar) built on Recharts with shared X/Y axes, tooltips, and optional legend. Axis labels and tooltips use `getChartFormatter` with `yAxisFormat` and `xAxisFormat` (`format` plus optional `options.decimalPlaces` and `options.truncateAt`).",
+					"A composed chart (line, area, bar) built on Recharts with shared X/Y axes, tooltips, and optional legend. `yAxisFormat` and `xAxisFormat` accept either a `formats` key string (e.g. `'currency'`) or `{ format, options? }` for `decimalPlaces` / `truncateAt`; the chart normalizes both via an internal `parseFormat` before calling `getChartFormatter`.",
 			},
 		},
 	},
@@ -86,21 +87,23 @@ const meta: Meta<ChartProps> = {
 			table: { type: { summary: "ChartSeries[]" } },
 		},
 		yAxisFormat: {
-			control: { type: "object" },
+			control: { type: "select" },
+			options: Object.keys(formats) as (keyof typeof formats)[],
 			description:
-				"`{ format, options? }` — format is a key of `formats` (string, integer, decimal, currency, percentage, multiple). options: decimalPlaces, truncateAt (thousand | million). Tooltip values use this formatter.",
+				"Format key string (default formatting) or pass `{ format, options }` in code for `decimalPlaces` / `truncateAt`. Tooltip values use the Y formatter.",
 			table: {
-				type: { summary: "ChartFormat" },
-				defaultValue: { summary: "{ format: 'decimal', options: {} }" },
+				type: { summary: "ChartFormat | AxisFormat" },
+				defaultValue: { summary: "'decimal'" },
 			},
 		},
 		xAxisFormat: {
-			control: { type: "object" },
+			control: { type: "select" },
+			options: Object.keys(formats) as (keyof typeof formats)[],
 			description:
-				"`{ format, options? }` — same `format` keys; use string for categorical keys, numeric formats when keys parse as numbers.",
+				"Format key string or `{ format, options }`. Use `string` for categorical X keys; numeric `formats` when keys parse as numbers.",
 			table: {
-				type: { summary: "ChartFormat" },
-				defaultValue: { summary: "{ format: 'string', options: {} }" },
+				type: { summary: "ChartFormat | AxisFormat" },
+				defaultValue: { summary: "'string'" },
 			},
 		},
 		height: {
@@ -130,8 +133,8 @@ type Story = StoryObj<ChartProps>;
 export const Default: Story = {
 	args: {
 		series: sampleLineSeries,
-		yAxisFormat: { format: "decimal", options: {} },
-		xAxisFormat: { format: "string", options: {} },
+		yAxisFormat: "decimal",
+		xAxisFormat: "string",
 		height: "100%",
 		showLegend: true,
 		loading: false,
@@ -147,25 +150,13 @@ export const SeriesTypes: Story = {
 	render: () => (
 		<Stack gap="2.4rem">
 			<Box w="100%" h={280}>
-				<Chart
-					series={sampleLineSeries}
-					height="100%"
-					yAxisFormat={{ format: "integer", options: {} }}
-				/>
+				<Chart series={sampleLineSeries} height="100%" yAxisFormat="integer" />
 			</Box>
 			<Box w="100%" h={280}>
-				<Chart
-					series={sampleAreaSeries}
-					height="100%"
-					yAxisFormat={{ format: "currency", options: {} }}
-				/>
+				<Chart series={sampleAreaSeries} height="100%" yAxisFormat="currency" />
 			</Box>
 			<Box w="100%" h={280}>
-				<Chart
-					series={sampleBarSeries}
-					height="100%"
-					yAxisFormat={{ format: "integer", options: {} }}
-				/>
+				<Chart series={sampleBarSeries} height="100%" yAxisFormat="integer" />
 			</Box>
 		</Stack>
 	),
@@ -174,11 +165,7 @@ export const SeriesTypes: Story = {
 export const MultiSeries: Story = {
 	render: () => (
 		<Box w="100%" h={320}>
-			<Chart
-				series={sampleMultiSeries}
-				height="100%"
-				yAxisFormat={{ format: "decimal", options: {} }}
-			/>
+			<Chart series={sampleMultiSeries} height="100%" yAxisFormat="decimal" />
 		</Box>
 	),
 };
@@ -186,11 +173,7 @@ export const MultiSeries: Story = {
 export const MixedBarAndLine: Story = {
 	render: () => (
 		<Box w="100%" h={320}>
-			<Chart
-				series={sampleMixedSeries}
-				height="100%"
-				yAxisFormat={{ format: "integer", options: {} }}
-			/>
+			<Chart series={sampleMixedSeries} height="100%" yAxisFormat="integer" />
 		</Box>
 	),
 };
@@ -203,19 +186,13 @@ export const YAxisFormats: Story = {
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			{(
-				[
-					["integer", { format: "integer" as const, options: {} }],
-					["decimal", { format: "decimal" as const, options: {} }],
-					["currency", { format: "currency" as const, options: {} }],
-					["percentage", { format: "percentage" as const, options: {} }],
-					["multiple", { format: "multiple" as const, options: {} }],
-				] as const
-			).map(([label, yAxisFormat]) => (
-				<Box key={label} w={280} h={220}>
+				["integer", "decimal", "currency", "percentage", "multiple"] as const
+			).map((fmt) => (
+				<Box key={fmt} w={280} h={220}>
 					<Chart
 						series={sampleLineSeries}
 						height="100%"
-						yAxisFormat={yAxisFormat}
+						yAxisFormat={fmt}
 						showLegend={false}
 					/>
 				</Box>
@@ -317,8 +294,8 @@ export const XAxisNumericFormats: Story = {
 				<Chart
 					series={numericKeySeries}
 					height="100%"
-					xAxisFormat={{ format: "integer", options: {} }}
-					yAxisFormat={{ format: "integer", options: {} }}
+					xAxisFormat="integer"
+					yAxisFormat="integer"
 					showLegend={false}
 				/>
 			</Box>
@@ -327,7 +304,7 @@ export const XAxisNumericFormats: Story = {
 					series={numericKeySeries}
 					height="100%"
 					xAxisFormat={{ format: "currency", options: { decimalPlaces: 0 } }}
-					yAxisFormat={{ format: "integer", options: {} }}
+					yAxisFormat="integer"
 					showLegend={false}
 				/>
 			</Box>
@@ -339,7 +316,7 @@ export const XAxisNumericFormats: Story = {
 						format: "decimal",
 						options: { truncateAt: "thousand" },
 					}}
-					yAxisFormat={{ format: "integer", options: {} }}
+					yAxisFormat="integer"
 					showLegend={false}
 				/>
 			</Box>
