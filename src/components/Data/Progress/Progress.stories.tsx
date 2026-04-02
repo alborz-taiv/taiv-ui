@@ -186,12 +186,3 @@ export const WithTooltips: Story = {
     />
   ),
 };
-
-export const Width: Story = {
-  args: {
-    value: 45,
-    scale: 'xl',
-    cornerRadius: 'xl',
-    width: '24rem',
-  },
-};
