@@ -33,7 +33,7 @@ export const PieChart: React.FC<PieChartProps> = ({
   showLegend = true,
   innerRadius = 80,
   outerRadius = 100,
-  paddingAngle = 5,
+  paddingAngle = 0,
   format = 'percentage',
   loading = false,
   centerContent,

@@ -21,7 +21,7 @@ const meta: Meta<PieChartProps> = {
 		docs: {
 			description: {
 				component:
-					"A pie / donut chart built on Recharts. Slice values are formatted with `getChartFormatter` via the `format` prop (key of `numberFormats`). Optional `centerContent` renders a label in the donut hole. Use a parent with a definite height when `height` is `'100%'` (see stories).",
+					"A pie / donut chart built on Recharts. Slice values are formatted with `getChartFormatter` via the `format` prop (key of `numberFormats`). Optional `centerContent` renders a label in the donut hole. `paddingAngle` defaults to `0` (no gap between slices); increase it for separation. Use a parent with a definite height when `height` is `'100%'` (see stories).",
 			},
 		},
 	},
@@ -70,8 +70,9 @@ const meta: Meta<PieChartProps> = {
 		},
 		paddingAngle: {
 			control: { type: "number" },
-			description: "Gap between slices in degrees",
-			table: { defaultValue: { summary: "5" } },
+			description:
+				"Angular gap between slices in degrees (Recharts `Pie` `paddingAngle`). Default **0** — slices touch; increase for visible separation.",
+			table: { defaultValue: { summary: "0" } },
 		},
 		centerContent: {
 			control: { type: "object" },
@@ -171,6 +172,15 @@ export const DonutGeometry: Story = {
 };
 
 export const PaddingAngle: Story = {
+	name: "Slice gaps (paddingAngle)",
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"The component defaults **`paddingAngle` to `0`**, so slices meet with no gap. Pass a positive value (degrees) when you want separation between segments—the background shows through in those gaps.",
+			},
+		},
+	},
 	render: () => (
 		<Group
 			align="flex-start"
@@ -191,7 +201,7 @@ export const PaddingAngle: Story = {
 					data={samplePieData}
 					format="percentage"
 					height="100%"
-					paddingAngle={12}
+					paddingAngle={8}
 					showLegend={false}
 				/>
 			</Box>

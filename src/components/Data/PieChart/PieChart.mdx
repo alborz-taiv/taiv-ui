@@ -129,7 +129,11 @@ Slice values in the tooltip (and **`centerContent.value`** when shown) use **`fo
 
 **`outerRadius`** — Outer radius in px (default **100**).
 
-**`paddingAngle`** — Gap between slices in degrees (default **5**).
+**`paddingAngle`** — Angular gap between slices in **degrees** (Recharts `Pie` `paddingAngle`). Default **`0`**: slices touch edge-to-edge. Set a value such as **`8`** when you want visible separation (the chart background shows in the gaps).
+
+```tsx
+<PieChart data={slices} format="percentage" paddingAngle={8} />
+```
 
 <Story of={PieChartStories.DonutGeometry} />
 
