@@ -5,28 +5,35 @@ import * as ProgressStories from './Progress.stories';
 
 # Progress
 
+[View Mantine Docs](https://v6.mantine.dev/core/progress/)
+
 The Progress component is a horizontal progress bar built on Mantine's Progress. Pass **`data`** as **`ProgressDataPoint[]`** for multiple segments; a single **`value`** / **`color`** bar also works for loading, completion, and other cases.
 
-### Import
+Use Progress for loading states, completion percentages, step indicators, and dashboards where **`data`** splits the bar into comparable segments (for example share of totals). Pair bars with labels or nearby text when the percentage alone would be unclear.
+
+### 📦 Import
 
 ```tsx
 import { Progress } from '@taiv/ui';
 ```
 
-### Basic usage
+### ✍️ Basic Usage
 
 <Canvas of={ProgressStories.Default} />
 <Controls of={ProgressStories.Default} />
 
 ---
 
-### Fill levels
+
+### 📊 Fill levels
+
+Single-bar mode: **`value`** is the filled percent (0–100).
 
 <Story of={ProgressStories.Values} />
 
----
+## <br />
 
-### Scale
+### 📐 Scale
 
 Bar height uses **`scale`**: preset strings **`xs`** through **`xl`**.
 
@@ -49,33 +56,48 @@ Bar height uses **`scale`**: preset strings **`xs`** through **`xl`**.
 
 ## <br />
 
-### Corner radius
+### 🔘 Corner radius
 
-Rounding uses **`cornerRadius`**: the same **`xs`–`xl`** preset strings.
+**`cornerRadius`** uses the same **`xs`**–**`xl`** presets to round the ends of the bar. Match it to neighboring cards and buttons for a cohesive look.
 
 <Story of={ProgressStories.CornerRadius} />
 
----
+<table>
+  <thead>
+    <tr>
+      <th>Preset</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>xs–xl</td>
+      <td>String scale for corner radius</td>
+    </tr>
+  </tbody>
+</table>
 
-### Striped
+## <br />
 
-Striped bars use the **`striped`** prop.
+### 💈 Striped
+
+Enable **`striped`** for a striped fill pattern (useful for indeterminate-style emphasis).
 
 <Story of={ProgressStories.Striped} />
 
 ---
 
-### Label (whole bar)
+### 🏷️ Label (single bar)
 
-The **`label`** prop shows text inside the bar (single-bar mode).
+**`label`** renders text inside the bar when you are in single-bar mode (no **`data`**). Handy for showing the exact percentage or status.
 
 <Story of={ProgressStories.WithLabel} />
 
----
+## <br />
 
-### Data (multi-segment)
+### 📑 Multi-segment data
 
-Use **`data`** for multiple segments. Each item is a **`ProgressDataPoint`**: **`value`**, **`color`**, optional **`label`**, optional **`tooltip`** (string). When **`data`** is set, single-bar **`value`** fill behavior is replaced by segment values.
+Pass **`data`** as an array of **`ProgressDataPoint`** objects to render multiple segments. Each point needs **`value`** and **`color`**; **`label`** and **`tooltip`** are optional. When **`data`** is present, single-bar **`value`** is not used for the fill.
 
 <Story of={ProgressStories.Data} />
 
@@ -83,41 +105,52 @@ Use **`data`** for multiple segments. Each item is a **`ProgressDataPoint`**: **
   <thead>
     <tr>
       <th>Field</th>
-      <th>Required</th>
       <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>value</td>
-      <td>yes</td>
+      <td>
+        <code>value</code>{' '}
+        <span style={{ color: '#C10007' }}>*</span>
+      </td>
       <td>Segment share, 0–100 (percent of the bar)</td>
     </tr>
     <tr>
-      <td>color</td>
-      <td>yes</td>
-      <td>Color token for the segment</td>
+      <td>
+        <code>color</code>{' '}
+        <span style={{ color: '#C10007' }}>*</span>
+      </td>
+      <td>Fill color—prefer Taiv palette values from <code>constants/colors</code></td>
     </tr>
     <tr>
-      <td>label</td>
-      <td>no</td>
+      <td>
+        <code>label</code>
+      </td>
       <td>Text inside that segment</td>
     </tr>
     <tr>
-      <td>tooltip</td>
-      <td>no</td>
-      <td>Tooltip copy for the segment (string)</td>
+      <td>
+        <code>tooltip</code>
+      </td>
+      <td>Tooltip string when hovering the segment</td>
     </tr>
   </tbody>
 </table>
 
-Hover a segment to see **`tooltip`** on each segment.
+### 💬 Segment tooltips
+
+Set **`tooltip`** on each **`ProgressDataPoint`** to explain segments on hover—helpful for breakdowns and analytics.
 
 <Story of={ProgressStories.WithTooltips} />
 
----
+## <br />
 
-### Sizing summary
+### 📏 Width & layout
+
+**`width`** controls how wide the component’s root is (for example **`100%`** in a flex child, or **`24rem`** for a fixed column). **`scale`** still controls bar thickness; **`width`** controls horizontal space.
+
+<Story of={ProgressStories.Width} />
 
 <table>
   <thead>
@@ -129,28 +162,28 @@ Hover a segment to see **`tooltip`** on each segment.
   <tbody>
     <tr>
       <td>scale</td>
-      <td>Bar height preset (xs–xl)</td>
+      <td>String scale for bar height</td>
     </tr>
     <tr>
       <td>cornerRadius</td>
-      <td>Corner rounding preset (xs–xl)</td>
+      <td>String scale for corner radius</td>
     </tr>
     <tr>
       <td>width</td>
-      <td>Root width (rem string or %); **`scale`** sets bar thickness separately</td>
+      <td>Root width (rem string or %); independent of <strong>scale</strong></td>
     </tr>
   </tbody>
 </table>
 
----
+## <br />
 
-### Best practices
+### 💡 Best Practices
 
 1. **Data**: Prefer **`data`** when the UI should show multiple parts (each point is a **`ProgressDataPoint`**). A single **`value`** / **`color`** is enough whenever one continuous fill fits.
 
-2. **Scale and corners**: Use **`scale`** for bar height and **`cornerRadius`** for how rounded the track is. Both use the same **`xs`**–**`xl`** preset strings.
+2. **Scale and corners**: Use **`scale`** for bar height and **`cornerRadius`** for how rounded the bar is. Both use the same **`xs`**–**`xl`** preset strings.
 
-3. **Width and layout**: Let the **parent** set width when you can—**`100%`** in a flex or grid column often behaves best. Use **`width`** in **rem** or **`%`** when the layout needs a fixed track width.
+3. **Width and layout**: Let the **parent** set width when you can—**`100%`** in a flex or grid column often behaves best. Use **`width`** in **rem** or **`%`** when the layout needs a fixed bar width.
 
 4. **Labels and context**: Add a **`label`** or nearby text when the bar alone would be ambiguous (percent, step, or status). With **`data`**, use **`label`** and **`tooltip`** on each **`ProgressDataPoint`** so segments stay readable.
 

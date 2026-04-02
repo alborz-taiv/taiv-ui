@@ -22,19 +22,19 @@ export const Progress = ({
   data,
   scale = 'md',
   cornerRadius = 'md',
-  ...rest
+  ...props
 }: ProgressProps) => {
   const hasData = Array.isArray(data) && data.length > 0;
   const resolvedColor = !hasData && color === undefined ? primary[200] : color;
 
   return (
     <MantineProgress
-      {...rest}
+      {...props}
       radius={cornerRadius}
       size={scale}
       sections={data}
       color={resolvedColor}
-      style={width !== undefined ? { width } : undefined}
+      style={width ? { width} : undefined}
     />
   );
 };
