@@ -28,4 +28,11 @@ export type ChartSeries = {
 export type ChartFormatOptions = {
   truncateAt?: keyof typeof truncation;
   decimalPlaces?: number;
-}
+};
+
+export type ProgressDataPoint = {
+  value: number;
+  color: string;
+  label?: string;
+  tooltip?: string;
+};

@@ -7,6 +7,7 @@ export { PieChartCard } from './Data/Cards/PieChartCard/PieChartCard';
 export { RemovableItemList } from './Data/RemovableItemList/RemovableItemList';
 export { StatsCard } from './Data/Cards/StatsCard/StatsCard';
 export { StatsBadge } from './Data/StatsBadge/StatsBadge';
+export { Progress } from './Data/Progress/Progress';
 
 //Info
 export { Modal } from './Info/Modals/Modal/Modal';
