@@ -47,12 +47,15 @@ const meta: Meta<typeof Progress> = {
       control: { type: 'range', min: 0, max: 100, step: 1 },
       description:
         'Filled percent (single-bar mode; use `data` for multiple segments)',
-      table: { type: { summary: 'number' } },
+      table: { type: { summary: 'number' }, defaultValue: { summary: '0' } },
     },
     color: {
       control: { type: 'text' },
       description: 'Theme color of the bar (single-bar mode)',
-      table: { type: { summary: 'string' } },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'primary[200]' },
+      },
     },
     width: {
       control: { type: 'text' },
