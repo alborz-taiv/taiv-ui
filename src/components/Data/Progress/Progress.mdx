@@ -1,0 +1,165 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as ProgressStories from './Progress.stories';
+
+<Meta of={ProgressStories} />
+
+# Progress
+
+The Progress component is a horizontal progress bar built on Mantine's Progress. Pass **`data`** as **`ProgressDataPoint[]`** for multiple segments; a single **`value`** / **`color`** bar also works for loading, completion, and other cases.
+
+### Import
+
+```tsx
+import { Progress } from '@taiv/ui';
+```
+
+### Basic usage
+
+<Canvas of={ProgressStories.Default} />
+<Controls of={ProgressStories.Default} />
+
+---
+
+### Fill levels
+
+<Story of={ProgressStories.Values} />
+
+---
+
+### Scale
+
+Bar height uses **`scale`**: preset strings **`xs`** through **`xl`**.
+
+<Story of={ProgressStories.Scale} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Preset</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>xs–xl</td>
+      <td>String scale for bar height</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### Corner radius
+
+Rounding uses **`cornerRadius`**: the same **`xs`–`xl`** preset strings.
+
+<Story of={ProgressStories.CornerRadius} />
+
+---
+
+### Striped
+
+Striped bars use the **`striped`** prop.
+
+<Story of={ProgressStories.Striped} />
+
+---
+
+### Label (whole bar)
+
+The **`label`** prop shows text inside the bar (single-bar mode).
+
+<Story of={ProgressStories.WithLabel} />
+
+---
+
+### Data (multi-segment)
+
+Use **`data`** for multiple segments. Each item is a **`ProgressDataPoint`**: **`value`**, **`color`**, optional **`label`**, optional **`tooltip`** (string). When **`data`** is set, single-bar **`value`** fill behavior is replaced by segment values.
+
+<Story of={ProgressStories.Data} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>value</td>
+      <td>yes</td>
+      <td>Segment share, 0–100 (percent of the bar)</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>yes</td>
+      <td>Color token for the segment</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>no</td>
+      <td>Text inside that segment</td>
+    </tr>
+    <tr>
+      <td>tooltip</td>
+      <td>no</td>
+      <td>Tooltip copy for the segment (string)</td>
+    </tr>
+  </tbody>
+</table>
+
+Hover a segment to see **`tooltip`** on each segment.
+
+<Story of={ProgressStories.WithTooltips} />
+
+---
+
+### Width
+
+**`width`** controls how wide the bar’s root is. Use **`100%`** to fill the parent, or a length in **rem** (e.g. **`24rem`**) or a percentage when you need a fixed width.
+
+<Story of={ProgressStories.Width} />
+
+---
+
+### Sizing summary
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>scale</td>
+      <td>Bar height preset (xs–xl)</td>
+    </tr>
+    <tr>
+      <td>cornerRadius</td>
+      <td>Corner rounding preset (xs–xl)</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>Root width (rem string or %); **`scale`** sets bar thickness separately</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+### Best practices
+
+1. **Data**: Prefer **`data`** when the UI should show multiple parts (each point is a **`ProgressDataPoint`**). A single **`value`** / **`color`** is enough whenever one continuous fill fits.
+
+2. **Scale and corners**: Use **`scale`** for bar height and **`cornerRadius`** for how rounded the track is. Both use the same **`xs`**–**`xl`** preset strings.
+
+3. **Width and layout**: Let the **parent** set width when you can—**`100%`** in a flex or grid column often behaves best. Use **`width`** in **rem** or **`%`** when the layout needs a fixed track width.
+
+4. **Labels and context**: Add a **`label`** or nearby text when the bar alone would be ambiguous (percent, step, or status). With **`data`**, use **`label`** and **`tooltip`** on each **`ProgressDataPoint`** so segments stay readable.
+
+5. **Colors**: Try to use **Taiv palette values** from **`constants/colors`** for **`color`** and each point’s **`color`**. In multi-segment bars, pick values that stay visually distinct next to one another. For a simple single fill, omitting **`color`** and **`data`** yields **primary 200**.
