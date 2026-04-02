@@ -108,7 +108,7 @@ export const PieChart: React.FC<PieChartProps> = ({
   return (
     <>
       {loading || !hasData ? (
-        <Center style={{ backgroundColor: neutral[25], borderRadius: '8px' }}>
+        <Center style={{ height, backgroundColor: neutral[25], borderRadius: '8px' }}>
           <Text variant="label" color={neutral[200]}>
             {loading ? 'Loading...' : 'No data available'}
           </Text>
