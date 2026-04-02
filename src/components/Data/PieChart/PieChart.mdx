@@ -137,37 +137,6 @@ Slice values in the tooltip (and **`centerContent.value`** when shown) use **`fo
 
 ## <br />
 
-### 🏷️ Slice labels (`key`)
-
-**`key`** is the categorical label for each slice. It drives the Recharts **Legend** text and the tooltip title. It is separate from **`format`**, which only affects how **`value`** is formatted.
-
-<Story of={PieChartStories.Default} />
-
-<table>
-  <thead>
-    <tr>
-      <th>Role</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Legend</td>
-      <td>One entry per slice, labeled by <code>key</code></td>
-    </tr>
-    <tr>
-      <td>Tooltip</td>
-      <td>Title row shows the hovered slice <code>key</code></td>
-    </tr>
-    <tr>
-      <td>Value line</td>
-      <td>Formatted with <code>format</code> via <code>getChartFormatter</code></td>
-    </tr>
-  </tbody>
-</table>
-
-## <br />
-
 ### 🧩 Other props
 
 **Legend** — Set `showLegend={false}` to hide the legend (e.g. compact layouts).
@@ -181,57 +150,6 @@ Slice values in the tooltip (and **`centerContent.value`** when shown) use **`fo
 **Empty data** — When **`data`** has no slices, the component shows “No data available”.
 
 <Story of={PieChartStories.Empty} />
-
-## <br />
-
-### 🛠️ `PieChartProps` summary
-
-<table>
-  <thead>
-    <tr>
-      <th>Prop</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>data</code></td>
-      <td><code>PieDataPoint[]</code> — <code>key</code>, <code>value</code>, optional <code>color</code></td>
-    </tr>
-    <tr>
-      <td><code>format</code></td>
-      <td><code>keyof typeof numberFormats</code>; default <code>'percentage'</code></td>
-    </tr>
-    <tr>
-      <td><code>height</code></td>
-      <td>Wrapper height (default <code>'100%'</code> — parent should define height; empty/loading use the same height)</td>
-    </tr>
-    <tr>
-      <td><code>showLegend</code></td>
-      <td>Default <code>true</code></td>
-    </tr>
-    <tr>
-      <td><code>innerRadius</code></td>
-      <td>Default <code>80</code></td>
-    </tr>
-    <tr>
-      <td><code>outerRadius</code></td>
-      <td>Default <code>100</code></td>
-    </tr>
-    <tr>
-      <td><code>paddingAngle</code></td>
-      <td>Default <code>5</code></td>
-    </tr>
-    <tr>
-      <td><code>loading</code></td>
-      <td>Default <code>false</code></td>
-    </tr>
-    <tr>
-      <td><code>centerContent</code></td>
-      <td>Optional <code>{'{ title, subtitle?, value? }'}</code></td>
-    </tr>
-  </tbody>
-</table>
 
 ## <br />
 
