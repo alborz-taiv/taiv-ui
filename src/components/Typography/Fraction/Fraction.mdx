@@ -1,7 +1,32 @@
-import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Typography/Fraction" />
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Fraction } from './Fraction';
+import * as FractionStories from './Fraction.stories';
+
+<Meta of={FractionStories} />
 
 # Fraction
 
-This component exists - but docs are still under construction 🚧
+The Fraction component renders a numerator and denominator separated by a horizontal line. It extends <a href="/?path=/docs/components-typography-text--docs">Text</a> styling, so it supports the same variants and overrides.
+
+### 📦 Import
+
+```tsx
+import { Fraction } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={FractionStories.Default} />
+<Controls of={FractionStories.Default} />
+
+---
+
+<br />
+
+### ✏️ Custom Overrides
+
+Variants cover the most common use cases, but when a mockup calls for something different, you can override `size`, `weight`, and `color` independently.
+<Canvas of={FractionStories.CustomOverrides} />
+
+See the <a href="/?path=/docs/design-fonts--docs">font constants</a> for more detail on these values.

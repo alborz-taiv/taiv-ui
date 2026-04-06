@@ -1,9 +1,122 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Tabs } from './Tabs';
+import * as TabsStories from './Tabs.stories';
 
-<Meta title="Layouts/Tabs" />
+<Meta of={TabsStories} />
 
 # Tabs
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/core/tabs/)
 
-In the meantime, you can potentially reference the [Mantine v6 Tabs documentation](https://v6.mantine.dev/core/tabs/).
+Organizes content into sections that users can switch between.
+
+### 📦 Import
+```tsx
+import { Tabs } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={TabsStories.Default} />
+<Controls of={TabsStories.Default} />
+
+The Tabs component is 'composed' of `Tabs.List`, `Tabs.Tab`, and `Tabs.Panel`. These are linked via a matching `value` prop.
+
+```tsx
+<Tabs defaultValue="overview">
+  // First, we list the tabs that are available to use
+  <Tabs.List>
+    <Tabs.Tab value="overview">Overview</Tabs.Tab>
+    <Tabs.Tab value="details">Details</Tabs.Tab>
+    <Tabs.Tab value="settings">Settings</Tabs.Tab>
+  </Tabs.List>
+
+  // Then, we define the content for each tab
+  <Tabs.Panel value="overview">...</Tabs.Panel>
+  <Tabs.Panel value="details">...</Tabs.Panel>
+  <Tabs.Panel value="settings">...</Tabs.Panel>
+</Tabs>
+```
+
+---
+
+### 🎨 Variants
+
+There are a couple of different variants we have available for Tabs. We currently only support horizontal tabs (not vertical).
+
+<Story of={TabsStories.Variants} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>Appearance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>default</td>
+      <td>Tabs have an indicator underneath</td>
+    </tr>
+    <tr>
+      <td>outline</td>
+      <td>Tabs have rounded borders</td>
+    </tr>
+    <tr>
+      <td>pills</td>
+      <td>Tabs are rounded and filled</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🛠️ Custom Styles
+
+In the event that you need to custom style your Tabs, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
+
+<Canvas of={TabsStories.CustomStyling} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-Tabs-root</td>
+      <td>Root tabs container</td>
+    </tr>
+    <tr>
+      <td>list</td>
+      <td>.mantine-Tabs-list</td>
+      <td>Tab list container</td>
+    </tr>
+    <tr>
+      <td>tab</td>
+      <td>.mantine-Tabs-tab</td>
+      <td>Individual tab element</td>
+    </tr>
+    <tr>
+      <td>tabLabel</td>
+      <td>.mantine-Tabs-tabLabel</td>
+      <td>Tab label text</td>
+    </tr>
+    <tr>
+      <td>panel</td>
+      <td>.mantine-Tabs-panel</td>
+      <td>Tab panel content</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Tips & Best Practices
+
+1. **Use semantic tab values.** Name values by content (`"settings"`, `"profile"`), not position (`"tab1"`, `"tab2"`).
+2. **We support keyboard navigation.** You can use the left and right arrows to navigate between tabs.

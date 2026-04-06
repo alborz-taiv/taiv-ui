@@ -1,9 +1,64 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Loader } from './Loader';
+import * as LoaderStories from './Loader.stories';
 
-<Meta title="Layouts/Loader" />
+<Meta of={LoaderStories} />
 
 # Loader
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/core/loader/)
 
-In the meantime, you can potentially reference the [Mantine v6 Loader documentation](https://v6.mantine.dev/core/loader/).
+Displays a loading spinner to indicate that an async operation is in progress - loading, saving, etc.
+
+### 📦 Import
+```tsx
+import { Loader } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={LoaderStories.Default} />
+<Controls of={LoaderStories.Default} />
+
+Loaders are conditionally rendered via a boolean state. For example:
+
+```tsx
+const [isLoadingData, setIsLoadingData] = useState(true);
+
+{isLoadingData && <Loader />}
+```
+
+---
+
+### Loading Data
+
+When we are "loading data" onto a page, a common pattern we use apart from [Skeleton](?path=/docs/components-layout-skeleton--docs) is to render a loader along with some informational text.
+
+<Story of={LoaderStories.CenteredLoader} />
+```tsx
+<Center>
+  <Stack align="center">
+    <Loader />
+    <Text variant="subtle">Loading data...</Text>
+  </Stack>
+</Center>
+```
+
+---
+
+### Button Loading
+
+[Button](?path=/docs/components-inputs-buttons-button--docs) has a built-in `loading` prop - you should never need to render a `<Loader>` manually next to a button.
+
+<Story of={LoaderStories.ButtonLoading} />
+```tsx
+<Button loading={isSaving}>Save</Button>
+```
+
+---
+
+### Loading Notifications
+
+Using the [Notification System](?path=/docs/hooks-notifications--docs), we can show a loading notification while an async operation is in progress. This is useful when the user might scroll away during the operation.
+
+<Story of={LoaderStories.LoadingNotification} />

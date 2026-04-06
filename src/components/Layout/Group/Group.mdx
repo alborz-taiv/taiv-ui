@@ -1,9 +1,47 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Group } from './Group';
+import * as GroupStories from './Group.stories';
 
-<Meta title="Layouts/Group" />
+<Meta of={GroupStories} />
 
 # Group
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/core/group/)
 
-In the meantime, you can potentially reference the [Mantine v6 Group documentation](https://v6.mantine.dev/core/group/).
+A horizontal flex container that arranges children in a row. This is an essential building block for creating layouts, along with [Stack](?path=/docs/components-layout-stack--docs) and [Center](?path=/docs/components-layout-center--docs).
+
+### 📦 Import
+```tsx
+import { Group } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={GroupStories.Default} />
+<Controls of={GroupStories.Default} />
+
+---
+
+### Positioning Within Groups
+
+`position` controls horizontal alignment. `align` controls vertical alignment, but using a [Stack](?path=/docs/components-layout-stack--docs) for that is generally preferred.
+
+<Story of={GroupStories.PositionAlign} />
+
+## <br />
+
+### Grow Items
+
+`grow` makes children expand to fill available space. 
+
+This is useful for many use cases, like button groups or mobile layouts where filling the screen is important.
+
+<Story of={GroupStories.GrowItems} />
+
+## <br />
+
+### Wrap Items
+
+`noWrap` prevents items from wrapping to new lines. This is useful if things need to be restricted to a single line.
+
+<Story of={GroupStories.WrapItems} />

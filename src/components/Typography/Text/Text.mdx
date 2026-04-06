@@ -1,9 +1,119 @@
-import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Typography/Text" />
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Text } from './Text';
+import { Box } from '../../Layout/Box/Box';
+import * as TextStories from './Text.stories';
+
+<Meta of={TextStories} />
 
 # Text
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/core/text/)
 
-In the meantime, you can potentially reference the [Mantine v6 Text documentation](https://v6.mantine.dev/core/text/).
+The Text component utilizes the variants we have from our <a href="/?path=/docs/design-fonts--docs">font constants</a>, and allows us to easily render text onscreen using our design system.
+
+We use anywhere we need body text rendered, whether that's in a UI component or just on a page in general. For headers, see <a href="/?path=/docs/components-typography-title--docs">Title</a> instead.
+
+### 📦 Import
+
+```tsx
+import { Text } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={TextStories.Default} />
+<Controls of={TextStories.Default} />
+
+---
+
+### 🎨 Variants
+
+We have a set of semantic variants that are all `<p>` tags under the hood, for common use cases.
+
+<Box py="2rem">
+  <Story of={TextStories.Variants} />
+</Box>
+
+<table>
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>Font Size</th>
+      <th>Font Weight</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>body</td>
+      <td>md (14px)</td>
+      <td>Medium (500)</td>
+      <td>Default for most content</td>
+    </tr>
+    <tr>
+      <td>subtle</td>
+      <td>md (14px)</td>
+      <td>Regular (400)</td>
+      <td>Empty states, secondary info</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>sm (12px)</td>
+      <td>Medium (500)</td>
+      <td>Component labels, small descriptions</td>
+    </tr>
+    <tr>
+      <td>caption</td>
+      <td>xs (10px)</td>
+      <td>Regular (400)</td>
+      <td>Smallest text, fine print</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### ✏️ Custom Size, Weight, and Color
+
+If a mockup calls for text not covered by the variants, you can override `size`, `weight`, and `color` independently. 
+
+<Canvas of={TextStories.CustomOverrides} />
+
+See the <a href="/?path=/docs/design-fonts--docs">font constants</a> for more detail on these values are.
+
+## <br />
+
+### ✨ Text Formatting
+
+Within your Text children, you can also wrap parts of the text in HTML tags to format those differently.
+
+<Canvas of={TextStories.WithFormatting} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Tag</th>
+      <th>Renders as</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&lt;b&gt;</code></td>
+      <td>Bold text</td>
+    </tr>
+    <tr>
+      <td><code>&lt;i&gt;</code></td>
+      <td>Italic text</td>
+    </tr>
+    <tr>
+      <td><code>&lt;code&gt;</code></td>
+      <td>Inline code</td>
+    </tr>
+    <tr>
+      <td><code>&lt;sub&gt;</code></td>
+      <td>Subscript, for formulas</td>
+    </tr>
+  </tbody>
+</table>
+

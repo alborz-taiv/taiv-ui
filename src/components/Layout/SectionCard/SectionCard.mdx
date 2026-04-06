@@ -1,7 +1,40 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { SectionCard } from './SectionCard';
+import * as SectionCardStories from './SectionCard.stories';
 
-<Meta title="Layouts/SectionCard" />
+<Meta of={SectionCardStories} />
 
 # SectionCard
 
-This component exists - but docs are still under construction 🚧
+An extension of [Card](?path=/docs/components-layout-card--docs) that adds a built-in title and subtitle at the top.
+
+### 📦 Import
+
+```tsx
+import { SectionCard } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={SectionCardStories.Default} />
+<Controls of={SectionCardStories.Default} />
+
+---
+
+### Animation
+
+Enable a lifting hover animation with the `animate` prop. This is especially useful when the card represents an "item" of some kind.
+
+<Story of={SectionCardStories.Animation} />
+
+## <br />
+
+### Pairing With Grids
+
+Cards built with SectionCard pair naturally with [AutoGrid](?path=/docs/components-layout-autogrid--docs):
+
+<Story of={SectionCardStories.WithAutoGrid} />
+
+You can also use [Grid](?path=/docs/components-layout-grid--docs) for more complex layouts.
+
+## <br />

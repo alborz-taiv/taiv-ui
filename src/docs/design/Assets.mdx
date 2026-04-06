@@ -1,7 +1,49 @@
+import React from 'react';
 import { Meta } from '@storybook/addon-docs/blocks';
+import { Group } from '../../components/Layout/Group/Group';
+import { Stack } from '../../components/Layout/Stack/Stack';
+import { Tooltip } from '../../components/Info/Tooltips/Tooltip/Tooltip';
+import { Title } from '../../components/Typography/Title/Title';
+import { brand } from '../../assets/assets';
+import { useCopy } from '../../hooks/useCopy';
+import { UnstyledButton } from '../../components/Inputs/Buttons/UnstyledButton/UnstyledButton';
+
+export const AssetCard = ({ src, filename }) => {
+  const { copy } = useCopy();
+  return (
+    <Tooltip text={filename}>
+      <UnstyledButton
+        onClick={() => copy({ value: filename })}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 120,
+          height: 80,
+        }}
+      >
+        <img src={src} alt={filename} style={{ maxWidth: '100%', maxHeight: '100%' }} />
+      </UnstyledButton>
+    </Tooltip>
+  );
+};
 
 <Meta title="Design/Assets" />
 
 # Assets
 
-This component exists - but docs are still under construction 🚧
+A collection of assets used across Taiv products. Hover over any asset to see its filename.
+
+<br />
+
+## Brand Assets
+
+<Group gap="xl" style={{ flexWrap: 'wrap' }}>
+  {brand.map(({ src, filename }) => (
+    <AssetCard key={filename} src={src} filename={filename} />
+  ))}
+</Group>
+
+## Placeholder Images
+
+None currently.

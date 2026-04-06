@@ -1,7 +1,30 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as CopyStories from './Copy.stories';
 
-<Meta title="Hooks/Copy" />   
+<Meta of={CopyStories} />
 
 # Copy
 
-This hook exists - but docs are still under construction 🚧
+[View Mantine Docs](https://mantine.dev/hooks/use-clipboard/)
+
+We have a hook system integrated into our web apps for copying values to the clipboard with an onscreen notification.
+
+### 📦 Import
+```tsx
+// Top-level import
+import { useCopy } from '@taiv/ui/hooks';
+
+// Somewhere in the component
+const { copy } = useCopy();
+```
+
+### ✍️ Basic Usage
+
+You can call the copy function anywhere - the most common place is probably within event handlers, for example, Button onClick:
+
+```tsx
+<Button onClick={() => copy({ value: '12345' })}>Copy Value</Button>
+```
+
+<Canvas of={CopyStories.Default} />
+<Controls of={CopyStories.Default} />

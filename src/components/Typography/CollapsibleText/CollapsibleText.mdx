@@ -1,10 +1,13 @@
 import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
 import { CollapsibleText } from './CollapsibleText';
 import * as CollapsibleTextStories from './CollapsibleText.stories';
+import { AIGeneratedBanner } from '../../../docs/AIGeneratedBanner';
 
 <Meta of={CollapsibleTextStories} />
 
 # CollapsibleText
+
+<AIGeneratedBanner />
 
 CollapsibleText shows a single line of text with a caret; clicking toggles the expanded state and reveals optional children. Use it for simple expand/collapse toggles (e.g. "Show more", inline details). The label uses body text styling by default; use the `variant` prop to match your hierarchy. For a two-line header (title + subtext), use CollapsibleTitle instead.
 
