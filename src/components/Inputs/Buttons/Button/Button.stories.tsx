@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
 import { Button } from './Button';
 import { Group } from '../../../Layout/Group/Group';
+import { IconPlus, IconEdit, IconTrash, IconDeviceFloppy } from '@tabler/icons-react';
+
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Inputs/Buttons/Button',
@@ -49,15 +52,29 @@ const meta: Meta<typeof Button> = {
       },
     },
     leftIcon: {
-      control: { type: 'text' },
-      description: 'Adds icon before button label',
+      control: { type: 'select' },
+      options: ['Plus', 'Edit', 'Trash', 'Save'],
+      mapping: {
+        Plus: <IconPlus size={16} />,
+        Edit: <IconEdit size={16}/>,
+        Trash: <IconTrash size={16}/>,
+        Save: <IconDeviceFloppy size={16}/>,
+      },
+      description: 'Adds icon before button label - you can import any icon',
       table: {
         type: { summary: 'ReactNode' },
       },
     },
     rightIcon: {
-      control: { type: 'text' },
-      description: 'Adds icon after button label',
+      control: { type: 'select' },
+      options: ['Plus', 'Edit', 'Trash', 'Save'],
+      mapping: {
+        Plus: <IconPlus size={16} />,
+        Edit: <IconEdit size={16}/>,
+        Trash: <IconTrash size={16}/>,
+        Save: <IconDeviceFloppy size={16}/>,
+      },
+      description: 'Adds icon after button label - you can import any icon',
       table: {
         type: { summary: 'ReactNode' },
       },
@@ -92,6 +109,14 @@ const meta: Meta<typeof Button> = {
         type: { summary: '() => void' },
       },
     },
+    toggled: {
+      control: { type: 'boolean' },
+      description: 'Toggles the button state',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      }
+    },
     shadow: {
       control: { type: 'boolean' },
       description: 'Adds shadow to the button',
@@ -115,9 +140,10 @@ export const Default: Story = {
     loading: false,
     fullWidth: false,
     shadow: false,
+    toggled: false,
     leftIcon: undefined,
     rightIcon: undefined,
-    styles: {},
+    styles: undefined,
     onClick: () => {},
   },
 };
@@ -151,45 +177,37 @@ export const States: Story = {
       <Button>Normal</Button>
       <Button disabled>Disabled</Button>
       <Button loading>Loading</Button>
-      <Button shadow>Shadow</Button>
     </Group>
   ),
 };
 
+export const TogglingButtons: Story = {
+  render: () => {
+    const [toggled, setToggled] = useState(false);
+
+    return (
+      <Group gap="1.6rem">
+        <Button toggled={toggled} onClick={() => setToggled(!toggled)}>
+          {toggled ? 'On' : 'Off'}
+        </Button>
+      </Group>
+    );
+  },
+};
+
 export const CustomStyles: Story = {
-  render: () => (
-    <Group gap="1.6rem">
-      <Button
-        styles={{
-          root: {
-            borderRadius: '20px',
-            background: 'linear-gradient(45deg, #ff6b6b, #ee5a24)',
-            '&:hover': {
-              background: 'linear-gradient(45deg, #ee5a24, #ff6b6b)',
-            },
-          },
-        }}
-      >
-        Gradient Button
-      </Button>
-      <Button
-        styles={{
-          root: {
-            borderRadius: '0px',
-            background: 'black',
-            color: 'white',
-            border: '2px solid white',
-            '&:hover': {
-              background: 'white',
-              color: 'black',
-            },
-          },
-        }}
-      >
-        Custom Border
-      </Button>
-    </Group>
-  ),
+  args: {
+    children: 'Custom Button',
+    styles: {
+      root: {
+        borderRadius: '20px',
+        background: 'linear-gradient(45deg, #ff6b6b, #ee5a24)',
+        '&:hover': {
+          background: 'linear-gradient(45deg, #ee5a24, #ff6b6b)',
+        },
+      },
+    },
+  },
   parameters: {
     docs: {
       source: {
@@ -204,24 +222,7 @@ export const CustomStyles: Story = {
     },
   }}
 >
-  Gradient Button
-</Button>
-
-<Button
-  styles={{
-    root: {
-      borderRadius: '0px',
-      background: 'black',
-      color: 'white',
-      border: '2px solid white',
-      '&:hover': {
-        background: 'white',
-        color: 'black',
-      },
-    },
-  }}
->
-  Custom Border
+  Custom Button
 </Button>`,
       },
     },

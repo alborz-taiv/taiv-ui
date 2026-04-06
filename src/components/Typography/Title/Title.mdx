@@ -1,9 +1,92 @@
-import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Typography/Title" />
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Title } from './Title';
+import * as TitleStories from './Title.stories';
+
+<Meta of={TitleStories} />
 
 # Title
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/core/title/)
 
-In the meantime, you can potentially reference the [Mantine v6 Title documentation](https://v6.mantine.dev/core/title/).
+The Title component utilizes the variants we have from our <a href="/?path=/docs/design-fonts--docs">font constants</a>, and renders semantic HTML heading elements using our design system.
+
+We use it anywhere we need a heading or subheading — page titles, section headers, card headers, etc. For body text, see <a href="/?path=/docs/components-typography-text--docs">Text</a> instead.
+
+### 📦 Import
+
+```tsx
+import { Title } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={TitleStories.Default} />
+<Controls of={TitleStories.Default} />
+
+---
+
+### 🎨 Variants
+
+We have a set of semantic variants that each map to an HTML heading element (`h1`–`h6`).
+
+<Canvas of={TitleStories.Variants} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>HTML Tag</th>
+      <th>Font Size</th>
+      <th>Font Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>header</td>
+      <td>h1</td>
+      <td>3xl (28px)</td>
+      <td>Bold (700)</td>
+    </tr>
+    <tr>
+      <td>sectionHeader</td>
+      <td>h2</td>
+      <td>xl (20px)</td>
+      <td>Semibold (600)</td>
+    </tr>
+    <tr>
+      <td>subheader</td>
+      <td>h3</td>
+      <td>lg (16px)</td>
+      <td>Medium (500)</td>
+    </tr>
+    <tr>
+      <td>sectionSubheader</td>
+      <td>h4</td>
+      <td>md (14px)</td>
+      <td>Regular (400)</td>
+    </tr>
+    <tr>
+      <td>cardHeader</td>
+      <td>h5</td>
+      <td>lg (16px)</td>
+      <td>Semibold (600)</td>
+    </tr>
+    <tr>
+      <td>cardSubheader</td>
+      <td>h6</td>
+      <td>md (14px)</td>
+      <td>Regular (400)</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### ✏️ Custom Size, Weight, and Color
+
+If a mockup calls for a title not covered by the variants, you can override `size`, `weight`, and `color` independently.
+
+<Canvas of={TitleStories.CustomOverrides} />
+
+See the <a href="/?path=/docs/design-fonts--docs">font constants</a> for more detail on these values.

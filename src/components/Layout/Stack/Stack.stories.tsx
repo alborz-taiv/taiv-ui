@@ -1,52 +1,66 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Stack } from './Stack';
-import { Box } from '../Box/Box';
+import { Text } from '../../Typography/Text/Text';
+import { Card } from '../Card/Card';
+import { Group } from '../Group/Group';
+import { neutral } from '../../../constants/colors';
 
 const meta: Meta<typeof Stack> = {
-  title: 'Layouts/Stack',
+  title: 'Components/Layout/Stack',
   component: Stack,
+  parameters: {
+    layout: 'centered',
+  },
   argTypes: {
-    align: {
-      control: { type: 'select' },
-      options: ['stretch', 'center', 'flex-start', 'flex-end', 'baseline'],
-      description: 'align-items CSS property',
+    children: {
+      control: false,
+      description: 'Content to arrange within the stack',
       table: {
-        type: { summary: 'AlignItems' },
+        type: { summary: 'ReactNode' },
       },
     },
     justify: {
       control: { type: 'select' },
       options: ['flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly'],
-      description: 'justify-content CSS property',
+      description: 'Vertical alignment',
       table: {
-        type: { summary: 'JustifyContent' },
+        type: { summary: "'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'" },
+        defaultValue: { summary: "'flex-start'" },
       },
     },
-    spacing: {
+    align: {
       control: { type: 'select' },
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'Gap between items',
+      options: ['stretch', 'center', 'flex-start', 'flex-end', 'baseline'],
+      description: 'Horizontal alignment',
       table: {
-        type: { summary: 'number | "xs" | "sm" | "md" | "lg" | "xl"' },
-      },
-    },
-    width: {
-      control: { type: 'text' },
-      description: 'Custom width',
-      table: {
-        type: { summary: 'string | number' },
+        type: { summary: "'stretch' | 'center' | 'flex-start' | 'flex-end' | 'baseline'" },
+        defaultValue: { summary: "'stretch'" },
       },
     },
     gap: {
       control: { type: 'text' },
-      description: 'Custom gap value',
+      description: 'Spacing between items',
       table: {
         type: { summary: 'string' },
       },
     },
+    width: {
+      control: { type: 'text' },
+      description: 'Custom width override',
+      table: {
+        type: { summary: 'string | number' },
+      },
+    },
+    h: {
+      control: { type: 'text' },
+      description: 'Custom height override',
+      table: {
+        type: { summary: 'string | number' },
+      },
+    },
     styles: {
       control: { type: 'object' },
-      description: 'Custom styles object',
+      description: 'Custom styles override - use this sparingly',
       table: {
         type: { summary: 'Record<string, CSSObject>' },
       },
@@ -57,195 +71,52 @@ const meta: Meta<typeof Stack> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const SampleBox = ({ children, color = 'blue' }: { children: React.ReactNode; color?: string }) => (
-  <Box
-    sx={(theme) => ({
-      backgroundColor: theme.colors[color][0],
-      color: theme.colors[color][9],
-      padding: theme.spacing.md,
-      borderRadius: theme.radius.md,
-      border: `1px solid ${theme.colors[color][3]}`,
-      textAlign: 'center',
-      minHeight: '60px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    })}
-  >
-    {children}
-  </Box>
+const SampleCard = ({ label }: { label: string }) => (
+  <Card>
+    <Text weight="bold">{label}</Text>
+  </Card>
 );
 
 export const Default: Story = {
   args: {
-    align: 'stretch',
-    justify: 'flex-start',
-    spacing: 'md',
+    children: undefined,
+    justify: undefined,
+    align: undefined,
+    gap: undefined,
+    h: undefined,
+    width: undefined,
+    styles: undefined,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '500px', backgroundColor: neutral[25], padding: '2rem' }}>
+        <Story />
+      </div>
+    ),
+  ],
   render: (args) => (
     <Stack {...args}>
-      <SampleBox color="blue">Item 1</SampleBox>
-      <SampleBox color="green">Item 2</SampleBox>
-      <SampleBox color="orange">Item 3</SampleBox>
+      <SampleCard label="Item 1" />
+      <SampleCard label="Item 2" />
+      <SampleCard label="Item 3" />
     </Stack>
   ),
 };
 
-export const JustifyAlignContent: Story = {
+export const PositionContent: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
-      <div>
-        <h4>Justify Content</h4>
-        <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}>
-          <div>
-            <strong>flex-start</strong>
-            <Stack justify="flex-start" spacing="sm" style={{ height: '200px', border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
+    <Stack gap="xl" justify="flex-start">
+      <Group>
+        {(['flex-start', 'center', 'space-between'] as const).map((val) => (
+          <div key={val}>
+            <Text variant="label" mb="sm"><code>justify={'"' + val + '"'}</code></Text>
+            <Stack justify={val} spacing="sm" sx={{ height: '200px', width: '200px', border: `1px dashed ${neutral[50]}`, padding: '0.5rem' }}>
+              <SampleCard label="A" />
+              <SampleCard label="B" />
             </Stack>
           </div>
-          <div>
-            <strong>center</strong>
-            <Stack justify="center" spacing="sm" style={{ height: '200px', border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-            </Stack>
-          </div>
-          <div>
-            <strong>space-between</strong>
-            <Stack justify="space-between" spacing="sm" style={{ height: '200px', border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-            </Stack>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h4>Align Items</h4>
-        <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}>
-          <div>
-            <strong>stretch</strong>
-            <Stack align="stretch" spacing="sm" style={{ height: '200px', border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-            </Stack>
-          </div>
-          <div>
-            <strong>center</strong>
-            <Stack align="center" spacing="sm" style={{ height: '200px', border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-            </Stack>
-          </div>
-          <div>
-            <strong>flex-end</strong>
-            <Stack align="flex-end" spacing="sm" style={{ height: '200px', border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-            </Stack>
-          </div>
-        </div>
-      </div>
-    </div>
+        ))}
+      </Group>
+    </Stack>
   ),
-  parameters: {
-    docs: {
-      source: {
-        code: `<Stack justify="center" align="center" spacing="md">
-  <Box>Centered Item 1</Box>
-  <Box>Centered Item 2</Box>
-</Stack>`,
-      },
-    },
-  },
-};
-
-export const SpacingGap: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: '2rem', flexDirection: 'column' }}>
-      <div>
-        <h4>Theme Spacing</h4>
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          <div>
-            <strong>xs</strong>
-            <Stack spacing="xs" style={{ border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-              <SampleBox color="orange">Item 3</SampleBox>
-            </Stack>
-          </div>
-          <div>
-            <strong>sm</strong>
-            <Stack spacing="sm" style={{ border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-              <SampleBox color="orange">Item 3</SampleBox>
-            </Stack>
-          </div>
-          <div>
-            <strong>md</strong>
-            <Stack spacing="md" style={{ border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-              <SampleBox color="orange">Item 3</SampleBox>
-            </Stack>
-          </div>
-          <div>
-            <strong>lg</strong>
-            <Stack spacing="lg" style={{ border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-              <SampleBox color="orange">Item 3</SampleBox>
-            </Stack>
-          </div>
-          <div>
-            <strong>xl</strong>
-            <Stack spacing="xl" style={{ border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-              <SampleBox color="orange">Item 3</SampleBox>
-            </Stack>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h4>Custom Gap</h4>
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          <div>
-            <strong>2rem</strong>
-            <Stack gap="2rem" style={{ border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-              <SampleBox color="orange">Item 3</SampleBox>
-            </Stack>
-          </div>
-          <div>
-            <strong>20px</strong>
-            <Stack gap="20px" style={{ border: '1px solid #ccc', padding: '1rem' }}>
-              <SampleBox color="blue">Item 1</SampleBox>
-              <SampleBox color="green">Item 2</SampleBox>
-              <SampleBox color="orange">Item 3</SampleBox>
-            </Stack>
-          </div>
-        </div>
-      </div>
-    </div>
-  ),
-  parameters: {
-    docs: {
-      source: {
-        code: `<Stack spacing="lg">
-  <Box>Item 1</Box>
-  <Box>Item 2</Box>
-  <Box>Item 3</Box>
-</Stack>
-
-<Stack gap="2rem">
-  <Box>Item 1</Box>
-  <Box>Item 2</Box>
-  <Box>Item 3</Box>
-</Stack>`,
-      },
-    },
-  },
 };

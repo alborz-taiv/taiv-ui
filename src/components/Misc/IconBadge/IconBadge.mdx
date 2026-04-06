@@ -1,7 +1,25 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as IconBadgeStories from './IconBadge.stories';
 
-<Meta title="Components/Misc/IconBadge" />
+<Meta of={IconBadgeStories} />
 
 # IconBadge
 
-This component exists - but docs are still under construction 🚧
+The IconBadge component is just a colored icon wrapped in a circular background. It can be sized dynamically to fit any use case.
+
+### 📦 Import
+
+```tsx
+import { IconBadge } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={IconBadgeStories.Default} />
+<Controls of={IconBadgeStories.Default} />
+
+In the icon that you pass in, use `size` to dynamically control the size of the badge as a whole:
+
+```tsx
+<IconBadge icon={<IconHeart size={20} />}/>
+```

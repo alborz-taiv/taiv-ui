@@ -1,0 +1,33 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as ModalStories from './Modal.stories';
+
+<Meta of={ModalStories} />
+
+# Modal
+
+[View Mantine Docs](https://v6.mantine.dev/core/modal/)
+
+The base modal component. Pass any content as `children` to build custom modal layouts.
+
+This should only be used for specific, more complex use cases. We already have <a href="/?path=/docs/components-info-modals-formmodal--docs">FormModal</a> for simple forms, and <a href="/?path=/docs/hooks-modals--docs">Modal Hooks</a> for confirmations/info dialogs.
+
+### 📦 Import
+
+```tsx
+import { Modal } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+You will need to manage the open/close state of the modal yourself:
+
+```tsx
+const [opened, setOpened] = useState(false);
+
+<Modal opened={opened} onClose={() => setOpened(false)} title="Modal Title">
+  <Text>Your content here</Text>
+</Modal>
+```
+
+<Canvas of={ModalStories.Default} />
+<Controls of={ModalStories.Default} />

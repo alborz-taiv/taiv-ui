@@ -1,9 +1,66 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Card } from './Card';
+import * as CardStories from './Card.stories';
 
-<Meta title="Layouts/Card" />
+<Meta of={CardStories} />
 
 # Card
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/core/card/)
 
-In the meantime, you can potentially reference the [Mantine v6 Card documentation](https://v6.mantine.dev/core/card/).
+A flexible container for grouping related content into one space. You can use this as-is or extend it for other components.
+
+We also have other cards available - for example, see [SectionCard](?path=/docs/components-layout-sectioncard--docs).
+
+### 📦 Import
+```tsx
+import { Card } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={CardStories.Default} />
+<Controls of={CardStories.Default} />
+
+---
+
+### Animation
+
+Enable a lifting hover animation with the `animate` prop. This is especially useful when the card represents an "item" of some kind.
+
+<Story of={CardStories.Animation} />
+
+## <br />
+
+### Pairing With Grids
+
+Cards built with Card pair naturally with [AutoGrid](?path=/docs/components-layout-autogrid--docs):
+
+<Story of={CardStories.WithAutoGrid} />
+
+You can also use [Grid](?path=/docs/components-layout-grid--docs) for more complex layouts.
+
+## <br />
+
+### 🛠️ Custom Styling
+
+You can override the default styles of the card's root element with the `sx` prop. Use this sparingly.
+
+<Canvas of={CardStories.CustomStyling} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-Card-root</td>
+      <td>Root card element</td>
+    </tr>
+  </tbody>
+</table>
