@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { AIGeneratedBanner } from '../../docs/AIGeneratedBanner';
 
 <Meta title="Getting Started/Frontend Standards" />
 
@@ -97,8 +98,13 @@ We don't have any strict requirements for this as of now, but in the future we'l
 
 If you add a new component, please add a new story to the component's Storybook page. You do **not** need to put a serious amount of effort into this.
 
-Your doc can be a one-shot ChatGPT/Cursor/Claude prompt until we have more time to write a proper one. For now, just leave a note in that Storybook page's description that flags
-the doc as AI generated (so that other devs arent' confused if there's a mistake).
+Your doc can be a one-shot ChatGPT/Cursor/Claude prompt until we have more time to write a proper one. For now, just render this banner at the top of the page:
+
+<AIGeneratedBanner />
+
+```tsx
+<AIGeneratedBanner />
+```
 
 ---
 
