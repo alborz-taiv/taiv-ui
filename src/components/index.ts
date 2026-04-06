@@ -29,6 +29,7 @@ export { Checkbox } from './Inputs/Controls/Checkbox/Checkbox';
 export { Radio } from './Inputs/Controls/Radio/Radio';
 export { RadioList } from './Inputs/Controls/RadioList/RadioList';
 export { Toggle } from './Inputs/Controls/Toggle/Toggle';
+export { SegmentedControl } from './Inputs/Controls/SegmentedControl/SegmentedControl';
 export { FontSelect } from './Inputs/Dropdowns/FontSelect/FontSelect';
 export { MultiSelect } from './Inputs/Dropdowns/MultiSelect/MultiSelect';
 export { CascadingSelect } from './Inputs/Dropdowns/CascadingSelect/CascadingSelect';
