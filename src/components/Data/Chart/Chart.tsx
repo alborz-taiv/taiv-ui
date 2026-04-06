@@ -9,21 +9,49 @@ import { formats } from '../../../constants/data';
 import { getChartFormatter } from '../../../utils/charts';
 import { fontStyle } from '../../../constants/font';
 import { primary, neutral } from '../../../constants/colors';
-import { ChartSeries } from '../../../types/types';
+import { ChartFormatOptions, ChartSeries } from '../../../types/types';
 import { createStyles } from '@mantine/core';
+
+type ChartFormat = keyof typeof formats;
+
+interface AxisFormat {
+  format: ChartFormat;
+  options?: ChartFormatOptions;
+}
 
 export interface ChartProps {
   series: ChartSeries[];
-  yAxisFormat?: keyof typeof formats;
-  xAxisFormat?: keyof typeof formats;
+  yAxisFormat?: ChartFormat | AxisFormat;
+  xAxisFormat?: ChartFormat | AxisFormat;
   height?: string | number;
   showLegend?: boolean;
   loading?: boolean;
 }
 
-export const Chart: React.FC<ChartProps> = ({ series, yAxisFormat = 'decimal', xAxisFormat = 'string', showLegend = true, loading = false, height = '100%' }) => {
-  const formatYAxisValue: (value: number | string) => string = getChartFormatter(yAxisFormat);
-  const formatXAxisValue: (value: number | string) => string = getChartFormatter(xAxisFormat);
+export const Chart: React.FC<ChartProps> = ({
+  series,
+  yAxisFormat = 'decimal',
+  xAxisFormat = 'string',
+  showLegend = true,
+  loading = false,
+  height = '100%'
+}) => {
+  const parseFormat = (format: ChartFormat | AxisFormat): AxisFormat => {
+    if (typeof format === 'string') {
+      return { format: format, options: {} };
+    }
+
+    return {
+      format: format.format,
+      options: format.options ?? {}
+    };
+  };
+
+  const parsedYAxis = parseFormat(yAxisFormat);
+  const parsedXAxis = parseFormat(xAxisFormat);
+
+  const formatYAxisValue: (value: number | string) => string = getChartFormatter(parsedYAxis.format, parsedYAxis.options);
+  const formatXAxisValue: (value: number | string) => string = getChartFormatter(parsedXAxis.format, parsedXAxis.options);
   const hasData = series.some((s) => s.data.length > 0);
 
   // Transform our ChartSeries array to match the Recharts format (just a singular data array keyed by the series name)
