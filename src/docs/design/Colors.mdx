@@ -1,7 +1,98 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as ColorStories from './Colors.stories';
 
-<Meta title="Design/Colors" />
+<Meta of={ColorStories} />
 
 # Colors
 
-This component exists - but docs are still under construction 🚧
+Our color system is split into two categories: **semantic** and **primitive**.
+
+
+#### Semantic
+
+Semantic tokens are **functional aliases** (primary, error, success, etc.) used for UI elements, actions, and states — anything that would be affected by theme changes. This will be 90% of use cases.
+
+#### Primitive
+
+Primitive colors are the **raw palettes** (blue, red, purple, etc.) used for purely aesthetic purposes like decorative icons or backgrounds — anything we want hardcoded to a specific color.
+
+Semantics map to primitives - in the future, we can create multiple themes outside of our default one by easily just remapping the semantics to different colors.
+
+<br />
+
+### 📦 Import
+```tsx
+import {primary, red, colors } from '@taiv/ui/constants';
+
+// Use a semantic color
+primary[200]  
+
+// Use a primitive color
+red[100]  
+
+// Using a unified import
+colors.primary[200]
+```
+
+---
+
+### 🎨 Current Theme
+
+The current semantic → primitive mapping. These aliases can be remapped to create different themes.
+
+<Story of={ColorStories.TaivLight} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Semantic</th>
+      <th>Currently Maps To</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>primary</td>
+      <td>blue</td>
+      <td>Primary actions, links, focus states</td>
+    </tr>
+    <tr>
+      <td>neutral</td>
+      <td>gray</td>
+      <td>Text, borders, backgrounds</td>
+    </tr>
+    <tr>
+      <td>success</td>
+      <td>green</td>
+      <td>Confirmations, positive feedback</td>
+    </tr>
+    <tr>
+      <td>warning</td>
+      <td>yellow</td>
+      <td>Caution states, alerts</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>red</td>
+      <td>Errors, destructive actions</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🖌️ Additional Primitives
+
+Extra primitive palettes for decorative use. These are not tied to any semantic token.
+
+<Story of={ColorStories.AdditionalPrimitives} />
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Default to semantic tokens.** Use `primary`, `error`, etc. for anything functional. This keeps the codebase theme-ready.
+
+2. **Primitives are for decoration only.** If the color communicates meaning (success, error, action), use semantic. If it's purely visual (a purple icon, a salmon background), use primitive.
+
+3. **Reference by shade, not raw hex.** Always use `primary[200]` over `#00A6F4`.

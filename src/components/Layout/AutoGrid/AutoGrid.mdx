@@ -1,7 +1,59 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { AutoGrid } from './AutoGrid';
+import * as AutoGridStories from './AutoGrid.stories';
 
-<Meta title="Layouts/AutoGrid" />
+<Meta of={AutoGridStories} />
 
 # AutoGrid
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/core/simple-grid/)
+
+A responsive equal-width grid layout. Useful for displaying items in a grid equally, for example a set of slides or cards.
+
+### 📦 Import
+```tsx
+import { AutoGrid } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={AutoGridStories.Default} />
+<Controls of={AutoGridStories.Default} />
+
+---
+
+### 📱 Optimizing for Different Screens
+
+Remember that you can use our screen size hooks to adjust the # of columns in a row dynamically based on the viewport.
+
+```tsx
+import { useMobile } from '@taiv/ui/hooks';
+
+const isMobile = useMobile();
+
+<AutoGrid cols={isMobile ? 1 : 3}>
+  ...
+</AutoGrid>
+```
+
+This is a simple example, but you can extend this for more complex layouts with a little more effort. See [Responsive Design](?path=/docs/hooks-responsive-design--docs) for info.
+
+
+### 🛠️ Custom Styling
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-SimpleGrid-root</td>
+      <td>Root grid element</td>
+    </tr>
+  </tbody>
+</table>

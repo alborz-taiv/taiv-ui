@@ -1,9 +1,93 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Grid } from './Grid';
+import * as GridStories from './Grid.stories';
 
-<Meta title="Layouts/Grid" />
+<Meta of={GridStories} />
 
 # Grid
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/core/grid/)
 
-In the meantime, you can potentially reference the [Mantine v6 Grid documentation](https://v6.mantine.dev/core/grid/).
+A 12-column flexbox grid. Useful for grid layouts with uneven columns, that require a little more control than [AutoGrid](?path=/docs/components-layout-autogrid--docs).
+
+### 📦 Import
+
+```tsx
+import { Grid } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={GridStories.Default} />
+<Controls of={GridStories.Default} />
+
+---
+
+### 🏗️ Building Grid Layouts
+
+A Grid is composed of multiple `Grid.Col` elements. Each `Grid.Col` takes a `span` prop from (1-12).
+
+```tsx
+<Grid>
+  <Grid.Col span={8}>
+    <Card1/>
+  </Grid.Col>
+  <Grid.Col span={4}>
+    <Card2/>
+  </Grid.Col>
+</Grid>
+```
+
+In one "row", the columns we want in it will add up to 12. For example, see how this layout is affected by different column spans:
+
+<Story of={GridStories.ColumnSpans} />
+
+You only need one parent Grid element, regardless of how many rows you have. The column spans will automatically be distributed across the available width.
+
+<br />
+
+---
+
+<br />
+
+### 📱 Optimizing for Different Screens
+
+Remember that you can use our screen size hooks to adjust column widths dynamically based on the viewport.
+
+```tsx
+import { useMobile } from '@taiv/ui/hooks';
+
+const isMobile = useMobile();
+
+<Grid>
+  <Grid.Col span={isMobile ? 12 : 8}>
+    <MainContent />
+  </Grid.Col>
+  <Grid.Col span={isMobile ? 12 : 4}>
+    <Sidebar />
+  </Grid.Col>
+</Grid>
+```
+
+This is a simple example, but you can extend this for more complex layouts with a little more effort. See [Responsive Design](?path=/docs/hooks-responsive-design--docs) for info.
+
+---
+
+### 🛠️ Custom Styling
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-Grid-root</td>
+      <td>Root grid element</td>
+    </tr>
+  </tbody>
+</table>

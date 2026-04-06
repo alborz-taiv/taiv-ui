@@ -1,9 +1,8 @@
 import React from 'react';
 import { Divider } from '../../Layout/Divider/Divider';
 import { textStyle } from '../../../constants';
-import { Text } from '../Text/Text';
+import { Text, TextProps } from '../Text/Text';
 import { Stack } from '../../Layout/Stack/Stack';
-import { TextProps } from '../Text/Text';
 
 interface FractionProps extends Omit<TextProps, 'children' | 'styles'> {
   numerator: React.ReactNode;
