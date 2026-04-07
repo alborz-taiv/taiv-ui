@@ -70,3 +70,5 @@ export { Transition } from './Misc/Transition/Transition';
 export { IconBadge } from './Misc/IconBadge/IconBadge';
 export { LoadingOverlay } from './Misc/LoadingOverlay/LoadingOverlay';
 export { Skeleton } from './Misc/Skeleton/Skeleton';
+export { Stepper, StepperStep } from './Misc/Stepper/Stepper';
+export type { StepperStepProps } from './Misc/Stepper/Stepper';
