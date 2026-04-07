@@ -1,5 +1,5 @@
 import { Stepper as MantineStepper, type StepperProps as MantineStepperProps } from '@mantine/core';
-import { primary } from '../../../constants/colors';
+import { primary, neutral, white } from '../../../constants/colors';
 import { fontBase } from '../../../constants/font';
 import { StepperStep, type StepperStepProps } from './StepperStep';
 
@@ -45,6 +45,17 @@ export const Stepper = ({
     stepBody: {
       ...fontBase,
       color: color
+    },
+    stepIcon: {
+      '&:not([data-progress]):not([data-completed])': {
+        backgroundColor: white,
+        color: neutral[100],
+        borderColor: neutral[100],
+      },
+      '&[data-progress]': {
+        backgroundColor: white,
+        color: color,
+      }
     },
     stepLabel: {
       ...fontBase,

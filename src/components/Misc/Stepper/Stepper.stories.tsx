@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   IconCheck,
   IconCreditCard,
@@ -61,7 +61,7 @@ const meta: Meta<typeof Stepper> = {
     },
     color: {
       control: { type: 'text' },
-      description: 'Color of the active components',
+      description: 'Color of the active components and labels',
       table: { type: { summary: 'string' }, defaultValue: { summary: "primary[200]" } },
     },
     size: {
@@ -98,6 +98,9 @@ type Story = StoryObj<typeof meta>;
 
 const interactiveRender: Story['render'] = (args) => {
   const [activeStep, setActiveStep] = useState(args.activeStep);
+  useEffect(() => {
+    setActiveStep(args.activeStep);
+  }, [args.activeStep]);
 
   return (
     <Stepper
