@@ -1,4 +1,6 @@
+export const black = '#000000';
 export const white = '#FFFFFF';
+
 export const gray = {
   25: '#F8FAFC',
   50: '#EDEDED',

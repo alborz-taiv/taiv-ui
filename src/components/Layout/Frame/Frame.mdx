@@ -1,7 +1,27 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Frame } from './Frame';
+import * as FrameStories from './Frame.stories.tsx';
 
-<Meta title="Layouts/Frame" />
+<Meta of={FrameStories} />
 
 # Frame
 
-This component exists - but docs are still under construction 🚧
+A section container with a title and optional subtitle header. Useful for 'sectioning' content into logical groups.
+
+### 📦 Import
+```tsx
+import { Frame } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={FrameStories.Default} />
+<Controls of={FrameStories.Default} />
+
+---
+
+### 📋 Use Cases
+
+Frame works as a generic section wrapper — for forms, lists, stats, or any grouped content.
+
+<Story of={FrameStories.UseCases} />

@@ -26,7 +26,7 @@ class FormulaParser {
   private current = 0;
 
   parse(expression: string): ParsedNode[] {
-    const hasMathOperators = /[*\/+\-()=]/.test(expression);
+    const hasMathOperators = /[*\/+\-()=_]/.test(expression);
     if (!hasMathOperators) {
       return [{ type: 'default', value: expression }];
     }
@@ -183,7 +183,7 @@ const FormulaRenderer: React.FC<{
             return (
               <Text key={index} weight={weight} size={size} color={color}>
                 {node.value}
-                <sub>{`(${node.subscript})`}</sub>
+                <sub>{node.subscript}</sub>
               </Text>
             );
 

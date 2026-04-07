@@ -1,7 +1,183 @@
+import React from 'react';
 import { Meta } from '@storybook/addon-docs/blocks';
+import { Group } from '../../components/Layout/Group/Group';
+import { Stack } from '../../components/Layout/Stack/Stack';
+import { Tooltip } from '../../components/Info/Tooltips/Tooltip/Tooltip';
+import { Title } from '../../components/Typography/Title/Title';
+import { Text } from '../../components/Typography/Text/Text';
+import { Center } from '../../components/Layout/Center/Center';
+import { actions, controls, feedback, navigation } from '../../assets/icons';
+import { SearchBar } from '../../components/Inputs/TextInputs/SearchBar/SearchBar';
+import { UnstyledButton } from '../../components/Inputs/Buttons/UnstyledButton/UnstyledButton';
+import { neutral } from '../../constants/colors';
+import { useCopy } from '../../hooks/useCopy';
+
+export const IconSection = ({ icons }) => {
+  const { copy } = useCopy();
+  const raw = icons.map((i) => {
+    if (!Array.isArray(i)) return { icon: i, color: null, label: null };
+    if (i.length === 3) return { icon: i[0], color: i[1], label: i[2] };
+    return { icon: i[0], color: null, label: i[1] };
+  });
+  const tabler = raw.filter((i) => typeof i.icon !== 'string');
+  const fa = raw.filter((i) => typeof i.icon === 'string');
+  return (
+    <Stack pt="lg" gap="2.4rem">
+      {tabler.length > 0 && (
+        <Group gap="xl" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
+          {tabler.map(({ icon: Icon, color, label }) => {
+            const rawName = Icon.displayName || Icon.name || '';
+            const iconName = rawName.startsWith('Icon') ? rawName : `Icon${rawName}`;
+            return (
+              <Tooltip
+                key={iconName}
+                text={
+                  <Stack gap="0.125rem" align="center">
+                    <span>{iconName}</span>
+                    {label && <span style={{ opacity: 0.6 }}>{label}</span>}
+                  </Stack>
+                }
+              >
+                <UnstyledButton
+                  onClick={() => copy({ value: `<${iconName} />` })}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: 4,
+                  }}
+                >
+                  <Icon size={28} color={color || neutral[300]} style={{ pointerEvents: 'none' }} />
+                </UnstyledButton>
+              </Tooltip>
+            );
+          })}
+        </Group>
+      )}
+      {fa.length > 0 && (
+        <Group gap="2.4rem" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
+          {fa.map(({ icon: className, color, label }) => (
+            <Tooltip
+              key={className}
+              text={
+                <Stack gap="0.125rem" align="center">
+                  <span>{className}</span>
+                  {label && <span style={{ opacity: 0.6 }}>{label}</span>}
+                </Stack>
+              }
+            >
+              <UnstyledButton
+                type="button"
+                onClick={() => copy({ value: `<i className="${className}" />` })}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: 4,
+                }}
+              >
+                <i
+                  className={className}
+                  style={{ fontSize: '24px', color: color || neutral[300], pointerEvents: 'none' }}
+                />
+              </UnstyledButton>
+            </Tooltip>
+          ))}
+        </Group>
+      )}
+    </Stack>
+  );
+};
+
+export const IconsPage = () => {
+  const [search, setSearch] = React.useState('');
+  const q = search.toLowerCase();
+
+  const filterIcons = (icons) =>
+    icons.filter((i) => {
+      const [icon, label] = Array.isArray(i) ? i : [i, null];
+      const name = typeof icon === 'string' ? icon : '';
+      return name.toLowerCase().includes(q) || (label && label.toLowerCase().includes(q));
+    });
+
+  const sections = [
+    { title: 'Button Actions', subtitle: 'Icons to accompany or represent actions that can be triggered by a button click', icons: actions },
+    { title: 'Inputs & Controls', subtitle: 'Icons to accompany other UI elements, i.e. table controls or inputs', icons: controls },
+    { title: 'Feedback & Information', subtitle: 'Informational icons that appear in modals, notifications, and badges', icons: feedback },
+    { title: 'Navigation', subtitle: 'Icons that represent different pages.', icons: navigation },
+  ];
+
+  const hasResults = sections.some(({ icons }) => filterIcons(icons).length > 0);
+
+  return (
+    <Stack gap="32px" width="100%" sx={{ minHeight: '600px' }}>
+      <SearchBar
+        value={search}
+        onChange={(e) => setSearch(e.currentTarget.value)}
+        placeholder="Search icons..."
+        fullWidth
+      />
+      {hasResults ? (
+        sections.map(({ title, subtitle, icons }) => {
+          const filtered = filterIcons(icons);
+          if (filtered.length === 0) return null;
+          return (
+            <Stack key={title}>
+              <Stack gap="0.25rem">
+                <Title variant="cardHeader">{title}</Title>
+                <Title variant="cardSubheader">{subtitle}</Title>
+              </Stack>
+              <IconSection icons={filtered} />
+            </Stack>
+          );
+        })
+      ) : (
+        <Center>
+          <Text variant="subtle">No icons found matching your search.</Text>
+        </Center>
+      )}
+    </Stack>
+  );
+};
 
 <Meta title="Design/Icons" />
 
 # Icons
 
-This component exists - but docs are still under construction 🚧
+This page consists of a collection of all the icons we use in the Taiv Web UI. Although we can always import icons, the goal is to provide a standardized set of icons.
+Icons come from two sources: [Tabler Icons](https://tabler.io/icons) and [Font Awesome 6.7.2](https://fontawesome.com/icons).
+
+<br />
+
+## ✍️ Basic Usage
+<br />
+
+#### From Tabler
+Import it and render it like any other React component.
+You can override the color and size of the component using props.
+
+```tsx
+import { IconFlask } from '@tabler/icons-react';
+import { primary } from '../../constants/colors';
+
+<IconFlask size={24} color={primary[200]} />
+```
+
+#### From Font Awesome
+Use the class name on an `<i>` element.
+You can override the color and size of the component using inline styles.
+
+```tsx
+import { primary } from '../../constants/colors';
+
+<i className="fas fa-cog" />
+<i className="fas fa-circle-question" style={{ color: primary[200], fontSize: '2rem' }} />
+```
+
+## 📦 Icons
+Hover an icon to see its name (and notes where applicable); click it to copy the Tabler component name or Font Awesome class string to the clipboard.
+
+This might fall out of date eventually but the goal is for our UI designers be able to upkeep this page with icons that are currently in use.
+<br />
+
+<IconsPage />

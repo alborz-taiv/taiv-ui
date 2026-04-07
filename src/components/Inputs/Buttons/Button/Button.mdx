@@ -108,7 +108,7 @@ Three preset sizes are available to match different UI contexts and design requi
 
 ### 🔄 States
 
-The Button component supports different states to provide visual feedback and control user interaction.
+The Button component supports different states to provide visual feedback and control user interaction. These states are important contributors to a good UX.
 
 <Story of={ButtonStories.States} />
 
@@ -136,13 +136,24 @@ The Button component supports different states to provide visual feedback and co
       <td>Processing state</td>
       <td>Async operations, form submissions</td>
     </tr>
-    <tr>
-      <td>Shadow</td>
-      <td>Elevated appearance with drop shadow</td>
-      <td>Floating actions, emphasis on important buttons</td>
-    </tr>
   </tbody>
 </table>
+
+## <br />
+
+### 🔀 Toggle Buttons
+
+Use the `toggled` prop to visually indicate an on/off state. Manage the toggle state externally with `useState` and flip it via `onClick`.
+
+<Story of={ButtonStories.TogglingButtons} />
+
+```tsx
+const [toggled, setToggled] = useState(false);
+
+<Button toggled={toggled} onClick={() => setToggled(!toggled)}>
+  {toggled ? 'On' : 'Off'}
+</Button>
+```
 
 ## <br />
 
@@ -150,7 +161,7 @@ The Button component supports different states to provide visual feedback and co
 
 In the event that you need to custom style your Button, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
 
-<Story of={ButtonStories.CustomStyles} />
+<Canvas of={ButtonStories.CustomStyles} />
 
 <table>
   <thead>
@@ -209,6 +220,6 @@ In the event that you need to custom style your Button, you can provide styles v
 
 3. **Don't type out defaults**: The default style is primary, and default size is medium. For most buttons, you can ignore these props to simplify code.
 
-4. **Icon placement**: Use leftIcon for actions, rightIcon for navigation.
+4. **Icon placement**: Use leftIcon for actions (i.e. add, edit, delete), rightIcon for navigation (i.e. next).
 
-5. **Full width**: You can use fullWidth typically when you have a form/modal that uses a consistent grid layout.
+5. **Full width**: You can use fullWidth typically when you have a form/modal that uses a consistent grid layout, or for mobile designs.

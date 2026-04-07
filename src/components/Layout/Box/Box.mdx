@@ -8,61 +8,62 @@ import * as BoxStories from './Box.stories';
 
 [View Mantine Docs](https://v6.mantine.dev/core/box/)
 
-The Box component is a polymorphic component that allows you to add inline styles to any element or component with the `sx` prop. It extends Mantine v6's BoxProps while providing a flexible foundation for custom styling and layout.
+Box is an empty `<div>` that can be used to wrap elements and apply styling.
+
+Before reaching for it, ask whether [Stack](?path=/docs/components-layout-stack--docs), [Group](?path=/docs/components-layout-group--docs),
+[Center](?path=/docs/components-layout-center--docs), [UnstyledButton](?path=/docs/components-inputs-buttons-unstyledbutton--docs), or [Card](?path=/docs/components-layout-card--docs)
+are better suited for what you're building.
+
+If nothing else fits, Box is essentially the replacement for a generic `<div>`.
+
 
 ### 📦 Import
-
 ```tsx
 import { Box } from '@taiv/ui';
 ```
 
 ### ✍️ Basic Usage
 
-<Canvas of={BoxStories.Default} height={900} />
+<Canvas of={BoxStories.Default} />
 <Controls of={BoxStories.Default} />
 
 ---
 
-### 📐 Alignment
+### 📁 Box as a Grouping Element
 
-Different alignment options for Box content.
+Generally, there are 2 cases where Box is useful. The first is when you need to group elements together within another layout component - Box is preferred over using `<div>`. 
 
-<Story of={BoxStories.Alignment} />
+```tsx
+// This stack is comprised of 1 stack (header) and 1 box (content). This is preferred over using a fragment or a div.
+<Stack>
+  <Stack gap="0">
+    <Title variant="header">Header</Title>
+    <Title variant="subheader">Subheader</Title>
+  </Stack>
+  <Box>
+    {children}
+  </Box>
+</Stack>
+```
 
-The component supports various text alignment options for flexible content positioning.
+---
 
-## <br />
+### 🎨 Box as a Styled Container
 
-### 🛠️ Custom Styling
+The second use case for Box is for one-off "container" type things. `sx` gives you direct CSS access to style a Box.
 
-The Box component provides complete control over styling through the `sx` prop. You can use any CSS properties and Mantine theme values:
+<Story of={BoxStories.BoxStyling} />
+```tsx
+<Box
+  sx={{
+    backgroundColor: neutral[50],
+    padding: '2.4rem',
+    borderRadius: '8px',
+    border: `1px dashed ${neutral[100]}`,
+  }}
+>
+  <Text weight="semibold">This is a box that has been styled</Text>
+</Box>
+```
 
-<Story of={BoxStories.CustomStyling} />
-
-The `sx` prop accepts:
-
-- **CSS properties**: Any valid CSS property
-- **Theme values**: Access to Mantine theme colors, spacing, shadows, etc.
-- **Pseudo-selectors**: `:hover`, `:focus`, `:active`, etc.
-- **Media queries**: Responsive design support
-- **Nested selectors**: Complex styling scenarios
-
-## <br />
-
-### 💡 Best Practices
-
-1. **Leverage theme values**: Use theme colors, spacing, and other values for consistent design.
-
-2. **Keep styles organized**: Use the `sx` prop for component-specific styles and external CSS for global styles.
-
-3. **Use semantic elements**: Use the `component` prop to render appropriate HTML elements for better accessibility.
-
-4. **Responsive design**: Use theme breakpoints and media queries for responsive layouts.
-
-5. **Performance**: Avoid complex calculations in the `sx` prop for better performance.
-
-6. **Consistent spacing**: Use theme spacing values for consistent layouts.
-
-7. **Color schemes**: Consider both light and dark themes when using theme colors.
-
-8. **Component composition**: Use Box as a building block for more complex components.
+Again, you should only need this sparingly, for example in creating new components. If you are using Box directly on a page, it might be a sign that we either have a more relevant component somewhere or that we need to create a new one.
