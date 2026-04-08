@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Stepper as MantineStepper } from '@mantine/core';
 import { IconCheck, IconPackage } from '@tabler/icons-react';
-import { StepperStep } from './StepperStep';
-import type { StepperStepProps } from './StepperStep';
+import { Step } from './Step';
+import type { StepProps } from './Step';
 
-const definition: StepperStepProps = {
+const definition: StepProps = {
   label: 'Choose Plan',
   description: 'Select your base package',
   icon: <IconPackage size={16} />,
@@ -12,14 +12,14 @@ const definition: StepperStepProps = {
 };
 
 const meta = {
-  title: 'Components/Misc/Stepper/StepperStep',
-  component: StepperStep,
+  title: 'Components/Misc/Stepper/Step',
+  component: Step,
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          'StepperStep renders one step item (label, description, icon states, and optional content) and is intended to be used as a direct child of Stepper.',
+          'Step renders one step item (label, description, icon states, and optional content) and is intended to be used as a direct child of Stepper.',
       },
     },
   },
@@ -63,11 +63,6 @@ const meta = {
       description: 'Header displayed under the Stepper',
       table: { type: { summary: 'ReactNode' } },
     },
-    color: {
-      control: { type: 'color' },
-      description: 'Color of the step (overwrites Stepper color)',
-      table: { type: { summary: 'string' }, defaultValue: { summary: 'inherit' } },
-    },
     loading: {
       control: { type: 'boolean' },
       description: 'Show loading indicator instead of icon',
@@ -84,14 +79,14 @@ const meta = {
       table: { type: { summary: 'boolean' }, defaultValue: { summary: 'false' } },
     },
   },
-} satisfies Meta<typeof StepperStep>;
+} satisfies Meta<typeof Step>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const interactiveRender: Story['render'] = (args) => {
   return (
-    <StepperStep
+    <Step
       {...args}
     />
   );

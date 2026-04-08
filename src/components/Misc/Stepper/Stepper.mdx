@@ -2,7 +2,7 @@ import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
 import React, { useState } from 'react';
 import { Stepper } from './Stepper.tsx';
 import * as StepperStories from './Stepper.stories';
-import * as StepperStepStories from './StepperStep.stories';
+import * as StepStories from './Step.stories';
 
 <Meta of={StepperStories} />
 
@@ -25,11 +25,11 @@ import { Stepper } from '@taiv/ui';
 
 ---
 
-### 🪜 StepperStep
+### 🪜 Step
 
-StepperStep renders one step item (label, description, icon states, and optional content) and is intended to be used as a direct child of Stepper.
+Step renders one step item (label, description, icon states, and optional content) and is intended to be used as a direct child of Stepper.
 
-<Canvas of={StepperStepStories.Default} />
-<Controls of={StepperStepStories.Default} />
+<Canvas of={StepStories.Default} />
+<Controls of={StepStories.Default} />
 
 ---

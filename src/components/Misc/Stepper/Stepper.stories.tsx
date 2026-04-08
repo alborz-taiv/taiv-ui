@@ -8,23 +8,23 @@ import {
   IconSettings,
 } from '@tabler/icons-react';
 import { Stepper } from './Stepper';
-import type { StepperStepProps } from './Stepper';
+import type { StepProps } from './Step';
 
-const checkoutSteps: StepperStepProps[] = [
+const checkoutSteps: StepProps[] = [
   { label: 'Choose Plan', description: 'Select your base package' },
   { label: 'Add-Ons', description: 'Customize your setup' },
   { label: 'Payment', description: 'Enter billing details' },
   { label: 'Confirm', description: 'Review and submit' },
 ];
 
-const iconSteps: StepperStepProps[] = [
+const iconSteps: StepProps[] = [
   { label: 'Plan', description: 'Choose plan', icon: <IconPackage size={16} />, completedIcon: <IconCheck size={16} /> },
   { label: 'Config', description: 'Configure', icon: <IconSettings size={16} />, completedIcon: <IconCheck size={16} /> },
   { label: 'Payment', description: 'Pay', icon: <IconCreditCard size={16} />, completedIcon: <IconCheck size={16} /> },
   { label: 'Review', description: 'Review', icon: <IconFileText size={16} />, completedIcon: <IconCheck size={16} /> },
 ];
 
-const completedSteps: StepperStepProps[] = [
+const completedSteps: StepProps[] = [
   { label: 'Choose Plan', description: 'Select your base package', header: 'Step 1 header' },
   { label: 'Add-Ons', description: 'Customize your setup', header: 'Step 2 header' },
   { label: 'Payment', description: 'Enter billing details', header: 'Step 3 header' },
@@ -47,6 +47,9 @@ const meta: Meta<typeof Stepper> = {
   args: {
     activeStep: 1,
     steps: checkoutSteps,
+    variant: 'primary',
+    size: 'md',
+    orientation: 'horizontal',
   },
   argTypes: {
     activeStep: {
@@ -57,12 +60,13 @@ const meta: Meta<typeof Stepper> = {
     steps: {
       control: false,
       description: 'Array of step definitions (label, description, icon, etc.)',
-      table: { type: { summary: 'StepperStep[]' } },
+      table: { type: { summary: 'Step[]' } },
     },
-    color: {
-      control: { type: 'text' },
-      description: 'Color of the active components and labels',
-      table: { type: { summary: 'string' }, defaultValue: { summary: "primary[200]" } },
+    variant: {
+      control: { type: 'select' },
+      options: ['primary'],
+      description: 'Variant for Stepper color scheme',
+      table: { type: { summary: "'primary'" }, defaultValue: { summary: "'primary'" } },
     },
     size: {
       control: { type: 'select' },
@@ -73,7 +77,7 @@ const meta: Meta<typeof Stepper> = {
     iconSize: {
       control: { type: 'number', min: 12, max: 64, step: 2 },
       description: 'Size of the step circles in pixels',
-      table: { type: { summary: 'number' } },
+      table: { type: { summary: 'number' }, defaultValue: { summary: '42'} },
     },
     orientation: {
       control: { type: 'inline-radio' },

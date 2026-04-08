@@ -1,33 +1,16 @@
 import { Stepper as MantineStepper, type StepperProps as MantineStepperProps } from '@mantine/core';
-import { primary, neutral, white } from '../../../constants/colors';
-import { fontBase } from '../../../constants/font';
-import { StepperStep, type StepperStepProps } from './StepperStep';
-
-export type { StepperStepProps } from './StepperStep';
-export { StepperStep } from './StepperStep';
-
-const DEFAULT_ICON_SIZE_PX: Record<string, number> = {
-  xs: 34,
-  sm: 36,
-  md: 42,
-  lg: 48,
-  xl: 52,
-};
-
+import { Step, type StepProps } from './Step';
+import { baseStyles, type StepperVariant, DEFAULT_ICON_SIZE_PX } from './variants';
 export interface StepperProps extends Omit<MantineStepperProps, 'children' | 'active'> {
   activeStep: number;
-  steps: StepperStepProps[];
-  color?: string;
-  iconSize?: number;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  orientation?: 'horizontal' | 'vertical';
-  allowNextStepsSelect?: boolean;
-}
+  steps: StepProps[];
+  variant?: StepperVariant;
+};
 
 export const Stepper = ({
   activeStep,
   steps,
-  color = primary[200],
+  variant = 'primary',
   size = 'md',
   iconSize = DEFAULT_ICON_SIZE_PX[size],
   orientation = 'horizontal',
@@ -35,44 +18,14 @@ export const Stepper = ({
   styles,
   ...props
 }: StepperProps) => {
+  const resolvedBaseStyles = baseStyles(variant, props.color);
   const stepItems = steps.filter((step) => !step.completed);
   const completedStep = steps.find((step) => step.completed);
-
-  const baseStepStyles = {
-    step: {
-      ...fontBase,
-    },
-    stepBody: {
-      ...fontBase,
-      color: color
-    },
-    stepIcon: {
-      '&:not([data-progress]):not([data-completed])': {
-        backgroundColor: white,
-        color: neutral[100],
-        borderColor: neutral[100],
-      },
-      '&[data-progress]': {
-        backgroundColor: white,
-        color: color,
-      }
-    },
-    stepLabel: {
-      ...fontBase,
-    },
-    stepDescription: {
-      ...fontBase,
-    },
-    content: {
-      ...fontBase,
-      textAlign: 'center' as const,
-    },
-  };
 
   const style: MantineStepperProps['styles'] =
     orientation === 'horizontal'
       ? {
-          ...baseStepStyles,
+          ...resolvedBaseStyles,
           root: {
             boxSizing: 'border-box',
             width: '100%',
@@ -82,10 +35,10 @@ export const Stepper = ({
             alignItems: 'flex-start',
             boxSizing: 'border-box',
             width: '100%',
-            gap: 15,
+            gap: '1.5rem',
           },
           step: {
-            ...baseStepStyles.step,
+            ...resolvedBaseStyles.step,
             flexDirection: 'column',
             alignItems: 'center',
             position: 'relative',
@@ -95,23 +48,23 @@ export const Stepper = ({
             maxWidth: 'none',
           },
           stepBody: {
-            ...baseStepStyles.stepBody,
+            ...resolvedBaseStyles.stepBody,
             marginLeft: 0,
             marginRight: 0,
-            marginTop: '0.5rem',
+            marginTop: '0.8rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'stretch',
             boxSizing: 'border-box',
           },
           stepLabel: {
-            ...baseStepStyles.stepLabel,
+            ...resolvedBaseStyles.stepLabel,
             textAlign: 'center' as const,
             whiteSpace: 'nowrap',
             alignSelf: 'stretch',
           },
           stepDescription: {
-            ...baseStepStyles.stepDescription,
+            ...resolvedBaseStyles.stepDescription,
             textAlign: 'center' as const,
             boxSizing: 'border-box',
             overflowWrap: 'break-word',
@@ -119,24 +72,23 @@ export const Stepper = ({
           },
           separator: {
             flex: '1 1 0',
-            height: 2,
+            height: '2px',
             marginTop: `calc(${(iconSize) / 32}rem - 0.0625rem)`,
-            marginLeft: -20,
-            marginRight: -20,
+            marginLeft: '-2rem',
+            marginRight: '-2rem',
           },
           content: {
-            ...baseStepStyles.content,
+            ...resolvedBaseStyles.content,
             marginTop: '1rem',
           },
           ...styles
         }
-      : {...baseStepStyles, ...styles};
+      : {...resolvedBaseStyles, ...styles};
 
   return (
     <MantineStepper
       {...props}
       active={activeStep}
-      color={color}
       iconSize={iconSize}
       size={size}
       orientation={orientation}
@@ -145,7 +97,7 @@ export const Stepper = ({
       styles={style}
     >
       {stepItems.map((step, index) => (
-        <StepperStep key={index} {...step}>{step.header}</StepperStep>
+        <Step key={index} {...step}>{step.header}</Step>
       ))}
       {completedStep ? <MantineStepper.Completed>{completedStep.header}</MantineStepper.Completed> : null}
     </MantineStepper>
