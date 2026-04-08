@@ -1,7 +1,191 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { Stack } from '../../components/Layout/Stack/Stack';
+import { Group } from '../../components/Layout/Group/Group';
+import { Text } from '../../components/Typography/Text/Text';
+import { Title } from '../../components/Typography/Title/Title';
+import { neutral } from '../../constants/colors';
 
 <Meta title="Design/Fonts" />
 
 # Fonts
 
-This component exists - but docs are still under construction 🚧
+All typography in Taiv UI uses **Poppins** as the base font family. 
+
+There are a few different typography components, but the main ones are <a href="/?path=/docs/components-typography-title--docs">Title</a> and <a href="/?path=/docs/components-typography-text--docs">Text</a>. 
+
+Both of these contain a set of variants for common use cases. Every typography component can also have its size, weight, and color overridden to fit more specific mockups that dont cleanly fit a variant. 
+
+<br />
+
+---
+
+<br />
+
+### ✏️ Titles
+
+Titles are used for headings and section labels. Each variant maps to a semantic HTML heading element.
+
+<style>{`
+  .variant-showcase h1, .variant-showcase h2, .variant-showcase h3,
+  .variant-showcase h4, .variant-showcase h5, .variant-showcase h6 {
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+`}</style>
+
+<div className="variant-showcase">
+<Stack gap="2rem" style={{ border: `1px dashed ${neutral[100]}`, borderRadius: '8px', padding: '2.5rem' }}>
+  <Stack gap="0.25rem">
+    <Title variant="header">Header (h1)</Title>
+    <Text variant="label">variant="header" — 2.8rem / bold / black</Text>
+  </Stack>
+  <Stack gap="0.25rem">
+    <Title variant="sectionHeader">Section Header (h2)</Title>
+    <Text variant="label">variant="sectionHeader" — 2rem / semibold / black</Text>
+  </Stack>
+  <Stack gap="0.25rem">
+    <Title variant="subheader">Subheader (h3)</Title>
+    <Text variant="label">variant="subheader" — 1.6rem / medium / neutral[200]</Text>
+  </Stack>
+  <Stack gap="0.25rem">
+    <Title variant="sectionSubheader">Section Subheader (h4)</Title>
+    <Text variant="label">variant="sectionSubheader" — 1.4rem / regular / neutral[200]</Text>
+  </Stack>
+  <Stack gap="0.25rem">
+    <Title variant="cardHeader">Card Header (h5)</Title>
+    <Text variant="label">variant="cardHeader" — 1.6rem / semibold / neutral[300]</Text>
+  </Stack>
+  <Stack gap="0.25rem">
+    <Title variant="cardSubheader">Card Subheader (h6)</Title>
+    <Text variant="label">variant="cardSubheader" — 1.4rem / regular / neutral[200]</Text>
+  </Stack>
+</Stack>
+</div>
+
+<br /><br />
+
+### ✏️ Text
+
+Text is used for body copy, component labels, content, etc. We have some named variants that are all `<p>` tags under the hood, for common use cases.
+
+<Stack gap="2rem" style={{ border: `1px dashed ${neutral[100]}`, borderRadius: '8px', padding: '2rem' }}>
+  <Stack gap="0.25rem">
+    <Text variant="body">Body — The quick brown fox jumps over the lazy dog.</Text>
+    <Text variant="label">variant="body" — 1.4rem / medium / neutral[200]</Text>
+  </Stack>
+  <Stack gap="0.25rem">
+    <Text variant="subtle">Subtle — The quick brown fox jumps over the lazy dog.</Text>
+    <Text variant="label">variant="subtle" — 1.4rem / regular / neutral[200]</Text>
+  </Stack>
+  <Stack gap="0.25rem">
+    <Text variant="label">Label — The quick brown fox jumps over the lazy dog.</Text>
+    <Text variant="label">variant="label" — 1.2rem / medium / neutral[200]</Text>
+  </Stack>
+  <Stack gap="0.25rem">
+    <Text variant="caption">Caption — The quick brown fox jumps over the lazy dog.</Text>
+    <Text variant="label">variant="caption" — 1rem / regular / neutral[200]</Text>
+  </Stack>
+</Stack>
+
+<br /><br />
+
+---
+<br /><br />
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 0.5fr 1fr', gap: '3rem', alignItems: 'start' }}>
+  <div>
+    ### Font Scale
+    <table>
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Font Size (rem)</th>
+          <th>Font Size (px)</th>
+          <th>Line Height</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>xs</code></td>
+          <td>1rem</td>
+          <td>10px</td>
+          <td>1.6rem</td>
+        </tr>
+        <tr>
+          <td><code>sm</code></td>
+          <td>1.2rem</td>
+          <td>12px</td>
+          <td>2rem</td>
+        </tr>
+        <tr>
+          <td><code>md</code></td>
+          <td>1.4rem</td>
+          <td>14px</td>
+          <td>2.2rem</td>
+        </tr>
+        <tr>
+          <td><code>lg</code></td>
+          <td>1.6rem</td>
+          <td>16px</td>
+          <td>2.4rem</td>
+        </tr>
+        <tr>
+          <td><code>xl</code></td>
+          <td>2rem</td>
+          <td>20px</td>
+          <td>2.8rem</td>
+        </tr>
+        <tr>
+          <td><code>2xl</code></td>
+          <td>2.4rem</td>
+          <td>24px</td>
+          <td>3.2rem</td>
+        </tr>
+        <tr>
+          <td><code>3xl</code></td>
+          <td>2.8rem</td>
+          <td>28px</td>
+          <td>3.6rem</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    ### Font Weights
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>light</code></td>
+          <td>300</td>
+        </tr>
+        <tr>
+          <td><code>regular</code></td>
+          <td>400</td>
+        </tr>
+        <tr>
+          <td><code>medium</code></td>
+          <td>500</td>
+        </tr>
+        <tr>
+          <td><code>semibold</code></td>
+          <td>600</td>
+        </tr>
+        <tr>
+          <td><code>bold</code></td>
+          <td>700</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+  ### Font Colors
+    See <a href="/?path=/docs/design-colors--docs">colors</a> for detail
+  </div>
+</div>

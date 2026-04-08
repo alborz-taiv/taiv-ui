@@ -1,7 +1,175 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as PieChartStories from './PieChart.stories';
+import { AIGeneratedBanner } from '../../../docs/AIGeneratedBanner';
 
-<Meta title="Components/Data/PieChart" />
+<Meta of={PieChartStories} />
 
 # PieChart
 
-This component exists - but docs are still under construction 🚧
+[Recharts documentation](https://recharts.org/)
+
+<AIGeneratedBanner />
+
+The PieChart component composes Recharts `Pie`, `Cell`, `Tooltip`, optional `Legend`, and optional `Label` center content. Tooltip slice values go through `getChartFormatter`.
+
+**`format`** accepts only:
+
+- A **format key string** — any key of `numberFormats` (`integer`, `decimal`, `currency`, `percentage`, `multiple`). Default **`format`** is **`'percentage'`**.
+- PieChart does **not** support Chart’s **`{ format, options? }`** object form for slice tooltips; the large **`centerContent.value`** line uses **`format`** with **0** decimal places when `value` is set.
+
+Use PieChart for part-to-whole proportions. For time-series or categorical metrics where multiple line/area/bar series share the same X categories, use **Chart**.
+
+### 📦 Import
+
+```tsx
+import { PieChart } from '@taiv/ui';
+```
+
+### ✍️ Basic usage
+
+The **Default** story uses `format="percentage"` and sample slices. Controls expose `data`, `format`, and toggles; for **`centerContent`**, **`innerRadius`**, **`outerRadius`**, and **`paddingAngle`**, use code (see **WithCenterContent**, **DonutGeometry**, **PaddingAngle**).
+
+```tsx
+<PieChart data={slices} format="percentage" height="100%" />
+
+<PieChart
+  data={slices}
+  format="currency"
+  height="100%"
+  centerContent={{ value: 1200, title: 'Revenue', subtitle: 'Q1' }}
+  innerRadius={0}
+/>
+```
+
+<Canvas of={PieChartStories.Default} />
+<Controls of={PieChartStories.Default} />
+
+---
+
+### 📈 Slices (`data`)
+
+Each slice is a **`PieDataPoint`**: **`key`**, **`value`**, and optional **`color`** for the `Cell` fill. Pass a color per slice so legend swatches match fills.
+
+<Story of={PieChartStories.Default} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>key</td>
+      <td>Slice name; legend entry and tooltip title row</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>Magnitude (<code>string | number</code>)</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td>Optional fill; recommended for stable legend and slice color</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 📊 Center content (`centerContent`)
+
+Optional **`PieCardCenterContentProps`**: **`title`**, optional **`subtitle`**, optional **`value`**. Content is rendered in the center via **`Label`** and **`foreignObject`**. The large **`value`** line only renders when **`value`** is truthy (so **`0`** does not show that line).
+
+<Story of={PieChartStories.WithCenterContent} />
+
+<Story of={PieChartStories.Default} />
+
+## <br />
+
+### 🔢 Value format (`format`)
+
+Slice values in the tooltip (and **`centerContent.value`** when shown) use **`format`**. The same keys apply as Chart’s Y-axis **string** shorthand: **integer**, **decimal**, **currency**, **percentage**, and **multiple** (suffix `x`).
+
+<Story of={PieChartStories.Formats} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Format</th>
+      <th>Typical use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>Counts, whole units</td>
+    </tr>
+    <tr>
+      <td>decimal</td>
+      <td>General numeric</td>
+    </tr>
+    <tr>
+      <td>currency</td>
+      <td>Money with <code>$</code> prefix</td>
+    </tr>
+    <tr>
+      <td>percentage</td>
+      <td>Ratios with <code>%</code> suffix (component default)</td>
+    </tr>
+    <tr>
+      <td>multiple</td>
+      <td>Multipliers (e.g. 1.5x)</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🎛️ Donut geometry (`innerRadius`, `outerRadius`, `paddingAngle`)
+
+**`innerRadius`** — Use **0** for a full pie; default **80** with **`outerRadius` 100** yields a donut.
+
+**`outerRadius`** — Outer radius in px (default **100**).
+
+**`paddingAngle`** — Angular gap between slices in **degrees** (Recharts `Pie` `paddingAngle`). Default **`0`**: slices touch edge-to-edge. Set a value such as **`8`** when you want visible separation (the chart background shows in the gaps).
+
+```tsx
+<PieChart data={slices} format="percentage" paddingAngle={8} />
+```
+
+<Story of={PieChartStories.DonutGeometry} />
+
+<Story of={PieChartStories.PaddingAngle} />
+
+## <br />
+
+### 🧩 Other props
+
+**Legend** — Set `showLegend={false}` to hide the legend (e.g. compact layouts).
+
+<Story of={PieChartStories.WithoutLegend} />
+
+**Loading** — Shows a centered placeholder instead of the chart.
+
+<Story of={PieChartStories.Loading} />
+
+**Empty data** — When **`data`** has no slices, the component shows “No data available”.
+
+<Story of={PieChartStories.Empty} />
+
+## <br />
+
+### 💡 Best practices
+
+1. **Stable slice colors** — Pass **`color`** on each **`PieDataPoint`** so legend swatches and **`Cell`** fills stay aligned.
+
+2. **Match `format` to semantics** — Use **`percentage`** for share-of-total, **`currency`** for money, **`integer`** for counts (same guidance as Chart’s Y-axis choice).
+
+3. **Keep `key` human-readable** — Legend and tooltip titles come from **`key`**; avoid opaque IDs in UI-facing charts.
+
+4. **Prefer a small slice count** — Group long tails into “Other” when there are many categories.
+
+5. **Center `value` and zero** — The large center stat uses a truthy check; use **`subtitle`** / **`title`** alone if **`0`** should not show a big number.
+
+6. **Give the chart a height** — When using `height="100%"`, ensure an ancestor sets a definite height (Storybook examples use a fixed `Box` height).

@@ -4,18 +4,25 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Responsive Design
 
-Media queries are used to create responsive designs. They are based on the width of the viewport.
+In our web apps, we have a hook-based system for creating responsive designs. 
 
 ### 📦 Import
 
 ```tsx
+// Top-level import - choose any of the hooks you need
 import { useMobile, useTablet, useLaptop, useDesktop, useWide } from '@taiv/ui/hooks';
+
+// Somewhere in the component
+const isMobile = useMobile();
 ```
 
-### 📐 Basic Usage
+### ✍️ Basic Usage
+
+Each hook returns a boolean value based on the width of the viewport, so that we can render our UI differently based on the screen size.
+
+In simple cases, you can usually just use one of `useMobile` or `useTablet` to optimize something for smaller screens.
 
 ```tsx
-const isMobile = useMobile();
 
 if (isMobile) {
   return <Button size="sm" fullWidth> Mobile Optimized </Button>;
@@ -25,41 +32,124 @@ else {
 }
 ```
 
-### 📐 Breakpoint Values
+### 📐 Breakpoints
+
+These widths from each hook is based on Tailwind CSS's standard:
 
 <table>
   <thead>
     <tr>
-      <th>Breakpoint</th>
-      <th>Width</th>
       <th>Hook</th>
+      <th>Width</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Mobile</td>
+      <td><code>useMobile()</code></td>
       <td>640px</td>
-      <td>useMobile()</td>
     </tr>
     <tr>
-      <td>Tablet</td>
+      <td><code>useTablet()</code></td>
       <td>768px</td>
-      <td>useTablet()</td>
     </tr>
     <tr>
-      <td>Laptop</td>
+      <td><code>useLaptop()</code></td>
       <td>1024px</td>
-      <td>useLaptop()</td>
     </tr>
     <tr>
-      <td>Desktop</td>
+      <td><code>useDesktop()</code></td>
       <td>1280px</td>
-      <td>useDesktop()</td>
     </tr>
     <tr>
-      <td>Wide</td>
+      <td><code>useWide()</code></td>
       <td>1536px</td>
-      <td>useWide()</td>
+    </tr>
+    <tr>
+      <td><code>useScreenSize()</code></td>
+      <td>Current breakpoint</td>
+    </tr> 
+    <tr>
+      <td><code>useMediaQuery(query)</code></td>
+      <td>Custom query</td>
     </tr>
   </tbody>
 </table>
+
+<br />
+---
+
+### 🧩 Building Complex Layouts
+
+`useScreenSize()` returns the current breakpoint as a string.
+
+This is useful when:
+- You need to handle **multiple breakpoints in one place**
+- You want **switch-style logic** instead of multiple booleans
+
+```tsx
+// Returns MOBILE, TABLET, LAPTOP, DESKTOP or WIDE
+switch (screenSize) {
+  case 'MOBILE':
+    return <></>;
+  case 'TABLET':
+    return <></>;
+  default:
+    return <></>;
+}
+```
+
+A pattern I like is to use screen size to create "layouts".
+
+Instead of conditionally rendering UI, consider defining a set of values for different sections of your page (e.g. container widths or grid columns).
+This way, you can easily refer back to these values in the page.
+
+For example, with components like [AutoGrid](?path=/docs/components-layout-autogrid--docs) or [Grid](?path=/docs/components-layout-grid--docs):
+
+```tsx
+
+// Define your layouts
+const DEFAULT = { sectionA: 4, sectionB: 2, sectionC: [3, 9], isMobile: false };
+const LAYOUTS = {
+  MOBILE: { sectionA: 1, sectionB: 1, sectionC: [12, 12], isMobile: true },
+  TABLET: { sectionA: 2, sectionB: 1, sectionC: [12, 12], isMobile: true },
+  LAPTOP: DEFAULT,
+  DESKTOP: DEFAULT,
+  WIDE: DEFAULT,
+};
+
+// Get the layout
+const screenSize = useScreenSize();
+const layout = LAYOUTS[screenSize];
+
+// Render using the layout
+<Stack>
+  <AutoGrid columns={layout.sectionA}>
+    ...
+  </AutoGrid>
+
+  <AutoGrid columns={layout.sectionB}>
+    ...
+  </AutoGrid>
+
+  <Grid>
+    <Grid.Col span={layout.sectionC[0]}>
+      ...
+    </Grid.Col>
+    <Grid.Col span={layout.sectionC[1]}>
+      ...
+    </Grid.Col>
+  </Grid>
+
+  <Button fullWidth={layout.isMobile} />
+</Stack>
+```
+
+---
+
+### ⚠️ Edge Cases
+
+For more specific conditions or edge cases, you can use `useMediaQuery` directly: 
+
+```tsx
+const isSpecificBreakpoint = useMediaQuery('(max-width: 712px)');
+```
