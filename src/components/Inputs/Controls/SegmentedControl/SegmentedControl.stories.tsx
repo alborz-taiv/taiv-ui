@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SegmentedControl } from './SegmentedControl';
 import { Group } from '../../../Layout/Group/Group';
 import { Stack } from '../../../Layout/Stack/Stack';
+import { spacing } from '../../../../constants/spacing';
 
 const sampleData = [
   { label: 'React', value: 'react' },
@@ -163,7 +164,7 @@ export const Default: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Stack gap="1.6rem">
+    <Stack gap={spacing.lg}>
       <SegmentedControl size="sm" data={sampleData} value="react" onChange={() => {}} />
       <SegmentedControl size="md" data={sampleData} value="ng" onChange={() => {}} />
       <SegmentedControl size="lg" data={sampleData} value="vue" onChange={() => {}} />
@@ -193,7 +194,7 @@ export const StringData: Story = {
 
 export const States: Story = {
   render: () => (
-    <Stack gap="1.6rem" style={{ minWidth: '28rem' }}>
+    <Stack gap={spacing.lg} style={{ minWidth: '280px' }}>
       <SegmentedControl data={sampleData} value="react" onChange={() => {}} />
       <SegmentedControl data={sampleData} value="react" onChange={() => {}} disabled />
       <SegmentedControl
@@ -219,7 +220,7 @@ export const States: Story = {
 
 export const FullWidth: Story = {
   render: () => (
-    <div style={{ width: '36rem', maxWidth: '100%' }}>
+    <div style={{ width: '360px', maxWidth: '100%' }}>
       <SegmentedControl fullWidth data={sampleData} value="react" onChange={() => {}} />
     </div>
   ),
@@ -234,7 +235,7 @@ export const FullWidth: Story = {
 
 export const Orientation: Story = {
   render: () => (
-    <Group gap="3rem" align="flex-start">
+    <Group gap={spacing.xxl} align="flex-start">
       <SegmentedControl data={sampleData} value="ng" onChange={() => {}} orientation="horizontal" />
       <SegmentedControl data={sampleData} value="vue" onChange={() => {}} orientation="vertical" />
     </Group>
@@ -250,7 +251,7 @@ export const Orientation: Story = {
 
 export const CustomStyles: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <SegmentedControl
         data={sampleData}
         value="react"

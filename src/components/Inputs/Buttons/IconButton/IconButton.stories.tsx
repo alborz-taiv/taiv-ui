@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { IconButton } from './IconButton';
 import { Icon12Hours, Icon24Hours, Icon360View, IconAdjustments, IconAlertCircle, IconArrowLeft, IconArrowRight, IconArrowsMaximize, IconCaretDown, IconCheck, IconClock, IconClock2, IconHistory, IconLoader2 } from '@tabler/icons-react';
 import { Group } from '../../../Layout/Group/Group';
+import { spacing } from '../../../../constants/spacing';
 
 const meta: Meta<typeof IconButton> = {
   title: 'Components/Inputs/Buttons/IconButton',
@@ -110,7 +111,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap={spacing.lg}>
       <IconButton variant="primary"><Icon12Hours /></IconButton>
       <IconButton variant="secondary"><Icon24Hours /></IconButton>
       <IconButton variant="cancel"><IconClock /></IconButton>
@@ -123,7 +124,7 @@ export const Variants: Story = {
 
 export const Subtle: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap={spacing.lg}>
       <IconButton variant="primary" subtle><Icon12Hours /></IconButton>
       <IconButton variant="secondary" subtle><Icon24Hours /></IconButton>
       <IconButton variant="cancel" subtle><IconClock /></IconButton>
@@ -136,7 +137,7 @@ export const Subtle: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap={spacing.lg}>
       <IconButton size="sm"><Icon360View /></IconButton>
       <IconButton size="md"><IconAdjustments /></IconButton>
       <IconButton size="lg"><IconArrowsMaximize /></IconButton>
@@ -146,7 +147,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap={spacing.lg}>
       <IconButton><IconArrowLeft /></IconButton>
       <IconButton disabled><IconCaretDown /></IconButton>
       <IconButton loading><IconLoader2 /></IconButton>
@@ -157,7 +158,7 @@ export const States: Story = {
 
 export const SubtleStates: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap={spacing.lg}>
       <IconButton subtle><IconArrowLeft /></IconButton>
       <IconButton subtle disabled><IconCaretDown /></IconButton>
       <IconButton subtle loading><IconLoader2 /></IconButton>
@@ -168,7 +169,7 @@ export const SubtleStates: Story = {
 
 export const CustomStyles: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap={spacing.lg}>
       <IconButton
         styles={{
           root: {

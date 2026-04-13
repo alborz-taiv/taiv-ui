@@ -5,8 +5,8 @@ import { fontBase, fontSize } from '../../../../constants/font';
 
 // Size Presets
 const componentSizes = {
-  sm: { width: 2.4, height: 1.8, mantineSize: 'md', thumbScale: 1.3, thumbTranslate: 2, ...fontSize['sm'] },
-  md: { width: 4.8, height: 2.8, mantineSize: 'xl', thumbScale: 1.3, thumbTranslate: 10, ...fontSize['md'] },
+  sm: { width: 24, height: 18, mantineSize: 'md', thumbScale: 1.3, thumbTranslate: 2, ...fontSize['sm'] },
+  md: { width: 48, height: 28, mantineSize: 'xl', thumbScale: 1.3, thumbTranslate: 10, ...fontSize['md'] },
 } as const;
 
 interface ToggleProps extends MantineToggleProps {
@@ -21,11 +21,11 @@ const Toggle = ({ checked, onChange, styles, size = 'md', label, ...props }: Tog
     container: {
       display: 'flex',
       alignItems: 'center',
-      gap: '1rem',
+      gap: '10px',
     },
     track: {
-      width: `${selectedSize.width}rem`,
-      height: `${selectedSize.height}rem`,
+      width: `${selectedSize.width}px`,
+      height: `${selectedSize.height}px`,
       transition: 'background-color 300ms ease-in-out',
       cursor: 'pointer',
       backgroundColor: checked ? primary[200] : neutral[50],

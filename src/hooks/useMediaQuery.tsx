@@ -1,9 +1,9 @@
 import { useMediaQuery as useMantineMediaQuery } from '@mantine/hooks';
-import { BREAKPOINTS } from '../constants/breakpoints';
+import { breakpoints } from '../constants/breakpoints';
 
 export const useMediaQuery = useMantineMediaQuery;
 
-export const useScreenSize = (): keyof typeof BREAKPOINTS => {
+export const useScreenSize = (): keyof typeof breakpoints => {
   const isMobile = useMobile();
   const isTablet = useTablet();
   const isLaptop = useLaptop();
@@ -16,8 +16,8 @@ export const useScreenSize = (): keyof typeof BREAKPOINTS => {
   return 'WIDE';
 };
 
-export const useMobile = () => useMediaQuery(`(max-width: ${BREAKPOINTS.MOBILE}px)`);
-export const useTablet = () => useMediaQuery(`(max-width: ${BREAKPOINTS.TABLET}px)`);
-export const useLaptop = () => useMediaQuery(`(max-width: ${BREAKPOINTS.LAPTOP}px)`);
-export const useDesktop = () => useMediaQuery(`(max-width: ${BREAKPOINTS.DESKTOP}px)`);
-export const useWide = () => useMediaQuery(`(max-width: ${BREAKPOINTS.WIDE}px)`);
+export const useMobile = () => useMediaQuery(`(max-width: ${breakpoints.MOBILE}px)`);
+export const useTablet = () => useMediaQuery(`(max-width: ${breakpoints.TABLET}px)`);
+export const useLaptop = () => useMediaQuery(`(max-width: ${breakpoints.LAPTOP}px)`);
+export const useDesktop = () => useMediaQuery(`(max-width: ${breakpoints.DESKTOP}px)`);
+export const useWide = () => useMediaQuery(`(max-width: ${breakpoints.WIDE}px)`);

@@ -120,7 +120,7 @@ export const Default: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Toggle size="sm" label="Small Toggle" checked={true} />
       <Toggle size="md" label="Medium Toggle (Default)" checked={false} />
     </Group>
@@ -136,7 +136,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Toggle label="Normal Toggle" checked={true} />
       <Toggle label="Disabled Toggle" checked={false} disabled />
       <Toggle label="Toggle with Description" description="This is a description that provides additional context" checked={true} />
@@ -154,7 +154,7 @@ export const States: Story = {
 
 export const WithoutLabel: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Toggle checked={true} />
       <Toggle checked={false} />
     </Group>
@@ -170,7 +170,7 @@ export const WithoutLabel: Story = {
 
 export const CustomStyles: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Toggle
         label="Custom Styled Toggle"
         checked={true}

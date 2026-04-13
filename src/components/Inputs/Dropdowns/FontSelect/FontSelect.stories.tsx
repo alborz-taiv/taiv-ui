@@ -144,7 +144,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <FontSelect label="Default Font Select" />
       <FontSelect
         label="With Custom Data"
@@ -168,7 +168,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <FontSelect size="sm" />
       <FontSelect size="md" />
       <FontSelect size="lg" />
@@ -185,7 +185,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <FontSelect label="Normal Font Select" />
       <FontSelect label="Disabled Font Select" disabled />
       <FontSelect label="Required Font Select" required />
@@ -204,7 +204,7 @@ export const States: Story = {
 
 export const AdditionalFunctionality: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <FontSelect label="Clearable Font Select" clearable value="Poppins" />
       <FontSelect label="Searchable Font Select" searchable />
     </Group>
@@ -220,7 +220,7 @@ export const AdditionalFunctionality: Story = {
 
 export const CustomStyling: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <FontSelect
         label="Custom Styled Font Select"
         styles={{

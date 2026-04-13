@@ -4,6 +4,7 @@ import { Text } from '../../../Typography/Text/Text';
 import { Formula } from '../../../Typography/Formula/Formula';
 import { Stack } from '../../../Layout/Stack/Stack';
 import { blue } from '../../../../constants/colors';
+import { spacing } from '../../../../constants/spacing';
 import { Center } from '../../../Layout/Center/Center';
 
 interface FormulaTooltipProps {
@@ -14,13 +15,13 @@ interface FormulaTooltipProps {
 
 const FormulaTooltip = ({ title, description, expression }: FormulaTooltipProps) => {
   return (
-    <Box p="0.8rem">
-      <Stack gap="1.6rem">
-        <Stack gap="0.8rem" sx={{ maxWidth: '500px' }}>
+    <Box p="8px">
+      <Stack gap={spacing.lg}>
+        <Stack gap={spacing.sm} sx={{ maxWidth: '500px' }}>
           <Text weight="semibold">{title}</Text>
           <Text variant="label">{description}</Text>
         </Stack>
-        <div style={{ padding: '1.6rem 2.4rem', borderRadius: '16px', backgroundColor: blue[25], width: '100%' }}>
+        <div style={{ padding: `${spacing.lg} ${spacing.xl}`, borderRadius: '16px', backgroundColor: blue[25], width: '100%' }}>
           <Center>
             <Formula expression={expression} color={blue[300]} />
           </Center>

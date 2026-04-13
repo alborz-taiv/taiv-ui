@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { IconVolume, IconVolume2, IconVolume3 } from '@tabler/icons-react';
 import { neutral } from '../../../../constants/colors';
+import { spacing } from '../../../../constants/spacing';
 import { Slider, SliderProps } from '../Slider/Slider';
 import { componentSizes } from '../shared/sizes';
 
@@ -21,16 +22,16 @@ const VolumeSlider = ({ compact = false, size = 'md', fullWidth = false, ...prop
     container: {
       display: 'flex',
       alignItems: 'center',
-      gap: '1rem',
+      gap: '10px',
       width: fullWidth ? '100%' : 'auto',
-      padding: '0.5rem 0',
+      padding: `${spacing.xs} 0`,
     },
     iconContainer: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      width: `${selectedSize.iconSize / 10}rem`, // Based on 10px root font
-      height: `${selectedSize.iconSize / 10}rem`,
+      width: `${selectedSize.iconSize}px`,
+      height: `${selectedSize.iconSize}px`,
       flexShrink: 0,
     },
   };

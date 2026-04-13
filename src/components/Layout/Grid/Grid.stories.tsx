@@ -4,6 +4,7 @@ import { Card } from '../Card/Card';
 import { Title } from '../../Typography/Title/Title';
 import { Stack } from '../Stack/Stack';
 import { neutral } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 import { Text } from '../../Typography/Text/Text';
 
 const meta: Meta<typeof Grid> = {
@@ -97,7 +98,7 @@ export const Default: Story = {
 
 export const ColumnSpans: Story = {
   render: () => (
-    <Stack spacing="md" sx={{ width: '700px' }}>
+    <Stack spacing={spacing.md} sx={{ width: '700px' }}>
       <Grid gutter="md">
         <Grid.Col span={6}><SampleCard title="Column 1" description="span={6}" /></Grid.Col>
         <Grid.Col span={6}><SampleCard title="Column 2" description="span={6}" /></Grid.Col>

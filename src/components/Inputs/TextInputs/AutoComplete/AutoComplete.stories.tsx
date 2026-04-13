@@ -139,7 +139,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <AutoComplete label="Basic AutoComplete" data={basicOptions} />
       <AutoComplete label="With Placeholder" placeholder="Search fruits..." data={basicOptions} />
       <AutoComplete label="With Description" description="Select your favorite fruit" data={basicOptions} />
@@ -156,7 +156,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <AutoComplete size="sm" label="Small AutoComplete" data={basicOptions} />
       <AutoComplete size="md" label="Medium AutoComplete (Default)" data={basicOptions} />
       <AutoComplete size="lg" label="Large AutoComplete" data={basicOptions} />
@@ -174,7 +174,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <AutoComplete label="Normal AutoComplete" data={basicOptions} />
       <AutoComplete label="Disabled AutoComplete" data={basicOptions} disabled />
       <AutoComplete label="Required AutoComplete" data={basicOptions} required />
@@ -193,7 +193,7 @@ export const States: Story = {
 
 export const AdditionalFunctionality: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <AutoComplete label="Country Search" data={countryOptions} placeholder="Search countries..." />
       <AutoComplete label="Custom Width AutoComplete" width="300px" data={basicOptions} />
       <AutoComplete label="Large Dataset" data={Array.from({ length: 50 }, (_, i) => `Option ${i + 1}`)} placeholder="Search options..." />
@@ -224,7 +224,7 @@ export const AdditionalFunctionality: Story = {
 
 export const CustomStyling: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <AutoComplete
         label="Custom Styled AutoComplete"
         data={basicOptions}

@@ -145,7 +145,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <TextArea label="Basic TextArea" />
       <TextArea label="With Placeholder" placeholder="Enter your text here..." />
       <TextArea label="With Description" description="This is a description" />
@@ -162,7 +162,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <TextArea size="sm" label="Small TextArea" placeholder="Small textarea" />
       <TextArea size="md" label="Medium TextArea (Default)" placeholder="Medium textarea" />
       <TextArea size="lg" label="Large TextArea" placeholder="Large textarea" />
@@ -180,7 +180,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <TextArea label="Normal TextArea" />
       <TextArea label="Disabled TextArea" disabled />
       <TextArea label="Required TextArea" required />
@@ -199,7 +199,7 @@ export const States: Story = {
 
 export const AdditionalFunctionality: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <TextArea label="Auto-resize TextArea" autosize placeholder="This will grow as you type..." />
       <TextArea label="Fixed Rows" minRows={3} maxRows={6} placeholder="Fixed height textarea" />
       <TextArea label="Custom Width TextArea" width="400px" placeholder="Custom width textarea" />
@@ -231,7 +231,7 @@ export const AdditionalFunctionality: Story = {
 
 export const CustomStyling: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <TextArea
         label="Custom Styled TextArea"
         styles={{

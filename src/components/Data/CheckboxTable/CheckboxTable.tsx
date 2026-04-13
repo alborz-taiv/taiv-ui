@@ -8,6 +8,7 @@ import { Stack } from '../../Layout/Stack/Stack';
 import { Title } from '../../Typography/Title/Title';
 import { neutral } from '../../../constants/colors';
 import { fontStyle } from '../../../constants/font';
+import { spacing } from '../../../constants/spacing';
 
 export interface TableColumnProps {
   label: string;
@@ -35,16 +36,16 @@ const CheckboxTable = ({ columns, data, className = 'none', onRowClick, title, s
     container: {
       borderRadius: '8px',
       border: `1px solid ${neutral[50]}`,
-      padding: '0.8rem',
+      padding: spacing.sm,
       backgroundColor: 'white',
     },
     header: {
-      padding: '1.6rem',
+      padding: spacing.lg,
       minWidth: '0',
     },
     columns: {
-      paddingTop: '1.6rem',
-      paddingLeft: '3.6rem',
+      paddingTop: spacing.lg,
+      paddingLeft: '36px',
       whiteSpace: 'nowrap',
       overflow: 'hidden',
     },
@@ -52,29 +53,29 @@ const CheckboxTable = ({ columns, data, className = 'none', onRowClick, title, s
       justifyContent: isMobile ? 'flex-start' : 'center',
       ...fontStyle['body'],
       color: neutral[300],
-      padding: '0.8rem 1.6rem',
-      minWidth: '10rem',
+      padding: `${spacing.sm} ${spacing.lg}`,
+      minWidth: '100px',
     },
     tableBody: {
-      gap: isMobile ? '0.5rem' : '0.25rem',
+      gap: isMobile ? '5px' : '2.5px',
       minWidth: '0',
     },
     tableRow: {
-      padding: isMobile ? '0.8rem 1.6rem' : '0.4rem 3.2rem',
+      padding: isMobile ? '8px 16px' : '4px 32px',
       backgroundColor: '#FFFFFF',
       minWidth: '0',
-      gap: isMobile ? '2.4rem' : '0',
+      gap: isMobile ? '24px' : '0',
       ...(outlines && { borderTop: `1px solid ${neutral[50]}` }),
     },
     contentContainer: {
       flex: 1,
       flexDirection: (isMobile ? 'column' : 'row') as 'column' | 'row',
-      gap: '0.25rem',
+      gap: spacing.xxs,
       minWidth: 0,
     },
     item: {
       justifyContent: isMobile ? 'flex-start' : 'space-between',
-      minWidth: isMobile ? '0' : '10rem',
+      minWidth: isMobile ? '0' : '100px',
       ...fontStyle['body'],
       fontWeight: 400,
       color: neutral[200],
@@ -104,7 +105,7 @@ const CheckboxTable = ({ columns, data, className = 'none', onRowClick, title, s
   const renderRow = (row: Record<string, any>) => {
     return (
       <>
-        <Center mr={isMobile ? 0 : '3.2rem'} ml={isMobile ? 0 : '-1.6rem'}>
+        <Center mr={isMobile ? 0 : '32px'} ml={isMobile ? 0 : '-16px'}>
           <Checkbox checked={row.checked} onChange={() => onRowClick?.(row)} />
         </Center>
         <Group style={style.contentContainer}>
@@ -117,8 +118,8 @@ const CheckboxTable = ({ columns, data, className = 'none', onRowClick, title, s
                 style={{
                   ...style.item,
                   width: column.width || '100%',
-                  flex: isMobile ? 'none' : column.key === 'volume' ? '1 1 30rem' : '0 0 auto',
-                  minWidth: isMobile ? '0' : column.key === 'volume' ? '30rem' : '10rem',
+                  flex: isMobile ? 'none' : column.key === 'volume' ? '1 1 300px' : '0 0 auto',
+                  minWidth: isMobile ? '0' : column.key === 'volume' ? '300px' : '100px',
                   ...(className && { className }),
                 }}
               >

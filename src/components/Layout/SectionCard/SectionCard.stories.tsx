@@ -66,7 +66,7 @@ const meta: Meta<typeof SectionCard> = {
       description: 'Padding of the card',
       table: {
         type: { summary: 'string | number' },
-        defaultValue: { summary: "'0.8rem'" },
+        defaultValue: { summary: "'8px'" },
       },
     },
     withBorder: {
@@ -98,7 +98,7 @@ export const Default: Story = {
   ],
   render: (args) => (
     <SectionCard {...args}>
-      <Group gap="1rem">
+      <Group gap="10px">
         <IconBadge icon={<IconEye size={30} />} color="salmon" />
         <Title weight="semibold" size="2xl" color={neutral[200]}>55,000</Title>
       </Group>

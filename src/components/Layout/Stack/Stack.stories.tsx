@@ -4,6 +4,7 @@ import { Text } from '../../Typography/Text/Text';
 import { Card } from '../Card/Card';
 import { Group } from '../Group/Group';
 import { neutral } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 
 const meta: Meta<typeof Stack> = {
   title: 'Components/Layout/Stack',
@@ -89,7 +90,7 @@ export const Default: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '500px', backgroundColor: neutral[25], padding: '2rem' }}>
+      <div style={{ width: '500px', backgroundColor: neutral[25], padding: '20px' }}>
         <Story />
       </div>
     ),
@@ -105,12 +106,12 @@ export const Default: Story = {
 
 export const PositionContent: Story = {
   render: () => (
-    <Stack gap="xl" justify="flex-start">
+    <Stack gap={spacing.lg} justify="flex-start">
       <Group>
         {(['flex-start', 'center', 'space-between'] as const).map((val) => (
           <div key={val}>
-            <Text variant="label" mb="sm"><code>justify={'"' + val + '"'}</code></Text>
-            <Stack justify={val} spacing="sm" sx={{ height: '200px', width: '200px', border: `1px dashed ${neutral[50]}`, padding: '0.5rem' }}>
+            <Text variant="label" mb={spacing.sm}><code>justify={'"' + val + '"'}</code></Text>
+            <Stack justify={val} spacing={spacing.sm} sx={{ height: '200px', width: '200px', border: `1px dashed ${neutral[50]}`, padding: spacing.xs }}>
               <SampleCard label="A" />
               <SampleCard label="B" />
             </Stack>

@@ -16,7 +16,7 @@ export interface FontSelectProps extends Omit<SelectProps, 'value' | 'data'> {
 
 const FontSelect = ({ data, value, placeholder = 'Select a font', size = 'md', width, fullWidth = false, styles, ...props }: FontSelectProps) => {
   const selectedSize = componentSizes[size];
-  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.minWidth}rem`;
+  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.minWidth}px`;
 
   const DropdownItem = ({ value, label, ...others }: SelectOption) => (
     <Box title={label}>
@@ -26,7 +26,7 @@ const FontSelect = ({ data, value, placeholder = 'Select a font', size = 'md', w
           fontSize: selectedSize.fontSize,
           color: neutral[200],
           padding: selectedSize.dropdownPadding,
-          borderRadius: '0.5rem',
+          borderRadius: '5px',
           transition: 'background-color 200ms ease-in-out',
         }}
         {...others}
@@ -43,7 +43,7 @@ const FontSelect = ({ data, value, placeholder = 'Select a font', size = 'md', w
       border: `1px solid ${neutral[100]}`,
       borderRadius: '8px',
       transition: 'all 200ms ease-in-out',
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       fontSize: selectedSize.fontSize,
       padding: selectedSize.inputPadding,
     },

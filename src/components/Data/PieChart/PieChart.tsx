@@ -9,6 +9,7 @@ import { Box } from '../../Layout/Box/Box';
 import { neutral } from '../../../constants/colors';
 import { textStyle } from '../../../constants/font';
 import { numberFormats } from '../../../constants/data';
+import { spacing } from '../../../constants/spacing';
 import { getChartFormatter } from '../../../utils/charts';
 import { PieDataPoint } from '../../../types/types';
 export interface PieCardCenterContentProps {
@@ -70,7 +71,7 @@ export const PieChart: React.FC<PieChartProps> = ({
         <Box
           sx={{
             backgroundColor: 'white',
-            padding: '1rem',
+            padding: '10px',
             border: `1px solid ${neutral[100]}`,
             borderRadius: '8px',
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
@@ -91,7 +92,7 @@ export const PieChart: React.FC<PieChartProps> = ({
                   backgroundColor: entry.payload.color,
                 }}
               />
-              <Group gap="0.25rem">
+              <Group gap={spacing.xxs}>
                 <Text variant="label" color={neutral[300]}>
                   {entry.payload.key}:
                 </Text>
@@ -126,7 +127,7 @@ export const PieChart: React.FC<PieChartProps> = ({
 
               <Tooltip content={getTooltip} />
 
-              {showLegend && <Legend iconType="circle" iconSize={8} wrapperStyle={{ paddingTop: '0.6rem' }} />}
+              {showLegend && <Legend iconType="circle" iconSize={8} wrapperStyle={{ paddingTop: '6px' }} />}
             </RechartsPieChart>
           </ResponsiveContainer>
         </Center>

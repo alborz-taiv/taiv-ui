@@ -3,6 +3,7 @@ import { Box } from './Box';
 import { Stack } from '../Stack/Stack';
 import { Text } from '../../Typography/Text/Text';
 import { neutral } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 
 const meta: Meta<typeof Box> = {
   title: 'Components/Layout/Box',
@@ -37,7 +38,7 @@ export const Default: Story = {
     children: 'Box is a styled div — use it as a wrapper or for custom styling',
     sx: {
       backgroundColor: neutral[50],
-      padding: '2.4rem',
+      padding: spacing.xl,
       borderRadius: '8px',
     },
   },
@@ -48,7 +49,7 @@ export const BoxStyling: Story = {
     <Box
       sx={{
         backgroundColor: neutral[25],
-        padding: '2.4rem',
+        padding: spacing.xl,
         borderRadius: '8px',
         border: `1px dashed ${neutral[100]}`,
       }}

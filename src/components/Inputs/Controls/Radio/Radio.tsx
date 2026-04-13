@@ -39,7 +39,7 @@ const Radio = ({ styles, ...props }: RadioProps) => {
       cursor: props.disabled ? 'default' : 'pointer',
       ...fontBase,
       fontSize: inputFontSize['md'].fontSize,
-      lineHeight: '2.25rem',
+      lineHeight: '22.5px',
       color: neutral[200],
     },
     ...styles,

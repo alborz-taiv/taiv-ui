@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { UnstyledButton } from './UnstyledButton';
+import { spacing } from '../../../../constants/spacing';
 
 const meta: Meta<typeof UnstyledButton> = {
   title: 'Components/Inputs/Buttons/UnstyledButton',
@@ -56,11 +57,11 @@ export const Default: Story = {
 
 export const CustomStyles: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+    <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
       <UnstyledButton
         styles={{
           root: {
-            padding: '12px 24px',
+            padding: `${spacing.md} ${spacing.xl}`,
             borderRadius: '8px',
             background: 'linear-gradient(45deg, #667eea, #764ba2)',
             color: 'white',
@@ -83,7 +84,7 @@ export const CustomStyles: Story = {
       <UnstyledButton
         styles={{
           root: {
-            padding: '8px 16px',
+            padding: `${spacing.sm} ${spacing.lg}`,
             borderRadius: '20px',
             background: 'transparent',
             color: '#667eea',

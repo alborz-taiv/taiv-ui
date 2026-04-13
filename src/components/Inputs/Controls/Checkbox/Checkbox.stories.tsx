@@ -106,7 +106,7 @@ export const Default: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Checkbox size="sm" label="Small Checkbox" checked={false} />
       <Checkbox size="md" label="Medium Checkbox (Default)" checked={true} />
       <Checkbox size="lg" label="Large Checkbox" checked={false} />
@@ -123,7 +123,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Checkbox label="Normal Checkbox" checked={true} />
       <Checkbox label="Disabled Checkbox" checked={false} disabled />
       <Checkbox label="Checkbox with Description" description="This is a description that provides additional context" checked={false} />
@@ -141,7 +141,7 @@ export const States: Story = {
 
 export const CustomStyles: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Checkbox
         label="Custom Styled Checkbox"
         checked={true}

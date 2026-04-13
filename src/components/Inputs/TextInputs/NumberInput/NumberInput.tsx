@@ -24,14 +24,14 @@ const NumberInput = ({
   ...props
 }: NumberInputProps) => {
   const selectedSize = componentSizes[size as keyof typeof componentSizes];
-  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}rem`;
+  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}px`;
   const hasError = !!props.error;
   
   const style: Record<string, CSSObject> = {
     input: {
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       fontSize: selectedSize.fontSize,
-      padding: '0 1rem',
+      padding: '0 10px',
       ...fontBase,
       color: neutral[200],
       transition: 'all 200ms ease-in-out',
@@ -48,19 +48,19 @@ const NumberInput = ({
         height: 'auto',
         margin: 'auto 0',
         gap: 0,
-        width: '4.8rem',
+        width: '48px',
         alignItems: 'center',
       },
     control: {
       color: hasError ? red[200] : neutral[200],
       border: 'none',
       background: 'transparent',
-      width: '2rem',
-      height: '1.2rem',
+      width: '20px',
+      height: '12px',
       flex: '0 0 auto',
       '& svg': {
-        width: '2rem',
-        height: '1.2rem',
+        width: '20px',
+        height: '12px',
       },
       '&:hover': {
         cursor: 'pointer',
@@ -68,12 +68,12 @@ const NumberInput = ({
     },
     label: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 0.5px)`,
       color: neutral[200],
     },
     error: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 0.5px)`,
       color: red[200],
     },
     ...styles,

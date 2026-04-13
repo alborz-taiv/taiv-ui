@@ -1,6 +1,7 @@
 import React from 'react';
 import { modals } from '@mantine/modals';
 import { neutral } from '../constants/colors';
+import { spacing } from '../constants/spacing';
 import { Title } from '../components/Typography/Title/Title';
 import { Stack } from '../components/Layout/Stack/Stack';
 import { Center } from '../components/Layout/Center/Center';
@@ -9,7 +10,7 @@ import { Button } from '../components/Inputs/Buttons/Button/Button';
 
 export const useInfoModal = () => {
   const show = (options: { variant?: keyof typeof modalVariants; title?: string; message?: string; icon?: React.ReactElement; onConfirm?: () => void; size?: string | number }) => {
-    const { variant = 'info', title, message, icon, onConfirm, size = '35rem' } = options;
+    const { variant = 'info', title, message, icon, onConfirm, size = '350px' } = options;
 
     const handleConfirm = () => {
       if (onConfirm) onConfirm();
@@ -19,8 +20,8 @@ export const useInfoModal = () => {
     const selectedVariant = modalVariants[variant];
 
     const iconContainer = {
-      width: '4.2rem',
-      height: '4.2rem',
+      width: '42px',
+      height: '42px',
       borderRadius: '50%',
       backgroundColor: selectedVariant.iconBackgroundColor,
       border: `2px solid ${selectedVariant.iconColor}`,
@@ -28,15 +29,15 @@ export const useInfoModal = () => {
 
     const coloredIcon = icon && React.cloneElement(icon, { color: icon.props.color || selectedVariant.iconColor });
 
-    const modalIcon = coloredIcon || <i className={selectedVariant.icon} style={{ color: selectedVariant.iconColor, fontSize: '2rem' }} />;
+    const modalIcon = coloredIcon || <i className={selectedVariant.icon} style={{ color: selectedVariant.iconColor, fontSize: '20px' }} />;
 
     const InfoModalContent = () => {
       return (
         <Center h="100%" w="100%">
-          <Stack gap="2rem" h="100%" w="100%" align="center">
-            <Stack gap="1.5rem" align="center">
+          <Stack gap="20px" h="100%" w="100%" align="center">
+            <Stack gap={spacing.lg} align="center">
               <Center style={iconContainer}>{modalIcon}</Center>
-              <Stack gap="0.25rem" align="center">
+              <Stack gap={spacing.xxs} align="center">
                 <Title variant="cardHeader" align="center">
                   {title || selectedVariant.title}
                 </Title>
@@ -65,13 +66,13 @@ export const useInfoModal = () => {
           boxShadow: '0px 0px 19px 0px #00000040',
         },
         header: {
-          padding: '0.8rem',
+          padding: spacing.sm,
         },
         close: {
           borderRadius: '16px',
           backgroundColor: neutral[50],
-          width: '1.8rem',
-          height: '1.8rem',
+          width: '18px',
+          height: '18px',
           '&:hover': {
             backgroundColor: neutral[50],
           },
@@ -80,7 +81,7 @@ export const useInfoModal = () => {
           },
         },
         body: {
-          padding: '0 3.2rem 1.6rem 3.2rem',
+          padding: `0 ${spacing.xxl} ${spacing.lg} ${spacing.xxl}`,
         },
       },
     });

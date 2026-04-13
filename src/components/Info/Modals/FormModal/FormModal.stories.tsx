@@ -51,7 +51,7 @@ const meta: Meta<typeof FormModal> = {
       description: "Modal size (CSS value or number in px).",
       table: {
         type: { summary: "string | number" },
-        defaultValue: { summary: "'40rem'" },
+        defaultValue: { summary: "'400px'" },
       },
     },
     modalVariant: {
@@ -115,7 +115,7 @@ type Story = StoryObj<typeof FormModal>;
 export const Default: Story = {
   args: {
     modalVariant: "info",
-    size: "40rem",
+    size: "400px",
     cancelLabel: "",
     confirmLabel: "",
   },
@@ -157,7 +157,7 @@ return (
       onCancel={() => setOpened(false)}
       onConfirm={() => setOpened(false)}
       modalVariant='info'
-      size='40rem'
+      size='400px'
       children={
         <Title variant="cardSubheader" align="center">
           Example message.
@@ -255,7 +255,7 @@ export const Variants: Story = {
     return (
       <>
         <Center>
-          <Group gap="1rem">
+          <Group gap="10px">
             {(Object.keys(modalVariants) as (keyof typeof modalVariants)[]).map(
               (v) => (
                 <Button
@@ -291,16 +291,16 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: () => {
     const [opened, setOpened] = useState(false);
-    const [size, setSize] = useState<string>("40rem");
+    const [size, setSize] = useState<string>("400px");
     const sizes = [
-      { label: "30rem", value: "30rem" },
-      { label: "40rem (Default)", value: "40rem" },
-      { label: "60rem", value: "60rem" },
+      { label: "300px", value: "300px" },
+      { label: "400px (Default)", value: "400px" },
+      { label: "600px", value: "600px" },
     ];
     return (
       <>
         <Center>
-          <Group gap="1rem">
+          <Group gap="10px">
             {sizes.map(({ label, value }) => (
               <Button
                 key={value}
@@ -373,7 +373,7 @@ export const ConfirmButtonDisabled: Story = {
           onConfirm={() => setOpened(false)}
           confirmButtonDisabled={name.trim().length === 0}
           children={
-            <Stack gap="1rem" align="center">
+            <Stack gap="10px" align="center">
               <Title variant="cardSubheader" align="center">
                 Enter your name to enable the confirm button.
               </Title>
@@ -445,7 +445,7 @@ export const CompleteExample: Story = {
           cancelLabel="Cancel"
           confirmLabel="Add to Cart"
           children={
-            <Stack gap="1rem" align="center">
+            <Stack gap="10px" align="center">
               <Title variant="cardHeader" align="center">
                 Add Item to Cart
               </Title>

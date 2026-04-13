@@ -31,9 +31,9 @@ export const Button = ({ onClick, size = 'md', variant = 'primary', fullWidth = 
     root: {
       borderRadius: '8px',
       width: fullWidth ? '100%' : 'fit-content',
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       padding: selectedSize.padding,
-      minWidth: `${selectedSize.minWidth}rem`,
+      minWidth: `${selectedSize.minWidth}px`,
       fontSize: selectedSize.fontSize,
       boxShadow: shadow ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
       transition: 'background 0.1s ease-in-out',
