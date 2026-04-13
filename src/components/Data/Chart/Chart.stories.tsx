@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { formats } from "../../../constants/data";
 import { primary, success, warning } from "../../../constants/colors";
+import { spacing } from '../../../constants/spacing';
 import type { ChartSeries } from "../../../types/types";
 import { Box } from "../../Layout/Box/Box";
 import { Group } from "../../Layout/Group/Group";
@@ -148,7 +149,7 @@ export const Default: Story = {
 
 export const SeriesTypes: Story = {
 	render: () => (
-		<Stack gap="2.4rem">
+		<Stack gap={spacing.xl}>
 			<Box w="100%" h={280}>
 				<Chart series={sampleLineSeries} height="100%" yAxisFormat="integer" />
 			</Box>
@@ -182,7 +183,7 @@ export const YAxisFormats: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="1.6rem"
+			gap={spacing.lg}
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			{(
@@ -205,7 +206,7 @@ export const YAxisDecimalPlaces: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="1.6rem"
+			gap={spacing.lg}
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			{([1, 2, 3] as const).map((dp) => (
@@ -240,7 +241,7 @@ export const YAxisTruncation: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="1.6rem"
+			gap={spacing.lg}
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			<Box w={280} h={220}>
@@ -287,7 +288,7 @@ export const XAxisNumericFormats: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="1.6rem"
+			gap={spacing.lg}
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			<Box w={280} h={220}>

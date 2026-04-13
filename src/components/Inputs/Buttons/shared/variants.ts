@@ -1,11 +1,12 @@
 import { primary, neutral, error, success, warning } from '../../../../constants/colors';
+import { spacing } from '../../../../constants/spacing';
 
 // Overrides mantine due to rem difference
 const loading = {
-  top: '-0.1rem',
-  right: '-0.1rem',
-  left: '-0.1rem',
-  bottom: '-0.1rem',
+  top: '-1px',
+  right: '-1px',
+  left: '-1px',
+  bottom: '-1px',
   borderRadius: '8px',
 } as const;
 
@@ -173,7 +174,7 @@ export const componentVariants = {
   },
   nav: {
     background: 'white',
-    paddingLeft: '0.8rem',
+    paddingLeft: spacing.sm,
     color: neutral[200],
     '& .mantine-Button-inner': {
       justifyContent: 'flex-start',

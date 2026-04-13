@@ -20,7 +20,9 @@ import {
     IconVolume3,
   } from '@tabler/icons-react';
   import { colors } from '../constants/colors';
-  
+  export { GoogleIcon } from './svgs/GoogleIcon';
+  import { GoogleIcon } from './svgs/GoogleIcon';
+
   export const actions = [
     [ IconPlus, 'Add' ],
     [ IconTrash, 'Delete' ],
@@ -79,4 +81,8 @@ export const controls = [
     [ 'fas fa-sign-out-alt', 'Sign Out' ],
   ];
   
-  export const icons = [...actions, ...controls, ...feedback, ...navigation];
+  export const ssoProviders = [
+    [ GoogleIcon, 'Google' ],
+  ];
+
+  export const icons = [...actions, ...controls, ...feedback, ...navigation, ...ssoProviders];

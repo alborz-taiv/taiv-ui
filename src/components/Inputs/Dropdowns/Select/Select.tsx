@@ -3,6 +3,7 @@ import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@man
 import { CSSObject } from '@mantine/styles';
 import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
+import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../shared/sizes';
 
 export interface SelectProps extends MantineSelectProps {
@@ -17,10 +18,10 @@ export const Select = ({ size = 'md', width, fullWidth = false, placeholder = 'S
 
   const style = {
     root: {
-      width: fullWidth ? '100%' : width || `${selectedSize.minWidth}rem`,
+      width: fullWidth ? '100%' : width || `${selectedSize.minWidth}px`,
     },
     input: {
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       paddingRight: selectedSize.inputPadding,
       ...fontBase,
       fontSize: selectedSize.fontSize,
@@ -39,7 +40,7 @@ export const Select = ({ size = 'md', width, fullWidth = false, placeholder = 'S
     },
     label: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.1rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 1px)`,
       color: neutral[200],
     },
     dropdown: {
@@ -49,7 +50,7 @@ export const Select = ({ size = 'md', width, fullWidth = false, placeholder = 'S
     },
     item: {
       padding: selectedSize.dropdownPadding,
-      marginBottom: '0.2rem',
+      marginBottom: spacing.xxs,
       ...fontBase,
       fontSize: selectedSize.fontSize,
       color: neutral[200],
@@ -74,7 +75,7 @@ export const Select = ({ size = 'md', width, fullWidth = false, placeholder = 'S
     },
     error: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 0.5px)`,
       color: red[200]
     },
     ...styles,

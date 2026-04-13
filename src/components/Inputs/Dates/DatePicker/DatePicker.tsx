@@ -4,6 +4,7 @@ import { createStyles } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
 import { neutral } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
+import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../../Dropdowns/shared/sizes';
 
 export interface DatePickerProps<T extends 'default' | 'multiple' | 'range' = 'default'> extends Omit<MantineDatePickerInputProps<T>, 'styles'> {
@@ -27,10 +28,10 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
 
   const { classes } = createStyles(() => ({
     root: {
-      width: fullWidth ? '100%' : width || (props.type === 'range' ? `${selectedSize.minWidth * 1.2}rem` : `${selectedSize.minWidth}rem`), // Range inputs are slightly wider than regular inputs
+      width: fullWidth ? '100%' : width || (props.type === 'range' ? `${selectedSize.minWidth * 1.2}px` : `${selectedSize.minWidth}px`), // Range inputs are slightly wider than regular inputs
     },
     input: {
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       paddingRight: selectedSize.inputPadding,
       ...fontBase,
       fontSize: selectedSize.fontSize,
@@ -49,7 +50,7 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
     },
     label: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.1rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 1px)`,
       color: neutral[200],
     },
     calendar: {
@@ -86,7 +87,7 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
 
   return (
     <MantineDatePickerInput
-      icon={showIcon ? <i className="far fa-calendar" style={{ fontSize: 14, marginLeft: '0.25rem' }} /> : undefined}
+      icon={showIcon ? <i className="far fa-calendar" style={{ fontSize: 14, marginLeft: spacing.xxs }} /> : undefined}
       radius="lg"
       size="xl"
       classNames={{

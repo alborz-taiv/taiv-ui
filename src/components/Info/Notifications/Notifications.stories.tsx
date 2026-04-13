@@ -4,6 +4,7 @@ import { NotificationProvider } from './NotificationProvider/NotificationProvide
 import { Group } from '../../Layout/Group/Group';
 import { Button } from '../../Inputs/Buttons/Button/Button';
 import { useNotifications } from '../../../hooks/useNotifications';
+import { spacing } from '../../../constants/spacing';
 
 const meta: Meta<typeof NotificationProvider> = {
   title: 'Hooks/Notifications',
@@ -82,7 +83,7 @@ const VariantsDemo = () => {
   const { show } = useNotifications();
 
   return (
-    <Group gap="0.5rem">
+    <Group gap={spacing.xs}>
       <Button variant="success" onClick={() => show({ variant: 'success', message: 'Operation completed successfully!' })}>Success</Button>
       <Button variant="cancel" onClick={() => show({ variant: 'error', message: 'Something went wrong!' })}>Error</Button>
       <Button variant="warning" onClick={() => show({ variant: 'warning', message: 'Please review your input' })}>Warning</Button>
@@ -134,7 +135,7 @@ const AsyncDemo = () => {
   };
 
   return (
-    <Group gap="0.5rem">
+    <Group gap={spacing.xs}>
       <Button variant="success" onClick={handleSuccess} loading={isLoadingSuccess}>
         {isLoadingSuccess ? 'Processing...' : 'Async Success'}
       </Button>

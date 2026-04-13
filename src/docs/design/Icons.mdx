@@ -6,10 +6,11 @@ import { Tooltip } from '../../components/Info/Tooltips/Tooltip/Tooltip';
 import { Title } from '../../components/Typography/Title/Title';
 import { Text } from '../../components/Typography/Text/Text';
 import { Center } from '../../components/Layout/Center/Center';
-import { actions, controls, feedback, navigation } from '../../assets/icons';
+import { actions, controls, feedback, navigation, ssoProviders } from '../../assets/icons';
 import { SearchBar } from '../../components/Inputs/TextInputs/SearchBar/SearchBar';
 import { UnstyledButton } from '../../components/Inputs/Buttons/UnstyledButton/UnstyledButton';
 import { neutral } from '../../constants/colors';
+import { spacing } from '../../constants/spacing';
 import { useCopy } from '../../hooks/useCopy';
 
 export const IconSection = ({ icons }) => {
@@ -22,9 +23,9 @@ export const IconSection = ({ icons }) => {
   const tabler = raw.filter((i) => typeof i.icon !== 'string');
   const fa = raw.filter((i) => typeof i.icon === 'string');
   return (
-    <Stack pt="lg" gap="2.4rem">
+    <Stack pt={spacing.md} gap={spacing.xl}>
       {tabler.length > 0 && (
-        <Group gap="xl" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
+        <Group gap={spacing.lg} style={{ flexWrap: 'wrap', alignItems: 'center' }}>
           {tabler.map(({ icon: Icon, color, label }) => {
             const rawName = Icon.displayName || Icon.name || '';
             const iconName = rawName.startsWith('Icon') ? rawName : `Icon${rawName}`;
@@ -32,7 +33,7 @@ export const IconSection = ({ icons }) => {
               <Tooltip
                 key={iconName}
                 text={
-                  <Stack gap="0.125rem" align="center">
+                  <Stack gap="1.25px" align="center">
                     <span>{iconName}</span>
                     {label && <span style={{ opacity: 0.6 }}>{label}</span>}
                   </Stack>
@@ -55,12 +56,12 @@ export const IconSection = ({ icons }) => {
         </Group>
       )}
       {fa.length > 0 && (
-        <Group gap="2.4rem" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
+        <Group gap={spacing.xl} style={{ flexWrap: 'wrap', alignItems: 'center' }}>
           {fa.map(({ icon: className, color, label }) => (
             <Tooltip
               key={className}
               text={
-                <Stack gap="0.125rem" align="center">
+                <Stack gap="1.25px" align="center">
                   <span>{className}</span>
                   {label && <span style={{ opacity: 0.6 }}>{label}</span>}
                 </Stack>
@@ -105,12 +106,13 @@ export const IconsPage = () => {
     { title: 'Inputs & Controls', subtitle: 'Icons to accompany other UI elements, i.e. table controls or inputs', icons: controls },
     { title: 'Feedback & Information', subtitle: 'Informational icons that appear in modals, notifications, and badges', icons: feedback },
     { title: 'Navigation', subtitle: 'Icons that represent different pages.', icons: navigation },
+    { title: 'Sign-in Provider Icons', subtitle: 'Brand icons used with the SSOButton component for third-party authentication', icons: ssoProviders },
   ];
 
   const hasResults = sections.some(({ icons }) => filterIcons(icons).length > 0);
 
   return (
-    <Stack gap="32px" width="100%" sx={{ minHeight: '600px' }}>
+    <Stack gap={spacing.xxl} width="100%" sx={{ minHeight: '600px' }}>
       <SearchBar
         value={search}
         onChange={(e) => setSearch(e.currentTarget.value)}
@@ -123,7 +125,7 @@ export const IconsPage = () => {
           if (filtered.length === 0) return null;
           return (
             <Stack key={title}>
-              <Stack gap="0.25rem">
+              <Stack gap={spacing.xxs}>
                 <Title variant="cardHeader">{title}</Title>
                 <Title variant="cardSubheader">{subtitle}</Title>
               </Stack>
@@ -169,9 +171,10 @@ You can override the color and size of the component using inline styles.
 
 ```tsx
 import { primary } from '../../constants/colors';
+import { spacing } from '../../constants/spacing';
 
 <i className="fas fa-cog" />
-<i className="fas fa-circle-question" style={{ color: primary[200], fontSize: '2rem' }} />
+<i className="fas fa-circle-question" style={{ color: primary[200], fontSize: '20px' }} />
 ```
 
 ## 📦 Icons

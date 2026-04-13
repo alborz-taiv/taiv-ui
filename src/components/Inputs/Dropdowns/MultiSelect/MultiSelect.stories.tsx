@@ -179,7 +179,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <MultiSelect label="Basic Multi Select" data={basicOptions} />
       <MultiSelect label="Tag Selection" data={tagOptions} placeholder="Select technologies" />
     </Group>
@@ -195,7 +195,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <MultiSelect size="sm" label="Small MultiSelect" data={basicOptions} />
       <MultiSelect size="md" label="Medium MultiSelect (Default)" data={basicOptions} />
       <MultiSelect size="lg" label="Large MultiSelect" data={basicOptions} />
@@ -213,7 +213,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <MultiSelect label="Normal Multi Select" data={basicOptions} />
       <MultiSelect label="Disabled Multi Select" data={basicOptions} disabled />
       <MultiSelect label="Required Multi Select" data={basicOptions} required />
@@ -232,7 +232,7 @@ export const States: Story = {
 
 export const AdditionalFunctionality: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <MultiSelect label="Tags" placeholder="Add or select tags" creatable clearable data={tagOptions} />
       <MultiSelect label="Limited Selection" data={basicOptions} maxSelectedValues={3} placeholder="Max 3 selections" />
     </Group>
@@ -256,7 +256,7 @@ export const AdditionalFunctionality: Story = {
 
 export const CustomStyling: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <MultiSelect
         label="Custom Styled Multi Select"
         data={basicOptions}

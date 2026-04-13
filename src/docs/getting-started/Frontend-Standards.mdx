@@ -16,18 +16,22 @@ The goal of the toolkit is to make building frontend feel like **building with L
 A few principles to keep in mind:
 
 - **Keep things modular.** Components in `@taiv/ui` are meant to be reusable across different apps. If a component is specific to one page or one use case, it belongs in that app's repo — not the toolkit.
-- **Prefer variants over custom styles.** If something needs to look a certain way, we use 'variants' to keep things consistent everywhere. If you find yourself reaching for a CSS override, that's usually a sign the toolkit is missing something — flag it.
-- **Simple but flexible.** We should have props to override, but sensible defaults and shortcuts to keep things simple.
+- **Prefer components & variants over custom styles.** If something needs to look a certain way, we use 'variants' to keep things consistent everywhere. If you find yourself reaching for a CSS style or override, that's usually a sign the toolkit is missing something, please flag it.
+- **Simple but flexible.** We should have props to override, but sensible defaults and shortcuts to keep things simple. Design components with the developer in mind.
 
 ---
 
 ### Design Constants
 
-Before you hardcode any colors, font sizes, or spacing values, know that we have a system in place for all of these:
+Before you hardcode any colors, font sizes, or spacing values, know that we have standards in place for all of these:
 
 - **Colors** — We use a [color system](/docs/design-colors--docs) already in place. Don't hardcode hex colors or RGB values.
-- **Texts** — See the [font constants](/docs/design-fonts--docs) page for more information - you should never be using raw HTML tags.
-- **Spacing** — Use `rem` for values like spacing, font sizes, etc. (it scales with the user's browser settings for accessibility). Use `px` only for fixed values like borders and box shadows.
+- **Texts** — See the [font constants](/docs/design-fonts--docs) page for more information - you should barely need to use raw HTML tags.
+- **Sizing** — Within Taiv UI files, always use [spacing tokens](/docs/design-spacing--docs).
+Within consuming projects though, you can use numbers directly (i.e. width={350} to represent 350px) or `rem` for values like spacing, font sizes, etc. 
+`rem` scales with the user's font settings so it's preferred for accessibility.
+There is an exception, see [A Note About Partner Web App](?path=/docs/getting-started-note-about-partner-web-app--docs)
+- **Shadows/Borders** - Always hardcode as 'px'.
 
 ---
 
@@ -35,7 +39,7 @@ Before you hardcode any colors, font sizes, or spacing values, know that we have
 
 This Storybook serves as a catalog of our components. When you pick up a UI ticket to build something from scratch, the general approach is:
 
-1. **Refer to the Figma**: If there is a Figma design, make note of the exact values used for spacing, font sizes, etc.
+1. **Refer to the Figma**: If there is a Figma design, make note of the exact values used for spacing, font sizes, etc. Use the same tokens as the mockup, or use those token values directly if they dont line up with what's in the toolkit.
 2. **Find relevant components.** Search through Storybook before building anything - make note of what components can be reused, what can be extended, and what you need to build from scratch.
 3. **Build the layout.** Use layout components to get the structure in place (more on this below).
 4. **Plug in your components.** Pass in the data and any props you need.
@@ -55,7 +59,7 @@ Every component's Storybook page will provide you with the necessary import stat
 
 Think top-to-bottom. Start with the outermost container and break the page down into rows and columns using these. This keeps layout code readable and avoids a mess of flexbox divs and arbitrary margins.
 
-Almost every component we have supports props such as `p` for padding, `m` for margin, `w` for width, `h` for height, etc. You can also specifically target my, mb, mx, my, etc. for more granular control of each specific direction.
+Almost every component we have supports props such as `p` for padding, `m` for margin, `w` for width, `h` for height, etc. You can also specifically target my, mb, mx, mr, etc. for more granular control of each specific direction.
 If you need any specific overrides, handle it inline rather than adding a CSS class.
 
 We also have a lot of other useful layout components - i.e. [AutoGrid](?path=/docs/components-layout-autogrid--docs), [Grid](?path=/docs/components-layout-grid--docs), [Box](?path=/docs/components-layout-box--docs), etc.
@@ -90,7 +94,8 @@ Looking good is not the same as working well. A huge part of good UX is just giv
 
 ### Accessibility
 
-We don't have any strict requirements for this as of now, but in the future we'll likely have more to add here.
+We don't have any strict requirements as of now, but in the future we'll likely have more to stay here.
+All components already have solid accessibility built in via Mantine and accessibility is considered at the design stage.
 
 ---
 

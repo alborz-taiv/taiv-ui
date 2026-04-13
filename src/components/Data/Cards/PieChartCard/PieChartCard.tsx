@@ -6,6 +6,7 @@ import { Title } from '../../../Typography/Title/Title';
 import { Text } from '../../../Typography/Text/Text';
 import { InfoTooltip } from '../../../Info/Tooltips/InfoTooltip/InfoTooltip';
 import { Group } from '@mantine/core';
+import { spacing } from '../../../../constants/spacing';
 
 export interface PieChartCardProps extends PieChartProps, Omit<CardProps, 'children'> {
   title: string;
@@ -32,8 +33,8 @@ export const PieChartCard: React.FC<PieChartCardProps> = ({
   return (
     <>
       <Card {...cardProps} h={height}>
-        <Stack gap="0rem" h="100%" w="100%">
-          <Stack gap="0.5rem">
+        <Stack gap="0px" h="100%" w="100%">
+          <Stack gap={spacing.xs}>
             <Group>
               <Title variant="cardHeader">{title}</Title>
               {tooltip && <InfoTooltip text={tooltip} maxWidth="600px" />}

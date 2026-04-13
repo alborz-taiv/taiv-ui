@@ -1,6 +1,7 @@
 //TODO Refactor this component so I actually know how it works
 import React from 'react';
 import { fontWeight, fontSize } from '../../../constants/font';
+import { spacing } from '../../../constants/spacing';
 import { Text } from '../Text/Text';
 import { Fraction } from '../Fraction/Fraction';
 import { Group } from '../../Layout/Group/Group';
@@ -162,7 +163,7 @@ const FormulaRenderer: React.FC<{
   color?: string;
 }> = ({ nodes, weight, size, color }) => {
   return (
-    <Group gap="0.5rem">
+    <Group gap={spacing.xs}>
       {nodes.map((node, index) => {
         switch (node.type) {
           case 'default':
@@ -174,7 +175,7 @@ const FormulaRenderer: React.FC<{
 
           case 'operator':
             return (
-              <Text key={index} weight={weight} size={size} color={color} mx="0.25rem">
+              <Text key={index} weight={weight} size={size} color={color} mx={spacing.xxs}>
                 {node.value === '*' ? '×' : node.value}
               </Text>
             );

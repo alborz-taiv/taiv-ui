@@ -1,7 +1,8 @@
+import { spacing } from '../../../../constants/spacing';
 const componentSizes = {
-  sm: { borderLength: 2.8, padding: '0.4rem', iconSize: 16 },
-  md: { borderLength: 3.6, padding: '0.4rem', iconSize: 20 },
-  lg: { borderLength: 4.8, padding: '0.4rem', iconSize: 24 },
+  sm: { borderLength: 28, padding: spacing.xs, iconSize: 16 },
+  md: { borderLength: 36, padding: spacing.xs, iconSize: 20 },
+  lg: { borderLength: 48, padding: spacing.xs, iconSize: 24 },
 };
 
 export { componentSizes };

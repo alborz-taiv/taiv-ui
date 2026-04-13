@@ -3,6 +3,7 @@ import { Slider as MantineSlider, SliderProps as MantineSliderProps, CSSObject }
 import { useHover } from '@mantine/hooks';
 import { neutral, primary } from '../../../../constants/colors';
 import { fontBase, textStyle } from '../../../../constants/font';
+import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../shared/sizes';
 
 export interface SliderProps extends MantineSliderProps {
@@ -20,13 +21,13 @@ const Slider = ({ width, size = 'md', value, setValue, disabled = false, styles,
   const { hovered, ref } = useHover();
   const sliderColor = disabled ? neutral[100] : primary[200];
   const selectedSize = componentSizes[size];
-  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}rem`;
+  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}px`;
 
   const wrapperStyle: Record<string, CSSProperties> = {
     container: {
       width: fullWidth ? '100%' : 'auto',
       display: 'flex',
-      gap: '1rem',
+      gap: '10px',
       alignItems: 'center',
     },
     label: {
@@ -43,12 +44,12 @@ const Slider = ({ width, size = 'md', value, setValue, disabled = false, styles,
       whiteSpace: 'nowrap',
       flexShrink: 0,
       textAlign: 'right',
-      minWidth: '2rem',
+      minWidth: '20px',
     },
     sliderContainer: {
       display: 'flex',
       alignItems: 'center',
-      gap: '1rem',
+      gap: '10px',
       flex: fullWidth ? 1 : 'none',
     },
   };
@@ -56,11 +57,11 @@ const Slider = ({ width, size = 'md', value, setValue, disabled = false, styles,
   const sliderStyle: Record<string, CSSObject> = {
     root: {
       flex: 1,
-      minWidth: '10rem',
+      minWidth: '100px',
     },
     thumb: {
-      width: `${selectedSize.thumbSize}rem`,
-      height: `${selectedSize.thumbSize}rem`,
+      width: `${selectedSize.thumbSize}px`,
+      height: `${selectedSize.thumbSize}px`,
       backgroundColor: sliderColor,
       borderColor: sliderColor,
       boxShadow: '0 2px 2px rgba(0,0,0,0.2)',
@@ -71,22 +72,22 @@ const Slider = ({ width, size = 'md', value, setValue, disabled = false, styles,
       cursor: disabled ? 'default' : 'pointer',
     },
     track: {
-      height: `${selectedSize.trackHeight}rem`,
+      height: `${selectedSize.trackHeight}px`,
       backgroundColor: sliderColor,
     },
     bar: {
-      height: `${selectedSize.trackHeight}rem`,
+      height: `${selectedSize.trackHeight}px`,
       backgroundColor: sliderColor,
     },
     marksContainer: {
-      height: `${selectedSize.trackHeight}rem`,
+      height: `${selectedSize.trackHeight}px`,
     },
     mark: {
-      width: '0.7rem',
-      height: '0.7rem',
+      width: '7px',
+      height: '7px',
       borderColor: neutral[50],
       backgroundColor: neutral[50],
-      transform: 'translateY(-0.15rem) translateX(-0.2rem)',
+      transform: 'translateY(-1.5px) translateX(-2px)',
     },
     markFilled: {
       borderColor: sliderColor,
@@ -95,7 +96,7 @@ const Slider = ({ width, size = 'md', value, setValue, disabled = false, styles,
     markLabel: {
       ...textStyle['caption'],
       color: disabled ? neutral[100] : neutral[200],
-      marginTop: '0.4rem',
+      marginTop: spacing.xs,
       textAlign: 'center',
     },
     ...styles,

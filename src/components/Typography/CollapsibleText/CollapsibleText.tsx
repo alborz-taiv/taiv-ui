@@ -7,6 +7,7 @@ import { Text } from '../Text/Text';
 import { Transition } from '../../Misc/Transition/Transition';
 import { UnstyledButton } from '../../Inputs/Buttons/UnstyledButton/UnstyledButton';
 import { textStyle } from '../../../constants/font';
+import { spacing } from '../../../constants/spacing';
 
 interface CollapsibleTextProps {
   text: string;
@@ -22,7 +23,7 @@ const CollapsibleText = ({ text, variant = 'body', className, opened, setOpened,
   return (
     <>
       <UnstyledButton className={className} onClick={() => setOpened(!opened)}>
-        <Group gap="0.4rem" align="center">
+        <Group gap={spacing.xs} align="center">
           <Text variant={variant} color={primary[200]}>
             {text}
           </Text>

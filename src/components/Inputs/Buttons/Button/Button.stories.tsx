@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button } from './Button';
 import { Group } from '../../../Layout/Group/Group';
 import { IconPlus, IconEdit, IconTrash, IconDeviceFloppy } from '@tabler/icons-react';
+import { spacing } from '../../../../constants/spacing';
 
 
 const meta: Meta<typeof Button> = {
@@ -150,7 +151,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap={spacing.lg}>
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="cancel">Cancel</Button>
@@ -163,7 +164,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap={spacing.lg}>
       <Button size="sm">Small</Button>
       <Button size="md">Medium</Button>
       <Button size="lg">Large</Button>
@@ -173,7 +174,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap={spacing.lg}>
       <Button>Normal</Button>
       <Button disabled>Disabled</Button>
       <Button loading>Loading</Button>
@@ -186,7 +187,7 @@ export const TogglingButtons: Story = {
     const [toggled, setToggled] = useState(false);
 
     return (
-      <Group gap="1.6rem">
+      <Group gap={spacing.lg}>
         <Button toggled={toggled} onClick={() => setToggled(!toggled)}>
           {toggled ? 'On' : 'Off'}
         </Button>

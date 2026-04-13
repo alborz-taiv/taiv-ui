@@ -6,6 +6,7 @@ import { Tooltip } from '../../components/Info/Tooltips/Tooltip/Tooltip';
 import { Title } from '../../components/Typography/Title/Title';
 import { brand } from '../../assets/assets';
 import { useCopy } from '../../hooks/useCopy';
+import { spacing } from '../../constants/spacing';
 import { UnstyledButton } from '../../components/Inputs/Buttons/UnstyledButton/UnstyledButton';
 
 export const AssetCard = ({ src, filename }) => {
@@ -38,7 +39,7 @@ A collection of assets used across Taiv products. Hover over any asset to see it
 
 ## Brand Assets
 
-<Group gap="xl" style={{ flexWrap: 'wrap' }}>
+<Group gap={spacing.lg} style={{ flexWrap: 'wrap' }}>
   {brand.map(({ src, filename }) => (
     <AssetCard key={filename} src={src} filename={filename} />
   ))}

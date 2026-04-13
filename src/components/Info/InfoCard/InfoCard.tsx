@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardProps } from '../../Layout/Card/Card';
 import { Center } from '../../Layout/Center/Center';
 import { colors } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 
 export interface InfoCardProps extends Omit<CardProps, 'children'> {
   children: React.ReactNode;
@@ -15,7 +16,7 @@ export const InfoCard = ({ children, variant = 'primary', ...cardProps }: InfoCa
     border: `1px solid ${colorPalette[200]}`,
     backgroundColor: colorPalette[25],
     color: colorPalette[200] + ' !important',
-    padding: '3.2rem 6.4rem',
+    padding: `${spacing.xxl} 64px`,
   };
 
   return (

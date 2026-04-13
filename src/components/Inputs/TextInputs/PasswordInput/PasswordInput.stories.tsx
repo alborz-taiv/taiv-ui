@@ -144,7 +144,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <PasswordInput label="Basic Password Input" />
       <PasswordInput label="With Placeholder" placeholder="Enter your password" />
       <PasswordInput label="With Description" description="Password must be at least 8 characters" />
@@ -161,7 +161,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <PasswordInput size="sm" label="Small Password" placeholder="Enter password" />
       <PasswordInput size="md" label="Medium Password (Default)" placeholder="Enter password" />
       <PasswordInput size="lg" label="Large Password" placeholder="Enter password" />
@@ -179,7 +179,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <PasswordInput label="Normal Password Input" />
       <PasswordInput label="Disabled Password Input" disabled />
       <PasswordInput label="Required Password Input" required />
@@ -198,7 +198,7 @@ export const States: Story = {
 
 export const AdditionalFunctionality: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <PasswordInput label="New Password" description="Password must be at least 8 characters" placeholder="Create a strong password" />
       <PasswordInput label="Confirm Password" placeholder="Re-enter password" error="Passwords do not match" />
       <PasswordInput label="Custom Width Password" width="300px" />
@@ -229,7 +229,7 @@ export const AdditionalFunctionality: Story = {
 
 export const CustomStyling: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <PasswordInput
         label="Custom Styled Password Input"
         styles={{

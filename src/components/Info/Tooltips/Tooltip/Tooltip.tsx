@@ -3,6 +3,7 @@ import { Tooltip as MantineTooltip, Box, MantineTransition } from '@mantine/core
 import { CSSObject } from '@mantine/styles';
 import { neutral } from '../../../../constants/colors';
 import { fontBase, fontSize, fontWeight } from '../../../../constants/font';
+import { spacing } from '../../../../constants/spacing';
 
 interface TooltipProps {
   children: React.ReactNode;
@@ -38,7 +39,7 @@ const Tooltip = ({ children, text, position = 'top-start', offset, className, st
       borderRadius: '8px',
       textWrap: 'wrap',
       maxWidth: maxWidth || '375px',
-      padding: '0.75rem 1.125rem',
+      padding: `${spacing.sm} 11.25px`,
       ...fontSize['sm'],
       height: 'fit-content',
     },

@@ -14,13 +14,13 @@ type TextInputProps = MantineTextInputProps & {
 
 const TextInput = ({ size = 'md', width, fullWidth = false, styles, ...props }: TextInputProps) => {
   const selectedSize = componentSizes[size as keyof typeof componentSizes];
-  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}rem`;
+  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}px`;
 
   const style: Record<string, CSSObject> = {
     input: {
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       fontSize: selectedSize.fontSize,
-      padding: '0 1rem',
+      padding: '0 10px',
       ...fontBase,
       color: neutral[200],
       transition: 'all 200ms ease-in-out',
@@ -35,12 +35,12 @@ const TextInput = ({ size = 'md', width, fullWidth = false, styles, ...props }: 
     },
     label: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 0.5px)`,
       color: neutral[200],
     },
     error: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 0.5px)`,
       color: red[200]
     },
     ...styles,

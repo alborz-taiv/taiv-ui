@@ -170,7 +170,7 @@ export const Default: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Select size="sm" label="Small Select" data={basicOptions} />
       <Select size="md" label="Medium Select (Default)" data={basicOptions} />
       <Select size="lg" label="Large Select" data={basicOptions} />
@@ -188,7 +188,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Select label="Normal Select" data={basicOptions} placeholder="Select option" />
       <Select label="Disabled Select" data={basicOptions} placeholder="Select option" disabled />
       <Select label="Required Select" data={basicOptions} placeholder="Select option" required />
@@ -207,7 +207,7 @@ export const States: Story = {
 
 export const WithFeatures: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Select label="Searchable Select" placeholder="Type to search..." searchable data={countryOptions} />
       <Select label="Clearable Select" data={basicOptions} clearable value="option1" />
     </Group>
@@ -245,7 +245,7 @@ export const FullWidth: Story = {
 
 export const CustomStyles: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Select
         label="Custom Styled Select"
         data={basicOptions}

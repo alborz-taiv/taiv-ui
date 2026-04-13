@@ -4,6 +4,7 @@ import { AutoGrid } from '../AutoGrid/AutoGrid';
 import { Text } from '../../Typography/Text/Text';
 import { Title } from '../../Typography/Title/Title';
 import { primary } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 
 const meta: Meta<typeof Card> = {
   title: 'Components/Layout/Card',
@@ -93,7 +94,7 @@ export const Animation: Story = {
 export const WithAutoGrid: Story = {
   render: () => (
     <div style={{ width: '700px' }}>
-      <AutoGrid cols={3} spacing="md">
+      <AutoGrid cols={3} spacing={spacing.md}>
         {[1, 2, 3, 4, 5, 6].map((item) => (
           <Card key={item} animate>
             <Title variant="cardHeader">Card {item}</Title>

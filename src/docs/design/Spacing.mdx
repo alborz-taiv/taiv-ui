@@ -1,0 +1,74 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as SpacingStories from './Spacing.stories';
+
+<Meta of={SpacingStories} />
+
+# Spacing
+
+We have a consistent set of spacing tokens used across all components for padding, margin, gap, etc.
+
+For now, use these only when developing components *within* Taiv UI. For consuming projects, see [Frontend Standards](?path=/docs/getting-started-frontend-standards--docs).
+
+<br />
+
+### 📦 Import
+
+```tsx
+// Import either spacing as a whole or an individual token
+import { spacing, lg} from '@taiv/ui/constants';
+
+// Use as an object
+gap: spacing.lg  
+
+// Alternatively, use an individual token
+padding: lg
+```
+
+---
+
+### 📐 Tokens
+
+<Story of={SpacingStories.AllTokens} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>spacing.none</code></td>
+      <td>0px</td>
+    </tr>
+    <tr>
+      <td><code>spacing.xxs</code></td>
+      <td>2px</td>
+    </tr>
+    <tr>
+      <td><code>spacing.xs</code></td>
+      <td>4px</td>
+    </tr>
+    <tr>
+      <td><code>spacing.sm</code></td>
+      <td>8px</td>
+    </tr>
+    <tr>
+      <td><code>spacing.md</code></td>
+      <td>12px</td>
+    </tr>
+    <tr>
+      <td><code>spacing.lg</code></td>
+      <td>16px</td>
+    </tr>
+    <tr>
+      <td><code>spacing.xl</code></td>
+      <td>24px</td>
+    </tr>
+    <tr>
+      <td><code>spacing.xxl</code></td>
+      <td>32px</td>
+    </tr>
+  </tbody>
+</table>

@@ -31,10 +31,10 @@ const componentVariants = {
 };
 
 const componentSizes = {
-  sm: '1.2rem',
-  md: '1.6rem',
-  lg: '2rem',
-  xl: '2.4rem',
+  sm: '12px',
+  md: '16px',
+  lg: '20px',
+  xl: '24px',
 } as const;
 
 const InfoTooltip = ({ text, content, position = 'top-start', size = 'md', offset, className, styles, maxWidth, variant = 'info' }: InfoTooltipProps) => {

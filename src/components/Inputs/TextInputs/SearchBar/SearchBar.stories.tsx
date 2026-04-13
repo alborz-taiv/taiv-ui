@@ -119,7 +119,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <SearchBar label="Find Users" description="Search by name, email, or username" />
       <SearchBar placeholder="Search products..." />
       <SearchBar label="Product Search" error="Search query is too short" />
@@ -136,7 +136,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <SearchBar size="sm" />
       <SearchBar size="md" />
       <SearchBar size="lg" />
@@ -154,7 +154,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <SearchBar label="Normal Search Bar" />
       <SearchBar label="Disabled Search Bar" disabled />
       <SearchBar label="Required Search Bar" required />
@@ -173,7 +173,7 @@ export const States: Story = {
 
 export const AdditionalFunctionality: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <SearchBar width={400} placeholder="Search products..." />
       <SearchBar label="Find Users" description="Search by name, email, or username" />
       <SearchBar label="Product Search" error="Search query is too short" />
@@ -202,7 +202,7 @@ export const AdditionalFunctionality: Story = {
 
 export const CustomStyling: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <SearchBar
         label="Custom Styled Search Bar"
         styles={{
