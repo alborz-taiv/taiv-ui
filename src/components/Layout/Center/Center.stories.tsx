@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Center } from './Center';
 import { Text } from '../../Typography/Text/Text';
 import { neutral } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 import { Title } from '../../Typography/Title/Title';
 import { Card, Stack } from '../../..';
 
@@ -82,7 +83,7 @@ export const CenteringLayouts: Story = {
   },
   render: (args) => (
     <Center {...args}>
-      <Stack spacing="md" sx={{ width: '300px'}}>
+      <Stack spacing={spacing.md} sx={{ width: '300px'}}>
         <SampleCard title="Card 1" description="Centered layout" />
         <SampleCard title="Card 2" description="Centered layout" />
         <SampleCard title="Card 3" description="Centered layout" />

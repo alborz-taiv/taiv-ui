@@ -6,6 +6,7 @@ import { componentSizes } from '../shared/sizes';
 import { Select, SelectProps } from '../Select/Select';
 import { Text } from '../../../Typography/Text/Text';
 import { fontBase } from '../../../../constants/font';
+import { spacing } from '../../../../constants/spacing';
 import { SelectOption } from '../../../../utils/select';
 
 export type CascadingSelectItemProps = {
@@ -56,7 +57,7 @@ const CascadingSelect = ({ data = [], value, placeholder = 'Select an option', s
         }}
         {...others}
       >
-        <Group spacing="5px" sx={{ marginLeft: `${indentLevel}px` }}>
+        <Group spacing={spacing.xs} sx={{ marginLeft: `${indentLevel}px` }}>
           {icon && <Box sx={{ display: 'flex', alignItems: 'center', color: neutral[200], fontSize: selectedSize.fontSize }}>{icon}</Box>}
           <Text style={{ ...fontBase, color: neutral[200], fontSize: selectedSize.fontSize }}>{label}</Text>
         </Group>
@@ -81,7 +82,7 @@ const CascadingSelect = ({ data = [], value, placeholder = 'Select an option', s
       transition: 'background-color 200ms ease-in-out',
       padding: 0,
       fontSize: selectedSize.fontSize,
-      marginBottom: '2px',
+      marginBottom: spacing.xxs,
       '&[data-selected]': {
         backgroundColor: neutral[50],
         color: neutral[200],

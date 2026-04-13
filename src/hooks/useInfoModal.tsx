@@ -1,6 +1,7 @@
 import React from 'react';
 import { modals } from '@mantine/modals';
 import { neutral } from '../constants/colors';
+import { spacing } from '../constants/spacing';
 import { Title } from '../components/Typography/Title/Title';
 import { Stack } from '../components/Layout/Stack/Stack';
 import { Center } from '../components/Layout/Center/Center';
@@ -34,9 +35,9 @@ export const useInfoModal = () => {
       return (
         <Center h="100%" w="100%">
           <Stack gap="20px" h="100%" w="100%" align="center">
-            <Stack gap="15px" align="center">
+            <Stack gap={spacing.lg} align="center">
               <Center style={iconContainer}>{modalIcon}</Center>
-              <Stack gap="2.5px" align="center">
+              <Stack gap={spacing.xxs} align="center">
                 <Title variant="cardHeader" align="center">
                   {title || selectedVariant.title}
                 </Title>
@@ -65,7 +66,7 @@ export const useInfoModal = () => {
           boxShadow: '0px 0px 19px 0px #00000040',
         },
         header: {
-          padding: '8px',
+          padding: spacing.sm,
         },
         close: {
           borderRadius: '16px',
@@ -80,7 +81,7 @@ export const useInfoModal = () => {
           },
         },
         body: {
-          padding: '0 32px 16px 32px',
+          padding: `0 ${spacing.xxl} ${spacing.lg} ${spacing.xxl}`,
         },
       },
     });

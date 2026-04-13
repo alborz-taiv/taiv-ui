@@ -4,6 +4,7 @@ import { Text } from '../../Typography/Text/Text';
 import { Stack } from '../Stack/Stack';
 import { Button } from '../../Inputs/Buttons/Button/Button';
 import { neutral } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 import { Card } from '../Card/Card';
 import { Title } from '../../Typography/Title/Title';
 import { TextInput } from '../../Inputs/TextInputs/TextInput/TextInput';
@@ -87,9 +88,9 @@ export const Default: Story = {
 
 export const UseCases: Story = {
   render: () => (
-    <Stack gap="30px" sx={{ width: '500px' }}>
+    <Stack gap={spacing.xxl} sx={{ width: '500px' }}>
       <Frame title="User Details" subtitle="Enter your user details">
-        <Stack gap="16px">
+        <Stack gap={spacing.lg}>
           <TextInput
             label="Name"
             placeholder="Enter your name"
@@ -110,7 +111,7 @@ export const UseCases: Story = {
       </Frame>
 
       <Frame title="Your Items" subtitle="View your recent items">
-        <Stack gap="sm">
+        <Stack gap={spacing.sm}>
           {[1, 2, 3].map((item) => (
             <Card key={item}>
               <Title variant="cardHeader">Item {item}</Title>

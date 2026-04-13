@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { RadioList } from './RadioList';
+import { spacing } from '../../../../constants/spacing';
 
 const meta: Meta<typeof RadioList> = {
   title: 'Components/Inputs/Controls/RadioList',
@@ -130,11 +131,11 @@ export const States: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <div>
-        <h4 style={{ marginBottom: '5px' }}>Normal State</h4>
+        <h4 style={{ marginBottom: spacing.xs }}>Normal State</h4>
         <RadioList data={basicOptions} value="option2" width="300px" />
       </div>
       <div>
-        <h4 style={{ marginBottom: '5px' }}>Disabled State</h4>
+        <h4 style={{ marginBottom: spacing.xs }}>Disabled State</h4>
         <RadioList data={basicOptions} value="option1" disabled width="300px" />
       </div>
     </div>
@@ -152,11 +153,11 @@ export const CustomWidth: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <div>
-        <h4 style={{ marginBottom: '5px' }}>Narrow Width (200px)</h4>
+        <h4 style={{ marginBottom: spacing.xs }}>Narrow Width (200px)</h4>
         <RadioList data={basicOptions} value="option1" width="200px" />
       </div>
       <div>
-        <h4 style={{ marginBottom: '5px' }}>Wide Width (500px)</h4>
+        <h4 style={{ marginBottom: spacing.xs }}>Wide Width (500px)</h4>
         <RadioList data={optionsWithDescriptions} value="pro" width="500px" />
       </div>
     </div>

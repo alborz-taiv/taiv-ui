@@ -3,6 +3,7 @@ import { Group } from '../../components/Layout/Group/Group';
 import { Stack } from '../../components/Layout/Stack/Stack';
 import { Text } from '../../components/Typography/Text/Text';
 import { colors, primitives } from '../../constants/colors';
+import { spacing } from '../../constants/spacing';
 
 const meta: Meta = {
   title: 'Design/Colors',
@@ -16,7 +17,7 @@ export default meta;
 type Story = StoryObj;
 
 const Swatch = ({ color, label }: { color: string; label: string }) => (
-  <Stack gap="4px" align="center">
+  <Stack gap={spacing.xs} align="center">
     <div
       style={{
         width: '64px',
@@ -40,12 +41,12 @@ const ThemeRow = ({
   primitive: string;
   shades: Record<string, string>;
 }) => (
-  <Stack gap="8px">
-    <Group gap="4px">
+  <Stack gap={spacing.sm}>
+    <Group gap={spacing.xs}>
       <Text weight="bold">{semantic}</Text>
       <Text>({primitive})</Text>
     </Group>
-    <Group gap="16px">
+    <Group gap={spacing.lg}>
       {Object.entries(shades).map(([shade, hex]) => (
         <Swatch key={shade} color={hex} label={shade} />
       ))}
@@ -54,9 +55,9 @@ const ThemeRow = ({
 );
 
 const ColorRow = ({ name, shades }: { name: string; shades: Record<string, string> }) => (
-  <Stack gap="8px">
+  <Stack gap={spacing.sm}>
     <Text weight="bold" transform="capitalize">{name}</Text>
-    <Group gap="16px">
+    <Group gap={spacing.lg}>
       {Object.entries(shades).map(([shade, hex]) => (
         <Swatch key={shade} color={hex} label={shade} />
       ))}
@@ -66,8 +67,8 @@ const ColorRow = ({ name, shades }: { name: string; shades: Record<string, strin
 
 export const TaivLight: Story = {
   render: () => (
-    <Stack gap="24px" align="flex-start">
-      <Group gap="16px">
+    <Stack gap={spacing.xl} align="flex-start">
+      <Group gap={spacing.lg}>
         <Swatch color="#000000" label="black" />
         <Swatch color="#FFFFFF" label="white" />
       </Group>
@@ -82,7 +83,7 @@ export const TaivLight: Story = {
 
 export const AdditionalPrimitives: Story = {
   render: () => (
-    <Stack gap="24px">
+    <Stack gap={spacing.xl}>
       <ColorRow name="purple" shades={primitives.purple} />
       <ColorRow name="salmon" shades={primitives.salmon} />
     </Stack>

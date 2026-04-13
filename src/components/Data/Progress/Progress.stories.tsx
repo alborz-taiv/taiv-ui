@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { primary, purple, success } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 import { Stack } from '../../Layout/Stack/Stack';
 import { Progress } from './Progress';
 
@@ -101,7 +102,7 @@ export const Default: Story = {
 
 export const Values: Story = {
   render: () => (
-    <Stack spacing="md">
+    <Stack spacing={spacing.md}>
       <Progress value={0} scale="xl" cornerRadius="xl" />
       <Progress value={25} scale="xl" cornerRadius="xl" />
       <Progress value={50} scale="xl" cornerRadius="xl" />
@@ -112,7 +113,7 @@ export const Values: Story = {
 
 export const Scale: Story = {
   render: () => (
-    <Stack spacing="md">
+    <Stack spacing={spacing.md}>
       {presetOptions.map((preset) => (
         <Progress key={preset} value={60} scale={preset} cornerRadius="md" />
       ))}
@@ -122,7 +123,7 @@ export const Scale: Story = {
 
 export const CornerRadius: Story = {
   render: () => (
-    <Stack spacing="md">
+    <Stack spacing={spacing.md}>
       {presetOptions.map((radius) => (
         <Progress key={radius} value={60} scale="xl" cornerRadius={radius} />
       ))}
@@ -132,7 +133,7 @@ export const CornerRadius: Story = {
 
 export const Striped: Story = {
   render: () => (
-    <Stack spacing="md">
+    <Stack spacing={spacing.md}>
       <Progress value={55} scale="xl" cornerRadius="xl" striped />
     </Stack>
   ),

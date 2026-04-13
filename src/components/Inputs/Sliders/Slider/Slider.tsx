@@ -3,6 +3,7 @@ import { Slider as MantineSlider, SliderProps as MantineSliderProps, CSSObject }
 import { useHover } from '@mantine/hooks';
 import { neutral, primary } from '../../../../constants/colors';
 import { fontBase, textStyle } from '../../../../constants/font';
+import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../shared/sizes';
 
 export interface SliderProps extends MantineSliderProps {
@@ -95,7 +96,7 @@ const Slider = ({ width, size = 'md', value, setValue, disabled = false, styles,
     markLabel: {
       ...textStyle['caption'],
       color: disabled ? neutral[100] : neutral[200],
-      marginTop: '4px',
+      marginTop: spacing.xs,
       textAlign: 'center',
     },
     ...styles,

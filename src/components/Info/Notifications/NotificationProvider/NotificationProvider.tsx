@@ -2,6 +2,7 @@ import React from 'react';
 import { Notifications } from '@mantine/notifications';
 import { createStyles } from '@mantine/core';
 import { neutral } from '../../../../constants/colors';
+import { spacing } from '../../../../constants/spacing';
 import { useMobile } from '../../../../hooks/useMediaQuery';
 
 export const NotificationProvider = () => {
@@ -12,7 +13,7 @@ export const NotificationProvider = () => {
       zIndex: 2000,
       '& .mantine-Notification-root': {
         backgroundColor: 'white',
-        padding: '12px 16px',
+        padding: `${spacing.md} ${spacing.lg}`,
         minHeight: 'auto',
         borderRadius: '0 8px 8px 0',
       },
@@ -29,8 +30,8 @@ export const NotificationProvider = () => {
         lineHeight: 1.4,
       },
       '& .mantine-Notification-icon': {
-        marginRight: '15px',
-        marginLeft: '7.5px',
+        marginRight: spacing.lg,
+        marginLeft: spacing.sm,
         fontSize: '20px',
         backgroundColor: 'transparent !important',
       },

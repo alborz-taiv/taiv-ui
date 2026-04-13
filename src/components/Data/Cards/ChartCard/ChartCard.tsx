@@ -6,6 +6,7 @@ import { Title } from '../../../Typography/Title/Title';
 import { Text } from '../../../Typography/Text/Text';
 import { InfoTooltip } from '../../../Info/Tooltips/InfoTooltip/InfoTooltip';
 import { Group } from '@mantine/core';
+import { spacing } from '../../../../constants/spacing';
 
 export interface ChartCardProps extends ChartProps, Omit<CardProps, 'children'> {
   title: string;
@@ -17,8 +18,8 @@ export const ChartCard: React.FC<ChartCardProps> = ({ title, subtitle, series, y
   return (
     <>
       <Card {...cardProps} h={height}>
-        <Stack gap="24px" h="100%" w="100%">
-          <Stack gap="5px">
+        <Stack gap={spacing.xl} h="100%" w="100%">
+          <Stack gap={spacing.xs}>
             <Group position="apart">
               <Title variant="cardHeader">{title}</Title>
               {tooltip && <InfoTooltip text={tooltip} maxWidth="600px" />}

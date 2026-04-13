@@ -3,6 +3,7 @@ import { Autocomplete as MantineAutocomplete, AutocompleteProps as MantineAutoco
 import { CSSObject } from '@mantine/styles';
 import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
+import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../../Dropdowns/shared/sizes';
 
 export interface AutoCompleteProps extends MantineAutocompleteProps {
@@ -45,7 +46,7 @@ export const AutoComplete = ({ size = 'md', width, fullWidth = false, placeholde
     },
     item: {
       padding: selectedSize.dropdownPadding,
-      marginBottom: '5px',
+      marginBottom: spacing.xs,
       ...fontBase,
       fontSize: selectedSize.fontSize,
       color: neutral[200],

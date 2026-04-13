@@ -1,5 +1,5 @@
 // Breakpoints in px - from Tailwind CSS
-export const BREAKPOINTS = {
+export const breakpoints = {
   MOBILE: 640,
   TABLET: 768,
   LAPTOP: 1024,

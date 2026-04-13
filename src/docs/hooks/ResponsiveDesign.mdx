@@ -18,7 +18,7 @@ const isMobile = useMobile();
 
 ### ✍️ Basic Usage
 
-Each hook returns a boolean value based on the width of the viewport, so that we can render our UI differently based on the screen size.
+Each hook returns a boolean value based on of the viewport, so that we can render our UI differently based on the screen size.
 
 In simple cases, you can usually just use one of `useMobile` or `useTablet` to optimize something for smaller screens.
 
@@ -34,13 +34,14 @@ else {
 
 ### 📐 Breakpoints
 
-These widths from each hook is based on Tailwind CSS's standard:
+Each breakpoint is based on Tailwind CSS's standard.
+It is currently from a desktop-first perspective, meaning the hook is true if we are **under** the respective width:
 
 <table>
   <thead>
     <tr>
       <th>Hook</th>
-      <th>Width</th>
+      <th>Max Width</th>
     </tr>
   </thead>
   <tbody>
@@ -98,7 +99,7 @@ switch (screenSize) {
 }
 ```
 
-A pattern I like is to use screen size to create "layouts".
+A recommended pattern is to use screen size to create "layouts".
 
 Instead of conditionally rendering UI, consider defining a set of values for different sections of your page (e.g. container widths or grid columns).
 This way, you can easily refer back to these values in the page.

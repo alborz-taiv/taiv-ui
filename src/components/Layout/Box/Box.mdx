@@ -20,6 +20,7 @@ If nothing else fits, Box is essentially the replacement for a generic `<div>`.
 ### 📦 Import
 ```tsx
 import { Box } from '@taiv/ui';
+import { spacing } from '../../../constants/spacing';
 ```
 
 ### ✍️ Basic Usage
@@ -57,7 +58,7 @@ The second use case for Box is for one-off "container" type things. `sx` gives y
 <Box
   sx={{
     backgroundColor: neutral[50],
-    padding: '24px',
+    padding: spacing.xl,
     borderRadius: '8px',
     border: `1px dashed ${neutral[100]}`,
   }}

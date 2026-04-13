@@ -4,6 +4,7 @@ import { Text } from '../../Typography/Text/Text';
 import { Card } from '../Card/Card';
 import { Stack } from '../Stack/Stack';
 import { neutral } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 
 const meta: Meta<typeof Group> = {
   title: 'Components/Layout/Group',
@@ -124,11 +125,11 @@ export const Default: Story = {
 
 export const PositionAlign: Story = {
   render: () => (
-    <Stack spacing="md" sx={{ width: '500px' }}>
+    <Stack spacing={spacing.md} sx={{ width: '500px' }}>
       {(['left', 'center', 'right', 'apart'] as const).map((pos) => (
         <div key={pos}>
-          <Text variant="label" mb="sm"><code>position={'"' + pos + '"'}</code></Text>
-          <Group position={pos} spacing="sm" sx={{ backgroundColor: neutral[25], padding: '5px' }}>
+          <Text variant="label" mb={spacing.sm}><code>position={'"' + pos + '"'}</code></Text>
+          <Group position={pos} spacing={spacing.sm} sx={{ backgroundColor: neutral[25], padding: spacing.xs }}>
             <SampleCard label="A" />
             <SampleCard label="B" />
           </Group>
@@ -142,8 +143,8 @@ export const WrapItems: Story = {
   render: () => (
     <Stack gap="40px">
       <div>
-        <Text variant="label" mb="sm"><code>noWrap={'{false}'}</code> (default, will continue to grow vertically)</Text>
-        <Group sx={{ backgroundColor: neutral[25], padding: '5px', width: '250px' }}>
+        <Text variant="label" mb={spacing.sm}><code>noWrap={'{false}'}</code> (default, will continue to grow vertically)</Text>
+        <Group sx={{ backgroundColor: neutral[25], padding: spacing.xs, width: '250px' }}>
           <SampleCard label="First" />
           <SampleCard label="Second" />
           <SampleCard label="Third" />
@@ -151,8 +152,8 @@ export const WrapItems: Story = {
         </Group>
       </div>
       <div>
-        <Text variant="label" mb="sm"><code>noWrap={'{true}'}</code>, combined with <code>overflow='hidden'</code> on the card and <code>truncate='end'</code> on the text</Text>
-        <Group noWrap spacing="sm" sx={{ backgroundColor: neutral[25], padding: '5px', width: '250px' }}>
+        <Text variant="label" mb={spacing.sm}><code>noWrap={'{true}'}</code>, combined with <code>overflow='hidden'</code> on the card and <code>truncate='end'</code> on the text</Text>
+        <Group noWrap spacing={spacing.sm} sx={{ backgroundColor: neutral[25], padding: spacing.xs, width: '250px' }}>
           <SampleCard label="First" />
           <SampleCard label="Second" />
           <SampleCard label="Third" />
@@ -166,8 +167,8 @@ export const WrapItems: Story = {
 export const GrowItems: Story = {
   render: () => (
     <div>
-    <Text variant="label" mb="sm"><code>grow={'{true}'}</code></Text>
-    <Group grow spacing="sm" sx={{ backgroundColor: neutral[25], padding: '5px', width: '400px' }}>
+    <Text variant="label" mb={spacing.sm}><code>grow={'{true}'}</code></Text>
+    <Group grow spacing={spacing.sm} sx={{ backgroundColor: neutral[25], padding: spacing.xs, width: '400px' }}>
       <SampleCard label="A" />
       <SampleCard label="B" />
     </Group>

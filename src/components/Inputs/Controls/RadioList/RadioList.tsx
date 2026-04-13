@@ -2,6 +2,7 @@ import React from 'react';
 import { Stack } from '../../../Layout/Stack/Stack';
 import { Radio } from '../Radio/Radio';
 import { neutral } from '../../../../constants/colors';
+import { spacing } from '../../../../constants/spacing';
 import { Group } from '../../../Layout/Group/Group';
 
 interface RadioListOption {
@@ -32,7 +33,7 @@ const RadioList = ({ data, value, onChange, disabled = false, width }: RadioList
         border: `1px solid ${neutral[100]}`,
         borderRadius: '16px',
         overflow: 'hidden',
-        padding: '2px 0 2px 0',
+        padding: `${spacing.xxs} 0 ${spacing.xxs} 0`,
         width,
       }}
     >
@@ -41,7 +42,7 @@ const RadioList = ({ data, value, onChange, disabled = false, width }: RadioList
           key={option.value}
           position="apart"
           style={{
-            padding: '10px 12px 8px 12px',
+            padding: `10px ${spacing.md} ${spacing.sm} ${spacing.md}`,
             borderBottom: index < data.length - 1 ? `1px solid ${neutral[100]}` : 'none',
             backgroundColor: 'white',
           }}

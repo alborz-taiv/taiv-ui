@@ -10,6 +10,7 @@ import { actions, controls, feedback, navigation } from '../../assets/icons';
 import { SearchBar } from '../../components/Inputs/TextInputs/SearchBar/SearchBar';
 import { UnstyledButton } from '../../components/Inputs/Buttons/UnstyledButton/UnstyledButton';
 import { neutral } from '../../constants/colors';
+import { spacing } from '../../constants/spacing';
 import { useCopy } from '../../hooks/useCopy';
 
 export const IconSection = ({ icons }) => {
@@ -22,9 +23,9 @@ export const IconSection = ({ icons }) => {
   const tabler = raw.filter((i) => typeof i.icon !== 'string');
   const fa = raw.filter((i) => typeof i.icon === 'string');
   return (
-    <Stack pt="lg" gap="24px">
+    <Stack pt={spacing.md} gap={spacing.xl}>
       {tabler.length > 0 && (
-        <Group gap="xl" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
+        <Group gap={spacing.lg} style={{ flexWrap: 'wrap', alignItems: 'center' }}>
           {tabler.map(({ icon: Icon, color, label }) => {
             const rawName = Icon.displayName || Icon.name || '';
             const iconName = rawName.startsWith('Icon') ? rawName : `Icon${rawName}`;
@@ -55,7 +56,7 @@ export const IconSection = ({ icons }) => {
         </Group>
       )}
       {fa.length > 0 && (
-        <Group gap="24px" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
+        <Group gap={spacing.xl} style={{ flexWrap: 'wrap', alignItems: 'center' }}>
           {fa.map(({ icon: className, color, label }) => (
             <Tooltip
               key={className}
@@ -110,7 +111,7 @@ export const IconsPage = () => {
   const hasResults = sections.some(({ icons }) => filterIcons(icons).length > 0);
 
   return (
-    <Stack gap="32px" width="100%" sx={{ minHeight: '600px' }}>
+    <Stack gap={spacing.xxl} width="100%" sx={{ minHeight: '600px' }}>
       <SearchBar
         value={search}
         onChange={(e) => setSearch(e.currentTarget.value)}
@@ -123,7 +124,7 @@ export const IconsPage = () => {
           if (filtered.length === 0) return null;
           return (
             <Stack key={title}>
-              <Stack gap="2.5px">
+              <Stack gap={spacing.xxs}>
                 <Title variant="cardHeader">{title}</Title>
                 <Title variant="cardSubheader">{subtitle}</Title>
               </Stack>
@@ -169,6 +170,7 @@ You can override the color and size of the component using inline styles.
 
 ```tsx
 import { primary } from '../../constants/colors';
+import { spacing } from '../../constants/spacing';
 
 <i className="fas fa-cog" />
 <i className="fas fa-circle-question" style={{ color: primary[200], fontSize: '20px' }} />

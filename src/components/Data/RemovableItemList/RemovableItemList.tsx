@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Text } from '@mantine/core';
 import { neutral, error } from '../../../constants/colors';
 import { fontStyle } from '../../../constants/font';
+import { spacing } from '../../../constants/spacing';
 import { Title } from '../../Typography/Title/Title';
 
 interface RemovableItemListProps {
@@ -24,14 +25,14 @@ const RemovableItemList = ({ items, onRemove, title, disabledIndices = [] }: Rem
     titleContainer: {
       display: 'flex',
       alignItems: 'center',
-      padding: '12px 16px',
+      padding: `${spacing.md} ${spacing.lg}`,
       backgroundColor: neutral[50],
     },
     itemContainer: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '12px 16px',
+      padding: `${spacing.md} ${spacing.lg}`,
     },
     itemText: {
       ...fontStyle['body'],

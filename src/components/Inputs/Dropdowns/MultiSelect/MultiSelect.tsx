@@ -3,6 +3,7 @@ import { MultiSelect as MantineMultiSelect, MultiSelectProps as MantineMultiSele
 import { CSSObject } from '@mantine/styles';
 import { neutral, primary } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
+import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../shared/sizes';
 
 interface MultiSelectProps extends MantineMultiSelectProps {
@@ -42,7 +43,7 @@ export const MultiSelect = ({ size = 'md', width, fullWidth = false, placeholder
     },
     item: {
       padding: selectedSize.dropdownPadding,
-      marginBottom: '5px',
+      marginBottom: spacing.xs,
       borderRadius: '8px',
       ...fontBase,
       fontSize: selectedSize.fontSize,
@@ -74,7 +75,7 @@ export const MultiSelect = ({ size = 'md', width, fullWidth = false, placeholder
       },
     },
     defaultValueRemove: {
-      marginLeft: '7.5px',
+      marginLeft: spacing.sm,
       borderRadius: '50%',
       display: 'flex',
       alignItems: 'center',

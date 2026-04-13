@@ -8,6 +8,7 @@ import { Title } from '../../Typography/Title/Title';
 import { Button } from '../../Inputs/Buttons/Button/Button';
 import { Group } from '../Group/Group';
 import { useNotifications } from '../../../hooks/useNotifications';
+import { spacing } from '../../../constants/spacing';
 
 const meta: Meta<typeof Loader> = {
   title: 'Components/Misc/Loader',
@@ -52,7 +53,7 @@ const LoadingNotificationDemo = () => {
   };
 
   return (
-    <Group gap="5px">
+    <Group gap={spacing.xs}>
       <Button onClick={handleSuccess} loading={isLoading}>
         Save
       </Button>
@@ -77,7 +78,7 @@ export const ButtonLoading: Story = {
 export const CenteredLoader: Story = {
   decorators: [
     (Story) => (
-      <div style={{ width: '300px', padding: '32px'}}>
+      <div style={{ width: '300px', padding: spacing.xxl}}>
         <Story />
       </div>
     ),

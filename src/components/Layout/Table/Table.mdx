@@ -269,6 +269,7 @@ import { Group } from '@taiv/ui';
 import { Text } from '@taiv/ui';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { neutral } from '@taiv/ui/constants/colors';
+import { spacing } from '../../../constants/spacing';
 
 const columnConfigs: ColumnConfig[] = [
   { heading: 'Name', style: { width: '25%' } },
@@ -282,7 +283,7 @@ const columnConfigs: ColumnConfig[] = [
   columnConfigs={columnConfigs}
   placeholder={
     <Center py='50px'>
-      <Group gap='5px' align='center'>
+      <Group gap={spacing.xs} align='center'>
         <IconInfoCircle color={neutral[200]} size='20px' />
         <Text>No data available at this time</Text>
       </Group>
@@ -306,7 +307,7 @@ const columnConfigs: ColumnConfig[] = [
     style: {
       width: '30%',
       textAlign: 'left',
-      paddingLeft: '16px'
+      paddingLeft: spacing.lg
     }
   },
   { 

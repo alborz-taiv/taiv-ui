@@ -4,6 +4,7 @@ import { Group } from '../../components/Layout/Group/Group';
 import { Text } from '../../components/Typography/Text/Text';
 import { Title } from '../../components/Typography/Title/Title';
 import { neutral } from '../../constants/colors';
+import { spacing } from '../../constants/spacing';
 
 <Meta title="Design/Fonts" />
 
@@ -35,28 +36,28 @@ Titles are used for headings and section labels. Each variant maps to a semantic
 `}</style>
 
 <div className="variant-showcase">
-<Stack gap="20px" style={{ border: `1px dashed ${neutral[100]}`, borderRadius: '8px', padding: '25px' }}>
-  <Stack gap="2.5px">
+<Stack gap="20px" style={{ border: `1px dashed ${neutral[100]}`, borderRadius: '8px', padding: spacing.xl }}>
+  <Stack gap={spacing.xxs}>
     <Title variant="header">Header (h1)</Title>
     <Text variant="label">variant="header" — 28px / bold / black</Text>
   </Stack>
-  <Stack gap="2.5px">
+  <Stack gap={spacing.xxs}>
     <Title variant="sectionHeader">Section Header (h2)</Title>
     <Text variant="label">variant="sectionHeader" — 20px / semibold / black</Text>
   </Stack>
-  <Stack gap="2.5px">
+  <Stack gap={spacing.xxs}>
     <Title variant="subheader">Subheader (h3)</Title>
     <Text variant="label">variant="subheader" — 16px / medium / neutral[200]</Text>
   </Stack>
-  <Stack gap="2.5px">
+  <Stack gap={spacing.xxs}>
     <Title variant="sectionSubheader">Section Subheader (h4)</Title>
     <Text variant="label">variant="sectionSubheader" — 14px / regular / neutral[200]</Text>
   </Stack>
-  <Stack gap="2.5px">
+  <Stack gap={spacing.xxs}>
     <Title variant="cardHeader">Card Header (h5)</Title>
     <Text variant="label">variant="cardHeader" — 16px / semibold / neutral[300]</Text>
   </Stack>
-  <Stack gap="2.5px">
+  <Stack gap={spacing.xxs}>
     <Title variant="cardSubheader">Card Subheader (h6)</Title>
     <Text variant="label">variant="cardSubheader" — 14px / regular / neutral[200]</Text>
   </Stack>
@@ -70,19 +71,19 @@ Titles are used for headings and section labels. Each variant maps to a semantic
 Text is used for body copy, component labels, content, etc. We have some named variants that are all `<p>` tags under the hood, for common use cases.
 
 <Stack gap="20px" style={{ border: `1px dashed ${neutral[100]}`, borderRadius: '8px', padding: '20px' }}>
-  <Stack gap="2.5px">
+  <Stack gap={spacing.xxs}>
     <Text variant="body">Body — The quick brown fox jumps over the lazy dog.</Text>
     <Text variant="label">variant="body" — 14px / medium / neutral[200]</Text>
   </Stack>
-  <Stack gap="2.5px">
+  <Stack gap={spacing.xxs}>
     <Text variant="subtle">Subtle — The quick brown fox jumps over the lazy dog.</Text>
     <Text variant="label">variant="subtle" — 14px / regular / neutral[200]</Text>
   </Stack>
-  <Stack gap="2.5px">
+  <Stack gap={spacing.xxs}>
     <Text variant="label">Label — The quick brown fox jumps over the lazy dog.</Text>
     <Text variant="label">variant="label" — 12px / medium / neutral[200]</Text>
   </Stack>
-  <Stack gap="2.5px">
+  <Stack gap={spacing.xxs}>
     <Text variant="caption">Caption — The quick brown fox jumps over the lazy dog.</Text>
     <Text variant="label">variant="caption" — 10px / regular / neutral[200]</Text>
   </Stack>
@@ -93,7 +94,7 @@ Text is used for body copy, component labels, content, etc. We have some named v
 ---
 <br /><br />
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 0.5fr 1fr', gap: '30px', alignItems: 'start' }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 0.5fr 1fr', gap: spacing.xxl, alignItems: 'start' }}>
   <div>
     ### Font Scale
     <table>

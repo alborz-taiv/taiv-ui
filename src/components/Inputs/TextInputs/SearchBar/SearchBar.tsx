@@ -4,6 +4,7 @@ import { TextInputProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
 import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
+import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../shared/sizes';
 
 interface SearchBarProps extends TextInputProps {
@@ -39,7 +40,7 @@ const SearchBar = ({ width, fullWidth = false, size = 'md', styles, ...props }: 
       placeholder="Search"
       width={computedWidth}
       styles={style}
-      icon={<i className="fas fa-search" style={{ fontSize: 14, marginLeft: '2.5px' }} />}
+      icon={<i className="fas fa-search" style={{ fontSize: 14, marginLeft: spacing.xxs }} />}
       size={'lg'}
       fullWidth={fullWidth}
       {...props}

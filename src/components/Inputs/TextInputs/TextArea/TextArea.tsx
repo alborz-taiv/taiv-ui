@@ -3,6 +3,7 @@ import { Textarea as MantineTextarea, TextareaProps as MantineTextareaProps } fr
 import { CSSObject } from '@mantine/styles';
 import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
+import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../shared/sizes';
 
 type TextAreaProps = MantineTextareaProps & {
@@ -20,7 +21,7 @@ const TextArea = ({ size = 'md', width, fullWidth = false, styles, ...props }: T
     input: {
       minHeight: `${selectedSize.height}px`,
       fontSize: selectedSize.fontSize,
-      padding: '7.5px 10px',
+      padding: `${spacing.sm} 10px`,
       ...fontBase,
       color: neutral[200],
       transition: 'all 200ms ease-in-out',

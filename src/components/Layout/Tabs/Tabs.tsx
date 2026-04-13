@@ -2,6 +2,7 @@ import React from 'react';
 import { Tabs as MantineTabs, TabsProps as MantineTabsProps } from '@mantine/core';
 import { fontBase } from '../../../constants/font';
 import { colors } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 
 export interface TabsProps extends Omit<MantineTabsProps, 'children' | 'onChange'> {
   children: React.ReactNode;
@@ -21,7 +22,7 @@ const TabsComponent = ({ children, defaultValue, value, onChange, variant = 'def
       gap: '0',
     },
     tab: {
-      padding: '8px 28px',
+      padding: `${spacing.sm} 28px`,
       backgroundColor: 'transparent',
       color: colors.neutral[300],
       '&:hover': {
@@ -44,7 +45,7 @@ const TabsComponent = ({ children, defaultValue, value, onChange, variant = 'def
       lineHeight: '24px',
     },
     panel: {
-      padding: '16px 8px',
+      padding: `${spacing.lg} ${spacing.sm}`,
     },
     ...styles,
   };

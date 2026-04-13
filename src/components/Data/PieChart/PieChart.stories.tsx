@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { numberFormats } from "../../../constants/data";
 import { primary, success, warning } from "../../../constants/colors";
+import { spacing } from '../../../constants/spacing';
 import type { PieDataPoint } from "../../../types/types";
 import { Box } from "../../Layout/Box/Box";
 import { Group } from "../../Layout/Group/Group";
@@ -104,7 +105,7 @@ export const Formats: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="16px"
+			gap={spacing.lg}
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			{(
@@ -144,7 +145,7 @@ export const DonutGeometry: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="16px"
+			gap={spacing.lg}
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			<Box w={400} h={400}>
@@ -184,7 +185,7 @@ export const PaddingAngle: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="16px"
+			gap={spacing.lg}
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			<Box w={400} h={400}>

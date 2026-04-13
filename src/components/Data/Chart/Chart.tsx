@@ -9,6 +9,7 @@ import { formats } from '../../../constants/data';
 import { getChartFormatter } from '../../../utils/charts';
 import { fontStyle } from '../../../constants/font';
 import { primary, neutral } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 import { ChartFormatOptions, ChartSeries } from '../../../types/types';
 import { createStyles } from '@mantine/core';
 
@@ -79,12 +80,12 @@ export const Chart: React.FC<ChartProps> = ({
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
           }}
         >
-          <Stack gap="2.5px">
+          <Stack gap={spacing.xxs}>
             <Text weight="semibold" color={neutral[300]}>
               {formatXAxisValue(label)}
             </Text>
             {payload.map((entry: any) => (
-              <Group key={entry.name} gap="5px">
+              <Group key={entry.name} gap={spacing.xs}>
                 <div
                   style={{
                     width: '8px',
@@ -93,7 +94,7 @@ export const Chart: React.FC<ChartProps> = ({
                     backgroundColor: entry.color,
                   }}
                 />
-                <Group gap="2.5px">
+                <Group gap={spacing.xxs}>
                   <Text variant="label" color={neutral[300]}>
                     {entry.name}:
                   </Text>

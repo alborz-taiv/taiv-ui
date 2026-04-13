@@ -1,5 +1,6 @@
 import type { CSSObject } from '@mantine/styles';
 import { colors } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 
 export type BadgeVariant = 'outline' | 'filled' | 'gradient';
 
@@ -12,7 +13,7 @@ export function getVariantStyles(color: BadgeColor): Record<BadgeVariant, CSSObj
       color: colors[color][200],
       backgroundColor: 'transparent',
       borderRadius: '8px',
-      padding: '4px 8px',
+      padding: `${spacing.xs} ${spacing.sm}`,
     },
     filled: {
       backgroundColor: colors[color][50],
@@ -22,7 +23,7 @@ export function getVariantStyles(color: BadgeColor): Record<BadgeVariant, CSSObj
       background: `linear-gradient(to right, ${colors[color][50]}, ${colors[color][200]})`,
       color: 'white',
       borderRadius: '16px',
-      padding: '4px 8px',
+      padding: `${spacing.xs} ${spacing.sm}`,
     },
   };
 }

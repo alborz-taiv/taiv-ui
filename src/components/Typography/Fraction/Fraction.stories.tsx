@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Fraction } from './Fraction';
 import { Stack } from '../../Layout/Stack/Stack';
 import { primary } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 
 const meta: Meta<typeof Fraction> = {
   title: 'Components/Typography/Fraction',
@@ -78,7 +79,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Stack gap="15px">
+    <Stack gap={spacing.lg}>
       <Fraction numerator="1" denominator="2" variant="body" />
       <Fraction numerator="1" denominator="2" variant="subtle" />
       <Fraction numerator="1" denominator="2" variant="label" />

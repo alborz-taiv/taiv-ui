@@ -7,6 +7,7 @@ import React from 'react';
 import { Center } from '../Center/Center';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { neutral } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
 import { Group } from '../Group/Group';
 
 const meta: Meta<typeof Table> = {
@@ -239,7 +240,7 @@ const ProductListItem = ({ data }: { data: Product }) => {
         </Badge>
       </td>
       <td>
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ display: 'flex', gap: spacing.sm }}>
           <Button size="sm" variant="primary">
             Edit
           </Button>
@@ -271,7 +272,7 @@ const ProjectListItem = ({ data }: { data: Project }) => {
       <td>{data.title}</td>
       <td>{data.team.join(', ')}</td>
       <td>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: spacing.sm }}>
           <div
             style={{
               flex: 1,
@@ -399,7 +400,7 @@ export const TableWithPlaceholder: Story = {
     ],
     placeholder: (
       <Center py='50px'>
-        <Group gap='5px' align='center'>
+        <Group gap={spacing.xs} align='center'>
           <IconInfoCircle color={neutral[200]} size='20px' />
           <Text>No data available at this time</Text>
         </Group>

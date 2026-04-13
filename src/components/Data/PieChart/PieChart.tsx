@@ -9,6 +9,7 @@ import { Box } from '../../Layout/Box/Box';
 import { neutral } from '../../../constants/colors';
 import { textStyle } from '../../../constants/font';
 import { numberFormats } from '../../../constants/data';
+import { spacing } from '../../../constants/spacing';
 import { getChartFormatter } from '../../../utils/charts';
 import { PieDataPoint } from '../../../types/types';
 export interface PieCardCenterContentProps {
@@ -91,7 +92,7 @@ export const PieChart: React.FC<PieChartProps> = ({
                   backgroundColor: entry.payload.color,
                 }}
               />
-              <Group gap="2.5px">
+              <Group gap={spacing.xxs}>
                 <Text variant="label" color={neutral[300]}>
                   {entry.payload.key}:
                 </Text>

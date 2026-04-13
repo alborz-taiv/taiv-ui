@@ -3,6 +3,7 @@ import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@man
 import { CSSObject } from '@mantine/styles';
 import { neutral, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
+import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../shared/sizes';
 
 export interface SelectProps extends MantineSelectProps {
@@ -49,7 +50,7 @@ export const Select = ({ size = 'md', width, fullWidth = false, placeholder = 'S
     },
     item: {
       padding: selectedSize.dropdownPadding,
-      marginBottom: '2px',
+      marginBottom: spacing.xxs,
       ...fontBase,
       fontSize: selectedSize.fontSize,
       color: neutral[200],

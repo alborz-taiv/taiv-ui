@@ -8,6 +8,7 @@ import { Stack } from '../../Layout/Stack/Stack';
 import { Title } from '../../Typography/Title/Title';
 import { neutral } from '../../../constants/colors';
 import { fontStyle } from '../../../constants/font';
+import { spacing } from '../../../constants/spacing';
 
 export interface TableColumnProps {
   label: string;
@@ -35,15 +36,15 @@ const CheckboxTable = ({ columns, data, className = 'none', onRowClick, title, s
     container: {
       borderRadius: '8px',
       border: `1px solid ${neutral[50]}`,
-      padding: '8px',
+      padding: spacing.sm,
       backgroundColor: 'white',
     },
     header: {
-      padding: '16px',
+      padding: spacing.lg,
       minWidth: '0',
     },
     columns: {
-      paddingTop: '16px',
+      paddingTop: spacing.lg,
       paddingLeft: '36px',
       whiteSpace: 'nowrap',
       overflow: 'hidden',
@@ -52,7 +53,7 @@ const CheckboxTable = ({ columns, data, className = 'none', onRowClick, title, s
       justifyContent: isMobile ? 'flex-start' : 'center',
       ...fontStyle['body'],
       color: neutral[300],
-      padding: '8px 16px',
+      padding: `${spacing.sm} ${spacing.lg}`,
       minWidth: '100px',
     },
     tableBody: {
@@ -69,7 +70,7 @@ const CheckboxTable = ({ columns, data, className = 'none', onRowClick, title, s
     contentContainer: {
       flex: 1,
       flexDirection: (isMobile ? 'column' : 'row') as 'column' | 'row',
-      gap: '2.5px',
+      gap: spacing.xxs,
       minWidth: 0,
     },
     item: {
