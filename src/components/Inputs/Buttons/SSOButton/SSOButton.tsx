@@ -8,7 +8,7 @@ import { GoogleIcon } from '../../../../assets/icons';
 type OmittedProps = 'variant' | 'leftIcon' | 'rightIcon';
 
 const providers = {
-  google: { name: 'Google', icon: React.createElement(GoogleIcon, { size: 18 }) },
+  google: { name: 'Google', icon: <GoogleIcon size={18} /> },
 } as const;
 
 export type SSOProvider = keyof typeof providers;
