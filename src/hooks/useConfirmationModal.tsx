@@ -15,7 +15,7 @@ export const useConfirmationModal = () => {
     message?: string;
     confirmLabel?: string;
     cancelLabel?: string;
-    icon?: React.ReactNode;
+    icon?: React.ReactElement;
     onConfirm?: () => void;
     onCancel?: () => void;
     size?: string | number;
@@ -42,7 +42,9 @@ export const useConfirmationModal = () => {
       border: `2px solid ${selectedVariant.iconColor}`,
     };
 
-    const modalIcon = icon || <i className={selectedVariant.icon} style={{ color: selectedVariant.iconColor, fontSize: '2rem' }} />;
+    const coloredIcon = icon && React.cloneElement(icon, { color: icon.props.color || selectedVariant.iconColor });
+
+    const modalIcon = coloredIcon || <i className={selectedVariant.icon} style={{ color: selectedVariant.iconColor, fontSize: '2rem' }} />;
 
     const ConfirmModalContent = () => {
       return (

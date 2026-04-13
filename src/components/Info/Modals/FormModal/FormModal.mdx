@@ -1,6 +1,7 @@
 import { Meta, Canvas, Controls, Story, ArgTypes } from '@storybook/addon-docs/blocks';
 import { FormModal } from './FormModal';
 import * as FormModalStories from './FormModal.stories';
+import { AIGeneratedBanner } from '../../../../docs/AIGeneratedBanner';
 
 <Meta of={FormModalStories} />
 
@@ -8,6 +9,7 @@ import * as FormModalStories from './FormModal.stories';
 
 [View Mantine Docs](https://v6.mantine.dev/core/modal/)
 
+<AIGeneratedBanner />
 
 The FormModal component is a structured modal built on Mantine's Modal, with an icon, content area, and configurable cancel/confirm footer buttons. Use it for confirmations, forms, or short messages that require user action.
 
@@ -29,6 +31,10 @@ import { FormModal } from '@taiv/ui';
 Pass a custom `icon` (e.g. `IconFlask`) to show an icon block above the content.
 
 <Story of={FormModalStories.WithCustomIcon} />
+
+Pass a custom `icon` with a `color` to override the variant's color.
+
+<Story of={FormModalStories.WithCustomIconColor} />
 
 ### 📐 With Form Content
 
@@ -105,6 +111,22 @@ Override the footer button text with `cancelLabel` and `confirmLabel`. Omit them
 
 ## <br />
 
+### 🚫 Disabled Confirm Button
+
+Use `confirmButtonDisabled` to disable the confirm button, e.g. until required form fields are filled. This is useful for validation before allowing submission.
+
+<Story of={FormModalStories.ConfirmButtonDisabled} />
+
+## <br />
+
+### 🔄 Loading Confirm Button
+
+Use `confirmButtonLoading` to show confirm button as loading. Used for loading states.
+
+<Story of={FormModalStories.ConfirmButtonLoading} />
+
+## <br />
+
 ### 💡 Best Practices
 
 1. **Control visibility with state**: Use `useState` for `opened` and wire `onClose`, `onCancel`, and `onConfirm` to close the modal when appropriate.
@@ -116,5 +138,7 @@ Override the footer button text with `cancelLabel` and `confirmLabel`. Omit them
 4. **Keep content focused**: Use `children` for concise messages or simple forms. Consider dedicated layout components for complex forms.
 
 5. **Size and responsive behavior**: Use `size` for consistency with your layout. Test at different viewport sizes when using a fixed size.
+
+6. **Use confirmButtonDisabled**: Use `confirmButtonDisabled` for when required fields have yet to be filled, there's an error, etc.
 
 ## <br />

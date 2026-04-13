@@ -1,7 +1,29 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Stack } from './Stack';
+import * as StackStories from './Stack.stories';
 
-<Meta title="Layouts/Stack" />   
+<Meta of={StackStories} />
 
 # Stack
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/core/stack/)
+
+A vertical flex container that arranges children in a column. This is an essential building block for creating layouts, along with [Group](?path=/docs/components-layout-group--docs) and [Center](?path=/docs/components-layout-center--docs).
+
+### 📦 Import
+```tsx
+import { Stack } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={StackStories.Default} />
+<Controls of={StackStories.Default} />
+
+---
+
+### Positioning Within Stacks
+
+`justify` controls vertical alignment. `align` controls horizontal alignment, but using a [Group](?path=/docs/components-layout-group--docs) for that is generally preferred.
+
+<Story of={StackStories.PositionContent} />

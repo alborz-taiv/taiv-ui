@@ -3,17 +3,15 @@ import { Tabs as MantineTabs, TabsProps as MantineTabsProps } from '@mantine/cor
 import { fontBase } from '../../../constants/font';
 import { colors } from '../../../constants/colors';
 
-export interface TabsProps extends Omit<MantineTabsProps, 'children' | 'onChange' | 'placement'> {
+export interface TabsProps extends Omit<MantineTabsProps, 'children' | 'onChange'> {
   children: React.ReactNode;
   defaultValue?: string;
   value?: string;
   onChange?: (value: string | null) => void;
-  orientation?: 'horizontal' | 'vertical';
-  placement?: 'left' | 'right' | 'top' | 'bottom';
   variant?: 'default' | 'outline' | 'pills';
 }
 
-const TabsComponent = ({ children, defaultValue, value, onChange, orientation = 'horizontal', placement = 'top', variant = 'default', styles, ...props }: TabsProps) => {
+const TabsComponent = ({ children, defaultValue, value, onChange, variant = 'default', styles, ...props }: TabsProps) => {
   const style = {
     root: {
       width: '100%',
@@ -52,7 +50,7 @@ const TabsComponent = ({ children, defaultValue, value, onChange, orientation = 
   };
 
   return (
-    <MantineTabs styles={style} radius="lg" defaultValue={defaultValue} value={value} orientation={orientation} variant={variant} {...props}>
+    <MantineTabs styles={style} radius="lg" defaultValue={defaultValue} value={value} variant={variant} {...props}>
       {children}
     </MantineTabs>
   );

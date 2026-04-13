@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { FormModal } from "./FormModal";
 import { Button } from "../../../Inputs/Buttons/Button/Button";
-import { primary } from "../../../../constants/colors";
+import { primary, red } from "../../../../constants/colors";
 import { IconFlask, IconShoppingCart } from "@tabler/icons-react";
 import { TextInput } from "../../../Inputs/TextInputs/TextInput/TextInput";
 import { NumberInput } from "../../../Inputs/TextInputs/NumberInput/NumberInput";
@@ -65,6 +65,20 @@ const meta: Meta<typeof FormModal> = {
             "'confirm' | 'info' | 'success' | 'error' | 'warning' | 'cancel'",
         },
         defaultValue: { summary: "'info'" },
+      },
+    },
+    confirmButtonDisabled: {
+      control: false,
+      description: "Whether the modal confirm button is disabled.",
+      table: {
+        type: { summary: "boolean" },
+      },
+    },
+    confirmButtonLoading: {
+      control: false,
+      description: "Whether the modal confirm button shows a loading state.",
+      table: {
+        type: { summary: "boolean" },
       },
     },
     onCancel: {
@@ -181,6 +195,31 @@ export const WithCustomIcon: Story = {
     );
   },
 };
+
+export const WithCustomIconColor: Story = {
+  render: () => {
+    const [opened, setOpened] = useState(false);
+    return (
+      <>
+        <Center>
+          <Button onClick={() => setOpened(true)}>Open FormModal</Button>
+        </Center>
+        <FormModal
+          opened={opened}
+          onClose={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={() => setOpened(false)}
+          icon={<IconFlask color={red[200]} />}
+          children={
+            <Title variant="cardSubheader" align="center">
+              Example message.
+            </Title>
+          }
+        />
+      </>
+    );
+  },
+}
 
 export const WithTextInput: Story = {
   render: () => {
@@ -310,6 +349,75 @@ export const CustomLabels: Story = {
           children={
             <Title variant="cardSubheader" align="center">
               Custom cancel and confirm button labels.
+            </Title>
+          }
+        />
+      </>
+    );
+  },
+};
+
+export const ConfirmButtonDisabled: Story = {
+  render: () => {
+    const [opened, setOpened] = useState(false);
+    const [name, setName] = useState("");
+    return (
+      <>
+        <Center>
+          <Button onClick={() => setOpened(true)}>Open FormModal</Button>
+        </Center>
+        <FormModal
+          opened={opened}
+          onClose={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={() => setOpened(false)}
+          confirmButtonDisabled={name.trim().length === 0}
+          children={
+            <Stack gap="1rem" align="center">
+              <Title variant="cardSubheader" align="center">
+                Enter your name to enable the confirm button.
+              </Title>
+              <TextInput
+                label="Name"
+                placeholder="Enter your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Stack>
+          }
+        />
+      </>
+    );
+  },
+};
+
+export const ConfirmButtonLoading: Story = {
+  render: () => {
+    const [opened, setOpened] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const handleConfirm = () => {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        setOpened(false);
+      }, 2000);
+    };
+
+    return (
+      <>
+        <Center>
+          <Button onClick={() => setOpened(true)}>Open FormModal</Button>
+        </Center>
+        <FormModal
+          opened={opened}
+          onClose={() => setOpened(false)}
+          onCancel={() => setOpened(false)}
+          onConfirm={handleConfirm}
+          confirmButtonLoading={loading}
+          children={
+            <Title variant="cardSubheader" align="center">
+              Click OK to see the button loading state.
             </Title>
           }
         />

@@ -10,10 +10,12 @@ import { Button } from "../../../Inputs/Buttons/Button/Button";
 export interface FormModalProps {
   opened: boolean;
   onClose: () => void;
-  icon?: React.ReactNode;
+  icon?: React.ReactElement;
   children?: React.ReactNode;
   size?: string | number;
   modalVariant?: keyof typeof modalVariants;
+  confirmButtonDisabled?: boolean;
+  confirmButtonLoading?: boolean;
   onCancel?: () => void;
   onConfirm?: () => void;
   cancelLabel?: string;
@@ -27,6 +29,8 @@ export const FormModal = ({
   children,
   size = "40rem",
   modalVariant = "info",
+  confirmButtonDisabled = false,
+  confirmButtonLoading = false,
   onCancel,
   onConfirm,
   cancelLabel,
@@ -41,7 +45,9 @@ export const FormModal = ({
     border: `2px solid ${selectedVariant.iconColor}`,
   };
 
-  const modalIcon = icon || (
+  const coloredIcon = icon && React.cloneElement(icon, { color: icon.props.color || selectedVariant.iconColor });
+
+  const modalIcon = coloredIcon || (
     <i
       className={selectedVariant.icon}
       style={{ color: selectedVariant.iconColor, fontSize: "2rem" }}
@@ -115,6 +121,8 @@ export const FormModal = ({
               <Button
                 onClick={onConfirm}
                 variant={selectedVariant.buttonVariant}
+                disabled={confirmButtonDisabled}
+                loading={confirmButtonLoading}
               >
                 {confirmLabel || selectedVariant.confirmLabel}
               </Button>

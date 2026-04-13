@@ -1,34 +1,5 @@
 {
-  "name": "@taiv/ui",
-  "version": "1.7.0",
   "author": "Taiv",
-  "description": "Taiv's web UI Toolkit built on Mantine v6",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/alborz-taiv/taiv-ui"
-  },
-  "scripts": {
-    "build": "tsc",
-    "dev": "npm link && tsc --watch",
-    "clean": "rm -rf dist",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "lint": "biome check --formatter-enabled=false --assist-enabled=false src",
-    "lint:fix": "biome check --formatter-enabled=false --assist-enabled=false --write src",
-    "format": "biome check --linter-enabled=false --assist-enabled=false src",
-    "format:fix": "biome check --linter-enabled=false --assist-enabled=false --write src",
-    "assist": "biome check --linter-enabled=false --formatter-enabled=false src",
-    "assist:fix": "biome check --linter-enabled=false --formatter-enabled=false --write src",
-    "biome:check": "biome check src",
-    "biome:fix": "biome check --write src",
-    "biome:check:path": "biome check",
-    "biome:fix:path": "biome check --write"
-  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@mantine/core": "^6.0.0",
@@ -36,30 +7,59 @@
     "@mantine/hooks": "^6.0.0",
     "@mantine/modals": "^6.0.0",
     "@mantine/notifications": "^6.0.0",
-    "@tabler/icons-react": "^2.47.0",
+    "@tabler/icons-react": "^3.41.1",
     "dayjs": "^1.11.18",
     "recharts": "^2.8.0"
   },
-  "peerDependencies": {
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
-  },
+  "description": "Taiv's web UI Toolkit built on Mantine v6",
   "devDependencies": {
-    "@biomejs/biome": "2.3.13",
-    "@storybook/addon-docs": "^9.1.10",
-    "@storybook/addon-onboarding": "^9.1.10",
-    "@storybook/react-vite": "^9.1.10",
+    "@biomejs/biome": "2.4",
+    "@storybook/addon-docs": "^10.3.3",
+    "@storybook/addon-onboarding": "^10.3.3",
+    "@storybook/react-vite": "^10.3.3",
     "@types/react": "^17.0.87",
     "@types/react-dom": "^17.0.26",
     "chromatic": "^13.3.0",
-    "storybook": "^9.1.10",
+    "storybook": "^10.3.3",
     "typescript": "^5.0.2"
   },
   "exports": {
     ".": "./dist/components/index.js",
-    "./hooks": "./dist/hooks/index.js",
     "./constants": "./dist/constants/index.js",
-    "./utils": "./dist/utils/index.js",
-    "./types": "./dist/types/index.js"
-  }
+    "./hooks": "./dist/hooks/index.js",
+    "./types": "./dist/types/index.js",
+    "./utils": "./dist/utils/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "name": "@taiv/ui",
+  "peerDependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alborz-taiv/taiv-ui"
+  },
+  "scripts": {
+    "assist": "biome check --linter-enabled=false --formatter-enabled=false src",
+    "assist:fix": "biome check --linter-enabled=false --formatter-enabled=false --write src",
+    "biome:check": "biome check src",
+    "biome:check:path": "biome check",
+    "biome:fix": "biome check --write src",
+    "biome:fix:path": "biome check --write",
+    "build": "tsc",
+    "build-storybook": "storybook build",
+    "clean": "rm -rf dist",
+    "dev": "npm link && tsc --watch",
+    "format": "biome check --linter-enabled=false --assist-enabled=false src",
+    "format:fix": "biome check --linter-enabled=false --assist-enabled=false --write src",
+    "lint": "biome check --formatter-enabled=false --assist-enabled=false src",
+    "lint:fix": "biome check --formatter-enabled=false --assist-enabled=false --write src",
+    "storybook": "storybook dev -p 6006"
+  },
+  "types": "dist/index.d.ts",
+  "version": "1.9.1"
 }

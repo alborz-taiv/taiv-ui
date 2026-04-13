@@ -1,7 +1,82 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { CollapsibleText } from './CollapsibleText';
+import * as CollapsibleTextStories from './CollapsibleText.stories';
+import { AIGeneratedBanner } from '../../../docs/AIGeneratedBanner';
 
-<Meta title="Typography/CollapsibleText" />
+<Meta of={CollapsibleTextStories} />
 
 # CollapsibleText
 
-This component exists - but docs are still under construction 🚧
+<AIGeneratedBanner />
+
+CollapsibleText shows a single line of text with a caret; clicking toggles the expanded state and reveals optional children. Use it for simple expand/collapse toggles (e.g. "Show more", inline details). The label uses body text styling by default; use the `variant` prop to match your hierarchy. For a two-line header (title + subtext), use CollapsibleTitle instead.
+
+### 📦 Import
+
+```tsx
+import { CollapsibleText } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+Control open state with `opened` and `setOpened`. Pass content as `children` to show when expanded.
+
+<Canvas of={CollapsibleTextStories.Default} />
+<Controls of={CollapsibleTextStories.Default} />
+
+---
+
+### 📖 With content
+
+Expanded content can be any React node: text, forms, lists, or nested layout.
+
+<Story of={CollapsibleTextStories.WithContent} />
+
+---
+
+### 🔄 Open and closed states
+
+The component is controlled: you own `opened` and `setOpened`. The caret rotates when expanded.
+
+<Story of={CollapsibleTextStories.OpenAndClosed} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>text</td>
+      <td>The single-line label text</td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>Text variant for the label (body, subtle, label, caption). Default: body</td>
+    </tr>
+    <tr>
+      <td>opened</td>
+      <td>Whether the content is expanded</td>
+    </tr>
+    <tr>
+      <td>setOpened</td>
+      <td>Called when the label is clicked; pass a state setter</td>
+    </tr>
+    <tr>
+      <td>children</td>
+      <td>Content rendered when expanded (optional)</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best practices
+
+1. **Control state at the parent**: Keep `opened` and `setOpened` in the parent so you can sync with URL, form state, or other UI.
+
+2. **Use for single-line toggles**: Prefer CollapsibleText when you only need one line of clickable text. For a section header with title + subtext, use CollapsibleTitle.
+
+3. **Keep the label short**: One line of text keeps the caret aligned and the control easy to scan.

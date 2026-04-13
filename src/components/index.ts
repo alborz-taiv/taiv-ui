@@ -7,6 +7,7 @@ export { PieChartCard } from './Data/Cards/PieChartCard/PieChartCard';
 export { RemovableItemList } from './Data/RemovableItemList/RemovableItemList';
 export { StatsCard } from './Data/Cards/StatsCard/StatsCard';
 export { StatsBadge } from './Data/StatsBadge/StatsBadge';
+export { Progress } from './Data/Progress/Progress';
 
 //Info
 export { Modal } from './Info/Modals/Modal/Modal';
@@ -28,6 +29,7 @@ export { Checkbox } from './Inputs/Controls/Checkbox/Checkbox';
 export { Radio } from './Inputs/Controls/Radio/Radio';
 export { RadioList } from './Inputs/Controls/RadioList/RadioList';
 export { Toggle } from './Inputs/Controls/Toggle/Toggle';
+export { SegmentedControl } from './Inputs/Controls/SegmentedControl/SegmentedControl';
 export { FontSelect } from './Inputs/Dropdowns/FontSelect/FontSelect';
 export { MultiSelect } from './Inputs/Dropdowns/MultiSelect/MultiSelect';
 export { CascadingSelect } from './Inputs/Dropdowns/CascadingSelect/CascadingSelect';
@@ -59,6 +61,7 @@ export { Tabs } from './Layout/Tabs/Tabs';
 
 //Typography
 export { CollapsibleText } from './Typography/CollapsibleText/CollapsibleText';
+export { CollapsibleTitle } from './Typography/CollapsibleTitle/CollapsibleTitle';
 export { Text } from './Typography/Text/Text';
 export { Title } from './Typography/Title/Title';
 export { Fraction } from './Typography/Fraction/Fraction';
@@ -68,3 +71,6 @@ export { Formula } from './Typography/Formula/Formula';
 export { Transition } from './Misc/Transition/Transition';
 export { IconBadge } from './Misc/IconBadge/IconBadge';
 export { LoadingOverlay } from './Misc/LoadingOverlay/LoadingOverlay';
+export { Skeleton } from './Misc/Skeleton/Skeleton';
+export { Stepper } from './Misc/Stepper/Stepper';
+export { Step } from './Misc/Stepper/Step';

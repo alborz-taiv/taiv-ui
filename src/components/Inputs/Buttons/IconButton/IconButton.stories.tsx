@@ -134,14 +134,6 @@ export const Subtle: Story = {
   ),
 };
 
-export const Tooltip: Story = {
-  render: () => (
-    <Group gap="1.6rem">
-      <IconButton tooltip="Tooltip"><Icon12Hours /></IconButton>
-    </Group>
-  ),
-};
-
 export const Sizes: Story = {
   render: () => (
     <Group gap="1.6rem">

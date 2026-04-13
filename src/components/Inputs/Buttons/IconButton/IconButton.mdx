@@ -8,9 +8,9 @@ import * as ButtonStories from './IconButton.stories';
 
 [View Mantine Docs](https://v6.mantine.dev/core/button/)
 
-The IconButton component is a customizable wrapper around Mantine's Button component that provides consistent styling and behavior across your application. It extends Mantine v6's ButtonProps while adding custom variants and sizing options.
+The IconButton component is a variation of the [Button](/docs/components-inputs-buttons-button--docs) component that is specifically designed for use with icons. It extends the Button component and adds some additional functionality.
 
-Use IconButton when you need to trigger some sort of logical action via a click through an Icon. See variants below for different use cases.
+<br />
 
 ### 📦 Import
 
@@ -27,7 +27,7 @@ import { IconButton } from '@taiv/ui';
 
 ### 🎨 Variants
 
-The IconButton component provides six semantic variants designed for different use cases.
+The IconButton component uses the same variants as [Button](/docs/components-inputs-buttons-button--docs):
 
 <Story of={ButtonStories.Variants} />
 
@@ -80,20 +80,6 @@ The IconButton component provides six semantic variants designed for different u
 Use the `subtle` prop on top of your selected variant to invert the color scheme - the icon takes on the variant color while the background remains white. This provides a lighter, less prominent appearance while maintaining the semantic meaning.
 
 <Story of={ButtonStories.Subtle} />
-
-## <br />
-
-### 💬 Tooltip
-
-Add a tooltip to provide additional context on hover using the `tooltip` prop.
-
-<Story of={ButtonStories.Tooltip} />
-
-```tsx
-<IconButton tooltip="Click to save">
-  <IconDeviceFloppy />
-</IconButton>
-```
 
 ## <br />
 
@@ -168,14 +154,6 @@ The IconButton component supports different states to provide visual feedback an
 
 ## <br />
 
-### 🔄 Subtle States
-
-The same states are available when using the `subtle` prop.
-
-<Story of={ButtonStories.SubtleStates} />
-
-## <br />
-
 ### 🛠️ Custom Styles
 
 In the event that you need to custom style your IconButton, you can provide styles via the styles prop. You can use the following CSSObject names or static css selectors:
@@ -242,6 +220,4 @@ In the event that you need to custom style your IconButton, you can provide styl
 4. **Icon placement**: Use Icons as children.
 
 5. **Use subtle for inverted colors**: When you need a less prominent button but still want to convey semantic meaning, use the `subtle` prop.
-
-6. **Add tooltips for clarity**: Icon-only buttons can be ambiguous - use the `tooltip` prop to provide context on hover.
 

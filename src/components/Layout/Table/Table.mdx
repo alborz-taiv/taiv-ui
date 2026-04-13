@@ -32,7 +32,7 @@ An array of column configuration objects. Each `ColumnConfig` includes:
 **Note:** The styles defined in `columnConfigs` are automatically applied to the corresponding `<td>` elements based on their position in the row (0-indexed). You don't need to manually apply these styles in your ListItem components.
 
 #### `data: T[]`
-An array of data items to display in the table. The type `T` is generic, allowing you to use any data structure.
+An array of data items to display in the table. The type `T` is generic, allowing you to use any data structure. However it extends a type that requires a `key` prop, this can be a string or number.
 
 #### `ListItem: React.ComponentType<{ data: T }>`
 A component that renders a single table row. It receives:
@@ -45,6 +45,9 @@ An optional placeholder element to display when no data is available (empty arra
 
 #### `shadow?: boolean`
 An optional prop that adds shadow around the entire table. By default it is false.
+
+#### `divider?: boolean`
+An optional prop that adds a divider between each row. By default it is true.
 
 ## <br />
 
@@ -66,6 +69,9 @@ When building your `ListItem` component, always use semantic HTML elements:
 - **`<td>`** - For each table cell element (no style props needed - column styles are applied automatically)
 
 This ensures proper accessibility, semantic meaning, and table structure. **The order of your `<td>` elements must match the order of your `columnConfigs` array**, as styles are applied based on the cell's index position (0, 1, 2, etc.).
+
+#### ✅ Use a good key
+When building the list, choose a good key prop. This usually involves some unique identifier to object being listed out. Not an index.
 
 #### 📝 Example ListItem Component Structure
 
@@ -173,8 +179,8 @@ const columnConfigs: ColumnConfig[] = [
 ];
 
 const data = [
-  { id: '1', name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-  { id: '2', name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+  { key: 'John Doe-1', id: '1', name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { key: 'John Doe-2', id: '2', name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
 ];
 
 const BasicListItem = ({ data }) => (
@@ -210,6 +216,7 @@ const columnConfigs: ColumnConfig[] = [
 
 const data = [
   { 
+    key: 'Widget A-1',
     id: '1', 
     product: 'Widget A', 
     status: 'active', 
@@ -217,6 +224,7 @@ const data = [
     stock: 150 
   },
   { 
+    key: 'Widget B-2',
     id: '2', 
     product: 'Widget B', 
     status: 'low-stock', 

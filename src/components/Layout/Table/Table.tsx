@@ -1,21 +1,26 @@
-import React, { CSSProperties, useEffect, useRef } from 'react';
+import React, { CSSProperties, memo, useEffect, useRef } from 'react';
 import { Box } from '../Box/Box';
-import { fontWeight, neutral } from '../../../constants';
+import { fontBase, fontSize, fontWeight, neutral } from '../../../constants';
 
 interface ColumnConfig {
   heading?: string;
   style?: CSSProperties;
 }
 
-interface TableProps<T> {
+interface TableItem {
+  key: string | number;
+}
+
+interface TableProps<T extends TableItem> {
   columnConfigs: ColumnConfig[];
   data: T[];
   ListItem: React.ComponentType<{ data: T }>;
   placeholder?: React.ReactNode;
   shadow?: boolean;
+  divider?: boolean;
 }
 
-const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false }: TableProps<T>) => {
+const TableComponent = <T extends TableItem>({ columnConfigs, data, ListItem, placeholder, shadow = false, divider = true }: TableProps<T>) => {
   const tableRef = useRef<HTMLTableElement>(null);
 
   /**
@@ -31,7 +36,7 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false 
     const rows = tbody.querySelectorAll('tr');
     if (!rows || !rows.length) return;
 
-    rows.forEach((row) => {
+    rows.forEach((row, rowIndex) => {
       const cells = row.querySelectorAll('td');
       cells.forEach((cell, columnIndex) => {
         const columnStyle = columnConfigs[columnIndex]?.style;
@@ -39,8 +44,13 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false 
           Object.assign(cell.style, columnStyle);
         }
       });
+
+      const showDivider = divider && rowIndex < rows.length - 1;
+      const borderStyle = { borderBottom: showDivider ? `1px solid ${neutral[100]}` : 'none' };
+
+      Object.assign(row.style, borderStyle);
     });
-  }, [columnConfigs, data]);
+  }, [columnConfigs, data, divider]);
 
   return (
     <Box
@@ -55,6 +65,7 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false 
         ref={tableRef}
         style={{
           width: '100%',
+          borderCollapse: 'collapse',
         }}
       >
         <thead>
@@ -63,10 +74,11 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false 
               <th
                 key={column.heading || `column-${index}`}
                 style={{
+                  ...fontBase,
+                  ...fontSize['md'],
+                  fontWeight: fontWeight.semibold,
                   backgroundColor: neutral[50],
                   color: neutral[300],
-                  fontSize: '14px',
-                  fontWeight: fontWeight.bold,
                   paddingBottom: '9px',
                   paddingTop: '9px',
                   ...column.style,
@@ -79,7 +91,7 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false 
         </thead>
         <tbody>
           {(!data || data.length === 0) && placeholder ? <tr><td colSpan={columnConfigs.length}>{placeholder}</td></tr> : data.map((item) => (
-            <ListItem data={item} key={String(item).slice(0, 10)} />
+            <ListItem data={item} key={item.key} />
           ))}
         </tbody>
       </table>
@@ -87,4 +99,6 @@ const Table = <T,>({ columnConfigs, data, ListItem, placeholder, shadow = false 
   );
 };
 
-export { Table, type ColumnConfig, type TableProps };
+export const Table = memo(TableComponent) as typeof TableComponent;
+
+export { type ColumnConfig, type TableProps };

@@ -1,9 +1,278 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as ModalHookStories from '../../components/Info/Modals/Modals.stories';
+import { Tabs } from '../../components/Layout/Tabs/Tabs';
 
-<Meta title="Hooks/Modals" />
+<Meta of={ModalHookStories} />
+
+<style>{`
+  .modals-variants-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+  .modals-variants-table th,
+  .modals-variants-table td {
+    vertical-align: top;
+    word-break: break-word;
+  }
+  .modals-variants-table col:nth-child(1) { width: 10%; }
+  .modals-variants-table col:nth-child(2) { width: 14%; }
+  .modals-variants-table col:nth-child(3) { width: 30%; }
+`}</style>
 
 # Modals
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/others/modals/)
 
-In the meantime, you can potentially reference the [Mantine v6 Modal documentation](https://v6.mantine.dev/core/modal/) and [Modals Manager](https://v6.mantine.dev/others/modals/).
+Integrated into our web apps, we have a hook-based modal system for showing info and confirmation modals programmatically. You can call the hooks to show modals and handle their lifecycle with single blocks of code.
+
+In other cases, we might need a more structured modal (i.e. modals with a form or inputs). For those cases we can't use our hook system. See <a href="/?path=/docs/components-info-modals-formmodal--docs">FormModal</a>.
+If you need an even more primitive modal to build in, see <a href="/?path=/docs/components-info-modals--docs">Modal</a>.
+
+<br />
+
+<Tabs defaultValue="useInfoModal" variant="outline">
+  <Tabs.List>
+    <Tabs.Tab value="useInfoModal">Info Modals</Tabs.Tab>
+    <Tabs.Tab value="useConfirmationModal">Confirmation Modals</Tabs.Tab>
+  </Tabs.List>
+
+  <Tabs.Panel value="useInfoModal" pt="4rem">
+
+    ### 📦 Import
+
+    ```tsx
+    // Top-level import
+    import { useInfoModal } from '@taiv/ui/hooks';
+
+    // Somewhere in the component
+    const infoModals = useInfoModal();
+    ```
+
+    <br />
+
+    ### ✍️ Basic Usage
+
+    For most use cases, you can just use the `show()` method to show your info modal.
+
+    ```tsx
+    infoModals.show({ variant: 'success', title: 'Saved!', message: 'Your changes have been saved.' });
+    ```
+
+    <Canvas of={ModalHookStories.Default} />
+    <Controls of={ModalHookStories.Default} />
+
+    <br />
+
+    ### 🔧 Options
+
+    <table>
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Params</th>
+          <th>Returns</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>show()</code></td>
+          <td><code>{`{ variant?, title?, message?, icon?, onConfirm?, size? }`}</code></td>
+          <td><code>void</code></td>
+          <td>Show an info modal</td>
+        </tr>
+        <tr>
+          <td><code>close()</code></td>
+          <td><code>modalId: string</code></td>
+          <td><code>void</code></td>
+          <td>Close a specific modal by ID</td>
+        </tr>
+        <tr>
+          <td><code>closeAll()</code></td>
+          <td>none</td>
+          <td><code>void</code></td>
+          <td>Close all open modals</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br />
+
+    ### 🎨 Variants
+
+    <Story of={ModalHookStories.InfoVariants} />
+
+    <table className="modals-variants-table">
+      <colgroup>
+        <col />
+        <col />
+        <col />
+        <col />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Variant</th>
+          <th>Default Title</th>
+          <th>Default Message</th>
+          <th>Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>info</code></td>
+          <td>Info</td>
+          <td>This action cannot be undone.</td>
+          <td>General info, instructions, etc. more visible than a Tooltip</td>
+        </tr>
+        <tr>
+          <td><code>success</code></td>
+          <td>Success</td>
+          <td>Operation completed successfully!</td>
+          <td>Successful operations, more visible than a Notification</td>
+        </tr>
+        <tr>
+          <td><code>error</code></td>
+          <td>Oops!</td>
+          <td>An error occurred and your changes were not saved. Please try again.</td>
+          <td>Errors and failures, more visible than a Notification</td>
+        </tr>
+        <tr>
+          <td><code>warning</code></td>
+          <td>Warning</td>
+          <td>This action cannot be undone. Are you sure?</td>
+          <td>Cautionary messages, more visible than a Notification</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </Tabs.Panel>
+
+  <Tabs.Panel value="useConfirmationModal" pt="4rem">
+
+    ### 📦 Import
+
+    ```tsx
+    // Top-level import
+    import { useConfirmationModal } from '@taiv/ui/hooks';
+
+    // Somewhere in the component
+    const confirmationModals = useConfirmationModal();
+    ```
+
+    <br />
+
+    ### ✍️ Basic Usage
+
+    For most use cases, you can just use the `show()` method to show your confirmation modal.
+
+    ```tsx
+    confirmationModals.show({
+      variant: 'cancel',
+      title: 'Delete Device',
+      message: 'Are you sure you want to delete this device?',
+      onConfirm: () => deleteDevice(id),
+    });
+    ```
+
+    <Canvas of={ModalHookStories.ConfirmationDefault} />
+    <Controls of={ModalHookStories.ConfirmationDefault} />
+
+    <br />
+
+    ### 🔧 Options
+
+    <table>
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Params</th>
+          <th>Returns</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>show()</code></td>
+          <td><code>{`{ variant?, title?, message?, confirmLabel?, cancelLabel?, icon?, onConfirm?, onCancel?, size? }`}</code></td>
+          <td><code>void</code></td>
+          <td>Show a confirmation modal</td>
+        </tr>
+        <tr>
+          <td><code>close()</code></td>
+          <td><code>modalId: string</code></td>
+          <td><code>void</code></td>
+          <td>Close a specific modal by ID</td>
+        </tr>
+        <tr>
+          <td><code>closeAll()</code></td>
+          <td>none</td>
+          <td><code>void</code></td>
+          <td>Close all open modals</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br />
+
+    ### 🎨 Variants
+
+    Supports the same variants as `useInfoModal` except `error` (use `useInfoModal` for error feedback).
+
+    <Story of={ModalHookStories.ConfirmationVariants} />
+
+    <table className="modals-variants-table">
+      <colgroup>
+        <col />
+        <col />
+        <col />
+        <col />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Variant</th>
+          <th>Default title</th>
+          <th>Default message</th>
+          <th>Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>confirm</code></td>
+          <td>Are you sure?</td>
+          <td>This action cannot be undone.</td>
+          <td>General actions that require confirmation</td>
+        </tr>
+        <tr>
+          <td><code>cancel</code></td>
+          <td>Delete Item</td>
+          <td>Are you sure you want to delete this item? This action cannot be undone.</td>
+          <td>Destructive actions, i.e. deletions</td>
+        </tr>
+        <tr>
+          <td><code>warning</code></td>
+          <td>Warning</td>
+          <td>This action cannot be undone. Are you sure?</td>
+          <td>Actions that induce caution, i.e. submitting a form but not filling something out might require a second look</td>
+        </tr>
+        <tr>
+          <td><code>success</code></td>
+          <td>Success</td>
+          <td>Operation completed successfully!</td>
+          <td>Positive actions that require confirmation - this is rare, usually only InfoModal success is used</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </Tabs.Panel>
+</Tabs>
+
+<br /><br />
+
+### 📋 Forms & Structured Layouts
+
+For more structured modals — ones with form inputs, custom content, or layouts that go beyond a simple message — you can't use a hook-based approach (yet).
+Instead, you can use <a href="/?path=/docs/components-info-modals-formmodal--docs">FormModal</a> and handle its state within your component.
+
+<Story of={ModalHookStories.FormModalDemo} />
+
+For even more control, you can use <a href="/?path=/docs/components-info-modals--docs">Modal</a> for a fully custom layout.

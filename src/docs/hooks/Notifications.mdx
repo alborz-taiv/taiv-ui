@@ -1,9 +1,169 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as NotificationStories from '../../components/Info/Notifications/Notifications.stories';
 
-<Meta title="Hooks/Notifications" />
+<Meta of={NotificationStories} />
 
 # Notifications
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/others/notifications/)
 
-In the meantime, you can potentially reference the [Mantine v6 Notifications documentation](https://v6.mantine.dev/others/notifications/).
+Integrated into our web apps, we have a hook-based notification system for showing feedback to users. You can call the hook to show a notification with a single line of code.
+
+### 📦 Import
+```tsx
+// Top-level import
+import { useNotifications } from '@taiv/ui/hooks';
+
+// Somewhere in the component
+const notifications = useNotifications();
+```
+
+### ✍️ Basic Usage
+
+For most use cases, you can just use the `show()` method to show your notification.
+```tsx
+notifications.show({ variant: 'success', message: 'Your device has been added successfully!' });
+```
+
+<Canvas of={NotificationStories.Default} />
+<Controls of={NotificationStories.Default} />
+
+---
+
+### 🔧 Options
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Params</th>
+      <th>Returns</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>show()</code></td>
+      <td><code>{`{ variant, message, title?, id? }`}</code></td>
+      <td><code>void</code></td>
+      <td>Show a notification</td>
+    </tr>
+    <tr>
+      <td><code>showLoading()</code></td>
+      <td><code>{`{ message, title? }`}</code></td>
+      <td><code>string</code></td>
+      <td>Show loading notification, returns its ID</td>
+    </tr>
+    <tr>
+      <td><code>showError()</code></td>
+      <td>none</td>
+      <td><code>void</code></td>
+      <td>Shows a generic error notification</td>
+    </tr>
+    <tr>
+      <td><code>hide()</code></td>
+      <td><code>id: string</code></td>
+      <td><code>Promise&lt;void&gt;</code></td>
+      <td>Hides a notification by its ID</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🎨 Variants
+
+<Story of={NotificationStories.Variants} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Variant</th>
+      <th>Default Title</th>
+      <th>Use Case</th>
+      <th>Auto Closes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>info</code></td>
+      <td>Note</td>
+      <td>General info</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><code>success</code></td>
+      <td>Success!</td>
+      <td>Confirming successful actions</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><code>error</code></td>
+      <td>Oops!</td>
+      <td>Errors and failures</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><code>warning</code></td>
+      <td>Warning</td>
+      <td>Potential issues that aren't errors</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><code>loading</code></td>
+      <td>Loading...</td>
+      <td>Async operations in progress</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><code>copy</code></td>
+      <td>Copied to clipboard!</td>
+      <td>Used in <a href="/?path=/docs/hooks-copy--docs">Copy</a> system</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### ❌ Generic Error
+
+On top of default `show`, we also have `showError()` which is a convenience method that shows a predefined error notification with a support contact message. It doesnt need anything else passed in.
+
+This is useful to toss quickly into try/catch blocks.
+
+<Story of={NotificationStories.GenericError} />
+```tsx
+try {
+    // Your code here
+} catch (e) {
+    notifications.showError();
+    console.log(e.message);
+}
+```
+
+## <br />
+
+### 🔄 Loading Notifications
+
+Also on top of our regular show, we have `showLoading()` which shows a loading notification and returns an ID that you can then pass to `hide()` when the operation completes. 
+
+<Story of={NotificationStories.AsyncNotifications} />
+```tsx
+const handleSave = async () => {
+  const id = notifications.showLoading({ message: 'Saving...' });
+
+  try {
+    await saveData();
+    notifications.hide(id);
+    notifications.show({ variant: 'success', message: 'Saved!' });
+  } catch {
+    notifications.hide(id);
+    notifications.showError();
+  }
+};
+```
+
+This is the primary pattern for async notifications, and is useful when we want to show something is happening in the background. 
+
+For example, if a page is scrollable, then a button loading state wouldn't be enough because the user could scroll away and forget.

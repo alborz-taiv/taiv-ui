@@ -1,14 +1,13 @@
 import React from 'react';
 import { Center as MantineCenter, CenterProps as MantineCenterProps } from '@mantine/core';
-import { CSSObject } from '@mantine/styles';
 
 interface CenterProps extends MantineCenterProps {
   width?: string | number;
-  styles?: Record<string, CSSObject>;
+  height?: string | number;
 }
 
-const Center = ({ width, styles, ...props }: CenterProps) => {
-  return <MantineCenter w={width} styles={styles} {...props} />;
+const Center = ({ width, height, ...props }: CenterProps) => {
+  return <MantineCenter w={width} h={height} {...props} />;
 };
 
 export { Center };

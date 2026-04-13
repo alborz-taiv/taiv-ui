@@ -1,7 +1,80 @@
-import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Typography/Formula" />
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Formula } from './Formula';
+import * as FormulaStories from './Formula.stories';
+
+<Meta of={FormulaStories} />
 
 # Formula
 
-This component exists - but docs are still under construction 🚧
+The Formula component automatically parses a mathematical expression (string) and renders it onscreen using <a href="/?path=/docs/components-typography-text--docs">Text</a> and <a href="/?path=/docs/components-typography-fraction--docs">Fraction</a>.
+
+### 📦 Import
+
+```tsx
+import { Formula } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={FormulaStories.Default} />
+<Controls of={FormulaStories.Default} />
+
+---
+
+### Operations
+
+Pass a plain string expression — the component parses it and formats each part accordingly. There are a number of different operations we can parse.
+
+<Canvas of={FormulaStories.Operations} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Syntax</th>
+      <th>Operation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>a + b</code></td>
+      <td>Addition</td>
+    </tr>
+    <tr>
+      <td><code>a - b</code></td>
+      <td>Subtraction</td>
+    </tr>
+    <tr>
+      <td><code>a * b</code></td>
+      <td>Multiplication</td>
+    </tr>
+    <tr>
+      <td><code>a / b</code></td>
+      <td>Division</td>
+    </tr>
+    <tr>
+      <td><code>a_b</code></td>
+      <td>Subscript</td>
+    </tr>
+  </tbody>
+</table>
+
+Currently, superscripts (exponents) and square roots are not supported.
+
+## <br />
+
+### Structuring Equations
+
+Parentheses group terms together. This is especially useful with `/` in order to structure complex equations. Click 'Show Code' in the example below.
+
+<Canvas of={FormulaStories.StructuringEquations} />
+
+## <br />
+
+### ✏️ Custom Overrides
+
+You can override `size`, `weight`, and `color` independently to style this formula however you would like.
+
+<Canvas of={FormulaStories.CustomOverrides} />
+
+See the <a href="/?path=/docs/design-fonts--docs">font constants</a> for more detail on these values.
