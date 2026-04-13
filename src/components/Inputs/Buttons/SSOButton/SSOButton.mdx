@@ -1,0 +1,159 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { SSOButton } from './SSOButton';
+import * as SSOButtonStories from './SSOButton.stories';
+
+<Meta of={SSOButtonStories} />
+
+# SSOButton
+
+A sign-in button for third-party authentication providers. Pass any provider `name` and `icon` — the component handles the outlined styling and generates a default `"Continue with {name}"` label.
+
+### 📦 Import
+
+```tsx
+import { SSOButton } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={SSOButtonStories.Default} />
+<Controls of={SSOButtonStories.Default} />
+
+---
+
+### 🔐 Providers
+
+The component works with any provider. Pass a `name` and an `icon` — use any icon library you like.
+
+<Story of={SSOButtonStories.Providers} />
+
+```tsx
+import { IconBrandGoogle, IconBrandApple } from '@tabler/icons-react';
+
+<SSOButton name="Google" icon={<IconBrandGoogle size={18} />} />
+<SSOButton name="Apple" icon={<IconBrandApple size={18} />} />
+```
+
+## <br />
+
+### 📐 Sizes
+
+Three preset sizes match the standard Button sizes.
+
+<Story of={SSOButtonStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline actions</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most sign-in buttons</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent auth screens</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+<Story of={SSOButtonStories.States} />
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Normal</td>
+      <td>Default interactive state</td>
+    </tr>
+    <tr>
+      <td>Disabled</td>
+      <td>Non-interactive, reduced opacity</td>
+    </tr>
+    <tr>
+      <td>Loading</td>
+      <td>Processing state for async sign-in flows</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🏷️ Custom Labels
+
+The default label is `"Continue with {name}"`. Override it by passing children.
+
+<Story of={SSOButtonStories.CustomLabels} />
+
+```tsx
+<SSOButton name="Google" icon={<IconBrandGoogle size={18} />}>
+  Sign in with Google
+</SSOButton>
+```
+
+## <br />
+
+### ↔️ Full Width
+
+Use `fullWidth` for auth forms and modals where buttons should span the container.
+
+<Story of={SSOButtonStories.FullWidth} />
+
+```tsx
+<SSOButton name="Google" icon={<IconBrandGoogle size={18} />} fullWidth />
+```
+
+## <br />
+
+### 🛠️ Custom Styles
+
+Use the `styles` prop to apply provider-specific brand colors or other overrides.
+
+<Canvas of={SSOButtonStories.CustomStyles} />
+
+```tsx
+<SSOButton
+  name="Google"
+  icon={<IconBrandGoogle size={18} color="#4285F4" />}
+  styles={{
+    root: {
+      border: '1px solid #4285F4',
+      '&:hover': {
+        background: '#F8FAFE',
+        border: '1px solid #4285F4',
+      },
+    },
+  }}
+/>
+```
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Show loading state**: Always indicate a loading state after click while the OAuth flow is initializing.
+
+2. **Consistent sizing**: Use the same `size` for all provider buttons in a sign-in form.
+
+3. **Full width for auth forms**: Use `fullWidth` when the provider buttons live inside a narrow auth form or modal.
+
+4. **Use default labels when possible**: `"Continue with {Provider}"` is the recommended phrasing by most providers. Only override the label if you have a specific reason.
+
+5. **Brand-specific colors**: Use the `styles` prop to match official brand colors when required by provider guidelines.

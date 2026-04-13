@@ -25,6 +25,7 @@ export { AutoComplete } from './Inputs/TextInputs/AutoComplete/AutoComplete';
 export { Button } from './Inputs/Buttons/Button/Button';
 export { IconButton } from './Inputs/Buttons/IconButton/IconButton';
 export { UnstyledButton } from './Inputs/Buttons/UnstyledButton/UnstyledButton';
+export { SSOButton } from './Inputs/Buttons/SSOButton/SSOButton';
 export { Checkbox } from './Inputs/Controls/Checkbox/Checkbox';
 export { Radio } from './Inputs/Controls/Radio/Radio';
 export { RadioList } from './Inputs/Controls/RadioList/RadioList';
