@@ -3,22 +3,45 @@ import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@man
 import { fontBase, fontWeight } from '../../../../constants/font';
 import { componentSizes } from '../Button/sizes';
 import { componentVariants } from '../shared/variants';
+import { GoogleIcon } from '../../../../assets/icons';
 
 type OmittedProps = 'variant' | 'leftIcon' | 'rightIcon';
 
-export interface SSOButtonProps extends Omit<MantineButtonProps, OmittedProps> {
-  /** Display name of the provider (e.g. "Google", "Apple") */
-  name: string;
-  /** Provider icon rendered to the left of the label */
-  icon: React.ReactNode;
+const providers = {
+  google: { name: 'Google', icon: React.createElement(GoogleIcon, { size: 18 }) },
+} as const;
+
+export type SSOProvider = keyof typeof providers;
+
+interface SSOButtonBase extends Omit<MantineButtonProps, OmittedProps> {
   onClick?: () => void;
   size?: keyof typeof componentSizes;
   fullWidth?: boolean;
 }
 
+type WithProvider = SSOButtonBase & {
+  /** Shorthand — resolves the provider's name and icon automatically */
+  provider: SSOProvider;
+  /** Override the resolved provider name */
+  providerName?: string;
+  /** Override the resolved provider icon */
+  providerIcon?: React.ReactNode;
+};
+
+type WithCustomProvider = SSOButtonBase & {
+  provider?: never;
+  /** Display name of the provider (e.g. "Google", "Apple") */
+  providerName: string;
+  /** Provider icon rendered to the left of the label */
+  providerIcon: React.ReactNode;
+};
+
+export type SSOButtonProps = WithProvider | WithCustomProvider;
+
 export const SSOButton = ({
-  name,
-  icon,
+  provider,
+  providerName,
+  providerIcon,
   onClick,
   size = 'md',
   fullWidth = false,
@@ -26,6 +49,10 @@ export const SSOButton = ({
   children,
   ...props
 }: SSOButtonProps) => {
+  const resolved = provider ? providers[provider] : undefined;
+  const name = providerName ?? resolved?.name;
+  const icon = providerIcon ?? resolved?.icon;
+
   const selectedVariant = componentVariants['secondary'];
   const selectedSize = componentSizes[size];
 
@@ -58,7 +85,7 @@ export const SSOButton = ({
       leftIcon={icon}
       {...props}
     >
-      {children ?? `Continue with ${name}`}
+      {children ?? (name ? `Continue with ${name}` : undefined)}
     </MantineButton>
   );
 };

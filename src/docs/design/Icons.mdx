@@ -6,7 +6,7 @@ import { Tooltip } from '../../components/Info/Tooltips/Tooltip/Tooltip';
 import { Title } from '../../components/Typography/Title/Title';
 import { Text } from '../../components/Typography/Text/Text';
 import { Center } from '../../components/Layout/Center/Center';
-import { actions, controls, feedback, navigation } from '../../assets/icons';
+import { actions, controls, feedback, navigation, ssoProviders } from '../../assets/icons';
 import { SearchBar } from '../../components/Inputs/TextInputs/SearchBar/SearchBar';
 import { UnstyledButton } from '../../components/Inputs/Buttons/UnstyledButton/UnstyledButton';
 import { neutral } from '../../constants/colors';
@@ -105,6 +105,7 @@ export const IconsPage = () => {
     { title: 'Inputs & Controls', subtitle: 'Icons to accompany other UI elements, i.e. table controls or inputs', icons: controls },
     { title: 'Feedback & Information', subtitle: 'Informational icons that appear in modals, notifications, and badges', icons: feedback },
     { title: 'Navigation', subtitle: 'Icons that represent different pages.', icons: navigation },
+    { title: 'Sign-in Provider Icons', subtitle: 'Brand icons used with the SSOButton component for third-party authentication', icons: ssoProviders },
   ];
 
   const hasResults = sections.some(({ icons }) => filterIcons(icons).length > 0);

@@ -2,7 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SSOButton } from './SSOButton';
 import { Group } from '../../../Layout/Group/Group';
 import { Stack } from '../../../Layout/Stack/Stack';
-import { IconBrandGoogle, IconBrandApple, IconBrandGithub, IconBrandWindows } from '@tabler/icons-react';
+import { IconBrandApple, IconBrandGithub, IconBrandWindows } from '@tabler/icons-react';
+import { GoogleIcon } from '../../../../assets/icons';
 
 const meta: Meta<typeof SSOButton> = {
   title: 'Components/Inputs/Buttons/SSOButton',
@@ -12,21 +13,29 @@ const meta: Meta<typeof SSOButton> = {
     docs: {
       description: {
         component:
-          'A sign-in button for third-party authentication providers. Pass any provider name and icon — the component handles the outlined styling and default label.',
+          'A sign-in button for third-party authentication providers. Use the `provider` shorthand for built-in providers, or pass `providerName` and `providerIcon` for any custom provider.',
       },
     },
   },
   argTypes: {
-    name: {
+    provider: {
+      control: { type: 'select' },
+      options: ['google'],
+      description: 'Shorthand — resolves the provider name and icon automatically',
+      table: {
+        type: { summary: "'google'" },
+      },
+    },
+    providerName: {
       control: { type: 'text' },
-      description: 'Display name of the provider (used in the default label)',
+      description: 'Display name of the provider. Overrides provider lookup.',
       table: {
         type: { summary: 'string' },
       },
     },
-    icon: {
+    providerIcon: {
       control: false,
-      description: 'Provider icon rendered to the left of the label',
+      description: 'Provider icon rendered to the left of the label. Overrides provider lookup.',
       table: {
         type: { summary: 'ReactNode' },
       },
@@ -42,7 +51,7 @@ const meta: Meta<typeof SSOButton> = {
     },
     children: {
       control: { type: 'text' },
-      description: 'Custom label. Defaults to "Continue with {name}"',
+      description: 'Custom label. Defaults to "Continue with {providerName}"',
       table: {
         type: { summary: 'ReactNode' },
       },
@@ -82,12 +91,11 @@ const meta: Meta<typeof SSOButton> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof SSOButton>;
 
 export const Default: Story = {
   args: {
-    name: 'Google',
-    icon: <IconBrandGoogle size={18} />,
+    provider: 'google',
     size: 'md',
     disabled: false,
     loading: false,
@@ -96,13 +104,20 @@ export const Default: Story = {
   },
 };
 
-export const Providers: Story = {
+export const BuiltInProvider: Story = {
   render: () => (
     <Stack gap="1.2rem">
-      <SSOButton name="Google" icon={<IconBrandGoogle size={18} />} />
-      <SSOButton name="Apple" icon={<IconBrandApple size={18} />} />
-      <SSOButton name="GitHub" icon={<IconBrandGithub size={18} />} />
-      <SSOButton name="Microsoft" icon={<IconBrandWindows size={18} />} />
+      <SSOButton provider="google" />
+    </Stack>
+  ),
+};
+
+export const CustomProviders: Story = {
+  render: () => (
+    <Stack gap="1.2rem">
+      <SSOButton providerName="Apple" providerIcon={<IconBrandApple size={18} />} />
+      <SSOButton providerName="GitHub" providerIcon={<IconBrandGithub size={18} />} />
+      <SSOButton providerName="Microsoft" providerIcon={<IconBrandWindows size={18} />} />
     </Stack>
   ),
 };
@@ -110,9 +125,9 @@ export const Providers: Story = {
 export const Sizes: Story = {
   render: () => (
     <Group gap="1.6rem" align="center">
-      <SSOButton name="Google" icon={<IconBrandGoogle size={18} />} size="sm" />
-      <SSOButton name="Google" icon={<IconBrandGoogle size={18} />} size="md" />
-      <SSOButton name="Google" icon={<IconBrandGoogle size={18} />} size="lg" />
+      <SSOButton provider="google" size="sm" />
+      <SSOButton provider="google" size="md" />
+      <SSOButton provider="google" size="lg" />
     </Group>
   ),
 };
@@ -120,9 +135,9 @@ export const Sizes: Story = {
 export const States: Story = {
   render: () => (
     <Group gap="1.6rem">
-      <SSOButton name="Google" icon={<IconBrandGoogle size={18} />} />
-      <SSOButton name="Google" icon={<IconBrandGoogle size={18} />} disabled />
-      <SSOButton name="Google" icon={<IconBrandGoogle size={18} />} loading />
+      <SSOButton provider="google" />
+      <SSOButton provider="google" disabled />
+      <SSOButton provider="google" loading />
     </Group>
   ),
 };
@@ -130,8 +145,8 @@ export const States: Story = {
 export const CustomLabels: Story = {
   render: () => (
     <Stack gap="1.2rem">
-      <SSOButton name="Google" icon={<IconBrandGoogle size={18} />}>Sign in with Google</SSOButton>
-      <SSOButton name="Apple" icon={<IconBrandApple size={18} />}>Sign in with Apple</SSOButton>
+      <SSOButton provider="google">Sign in with Google</SSOButton>
+      <SSOButton providerName="Apple" providerIcon={<IconBrandApple size={18} />}>Sign in with Apple</SSOButton>
     </Stack>
   ),
 };
@@ -140,47 +155,20 @@ export const FullWidth: Story = {
   render: () => (
     <div style={{ width: '360px' }}>
       <Stack gap="1.2rem">
-        <SSOButton name="Google" icon={<IconBrandGoogle size={18} />} fullWidth />
-        <SSOButton name="Apple" icon={<IconBrandApple size={18} />} fullWidth />
-        <SSOButton name="GitHub" icon={<IconBrandGithub size={18} />} fullWidth />
+        <SSOButton provider="google" fullWidth />
+        <SSOButton providerName="Apple" providerIcon={<IconBrandApple size={18} />} fullWidth />
+        <SSOButton providerName="GitHub" providerIcon={<IconBrandGithub size={18} />} fullWidth />
       </Stack>
     </div>
   ),
 };
 
-export const CustomStyles: Story = {
-  args: {
-    name: 'Google',
-    icon: <IconBrandGoogle size={18} color="#4285F4" />,
-    styles: {
-      root: {
-        borderRadius: '20px',
-        border: '1px solid #4285F4',
-        '&:hover': {
-          background: '#F8FAFE',
-          border: '1px solid #4285F4',
-        },
-      },
-    },
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<SSOButton
-  name="Google"
-  icon={<IconBrandGoogle size={18} color="#4285F4" />}
-  styles={{
-    root: {
-      borderRadius: '20px',
-      border: '1px solid #4285F4',
-      '&:hover': {
-        background: '#F8FAFE',
-        border: '1px solid #4285F4',
-      },
-    },
-  }}
-/>`,
-      },
-    },
-  },
+export const ProviderOverride: Story = {
+  render: () => (
+    <Stack gap="1.2rem">
+      <SSOButton provider="google" providerIcon={<GoogleIcon size={24} />}>
+        Custom icon size override
+      </SSOButton>
+    </Stack>
+  ),
 };
