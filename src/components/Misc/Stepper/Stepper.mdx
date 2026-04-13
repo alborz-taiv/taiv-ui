@@ -1,0 +1,35 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/addon-docs/blocks';
+import React, { useState } from 'react';
+import { Stepper } from './Stepper.tsx';
+import * as StepperStories from './Stepper.stories';
+import * as StepStories from './Step.stories';
+
+<Meta of={StepperStories} />
+
+# Stepper
+
+[View Mantine Docs](https://v6.mantine.dev/core/stepper/)
+
+The Stepper component is a reusable wrapper around Mantine Stepper for building linear, multi-step flows like onboarding, checkout, and setup forms.
+
+### 📦 Import
+
+```tsx
+import { Stepper } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={StepperStories.Default} />
+<Controls of={StepperStories.Default} />
+
+---
+
+### 🪜 Step
+
+Step renders one step item (label, description, icon states, and optional content) and is intended to be used as a direct child of Stepper.
+
+<Canvas of={StepStories.Default} />
+<Controls of={StepStories.Default} />
+
+---
