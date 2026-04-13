@@ -12,7 +12,7 @@ interface SearchBarProps extends TextInputProps {
 
 const SearchBar = ({ width, fullWidth = false, size = 'md', styles, ...props }: SearchBarProps) => {
   const selectedSize = componentSizes[(size as 'sm' | 'md' | 'lg') || 'md'];
-  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}rem`;
+  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}px`;
 
   const style = {
     input: {
@@ -21,7 +21,7 @@ const SearchBar = ({ width, fullWidth = false, size = 'md', styles, ...props }: 
       color: neutral[200],
       border: `1px solid ${neutral[100]}`,
       borderRadius: '8px',
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       transition: 'all 200ms ease-in-out',
       '&[data-invalid]': {
         borderColor: red[200],
@@ -39,7 +39,7 @@ const SearchBar = ({ width, fullWidth = false, size = 'md', styles, ...props }: 
       placeholder="Search"
       width={computedWidth}
       styles={style}
-      icon={<i className="fas fa-search" style={{ fontSize: 14, marginLeft: '0.25rem' }} />}
+      icon={<i className="fas fa-search" style={{ fontSize: 14, marginLeft: '2.5px' }} />}
       size={'lg'}
       fullWidth={fullWidth}
       {...props}

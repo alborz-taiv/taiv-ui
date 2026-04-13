@@ -56,7 +56,7 @@ export const Default: Story = {
 
 export const CustomStyles: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+    <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
       <UnstyledButton
         styles={{
           root: {

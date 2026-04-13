@@ -22,7 +22,7 @@ export const IconSection = ({ icons }) => {
   const tabler = raw.filter((i) => typeof i.icon !== 'string');
   const fa = raw.filter((i) => typeof i.icon === 'string');
   return (
-    <Stack pt="lg" gap="2.4rem">
+    <Stack pt="lg" gap="24px">
       {tabler.length > 0 && (
         <Group gap="xl" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
           {tabler.map(({ icon: Icon, color, label }) => {
@@ -32,7 +32,7 @@ export const IconSection = ({ icons }) => {
               <Tooltip
                 key={iconName}
                 text={
-                  <Stack gap="0.125rem" align="center">
+                  <Stack gap="1.25px" align="center">
                     <span>{iconName}</span>
                     {label && <span style={{ opacity: 0.6 }}>{label}</span>}
                   </Stack>
@@ -55,12 +55,12 @@ export const IconSection = ({ icons }) => {
         </Group>
       )}
       {fa.length > 0 && (
-        <Group gap="2.4rem" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
+        <Group gap="24px" style={{ flexWrap: 'wrap', alignItems: 'center' }}>
           {fa.map(({ icon: className, color, label }) => (
             <Tooltip
               key={className}
               text={
-                <Stack gap="0.125rem" align="center">
+                <Stack gap="1.25px" align="center">
                   <span>{className}</span>
                   {label && <span style={{ opacity: 0.6 }}>{label}</span>}
                 </Stack>
@@ -123,7 +123,7 @@ export const IconsPage = () => {
           if (filtered.length === 0) return null;
           return (
             <Stack key={title}>
-              <Stack gap="0.25rem">
+              <Stack gap="2.5px">
                 <Title variant="cardHeader">{title}</Title>
                 <Title variant="cardSubheader">{subtitle}</Title>
               </Stack>
@@ -171,7 +171,7 @@ You can override the color and size of the component using inline styles.
 import { primary } from '../../constants/colors';
 
 <i className="fas fa-cog" />
-<i className="fas fa-circle-question" style={{ color: primary[200], fontSize: '2rem' }} />
+<i className="fas fa-circle-question" style={{ color: primary[200], fontSize: '20px' }} />
 ```
 
 ## 📦 Icons

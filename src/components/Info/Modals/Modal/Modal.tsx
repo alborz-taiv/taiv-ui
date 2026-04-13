@@ -16,7 +16,7 @@ interface ModalProps {
 }
 
 // Base modal is intended to be extended and customized - use InfoModal or ConfirmationModal for common use cases
-export const Modal = ({ opened, onClose, icon, title, subtitle, children, width = '40rem' }: ModalProps) => {
+export const Modal = ({ opened, onClose, icon, title, subtitle, children, width = '400px' }: ModalProps) => {
   return (
     <MantineModal
       opened={opened}
@@ -36,8 +36,8 @@ export const Modal = ({ opened, onClose, icon, title, subtitle, children, width 
         style: {
           borderRadius: '16px',
           backgroundColor: neutral[50],
-          width: '1.8rem',
-          height: '1.8rem',
+          width: '18px',
+          height: '18px',
         },
       }}
       styles={{
@@ -47,7 +47,7 @@ export const Modal = ({ opened, onClose, icon, title, subtitle, children, width 
           boxShadow: '0px 0px 19px 0px #00000040',
         },
         header: {
-          padding: '0.8rem',
+          padding: '8px',
         },
         close: {
           '&:hover': {
@@ -58,15 +58,15 @@ export const Modal = ({ opened, onClose, icon, title, subtitle, children, width 
           },
         },
         body: {
-          padding: '0 3.2rem 1.6rem 3.2rem',
+          padding: '0 32px 16px 32px',
         },
       }}
     >
       <Center h="100%" w="100%">
-        <Stack gap="2rem" h="100%" w="100%" align="center">
-          <Stack gap="1.5rem" align="center">
+        <Stack gap="20px" h="100%" w="100%" align="center">
+          <Stack gap="15px" align="center">
             {icon}
-            <Stack gap="0.25rem" align="center">
+            <Stack gap="2.5px" align="center">
               <Title variant="cardHeader" align="center">
                 {title}
               </Title>

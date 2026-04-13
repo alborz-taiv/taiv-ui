@@ -12,26 +12,26 @@ export const NotificationProvider = () => {
       zIndex: 2000,
       '& .mantine-Notification-root': {
         backgroundColor: 'white',
-        padding: '1.2rem 1.6rem',
+        padding: '12px 16px',
         minHeight: 'auto',
         borderRadius: '0 8px 8px 0',
       },
       '& .mantine-Notification-title': {
-        fontSize: '1.5rem',
+        fontSize: '15px',
         fontWeight: 500,
         fontFamily: 'Poppins, sans-serif !important',
         color: neutral[300],
       },
       '& .mantine-Notification-description': {
-        fontSize: '1.25rem',
+        fontSize: '12.5px',
         color: neutral[200],
         fontFamily: 'Poppins, sans-serif !important',
         lineHeight: 1.4,
       },
       '& .mantine-Notification-icon': {
-        marginRight: '1.5rem',
-        marginLeft: '0.75rem',
-        fontSize: '2rem',
+        marginRight: '15px',
+        marginLeft: '7.5px',
+        fontSize: '20px',
         backgroundColor: 'transparent !important',
       },
       '& .mantine-Notification-icon > div': {

@@ -23,7 +23,7 @@ export interface CascadingSelectProps extends Omit<SelectProps, 'value' | 'data'
 
 const CascadingSelect = ({ data = [], value, placeholder = 'Select an option', size = 'md', width, fullWidth = false, styles, ...props }: CascadingSelectProps) => {
   const selectedSize = componentSizes[size];
-  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.minWidth}rem`;
+  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.minWidth}px`;
 
   // Flatten the hierarchy into a flat array with depth information
   const flattenHierarchy = (items: CascadingSelectItemProps[], depth: number = 0): Array<SelectOption & { depth: number; icon?: React.ReactNode }> => {
@@ -42,7 +42,7 @@ const CascadingSelect = ({ data = [], value, placeholder = 'Select an option', s
   const flattenedData = flattenHierarchy(data);
 
   const DropdownItem = ({ value, label, icon, depth, ...others }: SelectOption & { depth: number; icon?: React.ReactNode }) => {
-    const indentLevel = depth * 0.8;
+    const indentLevel = depth * 8;
 
     return (
       <Box
@@ -56,7 +56,7 @@ const CascadingSelect = ({ data = [], value, placeholder = 'Select an option', s
         }}
         {...others}
       >
-        <Group spacing="0.5rem" sx={{ marginLeft: `${indentLevel}rem` }}>
+        <Group spacing="5px" sx={{ marginLeft: `${indentLevel}px` }}>
           {icon && <Box sx={{ display: 'flex', alignItems: 'center', color: neutral[200], fontSize: selectedSize.fontSize }}>{icon}</Box>}
           <Text style={{ ...fontBase, color: neutral[200], fontSize: selectedSize.fontSize }}>{label}</Text>
         </Group>
@@ -70,7 +70,7 @@ const CascadingSelect = ({ data = [], value, placeholder = 'Select an option', s
       border: `1px solid ${neutral[100]}`,
       borderRadius: '8px',
       transition: 'all 200ms ease-in-out',
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       ...fontBase,
       fontSize: selectedSize.fontSize,
       padding: selectedSize.inputPadding,
@@ -81,7 +81,7 @@ const CascadingSelect = ({ data = [], value, placeholder = 'Select an option', s
       transition: 'background-color 200ms ease-in-out',
       padding: 0,
       fontSize: selectedSize.fontSize,
-      marginBottom: '0.2rem',
+      marginBottom: '2px',
       '&[data-selected]': {
         backgroundColor: neutral[50],
         color: neutral[200],

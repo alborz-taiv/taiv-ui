@@ -54,15 +54,15 @@ export const StatsCard = ({ value, format = 'decimal', isDelta = false, title, d
 
   return (
     <Card bg={neutral[25]} animate {...cardProps}>
-      <Stack gap="1.6rem">
-        <Stack gap="0.25rem">
+      <Stack gap="16px">
+        <Stack gap="2.5px">
           <Group position="apart">
             <Title size="3xl" weight="bold">
               {formatValue()}
             </Title>
             {Icon && <IconBadge icon={Icon} color={iconColor} />}
           </Group>
-          <Group gap="0.75rem">
+          <Group gap="7.5px">
             <Title variant="cardHeader" color="#6D6D6D" weight="medium">
               {title}
             </Title>

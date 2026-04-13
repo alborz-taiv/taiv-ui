@@ -150,7 +150,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap="16px">
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="cancel">Cancel</Button>
@@ -163,7 +163,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap="16px">
       <Button size="sm">Small</Button>
       <Button size="md">Medium</Button>
       <Button size="lg">Large</Button>
@@ -173,7 +173,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap="16px">
       <Button>Normal</Button>
       <Button disabled>Disabled</Button>
       <Button loading>Loading</Button>
@@ -186,7 +186,7 @@ export const TogglingButtons: Story = {
     const [toggled, setToggled] = useState(false);
 
     return (
-      <Group gap="1.6rem">
+      <Group gap="16px">
         <Button toggled={toggled} onClick={() => setToggled(!toggled)}>
           {toggled ? 'On' : 'Off'}
         </Button>

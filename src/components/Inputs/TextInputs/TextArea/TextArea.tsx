@@ -14,13 +14,13 @@ type TextAreaProps = MantineTextareaProps & {
 
 const TextArea = ({ size = 'md', width, fullWidth = false, styles, ...props }: TextAreaProps) => {
   const selectedSize = componentSizes[size];
-  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}rem`;
+  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}px`;
 
   const style: Record<string, CSSObject> = {
     input: {
-      minHeight: `${selectedSize.height}rem`,
+      minHeight: `${selectedSize.height}px`,
       fontSize: selectedSize.fontSize,
-      padding: '0.75rem 1rem',
+      padding: '7.5px 10px',
       ...fontBase,
       color: neutral[200],
       transition: 'all 200ms ease-in-out',
@@ -36,12 +36,12 @@ const TextArea = ({ size = 'md', width, fullWidth = false, styles, ...props }: T
     },
     label: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 0.5px)`,
       color: neutral[200],
     },
     error: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 0.5px)`,
       color: red[200],
     },
     ...styles,

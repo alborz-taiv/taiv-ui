@@ -22,7 +22,7 @@ const CollapsibleText = ({ text, variant = 'body', className, opened, setOpened,
   return (
     <>
       <UnstyledButton className={className} onClick={() => setOpened(!opened)}>
-        <Group gap="0.4rem" align="center">
+        <Group gap="4px" align="center">
           <Text variant={variant} color={primary[200]}>
             {text}
           </Text>

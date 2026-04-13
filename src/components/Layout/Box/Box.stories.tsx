@@ -37,7 +37,7 @@ export const Default: Story = {
     children: 'Box is a styled div — use it as a wrapper or for custom styling',
     sx: {
       backgroundColor: neutral[50],
-      padding: '2.4rem',
+      padding: '24px',
       borderRadius: '8px',
     },
   },
@@ -48,7 +48,7 @@ export const BoxStyling: Story = {
     <Box
       sx={{
         backgroundColor: neutral[25],
-        padding: '2.4rem',
+        padding: '24px',
         borderRadius: '8px',
         border: `1px dashed ${neutral[100]}`,
       }}

@@ -72,7 +72,7 @@ export const Default: Story = {
           backgroundColor: neutral[25],
           border: `1px dashed ${neutral[50]}`,
           borderRadius: '8px',
-          padding: '2rem',
+          padding: '20px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -87,9 +87,9 @@ export const Default: Story = {
 
 export const UseCases: Story = {
   render: () => (
-    <Stack gap="3rem" sx={{ width: '500px' }}>
+    <Stack gap="30px" sx={{ width: '500px' }}>
       <Frame title="User Details" subtitle="Enter your user details">
-        <Stack gap="1.6rem">
+        <Stack gap="16px">
           <TextInput
             label="Name"
             placeholder="Enter your name"
@@ -121,16 +121,16 @@ export const UseCases: Story = {
       </Frame>
 
       <Frame title="Stats This Week">
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'stretch' }}>
-          <div style={{ textAlign: 'center', padding: '1rem', backgroundColor: neutral[25], borderRadius: '8px', flex: 1 }}>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'stretch' }}>
+          <div style={{ textAlign: 'center', padding: '10px', backgroundColor: neutral[25], borderRadius: '8px', flex: 1 }}>
             <Text size="xl" weight="bold">42</Text>
             <Text size="sm" color={neutral[100]}>Ads Played</Text>
           </div>
-          <div style={{ textAlign: 'center', padding: '1rem', backgroundColor: neutral[25], borderRadius: '8px', flex: 1 }}>
+          <div style={{ textAlign: 'center', padding: '10px', backgroundColor: neutral[25], borderRadius: '8px', flex: 1 }}>
             <Text size="xl" weight="bold">1.2K</Text>
             <Text size="sm" color={neutral[100]}>Impressions</Text>
           </div>
-          <div style={{ textAlign: 'center', padding: '1rem', backgroundColor: neutral[25], borderRadius: '8px', flex: 1 }}>
+          <div style={{ textAlign: 'center', padding: '10px', backgroundColor: neutral[25], borderRadius: '8px', flex: 1 }}>
             <Text size="xl" weight="bold">89%</Text>
             <Text size="sm" color={neutral[100]}>Revenue Growth</Text>
           </div>

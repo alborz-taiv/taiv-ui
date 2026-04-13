@@ -82,7 +82,7 @@ const VariantsDemo = () => {
   const { show } = useNotifications();
 
   return (
-    <Group gap="0.5rem">
+    <Group gap="5px">
       <Button variant="success" onClick={() => show({ variant: 'success', message: 'Operation completed successfully!' })}>Success</Button>
       <Button variant="cancel" onClick={() => show({ variant: 'error', message: 'Something went wrong!' })}>Error</Button>
       <Button variant="warning" onClick={() => show({ variant: 'warning', message: 'Please review your input' })}>Warning</Button>
@@ -134,7 +134,7 @@ const AsyncDemo = () => {
   };
 
   return (
-    <Group gap="0.5rem">
+    <Group gap="5px">
       <Button variant="success" onClick={handleSuccess} loading={isLoadingSuccess}>
         {isLoadingSuccess ? 'Processing...' : 'Async Success'}
       </Button>

@@ -89,7 +89,7 @@ export const Default: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '500px', backgroundColor: neutral[25], padding: '2rem' }}>
+      <div style={{ width: '500px', backgroundColor: neutral[25], padding: '20px' }}>
         <Story />
       </div>
     ),
@@ -110,7 +110,7 @@ export const PositionContent: Story = {
         {(['flex-start', 'center', 'space-between'] as const).map((val) => (
           <div key={val}>
             <Text variant="label" mb="sm"><code>justify={'"' + val + '"'}</code></Text>
-            <Stack justify={val} spacing="sm" sx={{ height: '200px', width: '200px', border: `1px dashed ${neutral[50]}`, padding: '0.5rem' }}>
+            <Stack justify={val} spacing="sm" sx={{ height: '200px', width: '200px', border: `1px dashed ${neutral[50]}`, padding: '5px' }}>
               <SampleCard label="A" />
               <SampleCard label="B" />
             </Stack>

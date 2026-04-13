@@ -18,7 +18,7 @@ export const IconBadge = ({ icon, color }: IconBadgeProps) => {
     if (React.isValidElement(icon) && icon.props && typeof icon.props.size === 'number') {
       const iconSize = icon.props.size;
       const badgeSize = iconSize + 12;
-      return `${badgeSize / 10}rem`;
+      return `${badgeSize}px`;
     }
   };
 

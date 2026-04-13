@@ -14,12 +14,12 @@ interface MultiSelectProps extends MantineMultiSelectProps {
 
 export const MultiSelect = ({ size = 'md', width, fullWidth = false, placeholder = 'Select options', styles, ...props }: MultiSelectProps) => {
   const selectedSize = componentSizes[size];
-  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.maxWidth}rem`;
+  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.maxWidth}px`;
 
   const style = {
     input: {
       height: 'auto',
-      minHeight: `${selectedSize.height}rem`,
+      minHeight: `${selectedSize.height}px`,
       padding: selectedSize.inputPadding,
       display: 'flex',
       alignItems: 'center',
@@ -42,7 +42,7 @@ export const MultiSelect = ({ size = 'md', width, fullWidth = false, placeholder
     },
     item: {
       padding: selectedSize.dropdownPadding,
-      marginBottom: '0.5rem',
+      marginBottom: '5px',
       borderRadius: '8px',
       ...fontBase,
       fontSize: selectedSize.fontSize,
@@ -66,7 +66,7 @@ export const MultiSelect = ({ size = 'md', width, fullWidth = false, placeholder
       padding: selectedSize.valuePadding,
       borderRadius: '25px',
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.125rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 1.25px)`,
       color: primary[300],
       backgroundColor: primary[50],
       '&:hover': {
@@ -74,7 +74,7 @@ export const MultiSelect = ({ size = 'md', width, fullWidth = false, placeholder
       },
     },
     defaultValueRemove: {
-      marginLeft: '0.75rem',
+      marginLeft: '7.5px',
       borderRadius: '50%',
       display: 'flex',
       alignItems: 'center',
@@ -87,7 +87,7 @@ export const MultiSelect = ({ size = 'md', width, fullWidth = false, placeholder
     },
     label: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.1rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 1px)`,
       color: neutral[200],
     },
     defaultValueLabel: {

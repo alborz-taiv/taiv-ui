@@ -96,7 +96,7 @@ export const Default: Story = {
 
 export const RadioGroup: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Radio label="Option 1" value="option1" checked={true} />
       <Radio label="Option 2" value="option2" checked={false} />
       <Radio label="Option 3" value="option3" checked={false} />
@@ -113,7 +113,7 @@ export const RadioGroup: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Radio label="Normal Radio" value="normal" checked={true} />
       <Radio label="Disabled Radio" value="disabled" checked={false} disabled />
       <Radio label="Radio with Description" description="This is a description that provides additional context" value="description" checked={false} />
@@ -131,7 +131,7 @@ export const States: Story = {
 
 export const CustomStyles: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <Radio
         label="Custom Styled Radio"
         value="custom1"

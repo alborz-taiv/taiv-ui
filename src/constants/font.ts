@@ -19,20 +19,20 @@ const fontBase = {
 
 // Input font sizes are slightly smaller - this is for visual hierarchy
 const inputFontSize = {
-  sm: { fontSize: '1.15rem', lineHeight: '1.8rem' }, //~12px
-  md: { fontSize: '1.35rem', lineHeight: '2rem' }, //~14px
-  lg: { fontSize: '1.5rem', lineHeight: '2.2rem' }, //~16px
+  sm: { fontSize: '11.5px', lineHeight: '18px' }, //~12px
+  md: { fontSize: '13.5px', lineHeight: '20px' }, //~14px
+  lg: { fontSize: '15px', lineHeight: '22px' }, //~16px
 };
 
 // Base font sizes
 const fontSize = {
-  xs: { fontSize: '1rem', lineHeight: '1.6rem' }, //10px
-  sm: { fontSize: '1.2rem', lineHeight: '2rem' }, //12px
-  md: { fontSize: '1.4rem', lineHeight: '2.2rem' }, //14px
-  lg: { fontSize: '1.6rem', lineHeight: '2.4rem' }, //16px
-  xl: { fontSize: '2rem', lineHeight: '2.8rem' }, //20px
-  '2xl': { fontSize: '2.4rem', lineHeight: '3.2rem' }, //24px
-  '3xl': { fontSize: '2.8rem', lineHeight: '3.6rem' }, //28px
+  xs: { fontSize: '10px', lineHeight: '16px' }, //10px
+  sm: { fontSize: '12px', lineHeight: '20px' }, //12px
+  md: { fontSize: '14px', lineHeight: '22px' }, //14px
+  lg: { fontSize: '16px', lineHeight: '24px' }, //16px
+  xl: { fontSize: '20px', lineHeight: '28px' }, //20px
+  '2xl': { fontSize: '24px', lineHeight: '32px' }, //24px
+  '3xl': { fontSize: '28px', lineHeight: '36px' }, //28px
 };
 
 // Variants for body text

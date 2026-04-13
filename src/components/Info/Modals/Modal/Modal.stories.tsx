@@ -28,7 +28,7 @@ const meta: Meta<typeof Modal> = {
       description: 'Custom width override',
       table: {
         type: { summary: 'string | number' },
-        defaultValue: { summary: "'40rem'" },
+        defaultValue: { summary: "'400px'" },
       },
     },
     children: { control: false, description: 'Modal content', table: { type: { summary: 'ReactNode' } } },

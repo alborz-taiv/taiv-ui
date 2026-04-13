@@ -148,7 +148,7 @@ export const Default: Story = {
 
 export const SeriesTypes: Story = {
 	render: () => (
-		<Stack gap="2.4rem">
+		<Stack gap="24px">
 			<Box w="100%" h={280}>
 				<Chart series={sampleLineSeries} height="100%" yAxisFormat="integer" />
 			</Box>
@@ -182,7 +182,7 @@ export const YAxisFormats: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="1.6rem"
+			gap="16px"
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			{(
@@ -205,7 +205,7 @@ export const YAxisDecimalPlaces: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="1.6rem"
+			gap="16px"
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			{([1, 2, 3] as const).map((dp) => (
@@ -240,7 +240,7 @@ export const YAxisTruncation: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="1.6rem"
+			gap="16px"
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			<Box w={280} h={220}>
@@ -287,7 +287,7 @@ export const XAxisNumericFormats: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="1.6rem"
+			gap="16px"
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			<Box w={280} h={220}>

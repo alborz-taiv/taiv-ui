@@ -108,7 +108,7 @@ export const Default: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '500px', backgroundColor: neutral[25], padding: '2rem' }}>
+      <div style={{ width: '500px', backgroundColor: neutral[25], padding: '20px' }}>
         <Story />
       </div>
     ),
@@ -128,7 +128,7 @@ export const PositionAlign: Story = {
       {(['left', 'center', 'right', 'apart'] as const).map((pos) => (
         <div key={pos}>
           <Text variant="label" mb="sm"><code>position={'"' + pos + '"'}</code></Text>
-          <Group position={pos} spacing="sm" sx={{ backgroundColor: neutral[25], padding: '0.5rem' }}>
+          <Group position={pos} spacing="sm" sx={{ backgroundColor: neutral[25], padding: '5px' }}>
             <SampleCard label="A" />
             <SampleCard label="B" />
           </Group>
@@ -140,10 +140,10 @@ export const PositionAlign: Story = {
 
 export const WrapItems: Story = {
   render: () => (
-    <Stack gap="4rem">
+    <Stack gap="40px">
       <div>
         <Text variant="label" mb="sm"><code>noWrap={'{false}'}</code> (default, will continue to grow vertically)</Text>
-        <Group sx={{ backgroundColor: neutral[25], padding: '0.5rem', width: '250px' }}>
+        <Group sx={{ backgroundColor: neutral[25], padding: '5px', width: '250px' }}>
           <SampleCard label="First" />
           <SampleCard label="Second" />
           <SampleCard label="Third" />
@@ -152,7 +152,7 @@ export const WrapItems: Story = {
       </div>
       <div>
         <Text variant="label" mb="sm"><code>noWrap={'{true}'}</code>, combined with <code>overflow='hidden'</code> on the card and <code>truncate='end'</code> on the text</Text>
-        <Group noWrap spacing="sm" sx={{ backgroundColor: neutral[25], padding: '0.5rem', width: '250px' }}>
+        <Group noWrap spacing="sm" sx={{ backgroundColor: neutral[25], padding: '5px', width: '250px' }}>
           <SampleCard label="First" />
           <SampleCard label="Second" />
           <SampleCard label="Third" />
@@ -167,7 +167,7 @@ export const GrowItems: Story = {
   render: () => (
     <div>
     <Text variant="label" mb="sm"><code>grow={'{true}'}</code></Text>
-    <Group grow spacing="sm" sx={{ backgroundColor: neutral[25], padding: '0.5rem', width: '400px' }}>
+    <Group grow spacing="sm" sx={{ backgroundColor: neutral[25], padding: '5px', width: '400px' }}>
       <SampleCard label="A" />
       <SampleCard label="B" />
     </Group>

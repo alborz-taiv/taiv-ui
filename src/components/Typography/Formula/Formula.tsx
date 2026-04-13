@@ -162,7 +162,7 @@ const FormulaRenderer: React.FC<{
   color?: string;
 }> = ({ nodes, weight, size, color }) => {
   return (
-    <Group gap="0.5rem">
+    <Group gap="5px">
       {nodes.map((node, index) => {
         switch (node.type) {
           case 'default':
@@ -174,7 +174,7 @@ const FormulaRenderer: React.FC<{
 
           case 'operator':
             return (
-              <Text key={index} weight={weight} size={size} color={color} mx="0.25rem">
+              <Text key={index} weight={weight} size={size} color={color} mx="2.5px">
                 {node.value === '*' ? '×' : node.value}
               </Text>
             );

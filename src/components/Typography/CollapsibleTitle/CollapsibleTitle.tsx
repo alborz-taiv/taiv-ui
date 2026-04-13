@@ -22,8 +22,8 @@ const CollapsibleTitle = ({ title, subText, className, opened, setOpened, childr
   return (
     <>
       <UnstyledButton className={className} onClick={() => setOpened(!opened)}>
-        <Stack gap="0.2rem">
-          <Group gap="0.4rem" align="center">
+        <Stack gap="2px">
+          <Group gap="4px" align="center">
             <Title variant="sectionSubheader" size="md" weight="medium">
               {title}
             </Title>

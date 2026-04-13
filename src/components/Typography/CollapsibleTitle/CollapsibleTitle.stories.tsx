@@ -71,7 +71,7 @@ export const Default: Story = {
         opened={opened}
         setOpened={setOpened}
       >
-        <Stack gap="0.8rem" style={{ paddingTop: '0.4rem' }}>
+        <Stack gap="8px" style={{ paddingTop: '4px' }}>
           <Text variant="body">Expanded content goes here. You can put forms, lists, or any other content.</Text>
         </Stack>
       </CollapsibleTitle>
@@ -89,7 +89,7 @@ export const WithContent: Story = {
       title="Section with content"
       subText="Click to expand"
       children={
-        <Stack gap="0.4rem" style={{ paddingTop: '0.4rem' }}>
+        <Stack gap="4px" style={{ paddingTop: '4px' }}>
           <Text variant="body">First paragraph of expanded content.</Text>
           <Text variant="body">Second paragraph. The header uses a medium-weight title and caption subtext by default.</Text>
         </Stack>
@@ -100,19 +100,19 @@ export const WithContent: Story = {
 
 export const OpenAndClosed: Story = {
   render: () => (
-    <Stack gap="2rem">
+    <Stack gap="20px">
       <div>
-        <Text variant="label" style={{ marginBottom: '0.4rem', display: 'block' }}>
+        <Text variant="label" style={{ marginBottom: '4px', display: 'block' }}>
           Closed
         </Text>
         <CollapsibleTitleWithState title="Closed state" subText="(click to expand)" />
       </div>
       <div>
-        <Text variant="label" style={{ marginBottom: '0.4rem', display: 'block' }}>
+        <Text variant="label" style={{ marginBottom: '4px', display: 'block' }}>
           Open
         </Text>
         <CollapsibleTitleWithState title="Open state" subText="(click to collapse)" initialOpened>
-          <Stack gap="0.4rem" style={{ paddingTop: '0.4rem' }}>
+          <Stack gap="4px" style={{ paddingTop: '4px' }}>
             <Text variant="body">Content is visible when opened.</Text>
           </Stack>
         </CollapsibleTitleWithState>

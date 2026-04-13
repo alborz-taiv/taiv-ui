@@ -12,7 +12,7 @@ export function getVariantStyles(color: BadgeColor): Record<BadgeVariant, CSSObj
       color: colors[color][200],
       backgroundColor: 'transparent',
       borderRadius: '8px',
-      padding: '0.4rem 0.8rem',
+      padding: '4px 8px',
     },
     filled: {
       backgroundColor: colors[color][50],
@@ -22,7 +22,7 @@ export function getVariantStyles(color: BadgeColor): Record<BadgeVariant, CSSObj
       background: `linear-gradient(to right, ${colors[color][50]}, ${colors[color][200]})`,
       color: 'white',
       borderRadius: '16px',
-      padding: '0.4rem 0.8rem',
+      padding: '4px 8px',
     },
   };
 }

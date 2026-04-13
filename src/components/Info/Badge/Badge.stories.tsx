@@ -94,7 +94,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="1.6rem">
+    <Group gap="16px">
       <Badge variant="outline" color="primary">Outline</Badge>
       <Badge variant="filled" color="primary">Filled</Badge>
       <Badge variant="gradient" color="primary">Gradient</Badge>
@@ -104,7 +104,7 @@ export const Variants: Story = {
 
 export const Colors: Story = {
   render: () => (
-    <Group gap="1.6rem" style={{ flexWrap: 'wrap' }}>
+    <Group gap="16px" style={{ flexWrap: 'wrap' }}>
       <Badge variant="outline" color="primary">Primary</Badge>
       <Badge variant="outline" color="success">Success</Badge>
       <Badge variant="outline" color="warning">Warning</Badge>
@@ -116,7 +116,7 @@ export const Colors: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="1.6rem" align="flex-end">
+    <Group gap="16px" align="flex-end">
       <Badge size="sm" color="primary">Small</Badge>
       <Badge size="md" color="primary">Medium</Badge>
       <Badge size="lg" color="primary">Large</Badge>
@@ -126,8 +126,8 @@ export const Sizes: Story = {
 
 export const WithLeftIcon: Story = {
   render: () => (
-    <Stack gap="1.6rem">
-      <Group gap="1.6rem">
+    <Stack gap="16px">
+      <Group gap="16px">
         <Badge size="sm" leftIcon={<IconCheck />} color="success">
           Completed
         </Badge>
@@ -138,7 +138,7 @@ export const WithLeftIcon: Story = {
           In Progress
         </Badge>
       </Group>
-      <Group gap="1.6rem">
+      <Group gap="16px">
         <Badge leftIcon={<IconCheck />} color="success">
           Completed
         </Badge>
@@ -149,7 +149,7 @@ export const WithLeftIcon: Story = {
           In Progress
         </Badge>
       </Group>
-      <Group gap="1.6rem">
+      <Group gap="16px">
         <Badge size="lg" leftIcon={<IconCheck />} color="success">
           Completed
         </Badge>

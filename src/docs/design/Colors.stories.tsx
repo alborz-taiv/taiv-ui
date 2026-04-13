@@ -16,7 +16,7 @@ export default meta;
 type Story = StoryObj;
 
 const Swatch = ({ color, label }: { color: string; label: string }) => (
-  <Stack gap="0.4rem" align="center">
+  <Stack gap="4px" align="center">
     <div
       style={{
         width: '64px',
@@ -40,12 +40,12 @@ const ThemeRow = ({
   primitive: string;
   shades: Record<string, string>;
 }) => (
-  <Stack gap="0.8rem">
-    <Group gap="0.4rem">
+  <Stack gap="8px">
+    <Group gap="4px">
       <Text weight="bold">{semantic}</Text>
       <Text>({primitive})</Text>
     </Group>
-    <Group gap="1.6rem">
+    <Group gap="16px">
       {Object.entries(shades).map(([shade, hex]) => (
         <Swatch key={shade} color={hex} label={shade} />
       ))}
@@ -54,9 +54,9 @@ const ThemeRow = ({
 );
 
 const ColorRow = ({ name, shades }: { name: string; shades: Record<string, string> }) => (
-  <Stack gap="0.8rem">
+  <Stack gap="8px">
     <Text weight="bold" transform="capitalize">{name}</Text>
-    <Group gap="1.6rem">
+    <Group gap="16px">
       {Object.entries(shades).map(([shade, hex]) => (
         <Swatch key={shade} color={hex} label={shade} />
       ))}
@@ -66,8 +66,8 @@ const ColorRow = ({ name, shades }: { name: string; shades: Record<string, strin
 
 export const TaivLight: Story = {
   render: () => (
-    <Stack gap="2.4rem" align="flex-start">
-      <Group gap="1.6rem">
+    <Stack gap="24px" align="flex-start">
+      <Group gap="16px">
         <Swatch color="#000000" label="black" />
         <Swatch color="#FFFFFF" label="white" />
       </Group>
@@ -82,7 +82,7 @@ export const TaivLight: Story = {
 
 export const AdditionalPrimitives: Story = {
   render: () => (
-    <Stack gap="2.4rem">
+    <Stack gap="24px">
       <ColorRow name="purple" shades={primitives.purple} />
       <ColorRow name="salmon" shades={primitives.salmon} />
     </Stack>

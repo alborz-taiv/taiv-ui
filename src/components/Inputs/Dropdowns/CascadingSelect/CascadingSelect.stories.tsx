@@ -240,7 +240,7 @@ export const Default: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <CascadingSelect size="sm" data={simpleHierarchyData} placeholder="Small Cascading Select" />
       <CascadingSelect size="md" data={simpleHierarchyData} placeholder="Medium Cascading Select (Default)" />
       <CascadingSelect size="lg" data={simpleHierarchyData} placeholder="Large Cascading Select" />
@@ -257,7 +257,7 @@ export const Sizes: Story = {
 
 export const WithIcons: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <CascadingSelect label="Categories with Icons" data={categoryData} placeholder="Select with icons" />
       <CascadingSelect label="Simple Hierarchy" data={simpleHierarchyData} placeholder="Select without icons" />
     </Group>
@@ -273,7 +273,7 @@ export const WithIcons: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <CascadingSelect label="Normal Cascading Select" data={simpleHierarchyData} placeholder="Select option" />
       <CascadingSelect label="Disabled Cascading Select" data={simpleHierarchyData} placeholder="Select option" disabled />
       <CascadingSelect label="Required Cascading Select" data={simpleHierarchyData} placeholder="Select option" required />
@@ -292,7 +292,7 @@ export const States: Story = {
 
 export const WithFeatures: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <CascadingSelect label="Clearable Cascading Select" data={simpleHierarchyData} placeholder="Select option" clearable value="level2a" />
       <CascadingSelect label="Searchable Cascading Select" data={categoryData} placeholder="Search categories" searchable />
     </Group>
@@ -373,7 +373,7 @@ export const DeepHierarchy: Story = {
 
 export const CustomStyles: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <CascadingSelect
         label="Custom Styled Cascading Select"
         data={simpleHierarchyData}

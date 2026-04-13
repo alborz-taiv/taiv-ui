@@ -14,13 +14,13 @@ interface FormulaTooltipProps {
 
 const FormulaTooltip = ({ title, description, expression }: FormulaTooltipProps) => {
   return (
-    <Box p="0.8rem">
-      <Stack gap="1.6rem">
-        <Stack gap="0.8rem" sx={{ maxWidth: '500px' }}>
+    <Box p="8px">
+      <Stack gap="16px">
+        <Stack gap="8px" sx={{ maxWidth: '500px' }}>
           <Text weight="semibold">{title}</Text>
           <Text variant="label">{description}</Text>
         </Stack>
-        <div style={{ padding: '1.6rem 2.4rem', borderRadius: '16px', backgroundColor: blue[25], width: '100%' }}>
+        <div style={{ padding: '16px 24px', borderRadius: '16px', backgroundColor: blue[25], width: '100%' }}>
           <Center>
             <Formula expression={expression} color={blue[300]} />
           </Center>

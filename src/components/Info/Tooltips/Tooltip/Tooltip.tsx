@@ -38,7 +38,7 @@ const Tooltip = ({ children, text, position = 'top-start', offset, className, st
       borderRadius: '8px',
       textWrap: 'wrap',
       maxWidth: maxWidth || '375px',
-      padding: '0.75rem 1.125rem',
+      padding: '7.5px 11.25px',
       ...fontSize['sm'],
       height: 'fit-content',
     },

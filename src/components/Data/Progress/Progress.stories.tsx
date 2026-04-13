@@ -10,7 +10,7 @@ const meta: Meta<typeof Progress> = {
   component: Progress,
   decorators: [
     (Story) => (
-      <div style={{ width: '25rem' }}>
+      <div style={{ width: '250px' }}>
         <Story />
       </div>
     ),
@@ -195,6 +195,6 @@ export const Width: Story = {
     value: 45,
     scale: 'xl',
     cornerRadius: 'xl',
-    width: '24rem',
+    width: '240px',
   },
 };

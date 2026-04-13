@@ -73,18 +73,18 @@ export const Chart: React.FC<ChartProps> = ({
         <Box
           sx={{
             backgroundColor: 'white',
-            padding: '1rem',
+            padding: '10px',
             border: `1px solid ${neutral[100]}`,
             borderRadius: '8px',
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
           }}
         >
-          <Stack gap="0.25rem">
+          <Stack gap="2.5px">
             <Text weight="semibold" color={neutral[300]}>
               {formatXAxisValue(label)}
             </Text>
             {payload.map((entry: any) => (
-              <Group key={entry.name} gap="0.5rem">
+              <Group key={entry.name} gap="5px">
                 <div
                   style={{
                     width: '8px',
@@ -93,7 +93,7 @@ export const Chart: React.FC<ChartProps> = ({
                     backgroundColor: entry.color,
                   }}
                 />
-                <Group gap="0.25rem">
+                <Group gap="2.5px">
                   <Text variant="label" color={neutral[300]}>
                     {entry.name}:
                   </Text>
@@ -197,7 +197,7 @@ export const Chart: React.FC<ChartProps> = ({
                   <Legend
                     iconType="circle"
                     iconSize={8}
-                    wrapperStyle={{ paddingTop: '0.6rem' }}
+                    wrapperStyle={{ paddingTop: '6px' }}
                     formatter={(value) => (
                       <Text variant="label" sx={{ color: neutral[300], display: 'inline', whiteSpace: 'nowrap' }}>
                         {value}

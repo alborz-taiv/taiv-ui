@@ -84,7 +84,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Stack gap="1rem">
+    <Stack gap="10px">
       <Title variant="header">Header</Title>
       <Title variant="sectionHeader">Section Header</Title>
       <Title variant="subheader">Subheader</Title>

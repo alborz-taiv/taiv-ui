@@ -15,7 +15,7 @@ export const InfoCard = ({ children, variant = 'primary', ...cardProps }: InfoCa
     border: `1px solid ${colorPalette[200]}`,
     backgroundColor: colorPalette[25],
     color: colorPalette[200] + ' !important',
-    padding: '3.2rem 6.4rem',
+    padding: '32px 64px',
   };
 
   return (

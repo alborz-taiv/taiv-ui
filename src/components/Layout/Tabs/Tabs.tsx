@@ -21,7 +21,7 @@ const TabsComponent = ({ children, defaultValue, value, onChange, variant = 'def
       gap: '0',
     },
     tab: {
-      padding: '0.8rem 2.8rem',
+      padding: '8px 28px',
       backgroundColor: 'transparent',
       color: colors.neutral[300],
       '&:hover': {
@@ -40,11 +40,11 @@ const TabsComponent = ({ children, defaultValue, value, onChange, variant = 'def
     },
     tabLabel: {
       ...fontBase,
-      fontSize: '1.6rem',
-      lineHeight: '2.4rem',
+      fontSize: '16px',
+      lineHeight: '24px',
     },
     panel: {
-      padding: '1.6rem 0.8rem',
+      padding: '16px 8px',
     },
     ...styles,
   };

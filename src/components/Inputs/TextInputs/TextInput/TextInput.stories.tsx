@@ -132,7 +132,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <TextInput label="Basic Text Input" />
       <TextInput label="With Placeholder" placeholder="Enter your text here" />
       <TextInput label="With Description" description="This is a description" />
@@ -149,7 +149,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <TextInput size="sm" label="Small Input" placeholder="Small text input" />
       <TextInput size="md" label="Medium Input (Default)" placeholder="Medium text input" />
       <TextInput size="lg" label="Large Input" placeholder="Large text input" />
@@ -167,7 +167,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <TextInput label="Normal Text Input" />
       <TextInput label="Disabled Text Input" disabled />
       <TextInput label="Required Text Input" required />
@@ -186,7 +186,7 @@ export const States: Story = {
 
 export const AdditionalFunctionality: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <TextInput label="Email Address" description="We'll never share your email" placeholder="your@email.com" type="email" />
       <TextInput label="Password" type="password" placeholder="Enter password" error="Password must be at least 8 characters" />
       <TextInput label="Custom Width" placeholder="Custom width input" width="300px" />
@@ -219,7 +219,7 @@ export const AdditionalFunctionality: Story = {
 
 export const CustomStyling: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <TextInput
         label="Custom Styled Text Input"
         styles={{

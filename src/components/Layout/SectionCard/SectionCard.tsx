@@ -13,8 +13,8 @@ export interface SectionCardProps extends Omit<CardProps, 'children'> {
 
 export const SectionCard = ({ title, subtitle, children, ...props }: SectionCardProps) => {
   return (
-    <Card p="2.4rem" {...props}>
-      <Stack gap="2rem">
+    <Card p="24px" {...props}>
+      <Stack gap="20px">
       {/* Header Section */}
         <Stack gap="0">
           <Title variant="cardHeader">{title}</Title>

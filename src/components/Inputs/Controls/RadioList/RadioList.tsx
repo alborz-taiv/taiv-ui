@@ -32,7 +32,7 @@ const RadioList = ({ data, value, onChange, disabled = false, width }: RadioList
         border: `1px solid ${neutral[100]}`,
         borderRadius: '16px',
         overflow: 'hidden',
-        padding: '0.2rem 0 0.2rem 0',
+        padding: '2px 0 2px 0',
         width,
       }}
     >
@@ -41,7 +41,7 @@ const RadioList = ({ data, value, onChange, disabled = false, width }: RadioList
           key={option.value}
           position="apart"
           style={{
-            padding: '1rem 1.2rem 0.8rem 1.2rem',
+            padding: '10px 12px 8px 12px',
             borderBottom: index < data.length - 1 ? `1px solid ${neutral[100]}` : 'none',
             backgroundColor: 'white',
           }}

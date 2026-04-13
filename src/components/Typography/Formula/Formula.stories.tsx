@@ -60,7 +60,7 @@ export const Default: Story = {
 
 export const Operations: Story = {
   render: () => (
-    <Stack gap="1rem">
+    <Stack gap="10px">
       <Formula expression="a + b" />
       <Formula expression="a - b" />
       <Formula expression="a * b" />
@@ -86,7 +86,7 @@ export const StructuringEquations: Story = {
     },
   },
   render: () => (
-    <Stack gap="1rem">
+    <Stack gap="10px">
       <Formula expression="a + b / c" />
       <Formula expression="(a + b) / c" />
       <Formula expression="(a + b) / (c + d)" />

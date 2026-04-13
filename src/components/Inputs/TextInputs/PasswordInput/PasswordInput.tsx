@@ -21,7 +21,7 @@ type PasswordInputProps = MantinePasswordInputProps & {
 
 const PasswordInput = ({ size = 'md', width, fullWidth = false, styles, placeholder = 'Enter password', ...props }: PasswordInputProps) => {
   const selectedSize = componentSizes[size];
-  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}rem`;
+  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}px`;
 
   const style = {
     input: {
@@ -29,9 +29,9 @@ const PasswordInput = ({ size = 'md', width, fullWidth = false, styles, placehol
       color: neutral[200],
       transition: 'all 200ms ease-in-out',
       borderRadius: '8px',
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       fontSize: selectedSize.fontSize,
-      padding: '0 1rem',
+      padding: '0 10px',
       '&[data-invalid]': {
         borderColor: red[200],
         '&::placeholder': {
@@ -42,19 +42,19 @@ const PasswordInput = ({ size = 'md', width, fullWidth = false, styles, placehol
     label: {
       ...fontBase,
       color: neutral[200],
-      fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 0.5px)`,
     },
     error: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 0.5px)`,
       color: red[200],
     },
     innerInput: {
       ...fontBase,
       color: neutral[200],
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       fontSize: selectedSize.fontSize,
-      padding: '0 1rem',
+      padding: '0 10px',
       '&[data-invalid]': {
         color: neutral[200],
         '&::placeholder': {
@@ -64,7 +64,7 @@ const PasswordInput = ({ size = 'md', width, fullWidth = false, styles, placehol
     },
     visibilityToggle: {
       color: neutral[200],
-      marginRight: '1.25rem',
+      marginRight: '12.5px',
       '&:hover': {
         backgroundColor: 'transparent',
       },

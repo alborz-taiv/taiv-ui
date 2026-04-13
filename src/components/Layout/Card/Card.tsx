@@ -6,7 +6,7 @@ export interface CardProps extends MantineCardProps {
   animate?: boolean;
 }
 
-export const Card = ({ children, animate = false, p="2.4rem", radius="20px", ...props }: CardProps) => {
+export const Card = ({ children, animate = false, p="24px", radius="20px", ...props }: CardProps) => {
   const hoverAnimation = {
     style: { transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out' },
     onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) => {

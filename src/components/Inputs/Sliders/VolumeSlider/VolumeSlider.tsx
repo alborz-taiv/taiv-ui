@@ -21,16 +21,16 @@ const VolumeSlider = ({ compact = false, size = 'md', fullWidth = false, ...prop
     container: {
       display: 'flex',
       alignItems: 'center',
-      gap: '1rem',
+      gap: '10px',
       width: fullWidth ? '100%' : 'auto',
-      padding: '0.5rem 0',
+      padding: '5px 0',
     },
     iconContainer: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      width: `${selectedSize.iconSize / 10}rem`, // Based on 10px root font
-      height: `${selectedSize.iconSize / 10}rem`,
+      width: `${selectedSize.iconSize}px`,
+      height: `${selectedSize.iconSize}px`,
       flexShrink: 0,
     },
   };

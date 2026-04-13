@@ -138,7 +138,7 @@ export const Default: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <DatePicker size="sm" />
       <DatePicker />
       <DatePicker size="lg" />
@@ -155,7 +155,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <DatePicker label="Normal DatePicker" />
       <DatePicker label="Disabled DatePicker" disabled />
       <DatePicker label="Required DatePicker" required />
@@ -174,7 +174,7 @@ export const States: Story = {
 
 export const WithAndWithoutIcon: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <DatePicker label="With Icon" placeholder="Select date" showIcon={true} />
       <DatePicker label="Without Icon" placeholder="Select date" showIcon={false} />
     </Group>
@@ -205,7 +205,7 @@ export const FullWidth: Story = {
 
 export const CustomStyles: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <DatePicker
         label="Custom Styled DatePicker"
         placeholder="Select date"

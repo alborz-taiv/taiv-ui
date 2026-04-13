@@ -78,7 +78,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Stack gap="1.5rem">
+    <Stack gap="15px">
       <Fraction numerator="1" denominator="2" variant="body" />
       <Fraction numerator="1" denominator="2" variant="subtle" />
       <Fraction numerator="1" denominator="2" variant="label" />

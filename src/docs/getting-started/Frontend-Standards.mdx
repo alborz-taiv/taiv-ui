@@ -23,11 +23,13 @@ A few principles to keep in mind:
 
 ### Design Constants
 
-Before you hardcode any colors, font sizes, or spacing values, know that we have a system in place for all of these:
+Before you hardcode any colors, font sizes, or spacing values, know that we have standrds in place for all of these:
 
 - **Colors** — We use a [color system](/docs/design-colors--docs) already in place. Don't hardcode hex colors or RGB values.
 - **Texts** — See the [font constants](/docs/design-fonts--docs) page for more information - you should never be using raw HTML tags.
-- **Spacing** — Use `rem` for values like spacing, font sizes, etc. (it scales with the user's browser settings for accessibility). Use `px` only for fixed values like borders and box shadows.
+- **Sizing** — Within consuming projects, you can use numbers directly (i.e. width={350} to represent 350px) or `rem` for values like spacing, font sizes, etc. (it scales with the user's browser settings for accessibility). 
+Within component files, always hardocde sizes as 'px'.
+- **Shadows/Borders** - Always hardcode as 'px'.
 
 ---
 
@@ -90,7 +92,8 @@ Looking good is not the same as working well. A huge part of good UX is just giv
 
 ### Accessibility
 
-We don't have any strict requirements for this as of now, but in the future we'll likely have more to add here.
+We don't have any strict requirements as of now, but in the future we'll likely have more to stay here.
+All components already have solid accessibility built in via Mantine and accessibility is considered at the design stage.
 
 ---
 

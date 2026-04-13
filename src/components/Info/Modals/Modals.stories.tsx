@@ -83,7 +83,7 @@ const InfoVariantsDemo = () => {
   const { show } = useInfoModal();
 
   return (
-    <Group gap="0.5rem">
+    <Group gap="5px">
       <Button variant="primary" onClick={() => show({ variant: 'info' })}>Info</Button>
       <Button variant="success" onClick={() => show({ variant: 'success' })}>Success</Button>
       <Button variant="cancel" onClick={() => show({ variant: 'error' })}>Error</Button>
@@ -129,7 +129,7 @@ const ConfirmationVariantsDemo = () => {
   const { show } = useConfirmationModal();
 
   return (
-    <Group gap="0.5rem">
+    <Group gap="5px">
       <Button variant="primary" onClick={() => show({ variant: 'confirm', onConfirm: () => console.log('confirmed') })}>Confirm</Button>
       <Button variant="cancel" onClick={() => show({ variant: 'cancel', onConfirm: () => console.log('confirmed') })}>Cancel</Button>
       <Button variant="warning" onClick={() => show({ variant: 'warning', onConfirm: () => console.log('confirmed') })}>Warning</Button>
@@ -158,7 +158,7 @@ const FormModalExample = () => {
         confirmLabel="Submit"
         confirmButtonDisabled={name.trim().length === 0}
       >
-        <Stack gap="1rem" align="center">
+        <Stack gap="10px" align="center">
           <Title variant="cardSubheader" align="center">
             Fill out the user information below.
           </Title>

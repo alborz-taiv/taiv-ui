@@ -88,16 +88,16 @@ export const Default: Story = {
         <Tabs.Tab value="details">Details</Tabs.Tab>
         <Tabs.Tab value="settings">Settings</Tabs.Tab>
       </Tabs.List>
-      <Tabs.Panel mt="1.6rem" value="overview"><Text variant="subtle">This is the tab panel for Overview</Text></Tabs.Panel>
-      <Tabs.Panel mt="1.6rem" value="details"><Text variant="subtle">This is the tab panel for Details</Text></Tabs.Panel>
-      <Tabs.Panel mt="1.6rem" value="settings"><Text variant="subtle">This is the tab panel for Settings</Text></Tabs.Panel>
+      <Tabs.Panel mt="16px" value="overview"><Text variant="subtle">This is the tab panel for Overview</Text></Tabs.Panel>
+      <Tabs.Panel mt="16px" value="details"><Text variant="subtle">This is the tab panel for Details</Text></Tabs.Panel>
+      <Tabs.Panel mt="16px" value="settings"><Text variant="subtle">This is the tab panel for Settings</Text></Tabs.Panel>
     </Tabs>
   ),
 };
 
 export const Variants: Story = {
   render: () => (
-    <Stack spacing="4.8rem" py="2.4rem" sx={{ width: '600px' }}>
+    <Stack spacing="48px" py="24px" sx={{ width: '600px' }}>
       <Tabs defaultValue="overview" variant="default">
         <Tabs.List>
           <Tabs.Tab value="overview">Default</Tabs.Tab>
@@ -131,7 +131,7 @@ export const CustomStyling: Story = {
     styles: {
       root: {
         background: primary[200],
-        padding: '2rem',
+        padding: '20px',
         borderRadius: '12px',
       },
       tab: {
@@ -163,8 +163,8 @@ export const CustomStyling: Story = {
         <Tabs.Tab value="overview">Overview</Tabs.Tab>
         <Tabs.Tab value="details">Details</Tabs.Tab>
       </Tabs.List>
-      <Tabs.Panel mt="1.6rem" value="overview">Overview</Tabs.Panel>
-      <Tabs.Panel mt="1.6rem" value="details">Details</Tabs.Panel>
+      <Tabs.Panel mt="16px" value="overview">Overview</Tabs.Panel>
+      <Tabs.Panel mt="16px" value="details">Details</Tabs.Panel>
     </Tabs>
   ),
   parameters: {
@@ -175,7 +175,7 @@ export const CustomStyling: Story = {
   styles={{
     root: {
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      padding: '2rem',
+      padding: '20px',
       borderRadius: '12px',
     },
     tab: {

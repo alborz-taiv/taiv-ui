@@ -14,11 +14,11 @@ export interface AutoCompleteProps extends MantineAutocompleteProps {
 
 export const AutoComplete = ({ size = 'md', width, fullWidth = false, placeholder = 'Select an option', styles, ...props }: AutoCompleteProps) => {
   const selectedSize = componentSizes[size];
-  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.minWidth}rem`;
+  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.minWidth}px`;
 
   const style: Record<string, CSSObject> = {
     input: {
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       fontSize: selectedSize.fontSize,
       padding: selectedSize.inputPadding,
       ...fontBase,
@@ -35,7 +35,7 @@ export const AutoComplete = ({ size = 'md', width, fullWidth = false, placeholde
     },
     label: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.05rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 0.5px)`,
       color: neutral[200],
     },
     dropdown: {
@@ -45,7 +45,7 @@ export const AutoComplete = ({ size = 'md', width, fullWidth = false, placeholde
     },
     item: {
       padding: selectedSize.dropdownPadding,
-      marginBottom: '0.5rem',
+      marginBottom: '5px',
       ...fontBase,
       fontSize: selectedSize.fontSize,
       color: neutral[200],

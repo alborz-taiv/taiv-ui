@@ -104,7 +104,7 @@ export const Formats: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="1.6rem"
+			gap="16px"
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			{(
@@ -144,7 +144,7 @@ export const DonutGeometry: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="1.6rem"
+			gap="16px"
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			<Box w={400} h={400}>
@@ -184,7 +184,7 @@ export const PaddingAngle: Story = {
 	render: () => (
 		<Group
 			align="flex-start"
-			gap="1.6rem"
+			gap="16px"
 			styles={{ root: { flexWrap: "wrap" } }}
 		>
 			<Box w={400} h={400}>

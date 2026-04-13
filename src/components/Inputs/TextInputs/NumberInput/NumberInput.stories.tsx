@@ -157,7 +157,7 @@ export const Default: Story = {
 
 export const Variants: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <NumberInput label="Basic Number Input" />
       <NumberInput label="With Placeholder" placeholder="Enter a value" />
       <NumberInput label="With Description" description="Enter a value between 0 and 100" min={0} max={100} />
@@ -174,7 +174,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <NumberInput size="sm" label="Small Number Input" placeholder="Small value" />
       <NumberInput size="md" label="Medium Number Input (Default)" placeholder="Medium value" />
       <NumberInput size="lg" label="Large Number Input" placeholder="Large value" />
@@ -192,7 +192,7 @@ export const Sizes: Story = {
 
 export const States: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <NumberInput label="Normal Number Input" />
       <NumberInput label="Disabled Number Input" disabled />
       <NumberInput label="Required Number Input" required />
@@ -211,11 +211,11 @@ export const States: Story = {
 
 export const AdditionalFunctionality: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <NumberInput label="Step of 1" placeholder="Integer values" step={1} />
       <NumberInput label="Step of 0.5" placeholder="Decimal values" step={0.5} precision={1} />
       <NumberInput label="With Min/Max" placeholder="Between 0 and 10" min={0} max={10} step={1} />
-      <NumberInput label="Custom Width" placeholder="Custom width" width="300rem" />
+      <NumberInput label="Custom Width" placeholder="Custom width" width="3000px" />
     </Group>
   ),
   parameters: {
@@ -246,7 +246,7 @@ export const AdditionalFunctionality: Story = {
 
 export const CustomStyling: Story = {
   render: () => (
-    <Group gap="2rem">
+    <Group gap="20px">
       <NumberInput
         label="Custom Styled Number Input"
         styles={{

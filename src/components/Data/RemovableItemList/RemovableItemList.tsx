@@ -24,14 +24,14 @@ const RemovableItemList = ({ items, onRemove, title, disabledIndices = [] }: Rem
     titleContainer: {
       display: 'flex',
       alignItems: 'center',
-      padding: '1.2rem 1.6rem',
+      padding: '12px 16px',
       backgroundColor: neutral[50],
     },
     itemContainer: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '1.2rem 1.6rem',
+      padding: '12px 16px',
     },
     itemText: {
       ...fontStyle['body'],
@@ -65,7 +65,7 @@ const RemovableItemList = ({ items, onRemove, title, disabledIndices = [] }: Rem
                 opacity: disabledIndices.includes(index) ? 0.5 : 1,
                 cursor: disabledIndices.includes(index) ? 'default' : 'pointer',
                 color: disabledIndices.includes(index) ? neutral[200] : error[100],
-                fontSize: '1.625rem',
+                fontSize: '16.25px',
                 fontWeight: 100,
               }}
               onClick={() => !disabledIndices.includes(index) && onRemove(item, index)}

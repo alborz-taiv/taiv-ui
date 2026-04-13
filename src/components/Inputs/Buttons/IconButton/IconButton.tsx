@@ -52,9 +52,9 @@ export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled 
   const style = {
     root: {
       borderRadius: '8px',
-      height: `${selectedSize.borderLength}rem`,
+      height: `${selectedSize.borderLength}px`,
       padding: selectedSize.padding,
-      width: `${selectedSize.borderLength}rem`,
+      width: `${selectedSize.borderLength}px`,
       boxShadow: shadow ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
       ...getVariantStyles(),
       ...getSubtleStyles(),

@@ -398,9 +398,9 @@ export const TableWithPlaceholder: Story = {
       { heading: 'Email', style: { width: '50%' } },
     ],
     placeholder: (
-      <Center py='5rem'>
-        <Group gap='0.5rem' align='center'>
-          <IconInfoCircle color={neutral[200]} size='2rem' />
+      <Center py='50px'>
+        <Group gap='5px' align='center'>
+          <IconInfoCircle color={neutral[200]} size='20px' />
           <Text>No data available at this time</Text>
         </Group>
       </Center>

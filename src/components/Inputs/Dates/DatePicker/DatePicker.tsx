@@ -27,10 +27,10 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
 
   const { classes } = createStyles(() => ({
     root: {
-      width: fullWidth ? '100%' : width || (props.type === 'range' ? `${selectedSize.minWidth * 1.2}rem` : `${selectedSize.minWidth}rem`), // Range inputs are slightly wider than regular inputs
+      width: fullWidth ? '100%' : width || (props.type === 'range' ? `${selectedSize.minWidth * 1.2}px` : `${selectedSize.minWidth}px`), // Range inputs are slightly wider than regular inputs
     },
     input: {
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       paddingRight: selectedSize.inputPadding,
       ...fontBase,
       fontSize: selectedSize.fontSize,
@@ -49,7 +49,7 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
     },
     label: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 0.1rem)`,
+      fontSize: `calc(${selectedSize.fontSize} - 1px)`,
       color: neutral[200],
     },
     calendar: {
@@ -86,7 +86,7 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
 
   return (
     <MantineDatePickerInput
-      icon={showIcon ? <i className="far fa-calendar" style={{ fontSize: 14, marginLeft: '0.25rem' }} /> : undefined}
+      icon={showIcon ? <i className="far fa-calendar" style={{ fontSize: 14, marginLeft: '2.5px' }} /> : undefined}
       radius="lg"
       size="xl"
       classNames={{

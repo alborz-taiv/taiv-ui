@@ -14,8 +14,8 @@ interface FrameProps {
 
 const Frame = ({ title, subtitle, children, width, styles }: FrameProps) => {
   return (
-    <Stack mt="1.25rem" width={width || '100%'} gap="0" {...styles}>
-      <Stack mb="1.25rem" gap="0">
+    <Stack mt="12.5px" width={width || '100%'} gap="0" {...styles}>
+      <Stack mb="12.5px" gap="0">
         <Title variant="sectionHeader">{title}</Title>
         {subtitle && <Title variant="sectionSubheader">{subtitle}</Title>}
       </Stack>

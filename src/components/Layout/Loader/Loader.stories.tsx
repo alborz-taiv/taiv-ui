@@ -52,7 +52,7 @@ const LoadingNotificationDemo = () => {
   };
 
   return (
-    <Group gap="0.5rem">
+    <Group gap="5px">
       <Button onClick={handleSuccess} loading={isLoading}>
         Save
       </Button>
@@ -77,7 +77,7 @@ export const ButtonLoading: Story = {
 export const CenteredLoader: Story = {
   decorators: [
     (Story) => (
-      <div style={{ width: '300px', padding: '3.2rem'}}>
+      <div style={{ width: '300px', padding: '32px'}}>
         <Story />
       </div>
     ),
