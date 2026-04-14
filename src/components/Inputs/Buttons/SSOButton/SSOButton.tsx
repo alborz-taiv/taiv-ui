@@ -60,9 +60,9 @@ export const SSOButton = ({
     root: {
       borderRadius: '8px',
       width: fullWidth ? '100%' : 'fit-content',
-      height: `${selectedSize.height}rem`,
+      height: `${selectedSize.height}px`,
       padding: selectedSize.padding,
-      minWidth: `${selectedSize.minWidth}rem`,
+      minWidth: `${selectedSize.minWidth}px`,
       fontSize: selectedSize.fontSize,
       transition: 'background 0.1s ease-in-out',
       ...selectedVariant,
