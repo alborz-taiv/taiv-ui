@@ -22,7 +22,7 @@ const componentVariants = {
   },
   warning: {
     color: warning[100],
-    icon: 'fas fa-exclamation-circle',
+    icon: 'fas fa-triangle-exclamation',
   },
   error: {
     color: error[100],

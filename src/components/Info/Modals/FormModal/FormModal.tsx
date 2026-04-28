@@ -6,7 +6,7 @@ import { Stack } from "../../../Layout/Stack/Stack";
 import { Center } from "../../../Layout/Center/Center";
 import { modalVariants } from "../variants";
 import { Group } from "../../../Layout/Group/Group";
-import { Button } from "../../../Inputs/Buttons/Button/Button";
+import { Button, ButtonProps } from "../../../Inputs/Buttons/Button/Button";
 
 export interface FormModalProps {
   opened: boolean;
@@ -21,6 +21,9 @@ export interface FormModalProps {
   onConfirm?: () => void;
   cancelLabel?: string;
   confirmLabel?: string;
+  confirmRightIcon?: React.ReactNode;
+  cancelLeftIcon?: React.ReactNode;
+  confirmVariant?: ButtonProps['variant'];
 }
 
 export const FormModal = ({
@@ -36,6 +39,9 @@ export const FormModal = ({
   onConfirm,
   cancelLabel,
   confirmLabel,
+  confirmRightIcon,
+  cancelLeftIcon,
+  confirmVariant,
 }: FormModalProps) => {
   const selectedVariant = modalVariants[modalVariant];
   const iconContainer = {
@@ -116,14 +122,15 @@ export const FormModal = ({
           </Stack>
           <Center h="100%" w="100%">
             <Group gap="10px" align="center">
-              <Button onClick={onCancel} variant="secondary">
+              <Button onClick={onCancel} variant="secondary" leftIcon={cancelLeftIcon}>
                 {cancelLabel || selectedVariant.cancelLabel}
               </Button>
               <Button
                 onClick={onConfirm}
-                variant={selectedVariant.buttonVariant}
+                variant={confirmVariant || selectedVariant.buttonVariant}
                 disabled={confirmButtonDisabled}
                 loading={confirmButtonLoading}
+                rightIcon={confirmRightIcon}
               >
                 {confirmLabel || selectedVariant.confirmLabel}
               </Button>

@@ -1,8 +1,8 @@
 import type { CSSObject } from '@mantine/styles';
-import { colors } from '../../../constants/colors';
+import { colors, neutral } from '../../../constants/colors';
 import { spacing } from '../../../constants/spacing';
 
-export type BadgeVariant = 'outline' | 'filled' | 'gradient';
+export type BadgeVariant = 'outline' | 'filled' | 'gradient' | 'dark';
 
 export type BadgeColor = keyof typeof colors;
 
@@ -24,6 +24,12 @@ export function getVariantStyles(color: BadgeColor): Record<BadgeVariant, CSSObj
       color: 'white',
       borderRadius: '16px',
       padding: `${spacing.xs} ${spacing.sm}`,
+    },
+    dark: {
+      backgroundColor: `${neutral[300]}b3`,
+      color: 'white',
+      border: 'none',
+      borderRadius: '6px',
     },
   };
 }

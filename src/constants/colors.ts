@@ -59,6 +59,12 @@ export const salmon = {
   200: '#FF806F',
 } as const;
 
+export const teal = {
+  50: '#E0F2F1',
+  100: '#A7E3DE',
+  200: '#2BA8A0',
+} as const;
+
 // Primary semantic/functional color exports - for use in UI, actions, states, etc. anything that would be affected by theme changes down the line
 export const colors = {
   white,
@@ -77,5 +83,6 @@ export const primitives = {
   red,
   purple,
   salmon,
+  teal,
   gray,
 } as const;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { modals } from '@mantine/modals';
 import { neutral } from '../constants/colors';
 import { spacing } from '../constants/spacing';
@@ -32,6 +32,19 @@ export const useInfoModal = () => {
     const modalIcon = coloredIcon || <i className={selectedVariant.icon} style={{ color: selectedVariant.iconColor, fontSize: '20px' }} />;
 
     const InfoModalContent = () => {
+      // Enter triggers the primary action; Escape is handled by Mantine's
+      // built-in closeOnEscape (no cancel callback for info modals).
+      useEffect(() => {
+        const onKeyDown = (e: KeyboardEvent) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleConfirm();
+          }
+        };
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+      }, []);
+
       return (
         <Center h="100%" w="100%">
           <Stack gap="20px" h="100%" w="100%" align="center">

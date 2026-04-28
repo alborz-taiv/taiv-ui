@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, forwardRef } from 'react';
 import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@mantine/core';
 import { componentSizes } from './sizes';
 import { componentVariants as baseVariants, subtleVariants } from '../shared/variants';
@@ -14,7 +14,7 @@ export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | '
   children?: ReactElement<{ size?: number }>;
 }
 
-export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, subtle = false, styles, children, ...props }: IconButtonProps) => {
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, subtle = false, styles, children, ...props }, ref) => {
   const selectedVariant = baseVariants[variant];
   const selectedSize = componentSizes[size];
 
@@ -51,19 +51,31 @@ export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled 
 
   const style = {
     root: {
-      borderRadius: '8px',
-      height: `${selectedSize.borderLength}px`,
-      padding: selectedSize.padding,
-      width: `${selectedSize.borderLength}px`,
-      boxShadow: shadow ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
+      // Variant colors / borders / interaction states come first.
       ...getVariantStyles(),
       ...getSubtleStyles(),
+      // IconButton's geometry contract (square button, centered icon) must
+      // win over variant styles. Variants like `text` set `height: 'auto'`
+      // and `padding: '0'` (correct for inline text Buttons, wrong for icon
+      // buttons), and `nav` sets `paddingLeft` + `inner.justifyContent:
+      // flex-start` (correct for left-aligned menu items, wrong for an
+      // icon-only square). Keep these overrides last so any variant works.
+      borderRadius: '8px',
+      boxShadow: shadow ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
+      height: `${selectedSize.borderLength}px`,
+      minWidth: 'unset',
+      padding: selectedSize.padding,
+      width: `${selectedSize.borderLength}px`,
+      '& .mantine-Button-inner': {
+        justifyContent: 'center',
+      },
     },
     ...styles,
   };
 
   const Button = (
     <MantineButton
+      ref={ref}
       styles={style}
       size={size}
       onClick={onClick}
@@ -76,4 +88,6 @@ export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled 
   );
 
   return Button;
-};
+});
+
+IconButton.displayName = 'IconButton';

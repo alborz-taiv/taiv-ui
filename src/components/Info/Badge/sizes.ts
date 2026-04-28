@@ -1,27 +1,27 @@
-import { inputFontSize } from '../../../constants/font';
-import { spacing } from '../../../constants/spacing';
+import { inputFontSize } from "../../../constants/font";
+import { spacing } from "../../../constants/spacing";
 
 export const badgeSizes = {
-  sm: {
-    mantineSize: 'md',
+  lg: {
+    fontSize: inputFontSize["lg"],
+    height: "32px",
+    iconSize: 16,
+    mantineSize: "xl",
     padding: `${spacing.xs} ${spacing.sm}`,
-    height: '15px',
-    fontSize: inputFontSize['sm'],
-    iconSize: 10,
   },
   md: {
-    mantineSize: 'lg',
-    padding: `${spacing.xs} ${spacing.sm}`,
-    height: '25px',
-    fontSize: inputFontSize['md'],
+    fontSize: inputFontSize["md"],
+    height: "24px",
     iconSize: 14,
-  },
-  lg: {
-    mantineSize: 'xl',
+    mantineSize: "lg",
     padding: `${spacing.xs} ${spacing.sm}`,
-    height: '30px',
-    fontSize: inputFontSize['lg'],
-    iconSize: 16,
+  },
+  sm: {
+    fontSize: inputFontSize["sm"],
+    height: "20px",
+    iconSize: 10,
+    mantineSize: "md",
+    padding: `${spacing.xs} ${spacing.sm}`,
   },
 };
 

@@ -52,14 +52,16 @@ export const MultiSelect = ({ size = 'md', width, fullWidth = false, placeholder
       '&[data-selected]': {
         backgroundColor: neutral[50],
         color: neutral[200],
-        '&:hover': {
+        '&:hover, &[data-hovered]': {
           backgroundColor: neutral[50],
         },
       },
-      '&:hover': {
+      // Mantine v6 highlights the keyboard-focused item with `data-hovered`,
+      // so we mirror the mouse `:hover` style there.
+      '&:hover, &[data-hovered]': {
         backgroundColor: neutral[50],
       },
-      '&:not(:hover):not([data-selected])': {
+      '&:not(:hover):not([data-hovered]):not([data-selected])': {
         backgroundColor: 'white',
       },
     },

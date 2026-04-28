@@ -62,4 +62,14 @@ export const modalVariants = {
     iconColor: error[100],
     iconBackgroundColor: error[50],
   },
+  delete: {
+    title: 'Delete Item',
+    message: 'Are you sure you want to delete this item? This action cannot be undone.',
+    confirmLabel: 'Delete',
+    cancelLabel: 'Cancel',
+    buttonVariant: 'cancel',
+    icon: 'fas fa-trash-can',
+    iconColor: error[100],
+    iconBackgroundColor: error[50],
+  },
 } as const;

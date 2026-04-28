@@ -27,10 +27,10 @@ const meta: Meta<BadgeStoryArgs> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['outline', 'filled', 'gradient'],
+      options: ['outline', 'filled', 'gradient', 'dark'],
       description: 'Visual style of the badge',
       table: {
-        type: { summary: "'outline' | 'filled' | 'gradient'" },
+        type: { summary: "'outline' | 'filled' | 'gradient' | 'dark'" },
         defaultValue: { summary: "'outline'" },
       },
     },
@@ -99,6 +99,7 @@ export const Variants: Story = {
       <Badge variant="outline" color="primary">Outline</Badge>
       <Badge variant="filled" color="primary">Filled</Badge>
       <Badge variant="gradient" color="primary">Gradient</Badge>
+      <Badge variant="dark" color="primary">Dark</Badge>
     </Group>
   ),
 };

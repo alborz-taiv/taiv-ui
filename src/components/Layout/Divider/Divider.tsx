@@ -9,8 +9,10 @@ interface DividerProps extends MantineDividerProps {
   color?: string;
 }
 
-const Divider = ({ width = '100%', styles, color = neutral[50], ...props }: DividerProps) => {
-  return <MantineDivider color={color} w={width} styles={styles} {...props} />;
+const Divider = ({ width, styles, color = neutral[50], ...props }: DividerProps) => {
+  const isVertical = props.orientation === 'vertical';
+  const resolvedWidth = width ?? (isVertical ? undefined : '100%');
+  return <MantineDivider color={color} w={resolvedWidth} styles={styles} {...props} />;
 };
 
 export { Divider };

@@ -26,8 +26,11 @@ const NumberInput = ({
   const selectedSize = componentSizes[size as keyof typeof componentSizes];
   const computedWidth = fullWidth ? '100%' : width || `${selectedSize.width}px`;
   const hasError = !!props.error;
-  
+
   const style: Record<string, CSSObject> = {
+    root: {
+      width: computedWidth,
+    },
     input: {
       height: `${selectedSize.height}px`,
       fontSize: selectedSize.fontSize,
@@ -81,7 +84,6 @@ const NumberInput = ({
 
   return (
     <MantineNumberInput
-      w={computedWidth}
       size={size}
       step={step}
       hideControls={false}
