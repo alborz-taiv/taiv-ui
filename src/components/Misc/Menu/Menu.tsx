@@ -48,9 +48,9 @@ const MenuRoot = ({ styles, children, ...props }: MenuProps) => {
       transitionProps={{ duration: 150 }}
       withinPortal
       {...props}
-      styles={(theme) => {
+      styles={(theme, params, context) => {
         const userStyles =
-          typeof styles === 'function' ? styles(theme) : styles ?? {};
+          typeof styles === 'function' ? styles(theme, params, context) : (styles ?? {});
         return { ...baseStyles, ...userStyles };
       }}
     >

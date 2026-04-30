@@ -28,22 +28,28 @@ const AccordionComponent = ({ chevron, styles, ...props }: AccordionProps) => {
       border: 'none',
       borderBottom: `1px solid ${colors.neutral[100]}`,
       backgroundColor: 'transparent',
+      transition: 'background-color 150ms ease',
       '&:first-of-type': {
         borderTop: `1px solid ${colors.neutral[100]}`,
       },
       '&[data-active]': {
         backgroundColor: 'transparent',
       },
+      // Lift Control's hover/focus to the whole row so action buttons rendered
+      // as siblings of Accordion.Control feel part of one cohesive surface.
+      '&:has([data-accordion-control]:hover)': {
+        backgroundColor: colors.neutral[25],
+      },
+      '&:has([data-accordion-control]:focus-visible)': {
+        outline: `2px solid ${colors.primary[200]}`,
+        outlineOffset: '-2px',
+      },
     },
     control: {
       padding: `${spacing.md} ${spacing.lg}`,
       backgroundColor: 'transparent',
-      '&:hover': {
-        backgroundColor: colors.neutral[25],
-      },
       '&:focus-visible': {
-        outline: `2px solid ${colors.primary[200]}`,
-        outlineOffset: '-2px',
+        outline: 'none',
       },
     },
     chevron: {

@@ -118,6 +118,7 @@ const meta: Meta<typeof Button> = {
       options: [
         'primary',
         'secondary',
+        'tertiary',
         'cancel',
         'success',
         'warning',
@@ -129,7 +130,7 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: "'primary'" },
         type: {
           summary:
-            "'primary' | 'secondary' | 'cancel' | 'success' | 'warning' | 'text' | 'nav' | 'ghost'",
+            "'primary' | 'secondary' | 'tertiary' | 'cancel' | 'success' | 'warning' | 'text' | 'nav' | 'ghost'",
         },
       },
     },
@@ -172,6 +173,7 @@ export const Variants: Story = {
     <Group gap={spacing.lg}>
       <Button variant='primary'>Primary</Button>
       <Button variant='secondary'>Secondary</Button>
+      <Button variant='tertiary'>Tertiary</Button>
       <Button variant='cancel'>Cancel</Button>
       <Button variant='success'>Success</Button>
       <Button variant='warning'>Warning</Button>

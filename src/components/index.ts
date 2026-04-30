@@ -1,3 +1,17 @@
+// Side-effect import: prevents iOS Safari's auto-zoom-on-input behavior
+// without altering input typography. Listens for focus on text inputs and
+// temporarily sets the viewport meta's `maximum-scale=1` for the duration
+// of the focus, restoring on blur. Documented in
+// `src/styles/iosInputZoomFix.ts`. Lives next to the components index
+// because `package.json#exports["."]` resolves there.
+//
+// Fallback: if this approach causes issues on iOS (visual flicker on meta
+// swap, unexpected interactions with route-level viewport hooks, etc.),
+// swap the import below to `../styles/mobileInputZoomFix` — that variant
+// uses a CSS bump to 16px on mobile inputs instead. Both files are kept
+// in the repo so the swap is one line.
+import "../styles/iosInputZoomFix";
+
 //Data
 
 export type {
@@ -41,7 +55,7 @@ export { Avatar } from "./Info/Avatar/Avatar";
 export { Badge } from "./Info/Badge/Badge";
 export type { DrawerPosition, DrawerProps } from "./Info/Drawer/Drawer";
 export { Drawer } from "./Info/Drawer/Drawer";
-export type { HoverCardProps } from "./Info/HoverCard/HoverCard";
+export type { HoverCardMenuItemProps, HoverCardProps } from "./Info/HoverCard/HoverCard";
 export { HoverCard } from "./Info/HoverCard/HoverCard";
 export type { IndicatorProps } from "./Info/Indicator/Indicator";
 export { Indicator } from "./Info/Indicator/Indicator";
@@ -135,6 +149,8 @@ export type {
   ScrollAreaProps,
 } from "./Layout/ScrollArea/ScrollArea";
 export { ScrollArea } from "./Layout/ScrollArea/ScrollArea";
+export type { PageProps } from "./Layout/Page/Page";
+export { Page } from "./Layout/Page/Page";
 export type { PaginationProps } from "./Layout/Pagination/Pagination";
 export { Pagination } from "./Layout/Pagination/Pagination";
 export { SectionCard } from "./Layout/SectionCard/SectionCard";
@@ -152,6 +168,8 @@ export type {
 export { Carousel, carouselAutoplay } from "./Misc/Carousel/Carousel";
 export type { DragHandleProps } from "./Misc/DragHandle/DragHandle";
 export { DragHandle } from "./Misc/DragHandle/DragHandle";
+export type { FABPosition, FABProps } from "./Misc/FAB/FAB";
+export { FAB } from "./Misc/FAB/FAB";
 export type { FloatingToolbarProps } from "./Misc/FloatingToolbar/FloatingToolbar";
 export { FloatingToolbar } from "./Misc/FloatingToolbar/FloatingToolbar";
 export type { HoverActionProps } from "./Misc/HoverAction/HoverAction";

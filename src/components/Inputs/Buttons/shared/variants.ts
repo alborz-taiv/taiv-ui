@@ -289,6 +289,37 @@ export const componentVariants = {
     border: `1px solid ${success[200]}`,
     color: 'white',
   },
+  tertiary: {
+    '&:active': {
+      background: primary[100],
+      border: `1px solid ${primary[200]}`,
+      color: primary[200],
+    },
+    '&:active:hover': {
+      background: primary[100],
+      border: `1px solid ${primary[200]}`,
+      color: primary[200],
+    },
+    '&:disabled': disabled,
+    '&:hover': {
+      background: primary[100],
+      border: `1px solid ${primary[100]}`,
+      color: 'white',
+    },
+    '&:toggled': {
+      background: primary[100],
+      color: primary[200],
+    },
+    '&[data-loading]': {
+      '& .mantine-Button-icon svg': {
+        stroke: primary[200],
+      },
+      '&:before': loading,
+    },
+    background: 'white',
+    border: `1px solid ${primary[200]}`,
+    color: primary[200],
+  },
   text: {
     '&:active': {
       background: 'transparent',
@@ -365,6 +396,7 @@ export const subtleVariants = {
   secondary: { color: neutral[200] },
   'secondary-cancel': { color: error[200] },
   success: { color: success[200] },
+  tertiary: { color: primary[200] },
   text: { color: neutral[200] },
   warning: { color: warning[200] },
 } as const;

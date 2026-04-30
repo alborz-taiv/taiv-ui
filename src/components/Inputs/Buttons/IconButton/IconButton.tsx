@@ -4,17 +4,22 @@ import { componentSizes } from './sizes';
 import { componentVariants as baseVariants, subtleVariants } from '../shared/variants';
 import { neutral } from '../../../../constants/colors';
 
-export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | 'rightIcon'> {
+export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | 'rightIcon' | 'radius'> {
   onClick?: () => void;
   size?: keyof typeof componentSizes;
   variant?: keyof typeof baseVariants;
   toggled?: boolean;
   shadow?: boolean;
   subtle?: boolean;
+  /**
+   * Border radius. Defaults to `'8px'` (rounded square). Pass `'50%'` for a
+   * perfect circle (used by `FAB`). Accepts any CSS length.
+   */
+  radius?: number | string;
   children?: ReactElement<{ size?: number }>;
 }
 
-export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, subtle = false, styles, children, ...props }, ref) => {
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, subtle = false, radius = '8px', styles, children, ...props }, ref) => {
   const selectedVariant = baseVariants[variant];
   const selectedSize = componentSizes[size];
 
@@ -60,7 +65,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({ onCl
       // buttons), and `nav` sets `paddingLeft` + `inner.justifyContent:
       // flex-start` (correct for left-aligned menu items, wrong for an
       // icon-only square). Keep these overrides last so any variant works.
-      borderRadius: '8px',
+      borderRadius: typeof radius === 'number' ? `${radius}px` : radius,
       boxShadow: shadow ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
       height: `${selectedSize.borderLength}px`,
       minWidth: 'unset',

@@ -67,10 +67,10 @@ const meta: Meta<typeof IconButton> = {
       control: { type: 'select' },
       description:
         "Controls the button's height and padding. These values are square sizes.",
-      options: ['sm', 'md', 'lg'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       table: {
         defaultValue: { summary: "'md'" },
-        type: { summary: "'sm' | 'md' | 'lg'" },
+        type: { summary: "'xs' | 'sm' | 'md' | 'lg' | 'xl'" },
       },
     },
     styles: {
@@ -96,6 +96,7 @@ const meta: Meta<typeof IconButton> = {
       options: [
         'primary',
         'secondary',
+        'tertiary',
         'cancel',
         'success',
         'warning',
@@ -107,7 +108,7 @@ const meta: Meta<typeof IconButton> = {
         defaultValue: { summary: "'primary'" },
         type: {
           summary:
-            "'primary' | 'secondary' | 'cancel' | 'success' | 'warning' | 'text' | 'nav' | 'ghost'",
+            "'primary' | 'secondary' | 'tertiary' | 'cancel' | 'success' | 'warning' | 'text' | 'nav' | 'ghost'",
         },
       },
     },
@@ -151,6 +152,9 @@ export const Variants: Story = {
       <IconButton variant='secondary'>
         <Icon24Hours />
       </IconButton>
+      <IconButton variant='tertiary'>
+        <IconAdjustments />
+      </IconButton>
       <IconButton variant='cancel'>
         <IconClock />
       </IconButton>
@@ -175,6 +179,9 @@ export const Subtle: Story = {
       </IconButton>
       <IconButton subtle variant='secondary'>
         <Icon24Hours />
+      </IconButton>
+      <IconButton subtle variant='tertiary'>
+        <IconAdjustments />
       </IconButton>
       <IconButton subtle variant='cancel'>
         <IconClock />
@@ -229,7 +236,10 @@ export const OnDarkSurface: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <Group gap={spacing.lg}>
+    <Group align='center' gap={spacing.lg}>
+      <IconButton size='xs'>
+        <Icon360View />
+      </IconButton>
       <IconButton size='sm'>
         <Icon360View />
       </IconButton>
@@ -237,6 +247,9 @@ export const Sizes: Story = {
         <IconAdjustments />
       </IconButton>
       <IconButton size='lg'>
+        <IconArrowsMaximize />
+      </IconButton>
+      <IconButton size='xl'>
         <IconArrowsMaximize />
       </IconButton>
     </Group>

@@ -1,4 +1,4 @@
-import { Box, Popover, UnstyledButton } from '@mantine/core';
+import { Box, Popover, Portal, UnstyledButton } from '@mantine/core';
 import {
   forwardRef,
   useEffect,
@@ -9,6 +9,7 @@ import {
 import { neutral, primary, white } from '../../../constants/colors';
 import { fontBase } from '../../../constants/font';
 import { spacing } from '../../../constants/spacing';
+import { useMobile } from '../../../hooks/useMediaQuery';
 import { SearchBar } from '../../Inputs/TextInputs/SearchBar/SearchBar';
 import { Stack } from '../../Layout/Stack/Stack';
 import { Text } from '../../Typography/Text/Text';
@@ -83,6 +84,18 @@ export interface PickerProps {
   width?: number;
   /** Wrap dropdown in a portal to escape stacking contexts. Default true. */
   withinPortal?: boolean;
+  /**
+   * When true, the SearchBar is hidden on mobile viewports (≤640px). Useful
+   * for kebab-anchored Pickers where search adds noise on small screens but
+   * stays valuable on desktop. Default: false.
+   */
+  searchOnDesktopOnly?: boolean;
+  /**
+   * When true, never render the "Recent" header or "Show all N" toggle —
+   * always show exactly `recentCount` items in the idle view. Search across
+   * the full list still works when the user types. Default: false.
+   */
+  disableShowAll?: boolean;
   children: ReactNode;
 }
 
@@ -92,6 +105,11 @@ interface PickerItemRowProps {
 }
 
 const PickerItemRow = ({ item, onSelect }: PickerItemRowProps) => {
+  // Use Text for the label so it inherits Poppins via fontBase rather than
+  // relying on the host button to push fontFamily down. fontBase is still
+  // applied to the button itself for browsers that style buttons with the
+  // default UI font (Mantine UnstyledButton sets fontFamily: inherit, but
+  // belt-and-suspenders).
   const button = (
     <UnstyledButton
       onClick={item.disabled ? undefined : onSelect}
@@ -102,26 +120,24 @@ const PickerItemRow = ({ item, onSelect }: PickerItemRowProps) => {
         color: item.disabled ? neutral[100] : neutral[300],
         cursor: item.disabled ? 'not-allowed' : 'pointer',
         display: 'flex',
-        fontSize: '14px',
-        fontWeight: 500,
         gap: spacing.sm,
         justifyContent: 'space-between',
-        lineHeight: '22px',
         padding: `${spacing.sm} ${spacing.md}`,
         transition: 'background-color 120ms ease',
         width: '100%',
         '&:hover': item.disabled ? {} : { backgroundColor: neutral[25] },
       }}
     >
-      <span
+      <Text
+        variant='body'
+        truncate
         style={{
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
+          color: item.disabled ? neutral[100] : neutral[300],
+          minWidth: 0,
         }}
       >
         {item.label}
-      </span>
+      </Text>
       {item.meta && (
         <span style={{ flexShrink: 0, color: neutral[200] }}>{item.meta}</span>
       )}
@@ -153,6 +169,8 @@ const PickerComponent = ({
   position = 'bottom-end',
   width = 280,
   withinPortal = true,
+  searchOnDesktopOnly = false,
+  disableShowAll = false,
   children,
 }: PickerProps) => {
   const [internalOpen, setInternalOpen] = useState(false);
@@ -162,6 +180,9 @@ const PickerComponent = ({
     if (!isControlled) setInternalOpen(next);
     onOpenChange?.(next);
   };
+
+  const isMobile = useMobile();
+  const showSearch = !searchOnDesktopOnly || !isMobile;
 
   const [query, setQuery] = useState('');
   const [showAll, setShowAll] = useState(false);
@@ -188,113 +209,151 @@ const PickerComponent = ({
   }, [sortedByRecency, query]);
 
   const isSearching = query.trim().length > 0;
+  // Compact dropdowns (e.g. card kebabs) opt out of the "Recent" header and
+  // "Show all N" toggle — they always show only `recentCount` in idle view.
   const showShowAllToggle =
-    !isSearching && !showAll && items.length > recentCount;
+    !disableShowAll && !isSearching && !showAll && items.length > recentCount;
   const showRecentHeader = showShowAllToggle;
 
   const visibleItems = useMemo(() => {
     if (isSearching) return filtered;
+    if (disableShowAll) return sortedByRecency.slice(0, recentCount);
     if (showAll || items.length <= recentCount) return sortedByRecency;
     return sortedByRecency.slice(0, recentCount);
-  }, [isSearching, filtered, showAll, items.length, recentCount, sortedByRecency]);
+  }, [
+    isSearching,
+    filtered,
+    showAll,
+    items.length,
+    recentCount,
+    sortedByRecency,
+    disableShowAll,
+  ]);
 
   return (
-    <Popover
-      opened={isOpen}
-      onChange={setOpen}
-      position={position}
-      withinPortal={withinPortal}
-      shadow='md'
-      radius={8}
-      width={width}
-      offset={8}
-      styles={{
-        dropdown: {
-          padding: 0,
-          backgroundColor: white,
-          border: `1px solid ${neutral[50]}`,
-        },
-      }}
-    >
-      {children}
-      <Popover.Dropdown>
-        <Stack spacing={0}>
-          <Box p={spacing.xs} style={{ borderBottom: `1px solid ${neutral[50]}` }}>
-            <SearchBar
-              placeholder={searchPlaceholder}
-              value={query}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setQuery(e.target.value)
-              }
-              fullWidth
-              size='sm'
-            />
-          </Box>
-          {showRecentHeader && (
-            <Box
-              px={spacing.md}
-              pt={spacing.sm}
-              pb={spacing.xs}
-              style={{ ...fontBase }}
-            >
-              <Text variant='label' style={{ color: neutral[200] }}>
-                Recent
-              </Text>
-            </Box>
-          )}
-          <Box style={{ maxHeight: 280, overflowY: 'auto' }}>
-            {visibleItems.length === 0 ? (
-              <Box p={spacing.md} style={{ textAlign: 'center' }}>
-                <Text variant='subtle'>{emptyMessage}</Text>
-              </Box>
-            ) : (
-              visibleItems.map((item) => (
-                <PickerItemRow
-                  key={item.id}
-                  item={item}
-                  onSelect={() => {
-                    onSelect(item);
-                    setOpen(false);
-                  }}
-                />
-              ))
-            )}
-          </Box>
-          {showShowAllToggle && (
-            <Box
-              p={spacing.xs}
-              style={{ borderTop: `1px solid ${neutral[50]}` }}
-            >
-              <UnstyledButton
-                onClick={() => setShowAll(true)}
-                sx={{
-                  ...fontBase,
-                  color: primary[200],
-                  cursor: 'pointer',
-                  display: 'block',
-                  fontSize: '13px',
-                  fontWeight: 500,
-                  padding: `${spacing.xs} ${spacing.sm}`,
-                  textAlign: 'center',
-                  width: '100%',
-                  '&:hover': { color: primary[300] },
-                }}
+    <>
+      {/*
+       * Click-shield: Mantine v6 Popover ships no built-in backdrop. Without
+       * this, clicks on elements behind the dropdown (e.g. cards in a grid
+       * with their own onClick navigation) register and cause unwanted side
+       * effects. A transparent fixed overlay at z-index just below the
+       * dropdown intercepts those clicks; clicking it also satisfies the
+       * popover's closeOnClickOutside (overlay is outside the dropdown ref)
+       * and we additionally close explicitly to avoid any race.
+       */}
+      {isOpen && (
+        <Portal>
+          <div
+            onClick={() => setOpen(false)}
+            style={{ position: 'fixed', inset: 0, zIndex: 299 }}
+          />
+        </Portal>
+      )}
+      <Popover
+        opened={isOpen}
+        onChange={setOpen}
+        position={position}
+        withinPortal={withinPortal}
+        shadow='md'
+        radius={8}
+        width={width}
+        offset={8}
+        styles={{
+          dropdown: {
+            padding: 0,
+            backgroundColor: white,
+            border: `1px solid ${neutral[50]}`,
+          },
+        }}
+      >
+        {children}
+        <Popover.Dropdown>
+          <Stack spacing={0}>
+            {showSearch && (
+              <Box
+                p={spacing.xs}
+                style={{ borderBottom: `1px solid ${neutral[50]}` }}
               >
-                Show all {items.length}
-              </UnstyledButton>
+                <SearchBar
+                  placeholder={searchPlaceholder}
+                  value={query}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setQuery(e.target.value)
+                  }
+                  fullWidth
+                  size='sm'
+                />
+              </Box>
+            )}
+            {showRecentHeader && (
+              <Box
+                px={spacing.md}
+                pt={spacing.sm}
+                pb={spacing.xs}
+                style={{ ...fontBase }}
+              >
+                <Text variant='label' style={{ color: neutral[200] }}>
+                  Recent
+                </Text>
+              </Box>
+            )}
+            <Box style={{ maxHeight: 280, overflowY: 'auto' }}>
+              {visibleItems.length === 0 ? (
+                <Box p={spacing.md} style={{ textAlign: 'center' }}>
+                  <Text variant='subtle'>{emptyMessage}</Text>
+                </Box>
+              ) : (
+                visibleItems.map((item) => (
+                  <PickerItemRow
+                    key={item.id}
+                    item={item}
+                    onSelect={() => {
+                      onSelect(item);
+                      setOpen(false);
+                    }}
+                  />
+                ))
+              )}
             </Box>
-          )}
-          {footer && (
-            <Box
-              p={spacing.xs}
-              style={{ borderTop: `1px solid ${neutral[50]}` }}
-            >
-              {footer}
-            </Box>
-          )}
-        </Stack>
-      </Popover.Dropdown>
-    </Popover>
+            {showShowAllToggle && (
+              <Box
+                p={spacing.xs}
+                style={{ borderTop: `1px solid ${neutral[50]}` }}
+              >
+                <UnstyledButton
+                  onClick={() => setShowAll(true)}
+                  sx={{
+                    ...fontBase,
+                    color: primary[200],
+                    cursor: 'pointer',
+                    display: 'block',
+                    padding: `${spacing.xs} ${spacing.sm}`,
+                    textAlign: 'center',
+                    width: '100%',
+                    '&:hover': { color: primary[300] },
+                  }}
+                >
+                  <Text
+                    variant='label'
+                    style={{ color: 'inherit', textAlign: 'center' }}
+                  >
+                    Show all {items.length}
+                  </Text>
+                </UnstyledButton>
+              </Box>
+            )}
+            {footer && (
+              <Box
+                p={spacing.xs}
+                style={{ borderTop: `1px solid ${neutral[50]}` }}
+              >
+                {footer}
+              </Box>
+            )}
+          </Stack>
+        </Popover.Dropdown>
+      </Popover>
+    </>
   );
 };
 

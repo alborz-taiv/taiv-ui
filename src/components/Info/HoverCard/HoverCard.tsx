@@ -3,12 +3,13 @@ import { CSSObject } from '@mantine/styles';
 import { neutral } from '../../../constants/colors';
 import { fontBase } from '../../../constants/font';
 import { spacing } from '../../../constants/spacing';
+import { HoverCardMenuItem } from './HoverCardMenuItem';
 
 export interface HoverCardProps extends MantineHoverCardProps {
   styles?: { dropdown?: CSSObject; arrow?: CSSObject };
 }
 
-const HoverCard = ({
+const HoverCardRoot = ({
   openDelay = 80,
   closeDelay = 120,
   position = 'bottom',
@@ -45,7 +46,11 @@ const HoverCard = ({
   );
 };
 
-HoverCard.Target = MantineHoverCard.Target;
-HoverCard.Dropdown = MantineHoverCard.Dropdown;
+const HoverCard = Object.assign(HoverCardRoot, {
+  Target: MantineHoverCard.Target,
+  Dropdown: MantineHoverCard.Dropdown,
+  MenuItem: HoverCardMenuItem,
+});
 
 export { HoverCard };
+export type { HoverCardMenuItemProps } from './HoverCardMenuItem';

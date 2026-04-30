@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { neutral, primary, white } from '../../../constants/colors';
 import { fontStyle } from '../../../constants/font';
 import { spacing } from '../../../constants/spacing';
+import { IconButton } from '../../Inputs/Buttons/IconButton/IconButton';
 
 // `fontStyle` combines `titleStyle` (header / sectionHeader / subheader / …)
 // with `textStyle` (body / subtle / label / caption), so consumers can use
@@ -120,9 +121,10 @@ export const InlineEditableText = ({
           borderRadius: 6,
           color: displayColor,
           margin: 0,
+          maxWidth: maxWidth ? `${maxWidth}px` : undefined,
           outline: 'none',
           padding: `2px ${spacing.xs}`,
-          width: '100%',
+          width: maxWidth ? `${maxWidth}px` : '100%',
         }}
         type='text'
         value={draft}
@@ -172,27 +174,13 @@ export const InlineEditableText = ({
         {display}
       </button>
       {hidePencil ? null : (
-        <button
-          aria-label={ariaLabel}
+        <IconButton
+          aria-label={`Edit ${ariaLabel}`}
           onClick={enterEdit}
-          style={{
-            alignItems: 'center',
-            background: 'transparent',
-            border: 'none',
-            borderRadius: 4,
-            color: iconColor,
-            cursor: 'pointer',
-            display: 'inline-flex',
-            flexShrink: 0,
-            height: 20,
-            justifyContent: 'center',
-            padding: 0,
-            width: 20,
-          }}
-          type='button'
+          subtle
         >
           <IconPencil size={14} />
-        </button>
+        </IconButton>
       )}
     </span>
   );
