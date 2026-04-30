@@ -42,6 +42,7 @@ const injectMobileInputZoomFix = (): void => {
       .mantine-Autocomplete-input,
       .mantine-DatePickerInput-input,
       .mantine-DateTimePicker-input,
+      .mantine-TimeInput-input,
       .mantine-TagsInput-input,
       .mantine-PinInput-input,
       .mantine-NativeSelect-input {

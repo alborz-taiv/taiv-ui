@@ -55,6 +55,11 @@ export { Avatar } from "./Info/Avatar/Avatar";
 export { Badge } from "./Info/Badge/Badge";
 export type { DrawerPosition, DrawerProps } from "./Info/Drawer/Drawer";
 export { Drawer } from "./Info/Drawer/Drawer";
+// Escape hatch: raw Mantine Drawer for cases where the @taiv/ui Drawer's
+// pinned header/footer/body-padding scaffolding is the wrong shape (e.g. a
+// navigation drawer where the entire surface is custom content).
+export type { DrawerProps as BaseDrawerProps } from "@mantine/core";
+export { Drawer as BaseDrawer } from "@mantine/core";
 export type { HoverCardMenuItemProps, HoverCardProps } from "./Info/HoverCard/HoverCard";
 export { HoverCard } from "./Info/HoverCard/HoverCard";
 export type { IndicatorProps } from "./Info/Indicator/Indicator";
@@ -87,12 +92,15 @@ export { ColorPickerTrigger } from "./Inputs/ColorPickerTrigger/ColorPickerTrigg
 export type { ColorSwatchProps } from "./Inputs/ColorSwatch/ColorSwatch";
 export { ColorSwatch } from "./Inputs/ColorSwatch/ColorSwatch";
 export { Checkbox } from "./Inputs/Controls/Checkbox/Checkbox";
+export type { DayKey, DaysOfWeekProps } from "./Inputs/Controls/DaysOfWeek/DaysOfWeek";
+export { DaysOfWeek } from "./Inputs/Controls/DaysOfWeek/DaysOfWeek";
 export { Radio } from "./Inputs/Controls/Radio/Radio";
 export { RadioList } from "./Inputs/Controls/RadioList/RadioList";
 export { SegmentedControl } from "./Inputs/Controls/SegmentedControl/SegmentedControl";
 export { Toggle } from "./Inputs/Controls/Toggle/Toggle";
 export { DatePicker } from "./Inputs/Dates/DatePicker/DatePicker";
 export { DateTimePicker } from "./Inputs/Dates/DateTimePicker/DateTimePicker";
+export { TimeInput } from "./Inputs/Dates/TimeInput/TimeInput";
 export { CascadingSelect } from "./Inputs/Dropdowns/CascadingSelect/CascadingSelect";
 export { FontSelect } from "./Inputs/Dropdowns/FontSelect/FontSelect";
 export { MultiSelect } from "./Inputs/Dropdowns/MultiSelect/MultiSelect";

@@ -1,5 +1,8 @@
+export { formatBytes } from './bytes';
 export { aggregateDataByDate, getChartFormatter } from './charts';
+export { formatRelativeDate } from './date';
 export { formatDuration } from './duration';
+export { formatRelativeTime } from './relativeTime';
 export {
   getCascadingOptionLabel,
   getOptionByValue,
