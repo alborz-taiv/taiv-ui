@@ -1,3 +1,5 @@
+import TaivFaviconDark from "./brand/taiv-favicon-dark.png";
+import TaivFaviconLight from "./brand/taiv-favicon-light.png";
 import TaivIconPurple from "./brand/taiv-icon-black.svg";
 import TaivIconBlack from "./brand/taiv-icon-dark.svg";
 import TaivIconWhite from "./brand/taiv-icon-white.svg";
@@ -8,6 +10,8 @@ import TaivLogoPurple from "./brand/taiv-logo-purple.svg";
 import TaivLogoWhite from "./brand/taiv-logo-white.svg";
 
 export {
+  TaivFaviconDark,
+  TaivFaviconLight,
   TaivIconBlack,
   TaivIconPurple,
   TaivIconWhite,
@@ -28,4 +32,6 @@ export const brand = [
   { filename: "TaivLogoPurple", src: TaivLogoPurple },
   { filename: "TaivLogoWhite", src: TaivLogoWhite },
   { filename: "TaivLogoLegacy", src: TaivLogoLegacy },
+  { filename: "TaivFaviconDark", src: TaivFaviconDark },
+  { filename: "TaivFaviconLight", src: TaivFaviconLight },
 ];

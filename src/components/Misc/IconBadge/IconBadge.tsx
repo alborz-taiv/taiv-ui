@@ -9,13 +9,17 @@ export interface IconBadgeProps {
 export const IconBadge = ({ icon, color }: IconBadgeProps) => {
   const getIconColors = () => {
     return {
-      background: primitives[color][50],
+      background: primitives[color][25],
       icon: primitives[color][200],
     };
   };
 
   const getIconSize = () => {
-    if (React.isValidElement(icon) && icon.props && typeof icon.props.size === 'number') {
+    if (
+      React.isValidElement(icon) &&
+      icon.props &&
+      typeof icon.props.size === 'number'
+    ) {
       const iconSize = icon.props.size;
       const badgeSize = iconSize + 12;
       return `${badgeSize}px`;
@@ -25,14 +29,14 @@ export const IconBadge = ({ icon, color }: IconBadgeProps) => {
   return (
     <div
       style={{
-        width: getIconSize(),
-        height: getIconSize(),
-        borderRadius: '50%',
+        alignItems: 'center',
         backgroundColor: getIconColors().background,
+        borderRadius: '50%',
         color: getIconColors().icon,
         display: 'flex',
-        alignItems: 'center',
+        height: getIconSize(),
         justifyContent: 'center',
+        width: getIconSize(),
       }}
     >
       {icon}

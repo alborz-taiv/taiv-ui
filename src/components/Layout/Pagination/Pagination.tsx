@@ -1,10 +1,10 @@
-import React from 'react';
 import {
   Pagination as MantinePagination,
-  PaginationProps as MantinePaginationProps,
+  type PaginationProps as MantinePaginationProps,
 } from '@mantine/core';
-import { fontBase } from '../../../constants/font';
+import React from 'react';
 import { colors } from '../../../constants/colors';
+import { fontBase } from '../../../constants/font';
 import { spacing } from '../../../constants/spacing';
 
 export interface PaginationProps
@@ -30,9 +30,9 @@ export interface PaginationProps
 }
 
 const SIZE_PX: Record<NonNullable<PaginationProps['size']>, number> = {
-  sm: 28,
-  md: 32,
   lg: 36,
+  md: 32,
+  sm: 28,
 };
 
 export const Pagination = ({
@@ -43,22 +43,11 @@ export const Pagination = ({
 }: PaginationProps) => {
   const itemSize = SIZE_PX[size];
   const style = {
-    root: {
-      gap: spacing.xs,
-    },
     control: {
       ...fontBase,
-      fontSize: '14px',
-      lineHeight: '20px',
-      minWidth: itemSize,
-      height: itemSize,
-      border: `1px solid ${colors.neutral[50]}`,
-      borderRadius: '8px',
-      backgroundColor: 'transparent',
-      color: colors.neutral[300],
       '&:hover:not([data-disabled])': {
         backgroundColor: colors.neutral[25],
-        color: colors.primary[300],
+        color: colors.primary[200],
       },
       '&[data-active]': {
         backgroundColor: colors.primary[200],
@@ -66,27 +55,34 @@ export const Pagination = ({
         color: 'white',
       },
       '&[data-active]:hover': {
-        backgroundColor: colors.primary[300],
-        borderColor: colors.primary[300],
+        backgroundColor: colors.primary[200],
+        borderColor: colors.primary[200],
         color: 'white',
       },
       '&[data-disabled]': {
-        opacity: 0.5,
         cursor: 'not-allowed',
+        opacity: 0.5,
       },
+      backgroundColor: 'transparent',
+      border: `1px solid ${colors.neutral[50]}`,
+      borderRadius: '8px',
+      color: colors.neutral[300],
+      fontSize: '14px',
+      height: itemSize,
+      lineHeight: '20px',
+      minWidth: itemSize,
     },
     dots: {
       ...fontBase,
       color: colors.neutral[200],
     },
+    root: {
+      gap: spacing.xs,
+    },
     ...styles,
   };
 
   return (
-    <MantinePagination
-      withControls={withControls}
-      styles={style}
-      {...props}
-    />
+    <MantinePagination styles={style} withControls={withControls} {...props} />
   );
 };

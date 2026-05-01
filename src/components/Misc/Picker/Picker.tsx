@@ -1,19 +1,19 @@
 import { Box, Popover, Portal, UnstyledButton } from '@mantine/core';
 import {
   forwardRef,
+  type ReactNode,
   useEffect,
   useMemo,
   useState,
-  type ReactNode,
 } from 'react';
 import { neutral, primary, white } from '../../../constants/colors';
 import { fontBase } from '../../../constants/font';
 import { spacing } from '../../../constants/spacing';
 import { useMobile } from '../../../hooks/useMediaQuery';
+import { Tooltip } from '../../Info/Tooltips/Tooltip/Tooltip';
 import { SearchBar } from '../../Inputs/TextInputs/SearchBar/SearchBar';
 import { Stack } from '../../Layout/Stack/Stack';
 import { Text } from '../../Typography/Text/Text';
-import { Tooltip } from '../../Info/Tooltips/Tooltip/Tooltip';
 
 // A generic searchable-list popover for picking a single item from a set.
 //
@@ -112,10 +112,11 @@ const PickerItemRow = ({ item, onSelect }: PickerItemRowProps) => {
   // belt-and-suspenders).
   const button = (
     <UnstyledButton
-      onClick={item.disabled ? undefined : onSelect}
       disabled={item.disabled}
+      onClick={item.disabled ? undefined : onSelect}
       sx={{
         ...fontBase,
+        '&:hover': item.disabled ? {} : { backgroundColor: neutral[25] },
         alignItems: 'center',
         color: item.disabled ? neutral[100] : neutral[300],
         cursor: item.disabled ? 'not-allowed' : 'pointer',
@@ -125,21 +126,20 @@ const PickerItemRow = ({ item, onSelect }: PickerItemRowProps) => {
         padding: `${spacing.sm} ${spacing.md}`,
         transition: 'background-color 120ms ease',
         width: '100%',
-        '&:hover': item.disabled ? {} : { backgroundColor: neutral[25] },
       }}
     >
       <Text
-        variant='body'
-        truncate
         style={{
           color: item.disabled ? neutral[100] : neutral[300],
           minWidth: 0,
         }}
+        truncate
+        variant='body'
       >
         {item.label}
       </Text>
       {item.meta && (
-        <span style={{ flexShrink: 0, color: neutral[200] }}>{item.meta}</span>
+        <span style={{ color: neutral[200], flexShrink: 0 }}>{item.meta}</span>
       )}
     </UnstyledButton>
   );
@@ -197,8 +197,7 @@ const PickerComponent = ({
   }, [isOpen]);
 
   const sortedByRecency = useMemo(
-    () =>
-      [...items].sort((a, b) => (b.recencyKey ?? 0) - (a.recencyKey ?? 0)),
+    () => [...items].sort((a, b) => (b.recencyKey ?? 0) - (a.recencyKey ?? 0)),
     [items],
   );
 
@@ -245,26 +244,26 @@ const PickerComponent = ({
         <Portal>
           <div
             onClick={() => setOpen(false)}
-            style={{ position: 'fixed', inset: 0, zIndex: 299 }}
+            style={{ inset: 0, position: 'fixed', zIndex: 299 }}
           />
         </Portal>
       )}
       <Popover
-        opened={isOpen}
-        onChange={setOpen}
-        position={position}
-        withinPortal={withinPortal}
-        shadow='md'
-        radius={8}
-        width={width}
         offset={8}
+        onChange={setOpen}
+        opened={isOpen}
+        position={position}
+        radius={8}
+        shadow='md'
         styles={{
           dropdown: {
-            padding: 0,
             backgroundColor: white,
             border: `1px solid ${neutral[50]}`,
+            padding: 0,
           },
         }}
+        width={width}
+        withinPortal={withinPortal}
       >
         {children}
         <Popover.Dropdown>
@@ -275,24 +274,24 @@ const PickerComponent = ({
                 style={{ borderBottom: `1px solid ${neutral[50]}` }}
               >
                 <SearchBar
-                  placeholder={searchPlaceholder}
-                  value={query}
+                  fullWidth
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setQuery(e.target.value)
                   }
-                  fullWidth
+                  placeholder={searchPlaceholder}
                   size='sm'
+                  value={query}
                 />
               </Box>
             )}
             {showRecentHeader && (
               <Box
-                px={spacing.md}
-                pt={spacing.sm}
                 pb={spacing.xs}
+                pt={spacing.sm}
+                px={spacing.md}
                 style={{ ...fontBase }}
               >
-                <Text variant='label' style={{ color: neutral[200] }}>
+                <Text style={{ color: neutral[200] }} variant='label'>
                   Recent
                 </Text>
               </Box>
@@ -305,8 +304,8 @@ const PickerComponent = ({
               ) : (
                 visibleItems.map((item) => (
                   <PickerItemRow
-                    key={item.id}
                     item={item}
+                    key={item.id}
                     onSelect={() => {
                       onSelect(item);
                       setOpen(false);
@@ -324,18 +323,18 @@ const PickerComponent = ({
                   onClick={() => setShowAll(true)}
                   sx={{
                     ...fontBase,
+                    '&:hover': { color: primary[200] },
                     color: primary[200],
                     cursor: 'pointer',
                     display: 'block',
                     padding: `${spacing.xs} ${spacing.sm}`,
                     textAlign: 'center',
                     width: '100%',
-                    '&:hover': { color: primary[300] },
                   }}
                 >
                   <Text
-                    variant='label'
                     style={{ color: 'inherit', textAlign: 'center' }}
+                    variant='label'
                   >
                     Show all {items.length}
                   </Text>

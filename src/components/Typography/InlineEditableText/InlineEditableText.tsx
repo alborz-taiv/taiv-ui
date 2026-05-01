@@ -174,12 +174,8 @@ export const InlineEditableText = ({
         {display}
       </button>
       {hidePencil ? null : (
-        <IconButton
-          aria-label={`Edit ${ariaLabel}`}
-          onClick={enterEdit}
-          subtle
-        >
-          <IconPencil size={14} />
+        <IconButton aria-label={`Edit ${ariaLabel}`} onClick={enterEdit} subtle>
+          <IconPencil />
         </IconButton>
       )}
     </span>

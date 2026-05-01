@@ -1,17 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { OverflowFade } from './OverflowFade';
+import { neutral, primary } from '../../../constants/colors';
+import { spacing } from '../../../constants/spacing';
+import { Badge } from '../../Info/Badge/Badge';
 import { Group } from '../../Layout/Group/Group';
 import { Stack } from '../../Layout/Stack/Stack';
 import { Text } from '../../Typography/Text/Text';
-import { Badge } from '../../Info/Badge/Badge';
-import { neutral, primary } from '../../../constants/colors';
-import { spacing } from '../../../constants/spacing';
+import { OverflowFade } from './OverflowFade';
 
 const meta: Meta<typeof OverflowFade> = {
-  title: 'Components/Misc/OverflowFade',
+  argTypes: {
+    background: {
+      control: { type: 'color' },
+      description:
+        'Color the gradient fades into. Match the surrounding surface.',
+      table: { defaultValue: { summary: "'white'" } },
+    },
+    fadeWidth: {
+      control: { type: 'number' },
+      table: { defaultValue: { summary: '40' } },
+    },
+  },
   component: OverflowFade,
   parameters: {
-    layout: 'padded',
     docs: {
       description: {
         component:
@@ -21,18 +31,9 @@ const meta: Meta<typeof OverflowFade> = {
           'The scrollbar is hidden by design — the gradient is the affordance.',
       },
     },
+    layout: 'padded',
   },
-  argTypes: {
-    background: {
-      control: { type: 'color' },
-      description: 'Color the gradient fades into. Match the surrounding surface.',
-      table: { defaultValue: { summary: "'white'" } },
-    },
-    fadeWidth: {
-      control: { type: 'number' },
-      table: { defaultValue: { summary: '40' } },
-    },
-  },
+  title: 'Components/Misc/OverflowFade',
 };
 
 export default meta;
@@ -77,7 +78,9 @@ export const Default: Story = {
   render: (args) => (
     <div style={{ background: 'white', maxWidth: 480, padding: spacing.md }}>
       <Stack gap={spacing.sm}>
-        <Text variant='label'>Resize the panel narrower to see the right-edge fade appear.</Text>
+        <Text variant='label'>
+          Resize the panel narrower to see the right-edge fade appear.
+        </Text>
         <OverflowFade {...args}>
           <Group gap={spacing.xs} noWrap>
             {chips.map((label) => (
@@ -122,13 +125,15 @@ export const OnNonWhiteSurface: Story = {
     },
   },
   render: () => (
-    <div style={{ background: neutral[25], maxWidth: 480, padding: spacing.md }}>
+    <div
+      style={{ background: neutral[25], maxWidth: 480, padding: spacing.md }}
+    >
       <Stack gap={spacing.sm}>
         <Text variant='label'>On neutral[25] — fade matches surface.</Text>
         <OverflowFade background={neutral[25]}>
           <Group gap={spacing.xs} noWrap>
             {chips.map((label, i) => (
-              <Chip key={label} active={i === 0} label={label} />
+              <Chip active={i === 0} key={label} label={label} />
             ))}
           </Group>
         </OverflowFade>
@@ -141,7 +146,8 @@ export const WithBadges: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Demonstrates use with richer children — a tab-strip-like row with counts.',
+        story:
+          'Demonstrates use with richer children — a tab-strip-like row with counts.',
       },
     },
   },
@@ -149,9 +155,24 @@ export const WithBadges: Story = {
     <div style={{ background: 'white', maxWidth: 520, padding: spacing.md }}>
       <OverflowFade>
         <Group gap={spacing.lg} noWrap>
-          {['Your Slides', 'Smart Content', 'Premades', 'Playlists', 'Drafts', 'Archived'].map((label, i) => (
-            <Group key={label} gap={spacing.xs} noWrap style={{ flexShrink: 0 }}>
-              <Text variant='body' style={{ color: i === 0 ? primary[300] : neutral[300] }}>
+          {[
+            'Your Slides',
+            'Smart Content',
+            'Premades',
+            'Playlists',
+            'Drafts',
+            'Archived',
+          ].map((label, i) => (
+            <Group
+              gap={spacing.xs}
+              key={label}
+              noWrap
+              style={{ flexShrink: 0 }}
+            >
+              <Text
+                style={{ color: i === 0 ? primary[200] : neutral[300] }}
+                variant='body'
+              >
                 {label}
               </Text>
               <Badge color='neutral' size='sm' variant='filled'>

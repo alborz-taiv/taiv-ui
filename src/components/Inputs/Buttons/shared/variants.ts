@@ -4,16 +4,16 @@ import {
   primary,
   success,
   warning,
-} from '../../../../constants/colors';
-import { spacing } from '../../../../constants/spacing';
+} from "../../../../constants/colors";
+import { spacing } from "../../../../constants/spacing";
 
 // Overrides mantine due to rem difference
 const loading = {
-  borderRadius: '8px',
-  bottom: '-1px',
-  left: '-1px',
-  right: '-1px',
-  top: '-1px',
+  borderRadius: "8px",
+  bottom: "-1px",
+  left: "-1px",
+  right: "-1px",
+  top: "-1px",
 } as const;
 
 const disabled = {
@@ -28,360 +28,360 @@ const disabled = {
 // white text") describes the button itself, not the global theme. Use this
 // instead of inventing per-surface variants for every brand intent.
 const ghostDisabled = {
-  background: 'rgba(255, 255, 255, 0.04)',
-  border: '1px solid rgba(255, 255, 255, 0.08)',
-  color: 'rgba(255, 255, 255, 0.4)',
+  background: "rgba(255, 255, 255, 0.04)",
+  border: "1px solid rgba(255, 255, 255, 0.08)",
+  color: "rgba(255, 255, 255, 0.4)",
 } as const;
 
 export const componentVariants = {
   cancel: {
-    '&:active': {
-      background: 'white',
+    "&:active": {
+      background: "white",
       border: `1px solid ${error[100]}`,
       color: error[100],
     },
-    '&:active:hover': {
-      background: 'white',
+    "&:active:hover": {
+      background: "white",
       border: `1px solid ${error[100]}`,
       color: error[100],
     },
-    '&:disabled': disabled,
-    '&:hover': {
+    "&:disabled": disabled,
+    "&:hover": {
       background: error[100],
       border: `1px solid ${error[100]}`,
     },
-    '&:toggled': {
+    "&:toggled": {
       background: error[100],
-      color: 'white',
+      color: "white",
     },
-    '&[data-loading]': {
-      '& .mantine-Button-icon svg': {
-        stroke: 'white',
+    "&[data-loading]": {
+      "& .mantine-Button-icon svg": {
+        stroke: "white",
       },
-      '&:before': loading,
+      "&:before": loading,
     },
     background: error[200],
     border: `1px solid ${error[200]}`,
-    color: 'white',
+    color: "white",
   },
   ghost: {
-    '&:active': {
-      background: 'rgba(255, 255, 255, 0.18)',
-      border: '1px solid rgba(255, 255, 255, 0.32)',
-      color: 'white',
+    "&:active": {
+      background: "rgba(255, 255, 255, 0.18)",
+      border: "1px solid rgba(255, 255, 255, 0.32)",
+      color: "white",
     },
-    '&:active:hover': {
-      background: 'rgba(255, 255, 255, 0.18)',
-      border: '1px solid rgba(255, 255, 255, 0.32)',
-      color: 'white',
+    "&:active:hover": {
+      background: "rgba(255, 255, 255, 0.18)",
+      border: "1px solid rgba(255, 255, 255, 0.32)",
+      color: "white",
     },
-    '&:disabled': ghostDisabled,
-    '&:hover': {
-      background: 'rgba(255, 255, 255, 0.14)',
-      border: '1px solid rgba(255, 255, 255, 0.24)',
-      color: 'white',
+    "&:disabled": ghostDisabled,
+    "&:hover": {
+      background: "rgba(255, 255, 255, 0.14)",
+      border: "1px solid rgba(255, 255, 255, 0.24)",
+      color: "white",
     },
-    '&:toggled': {
-      background: 'rgba(255, 255, 255, 0.18)',
-      border: '1px solid rgba(255, 255, 255, 0.32)',
-      color: 'white',
+    "&:toggled": {
+      background: "rgba(255, 255, 255, 0.18)",
+      border: "1px solid rgba(255, 255, 255, 0.32)",
+      color: "white",
     },
-    '&[data-loading]': {
-      '& .mantine-Button-icon svg': {
-        stroke: 'white',
+    "&[data-loading]": {
+      "& .mantine-Button-icon svg": {
+        stroke: "white",
       },
-      '&:before': loading,
+      "&:before": loading,
     },
-    background: 'rgba(255, 255, 255, 0.08)',
-    border: '1px solid rgba(255, 255, 255, 0.16)',
-    color: 'white',
+    background: "rgba(255, 255, 255, 0.08)",
+    border: "1px solid rgba(255, 255, 255, 0.16)",
+    color: "white",
   },
   nav: {
-    '& .mantine-Button-inner': {
-      justifyContent: 'flex-start',
+    "& .mantine-Button-inner": {
+      justifyContent: "flex-start",
     },
-    '&:active': {
+    "&:active": {
       background: neutral[25],
-      color: primary[300],
+      color: primary[200],
     },
-    '&:active:hover': {
+    "&:active:hover": {
       background: neutral[25],
-      color: primary[300],
+      color: primary[200],
     },
-    '&:disabled': {
-      background: 'transparent',
+    "&:disabled": {
+      background: "transparent",
       color: neutral[100],
     },
-    '&:hover': {
-      background: 'transparent',
+    "&:hover": {
+      background: "transparent",
       color: neutral[200],
     },
 
-    '&:toggled': {
+    "&:toggled": {
       background: neutral[25],
-      color: primary[300],
+      color: primary[200],
     },
-    '&[data-loading]': {
-      '& .mantine-Button-icon svg': {
+    "&[data-loading]": {
+      "& .mantine-Button-icon svg": {
         stroke: neutral[200],
       },
-      '&:before': loading,
+      "&:before": loading,
     },
-    background: 'transparent',
-    border: 'none',
+    background: "transparent",
+    border: "none",
     color: neutral[300],
     paddingLeft: spacing.sm,
   },
-  'nav-cancel': {
-    '& .mantine-Button-inner': {
-      justifyContent: 'flex-start',
+  "nav-cancel": {
+    "& .mantine-Button-inner": {
+      justifyContent: "flex-start",
     },
-    '&:active': {
+    "&:active": {
       background: error[25],
       color: error[200],
     },
-    '&:active:hover': {
+    "&:active:hover": {
       background: error[25],
       color: error[200],
     },
-    '&:disabled': {
-      background: 'transparent',
+    "&:disabled": {
+      background: "transparent",
       color: neutral[100],
     },
-    '&:hover': {
-      background: 'transparent',
+    "&:hover": {
+      background: "transparent",
       color: error[100],
     },
-    '&:toggled': {
+    "&:toggled": {
       background: error[25],
       color: error[200],
     },
-    '&[data-loading]': {
-      '& .mantine-Button-icon svg': {
+    "&[data-loading]": {
+      "& .mantine-Button-icon svg": {
         stroke: error[200],
       },
-      '&:before': loading,
+      "&:before": loading,
     },
-    background: 'transparent',
-    border: 'none',
+    background: "transparent",
+    border: "none",
     color: error[200],
     paddingLeft: spacing.sm,
   },
   primary: {
-    '&:active': {
-      background: 'white',
-      border: `1px solid ${primary[300]}`,
-      color: primary[300],
+    "&:active": {
+      background: "white",
+      border: `1px solid ${primary[200]}`,
+      color: primary[200],
     },
-    '&:active:hover': {
-      background: 'white',
-      border: `1px solid ${primary[300]}`,
-      color: primary[300],
+    "&:active:hover": {
+      background: "white",
+      border: `1px solid ${primary[200]}`,
+      color: primary[200],
     },
-    '&:disabled': {
+    "&:disabled": {
       ...disabled,
     },
-    '&:hover': {
+    "&:hover": {
       background: `linear-gradient(to right, ${primary[300]}, ${primary[300]})`,
     },
-    '&:toggled': {
-      background: `${primary[300]}`,
-      color: 'white',
+    "&:toggled": {
+      background: `${primary[200]}`,
+      color: "white",
     },
-    '&[data-loading]': {
-      '& .mantine-Button-icon svg': {
-        stroke: 'white',
+    "&[data-loading]": {
+      "& .mantine-Button-icon svg": {
+        stroke: "white",
       },
-      '&:before': loading,
+      "&:before": loading,
     },
-    background: `linear-gradient(to right, ${primary[300]}, ${primary[200]})`,
+    background: `linear-gradient(to right, ${primary[200]}, ${primary[200]})`,
     border: `1px solid ${primary[200]}`,
-    color: 'white',
+    color: "white",
   },
   secondary: {
-    '&:active': {
+    "&:active": {
       background: neutral[100],
       border: `1px solid ${neutral[200]}`,
       color: neutral[200],
     },
-    '&:active:hover': {
+    "&:active:hover": {
       background: neutral[100],
       border: `1px solid ${neutral[200]}`,
       color: neutral[200],
     },
-    '&:disabled': disabled,
-    '&:hover': {
+    "&:disabled": disabled,
+    "&:hover": {
       background: neutral[100],
       border: `1px solid ${neutral[100]}`,
-      color: 'white',
+      color: "white",
     },
-    '&:toggled': {
+    "&:toggled": {
       background: neutral[100],
-      color: 'neutral[200]',
+      color: "neutral[200]",
     },
-    '&[data-loading]': {
-      '& .mantine-Button-icon svg': {
+    "&[data-loading]": {
+      "& .mantine-Button-icon svg": {
         stroke: neutral[200],
       },
-      '&:before': loading,
+      "&:before": loading,
     },
-    background: 'white',
+    background: "white",
     border: `1px solid ${neutral[200]}`,
     color: neutral[200],
   },
-  'secondary-cancel': {
-    '&:active': {
-      background: 'white',
+  "secondary-cancel": {
+    "&:active": {
+      background: "white",
       border: `1px solid ${error[200]}`,
       color: error[200],
     },
-    '&:active:hover': {
-      background: 'white',
+    "&:active:hover": {
+      background: "white",
       border: `1px solid ${error[200]}`,
       color: error[200],
     },
-    '&:disabled': disabled,
-    '&:hover': {
+    "&:disabled": disabled,
+    "&:hover": {
       background: error[25],
       border: `1px solid ${error[100]}`,
       color: error[200],
     },
-    '&:toggled': {
+    "&:toggled": {
       background: error[100],
-      color: 'white',
+      color: "white",
     },
-    '&[data-loading]': {
-      '& .mantine-Button-icon svg': {
+    "&[data-loading]": {
+      "& .mantine-Button-icon svg": {
         stroke: error[200],
       },
-      '&:before': loading,
+      "&:before": loading,
     },
-    background: 'white',
+    background: "white",
     border: `1px solid ${error[200]}`,
     color: error[200],
   },
   success: {
-    '&:active': {
-      background: 'white',
+    "&:active": {
+      background: "white",
       border: `1px solid ${success[100]}`,
       color: success[100],
     },
-    '&:active:hover': {
-      background: 'white',
+    "&:active:hover": {
+      background: "white",
       border: `1px solid ${success[100]}`,
       color: success[100],
     },
-    '&:disabled': disabled,
-    '&:hover': {
+    "&:disabled": disabled,
+    "&:hover": {
       background: success[100],
       border: `1px solid ${success[100]}`,
     },
-    '&:toggled': {
+    "&:toggled": {
       background: success[100],
     },
-    '&[data-loading]': {
-      '& .mantine-Button-icon svg': {
-        stroke: 'white',
+    "&[data-loading]": {
+      "& .mantine-Button-icon svg": {
+        stroke: "white",
       },
-      '&:before': loading,
+      "&:before": loading,
     },
     background: success[200],
     border: `1px solid ${success[200]}`,
-    color: 'white',
+    color: "white",
   },
   tertiary: {
-    '&:active': {
+    "&:active": {
       background: primary[100],
       border: `1px solid ${primary[200]}`,
       color: primary[200],
     },
-    '&:active:hover': {
+    "&:active:hover": {
       background: primary[100],
       border: `1px solid ${primary[200]}`,
       color: primary[200],
     },
-    '&:disabled': disabled,
-    '&:hover': {
+    "&:disabled": disabled,
+    "&:hover": {
       background: primary[100],
       border: `1px solid ${primary[100]}`,
-      color: 'white',
+      color: "white",
     },
-    '&:toggled': {
+    "&:toggled": {
       background: primary[100],
       color: primary[200],
     },
-    '&[data-loading]': {
-      '& .mantine-Button-icon svg': {
+    "&[data-loading]": {
+      "& .mantine-Button-icon svg": {
         stroke: primary[200],
       },
-      '&:before': loading,
+      "&:before": loading,
     },
-    background: 'white',
+    background: "white",
     border: `1px solid ${primary[200]}`,
     color: primary[200],
   },
   text: {
-    '&:active': {
-      background: 'transparent',
+    "&:active": {
+      background: "transparent",
       color: primary[200],
     },
-    '&:active:hover': {
-      background: 'transparent',
+    "&:active:hover": {
+      background: "transparent",
       color: primary[200],
     },
-    '&:disabled': {
-      background: 'transparent',
+    "&:disabled": {
+      background: "transparent",
       color: neutral[100],
     },
-    '&:hover': {
-      background: 'transparent',
-      color: primary[300],
+    "&:hover": {
+      background: "transparent",
+      color: primary[200],
     },
-    '&:toggled': {
-      background: 'transparent',
-      color: primary[300],
+    "&:toggled": {
+      background: "transparent",
+      color: primary[200],
     },
-    '&[data-loading]': {
-      '& .mantine-Button-icon svg': {
+    "&[data-loading]": {
+      "& .mantine-Button-icon svg": {
         stroke: neutral[200],
       },
-      '&:before': loading,
+      "&:before": loading,
     },
-    background: 'transparent',
-    border: 'none',
+    background: "transparent",
+    border: "none",
     color: neutral[200],
-    height: 'auto',
-    minWidth: 'unset',
-    padding: '0',
+    height: "auto",
+    minWidth: "unset",
+    padding: "0",
   },
   warning: {
-    '&:active': {
-      background: 'white',
+    "&:active": {
+      background: "white",
       border: `1px solid ${warning[100]}`,
       color: warning[100],
     },
-    '&:active:hover': {
-      background: 'white',
+    "&:active:hover": {
+      background: "white",
       border: `1px solid ${warning[100]}`,
       color: warning[100],
     },
-    '&:disabled': disabled,
-    '&:hover': {
+    "&:disabled": disabled,
+    "&:hover": {
       background: warning[100],
       border: `1px solid ${warning[100]}`,
     },
-    '&:toggled': {
+    "&:toggled": {
       background: warning[100],
     },
-    '&[data-loading]': {
-      '& .mantine-Button-icon svg': {
-        stroke: 'white',
+    "&[data-loading]": {
+      "& .mantine-Button-icon svg": {
+        stroke: "white",
       },
-      '&:before': loading,
+      "&:before": loading,
     },
     background: warning[200],
     border: `1px solid ${warning[200]}`,
-    color: 'white',
+    color: "white",
   },
 } as const;
 
@@ -389,12 +389,12 @@ export const subtleVariants = {
   cancel: { color: error[200] },
   // `ghost` is already the subtle treatment for dark surfaces — the `subtle`
   // modifier is a no-op for it, but we expose a key for type completeness.
-  ghost: { color: 'white' },
+  ghost: { color: "white" },
   nav: { color: neutral[300] },
-  'nav-cancel': { color: error[200] },
+  "nav-cancel": { color: error[200] },
   primary: { color: primary[200] },
   secondary: { color: neutral[200] },
-  'secondary-cancel': { color: error[200] },
+  "secondary-cancel": { color: error[200] },
   success: { color: success[200] },
   tertiary: { color: primary[200] },
   text: { color: neutral[200] },

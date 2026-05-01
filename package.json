@@ -39,7 +39,11 @@
   },
   "exports": {
     ".": "./dist/components/index.js",
-    "./assets": "./dist/assets/index.js",
+    "./assets": {
+      "default": "./dist/assets/index.js",
+      "import": "./dist/assets/index.js",
+      "types": "./dist/assets/index.d.ts"
+    },
     "./assets/*": "./dist/assets/*",
     "./constants": "./dist/constants/index.js",
     "./hooks": "./dist/hooks/index.js",
@@ -67,8 +71,8 @@
     "biome:fix": "biome check --write src",
     "biome:fix:path": "biome check --write",
     "build": "tsc && npm run build:assets",
-    "build:assets": "mkdir -p dist/assets/brand && cp -R src/assets/brand/. dist/assets/brand/",
     "build-storybook": "storybook build",
+    "build:assets": "mkdir -p dist/assets/brand && cp -R src/assets/brand/. dist/assets/brand/",
     "clean": "rm -rf dist",
     "dev": "npm link && tsc --watch",
     "format": "biome check --linter-enabled=false --assist-enabled=false src",

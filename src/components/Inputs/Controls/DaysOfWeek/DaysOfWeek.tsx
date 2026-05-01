@@ -1,27 +1,43 @@
-import React from 'react';
 import { UnstyledButton } from '@mantine/core';
+import React from 'react';
 import { neutral, primary, white } from '../../../../constants/colors';
 import { fontBase, fontWeight } from '../../../../constants/font';
 import { spacing } from '../../../../constants/spacing';
 
 export type DayKey = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun';
 
-const ALL_DAYS_MON_FIRST: DayKey[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-const ALL_DAYS_SUN_FIRST: DayKey[] = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+const ALL_DAYS_MON_FIRST: DayKey[] = [
+  'mon',
+  'tue',
+  'wed',
+  'thu',
+  'fri',
+  'sat',
+  'sun',
+];
+const ALL_DAYS_SUN_FIRST: DayKey[] = [
+  'sun',
+  'mon',
+  'tue',
+  'wed',
+  'thu',
+  'fri',
+  'sat',
+];
 
 const SHORT_LABELS: Record<DayKey, string> = {
-  mon: 'M',
-  tue: 'T',
-  wed: 'W',
-  thu: 'T',
   fri: 'F',
+  mon: 'M',
   sat: 'S',
   sun: 'S',
+  thu: 'T',
+  tue: 'T',
+  wed: 'W',
 };
 
 const sizes = {
-  sm: { dim: 24, fontSize: 11, gap: 4 },
   md: { dim: 36, fontSize: 14, gap: 6 },
+  sm: { dim: 24, fontSize: 11, gap: 4 },
 } as const;
 
 export interface DaysOfWeekProps {
@@ -88,8 +104,16 @@ const DaysOfWeek = ({
               alignItems: 'center',
               backgroundColor: isActive ? primary[200] : neutral[25],
               borderRadius: `${spacing.xs}`,
-              color: isActive ? white : isDisabled ? neutral[100] : neutral[300],
-              cursor: interactive ? 'pointer' : isDisabled ? 'not-allowed' : 'default',
+              color: isActive
+                ? white
+                : isDisabled
+                  ? neutral[100]
+                  : neutral[300],
+              cursor: interactive
+                ? 'pointer'
+                : isDisabled
+                  ? 'not-allowed'
+                  : 'default',
               display: 'inline-flex',
               flexShrink: 0,
               fontSize: `${fontSize}px`,

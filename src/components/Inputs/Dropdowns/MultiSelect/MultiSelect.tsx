@@ -1,6 +1,9 @@
+import {
+  MultiSelect as MantineMultiSelect,
+  type MultiSelectProps as MantineMultiSelectProps,
+} from '@mantine/core';
+import type { CSSObject } from '@mantine/styles';
 import React from 'react';
-import { MultiSelect as MantineMultiSelect, MultiSelectProps as MantineMultiSelectProps } from '@mantine/core';
-import { CSSObject } from '@mantine/styles';
 import { neutral, primary } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { spacing } from '../../../../constants/spacing';
@@ -13,49 +16,63 @@ interface MultiSelectProps extends MantineMultiSelectProps {
   styles?: Record<string, CSSObject>;
 }
 
-export const MultiSelect = ({ size = 'md', width, fullWidth = false, placeholder = 'Select options', styles, ...props }: MultiSelectProps) => {
+export const MultiSelect = ({
+  size = 'md',
+  width,
+  fullWidth = false,
+  placeholder = 'Select options',
+  styles,
+  ...props
+}: MultiSelectProps) => {
   const selectedSize = componentSizes[size];
-  const computedWidth = fullWidth ? '100%' : width || `${selectedSize.maxWidth}px`;
+  const computedWidth = fullWidth
+    ? '100%'
+    : width || `${selectedSize.maxWidth}px`;
 
   const style = {
-    input: {
-      height: 'auto',
-      minHeight: `${selectedSize.height}px`,
-      padding: selectedSize.inputPadding,
-      display: 'flex',
-      alignItems: 'center',
-      cursor: 'pointer',
+    defaultValueLabel: {
       ...fontBase,
-      fontSize: selectedSize.fontSize,
-      color: neutral[200],
-      border: `1px solid ${neutral[100]}`,
-      borderRadius: '8px',
-      backgroundColor: 'white',
-      transition: 'all 200ms ease-in-out',
+    },
+    defaultValueRemove: {
       '&:hover': {
-        backgroundColor: 'white',
+        backgroundColor: primary[25],
       },
+      alignItems: 'center',
+      backgroundColor: primary[25],
+      borderRadius: '50%',
+      color: primary[300],
+      display: 'flex',
+      justifyContent: 'center',
+      marginLeft: spacing.sm,
     },
     dropdown: {
       border: 'none',
       borderRadius: '8px',
       boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
     },
-    item: {
-      padding: selectedSize.dropdownPadding,
-      marginBottom: spacing.xs,
-      borderRadius: '8px',
+    input: {
+      alignItems: 'center',
+      cursor: 'pointer',
+      display: 'flex',
+      height: 'auto',
+      minHeight: `${selectedSize.height}px`,
+      padding: selectedSize.inputPadding,
       ...fontBase,
-      fontSize: selectedSize.fontSize,
-      color: neutral[200],
-      backgroundColor: 'white',
-      '&[data-selected]': {
-        backgroundColor: neutral[50],
-        color: neutral[200],
-        '&:hover, &[data-hovered]': {
-          backgroundColor: neutral[50],
-        },
+      '&:hover': {
+        backgroundColor: 'white',
       },
+      backgroundColor: 'white',
+      border: `1px solid ${neutral[100]}`,
+      borderRadius: '8px',
+      color: neutral[200],
+      fontSize: selectedSize.fontSize,
+      transition: 'all 200ms ease-in-out',
+    },
+    item: {
+      borderRadius: '8px',
+      marginBottom: spacing.xs,
+      padding: selectedSize.dropdownPadding,
+      ...fontBase,
       // Mantine v6 highlights the keyboard-focused item with `data-hovered`,
       // so we mirror the mouse `:hover` style there.
       '&:hover, &[data-hovered]': {
@@ -64,45 +81,50 @@ export const MultiSelect = ({ size = 'md', width, fullWidth = false, placeholder
       '&:not(:hover):not([data-hovered]):not([data-selected])': {
         backgroundColor: 'white',
       },
-    },
-    value: {
-      padding: selectedSize.valuePadding,
-      borderRadius: '25px',
-      ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 1.25px)`,
-      color: primary[300],
-      backgroundColor: primary[50],
-      '&:hover': {
-        backgroundColor: primary[50],
+      '&[data-selected]': {
+        '&:hover, &[data-hovered]': {
+          backgroundColor: neutral[50],
+        },
+        backgroundColor: neutral[50],
+        color: neutral[200],
       },
-    },
-    defaultValueRemove: {
-      marginLeft: spacing.sm,
-      borderRadius: '50%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: primary[300],
-      backgroundColor: primary[25],
-      '&:hover': {
-        backgroundColor: primary[25],
-      },
+      backgroundColor: 'white',
+      color: neutral[200],
+      fontSize: selectedSize.fontSize,
     },
     label: {
       ...fontBase,
-      fontSize: `calc(${selectedSize.fontSize} - 1px)`,
       color: neutral[200],
-    },
-    defaultValueLabel: {
-      ...fontBase,
+      fontSize: `calc(${selectedSize.fontSize} - 1px)`,
     },
     searchInput: {
       ...fontBase,
-      fontSize: selectedSize.fontSize,
       color: neutral[200],
+      fontSize: selectedSize.fontSize,
+    },
+    value: {
+      borderRadius: '25px',
+      padding: selectedSize.valuePadding,
+      ...fontBase,
+      '&:hover': {
+        backgroundColor: primary[25],
+      },
+      backgroundColor: primary[25],
+      color: primary[300],
+      fontSize: `calc(${selectedSize.fontSize} - 1.25px)`,
     },
     ...styles,
   };
 
-  return <MantineMultiSelect placeholder={placeholder} size={size} w={computedWidth} styles={style} maxDropdownHeight={selectedSize.dropdownHeight} searchable {...props} />;
+  return (
+    <MantineMultiSelect
+      maxDropdownHeight={selectedSize.dropdownHeight}
+      placeholder={placeholder}
+      searchable
+      size={size}
+      styles={style}
+      w={computedWidth}
+      {...props}
+    />
+  );
 };

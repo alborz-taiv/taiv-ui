@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { primitives } from '../../../constants/colors';
 import { Avatar } from './Avatar';
 
 const meta: Meta<typeof Avatar> = {
@@ -14,9 +15,11 @@ const meta: Meta<typeof Avatar> = {
       table: { type: { summary: 'ReactNode' } },
     },
     color: {
-      control: { type: 'text' },
-      description: 'Theme color key',
-      table: { type: { summary: 'MantineColor' } },
+      control: { type: 'select' },
+      description:
+        'Taiv primitives palette key (applied via Mantine styles API)',
+      options: Object.keys(primitives),
+      table: { type: { summary: 'AvatarPrimitiveColor' } },
     },
     radius: {
       control: { type: 'select' },

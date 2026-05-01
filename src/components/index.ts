@@ -15,13 +15,12 @@ import "../styles/iosInputZoomFix";
 //Data
 
 export type {
-  CalendarBackgroundEvent,
-  CalendarEvent,
-  CalendarEventColor,
+  CalendarEventExternal,
   CalendarProps,
+  CalendarType,
   CalendarView,
 } from "./Data/Calendar/Calendar";
-export { Calendar } from "./Data/Calendar/Calendar";
+export { Calendar, TAIV_CALENDAR_PALETTE } from "./Data/Calendar/Calendar";
 export type {
   CalendarProps as BigCalendarProps,
   Event as BigCalendarEvent,
@@ -50,7 +49,7 @@ export { PieChart } from "./Data/PieChart/PieChart";
 export { Progress } from "./Data/Progress/Progress";
 export { RemovableItemList } from "./Data/RemovableItemList/RemovableItemList";
 export { StatsBadge } from "./Data/StatsBadge/StatsBadge";
-export type { AvatarProps } from "./Info/Avatar/Avatar";
+export type { AvatarPrimitiveColor, AvatarProps } from "./Info/Avatar/Avatar";
 export { Avatar } from "./Info/Avatar/Avatar";
 export { Badge } from "./Info/Badge/Badge";
 export type { DrawerPosition, DrawerProps } from "./Info/Drawer/Drawer";

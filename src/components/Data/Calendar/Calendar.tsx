@@ -1,4 +1,6 @@
 import {
+  type CalendarEventExternal,
+  type CalendarType,
   createViewDay,
   createViewMonthGrid,
   createViewWeek,
@@ -9,11 +11,10 @@ import { createDragAndDropPlugin } from '@schedule-x/drag-and-drop';
 import { createEventsServicePlugin } from '@schedule-x/events-service';
 import { ScheduleXCalendar, useNextCalendarApp } from '@schedule-x/react';
 import { createResizePlugin } from '@schedule-x/resize';
-
 import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
 import dayjs from 'dayjs';
 import type React from 'react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   error,
   neutral,
@@ -36,195 +37,152 @@ import '@schedule-x/theme-default/dist/index.css';
 // Public types
 // ────────────────────────────────────────────────────────────────────────────
 
-/**
- * Palette map driving default event chip colors. Each entry exposes the `[50]`
- * / `[200]` shades the default chip reads (tinted background + readable
- * foreground). Consuming projects can map their event types onto these keys
- * to category-code events without writing a custom `renderEvent`.
- */
-const EVENT_COLOR_PALETTE = {
-  error,
-  neutral,
-  primary,
-  purple,
-  salmon,
-  success,
-  warning,
-} as const;
-
-export type CalendarEventColor = keyof typeof EVENT_COLOR_PALETTE;
-
-/**
- * Schedule-X's native color system — each event references a `calendarId` that
- * maps to a `CalendarType` with `lightColors: { main, container, onContainer }`.
- * SX drives the actual event chrome (background, border accent, text, icon
- * stroke) off CSS variables derived from those colors. We generate one SX
- * calendar per Taiv color so consumers can say `event.color = 'success'` and
- * get the idiomatic SX rendering path with Taiv tokens painted in.
- */
-type TaivSxCalendar = {
-  colorName: CalendarEventColor;
-  lightColors: { main: string; container: string; onContainer: string };
-};
-
-const taivSxCalendars: Record<CalendarEventColor, TaivSxCalendar> = (
-  Object.keys(EVENT_COLOR_PALETTE) as CalendarEventColor[]
-).reduce(
-  (acc, name) => {
-    const palette = EVENT_COLOR_PALETTE[name] as Record<number, string>;
-    // `main` drives the 4px left-border accent. `container` is the filled
-    // background. `onContainer` is the text color painted on top — we use
-    // the darkest shade that exists for the palette (purple/salmon max out
-    // at [200]; the semantic tokens go to [300]).
-    acc[name] = {
-      colorName: name,
-      lightColors: {
-        container: palette[50],
-        main: palette[200],
-        onContainer: palette[300] ?? palette[200],
-      },
-    };
-    return acc;
-  },
-  {} as Record<CalendarEventColor, TaivSxCalendar>,
-);
-
-const DEFAULT_EVENT_COLOR: CalendarEventColor = 'primary';
-
-export interface CalendarEvent<TData = unknown> {
-  id: string;
-  title: string;
-  start: Date;
-  end: Date;
-  /**
-   * Color scheme for the event chip. Maps to a Schedule-X calendar with
-   * Taiv-derived `{ main, container, onContainer }` colors. Defaults to
-   * `'primary'`.
-   */
-  color?: CalendarEventColor;
-  /** Free-form app data. Available inside `renderEvent`. */
-  data?: TData;
-  /**
-   * When true, Schedule-X renders the event in the all-day row (week/day
-   * views) or as a date-spanning bar (month view) using date-only format
-   * internally. When false/omitted, the event is placed in the time grid.
-   */
-  allDay?: boolean;
-}
-
 export type CalendarView = 'month' | 'week' | 'day';
 
-/**
- * Shaded time range — used for business-hours highlighting and similar slot
- * styling. Schedule-X renders these behind normal events.
- */
-export interface CalendarBackgroundEvent {
-  start: Date;
-  end: Date;
-  title?: string;
-  style?: Partial<CSSStyleDeclaration>;
-}
+export type { CalendarEventExternal, CalendarType } from '@schedule-x/calendar';
 
-export interface CalendarProps<TData = unknown> {
-  events: CalendarEvent<TData>[];
+/**
+ * Default Schedule-X `calendars` map, keyed by Taiv semantic color names.
+ * Consumers using `calendarId: 'primary' | 'success' | …` get Taiv-tokenized
+ * chips out of the box. To category-code events with custom keys (e.g.
+ * `'one-time' | 'weekly'`), pass your own map via the `calendars` prop —
+ * it replaces this default rather than merging.
+ *
+ * Schedule-X paints the chip from `lightColors`:
+ * - `main` drives the 4px left-border accent and the icon stroke
+ * - `container` is the filled background
+ * - `onContainer` is the text painted on top of `container`
+ */
+export const TAIV_CALENDAR_PALETTE: Record<string, CalendarType> = {
+  error: {
+    colorName: 'error',
+    lightColors: {
+      container: error[25],
+      main: error[200],
+      onContainer: error[300],
+    },
+  },
+  neutral: {
+    colorName: 'neutral',
+    lightColors: {
+      container: neutral[25],
+      main: neutral[200],
+      onContainer: neutral[300],
+    },
+  },
+  primary: {
+    colorName: 'primary',
+    lightColors: {
+      container: primary[25],
+      main: primary[200],
+      onContainer: primary[200],
+    },
+  },
+  purple: {
+    colorName: 'purple',
+    lightColors: {
+      container: purple[50],
+      main: purple[200],
+      onContainer: purple[200],
+    },
+  },
+  salmon: {
+    colorName: 'salmon',
+    lightColors: {
+      container: salmon[50],
+      main: salmon[200],
+      onContainer: salmon[200],
+    },
+  },
+  success: {
+    colorName: 'success',
+    lightColors: {
+      container: success[25],
+      main: success[200],
+      onContainer: success[300],
+    },
+  },
+  warning: {
+    colorName: 'warning',
+    lightColors: {
+      container: warning[25],
+      main: warning[200],
+      onContainer: warning[300],
+    },
+  },
+};
+
+export interface CalendarProps {
+  /**
+   * Schedule-X native event shape. ISO date strings:
+   * `YYYY-MM-DD` for all-day, `YYYY-MM-DD HH:mm` for timed.
+   * `calendarId` references a key in the `calendars` map (default
+   * `TAIV_CALENDAR_PALETTE`) and drives the chip color scheme.
+   *
+   * To opt out of DnD or resize per-event, set `_options.disableDND` /
+   * `_options.disableResize` on the event itself.
+   */
+  events: CalendarEventExternal[];
+  /** Color palette map. Keys can be referenced as event `calendarId`. */
+  calendars?: Record<string, CalendarType>;
+
   view: CalendarView;
   onViewChange: (view: CalendarView) => void;
-  /** Views available in Schedule-X's built-in header. Default: all three. */
+  /** Views available in the toolbar's view switcher. Default: all three. */
   views?: CalendarView[];
   /** Controlled current date. Uncontrolled defaults to today. */
   currentDate?: Date;
   onDateChange?: (date: Date) => void;
-  /** Custom event card. Receives the event + which view it's being rendered in. */
-  renderEvent?: (
-    event: CalendarEvent<TData>,
-    view: CalendarView,
-  ) => React.ReactNode;
+
+  /** Fired when a user clicks an event chip. */
+  onEventClick?: (event: CalendarEventExternal) => void;
   /**
-   * Shaded time ranges for business hours, closed periods, etc. Schedule-X
-   * draws these behind normal events. For per-slot styling, generate ranges
-   * for each day in your visible window.
+   * Fired when a user clicks an empty time slot (week / day views) or a
+   * date header (month view). The argument is Schedule-X's ISO datetime
+   * string (`YYYY-MM-DD HH:mm`). Use this to open a "create event" modal
+   * with the slot prefilled.
    */
-  backgroundEvents?: CalendarBackgroundEvent[];
-  onEventSelect?: (event: CalendarEvent<TData>) => void;
-  onSlotSelect?: (slot: { start: Date; end: Date }) => void;
-  /** Fires on drag-drop when the event's start time changes. */
-  onEventDrop?: (
-    newEvent: CalendarEvent<TData>,
-    oldEvent: CalendarEvent<TData>,
-  ) => void;
-  /** Fires on resize when only the end time changes. */
-  onEventResize?: (
-    newEvent: CalendarEvent<TData>,
-    oldEvent: CalendarEvent<TData>,
-  ) => void;
-  /** Disables DnD, resize, and event updates. */
+  onClickDateTime?: (iso: string) => void;
+  /**
+   * Fired after a user finishes a drag-to-move or drag-to-resize gesture.
+   * The event passed has already been updated with the new times.
+   * Use this to dispatch a `saveEvent` (or equivalent). Only fires when
+   * not `readOnly`.
+   */
+  onEventUpdate?: (event: CalendarEventExternal) => void;
+
+  /** Disables DnD + resize plugins entirely (also blocks slot-click create
+   *  if you respect that on the consumer side). */
   readOnly?: boolean;
   /** Granularity in minutes for DnD/resize. Default 15. */
   minuteStep?: 5 | 10 | 15 | 30 | 60;
+  /** Override the calendar's day boundaries. Format: `'HH:mm'`. */
+  dayBoundaries?: { start: string; end: string };
+  /** First day of week: 0 = Sun, 1 = Mon. Default 0. */
+  firstDayOfWeek?: 0 | 1;
+
   /**
-   * Controls the toolbar rendered above the calendar grid:
+   * Toolbar rendered above the calendar grid:
    * - `undefined` (default): a Taiv-styled toolbar with Today / prev / next /
    *   date label / view switcher.
-   * - `null`: no toolbar at all — use when composing navigation outside the
-   *   calendar and you don't want a duplicate bar.
+   * - `null`: no toolbar — use when composing navigation outside the
+   *   calendar.
    * - any `ReactNode`: replaces the default toolbar with your own composition.
    *
    * Schedule-X's internal header is always hidden regardless of this prop.
    */
   toolbar?: React.ReactNode | null;
-  /** First day of week: 0 = Sun, 1 = Mon. Default 0. */
-  firstDayOfWeek?: 0 | 1;
-  /** Override the Schedule-X default day boundaries. Format: 'HH:mm'. */
-  dayBoundaries?: { start: string; end: string };
 }
 
 // ────────────────────────────────────────────────────────────────────────────
-// Internal mappers
+// Internal helpers
 // ────────────────────────────────────────────────────────────────────────────
 
-const DT_FMT = 'YYYY-MM-DD HH:mm';
 const D_FMT = 'YYYY-MM-DD';
 
-type SxEvent = {
-  id: string;
-  title: string;
-  start: string;
-  end: string;
-  /** Native SX color-link. Maps to one of `taivSxCalendars`. */
-  calendarId?: CalendarEventColor;
-  /** Free-form consumer data — opaque to SX. */
-  _taivData?: unknown;
-};
-
-const toSxEvent = <T,>(e: CalendarEvent<T>): SxEvent => ({
-  _taivData: e.data,
-  calendarId: e.color ?? DEFAULT_EVENT_COLOR,
-  end: e.allDay ? dayjs(e.end).format(D_FMT) : dayjs(e.end).format(DT_FMT),
-  id: e.id,
-  start: e.allDay ? dayjs(e.start).format(D_FMT) : dayjs(e.start).format(DT_FMT),
-  title: e.title,
-});
-
-const fromSxEvent = <T,>(
-  e: SxEvent,
-  fallback?: CalendarEvent<T>,
-): CalendarEvent<T> => {
-  const isAllDay = !e.start.includes(' ');
-  return {
-    allDay: isAllDay,
-    color: (e.calendarId as CalendarEventColor | undefined) ?? fallback?.color,
-    data: (e._taivData as T | undefined) ?? fallback?.data,
-    end: isAllDay ? dayjs(e.end, D_FMT).toDate() : dayjs(e.end, DT_FMT).toDate(),
-    id: String(e.id),
-    start: isAllDay ? dayjs(e.start, D_FMT).toDate() : dayjs(e.start, DT_FMT).toDate(),
-    title: e.title ?? '',
-  };
-};
-
-// Schedule-X's internal view names
+// Schedule-X uses 'month-grid' / 'week' / 'day' internally.
 const toSxView = (v: CalendarView): string =>
   v === 'month' ? 'month-grid' : v;
-
 const fromSxView = (n: string): CalendarView | null => {
   if (n === 'day' || n === 'week') return n;
   if (n === 'month-grid') return 'month';
@@ -241,32 +199,24 @@ const viewFactories: Record<
 };
 
 // ────────────────────────────────────────────────────────────────────────────
-// Taiv theme overlay
+// Taiv theme overlay — frame only
 // ────────────────────────────────────────────────────────────────────────────
-// Schedule-X ships Material-Design styling: Roboto-ish typography, uppercased
-// day/time labels, and a full CSS-variable palette on `:root`. This overlay
-// rebrands all of it under `.taiv-calendar`:
-//   1. Re-scopes every `--sx-color-*` and `--sx-font-*` variable to Taiv tokens.
-//   2. Forces Poppins + Taiv type sizes/weights/colors on each grid text
-//      surface SX renders (day labels, day numbers, time gutter, event chips)
-//      — SX's per-selector `font-*` rules would otherwise override the
-//      cascade from the root `font-family`.
-//   3. Strips uppercase and wide letter-spacing — Taiv uses sentence case.
-//   4. Hides SX's own header (.sx__calendar-header) — Calendar renders its own
-//      Taiv-styled toolbar.
-// Sizes/weights below mirror the Taiv `label` (12/500), `body` (14/500),
-// `cardHeader` (16/600), and `sectionHeader` (20) variants from
-// `constants/font.ts`.
+// Schedule-X ships Material-Design typography and palette. This overlay
+// rebrands the *frame* (header chrome, day-of-week labels, date numbers,
+// time gutter, today bubble) under `.taiv-calendar`. Event chips intentionally
+// fall through to Schedule-X's native rendering driven by `calendarId` — that
+// path is robust and avoids the layout pitfalls that custom event renderers
+// historically introduced.
 const TAIV_CALENDAR_CSS = `
 .taiv-calendar {
   /* Brand */
   --sx-color-primary: ${primary[200]};
   --sx-color-on-primary: ${white};
   --sx-color-primary-container: ${primary[25]};
-  --sx-color-on-primary-container: ${primary[300]};
+  --sx-color-on-primary-container: ${primary[200]};
   --sx-color-surface-tint: ${primary[200]};
 
-  /* Secondary — mapped to neutral since Taiv doesn't expose a second brand hue */
+  /* Secondary — neutral, since Taiv has no second brand hue */
   --sx-color-secondary: ${neutral[200]};
   --sx-color-on-secondary: ${white};
   --sx-color-secondary-container: ${neutral[25]};
@@ -294,7 +244,7 @@ const TAIV_CALENDAR_CSS = `
 
   --sx-border: 1px solid ${neutral[50]};
 
-  /* Typography — sizes aligned to Taiv text variants (label 12 / body 14 / cardHeader 16 / sectionHeader 20) */
+  /* Typography — sizes aligned to Taiv text variants */
   --sx-font-extra-small: 12px;
   --sx-font-small: 14px;
   --sx-font-large: 16px;
@@ -306,14 +256,13 @@ const TAIV_CALENDAR_CSS = `
   color: ${neutral[300]};
 }
 
-/* Force Poppins onto every SX text surface — SX sets font-family per-selector,
-   so a root-level declaration alone doesn't cover nested elements. */
+/* Force Poppins on every SX text surface — SX sets font-family per-selector. */
 .taiv-calendar,
 .taiv-calendar * {
   font-family: 'Poppins', sans-serif !important;
 }
 
-/* Day-of-week labels: Taiv 'label' (12px, medium, neutral[200]), sentence case */
+/* Day-of-week labels: Taiv 'label' (12 / medium / neutral[200]), sentence case */
 .taiv-calendar .sx__week-grid__day-name,
 .taiv-calendar .sx__month-grid-day__header-day-name,
 .taiv-calendar .sx__month-agenda-day-name,
@@ -338,7 +287,7 @@ const TAIV_CALENDAR_CSS = `
   color: ${neutral[300]};
 }
 
-/* Week-view big date number — cardHeader-ish, medium weight */
+/* Week-view big date number — cardHeader-ish */
 .taiv-calendar .sx__week-grid__date-number {
   font-size: 20px;
   font-weight: 500;
@@ -364,22 +313,6 @@ const TAIV_CALENDAR_CSS = `
   letter-spacing: 0;
 }
 
-/* Event chips across all views */
-.taiv-calendar .sx__month-grid-event,
-.taiv-calendar .sx__date-grid-event,
-.taiv-calendar .sx__time-grid-event,
-.taiv-calendar .sx__month-agenda-event {
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.taiv-calendar .sx__time-grid-event-title,
-.taiv-calendar .sx__date-grid-event-text,
-.taiv-calendar .sx__month-agenda-event__title {
-  font-size: 12px;
-  font-weight: 600;
-}
-
 /* "N more" pill in cramped month cells */
 .taiv-calendar .sx__month-grid-day__events-more {
   font-size: 12px;
@@ -387,14 +320,12 @@ const TAIV_CALENDAR_CSS = `
   color: ${neutral[200]};
 }
 
-/* Month cells in SX use flex:1 with no min-height, so on wide containers
-   cells collapse into wide short rectangles. Floor each week row so cells
-   read closer to square while still growing to fill extra vertical space. */
+/* Floor month-grid week-row height so cells read closer to square. */
 .taiv-calendar .sx__month-grid-week {
   min-height: 120px;
 }
 
-/* Always hide Schedule-X's internal header — Calendar renders its own toolbar */
+/* Always hide Schedule-X's internal header — we own the toolbar surface. */
 .taiv-calendar .sx__calendar-header {
   display: none !important;
 }
@@ -404,55 +335,31 @@ const TAIV_CALENDAR_CSS = `
 // Component
 // ────────────────────────────────────────────────────────────────────────────
 
-const Calendar = <TData,>({
+const Calendar = ({
   events,
+  calendars = TAIV_CALENDAR_PALETTE,
   view,
   onViewChange,
   views = ['month', 'week', 'day'],
   currentDate,
   onDateChange,
-  renderEvent,
-  backgroundEvents,
-  onEventSelect,
-  onSlotSelect,
-  onEventDrop,
-  onEventResize,
+  onEventClick,
+  onClickDateTime,
+  onEventUpdate,
   readOnly = false,
   minuteStep = 15,
   toolbar,
   firstDayOfWeek = 0,
   dayBoundaries,
-}: CalendarProps<TData>) => {
-  // Keep a live map of original events so renderEvent / callbacks can return
-  // the untouched `data` payload without stringify round-tripping.
-  const originalsRef = useRef<Map<string, CalendarEvent<TData>>>(new Map());
-  useEffect(() => {
-    originalsRef.current = new Map(events.map((e) => [e.id, e]));
-  }, [events]);
-
-  // Single source of truth for the "currently focused" date. Seeded from
-  // `currentDate`, synced both ways — mirrors the prop when controlled and
-  // drives SX + the built-in toolbar regardless.
+}: CalendarProps) => {
+  // Single source of truth for the focused date. Synced both ways with
+  // the `currentDate` prop and Schedule-X's internal datePickerState.
   const [internalDate, setInternalDate] = useState<Date>(
     currentDate ?? new Date(),
   );
   useEffect(() => {
     if (currentDate) setInternalDate(currentDate);
   }, [currentDate]);
-
-  const sxEvents = useMemo(() => events.map(toSxEvent), [events]);
-
-  const sxBackgroundEvents = useMemo(
-    () =>
-      backgroundEvents?.map((b, i) => ({
-        _id: `__bg_${i}`,
-        end: dayjs(b.end).format(DT_FMT),
-        start: dayjs(b.start).format(DT_FMT),
-        style: b.style as Partial<CSSStyleDeclaration>,
-        title: b.title,
-      })),
-    [backgroundEvents],
-  );
 
   const sxViews = useMemo(
     () =>
@@ -481,33 +388,20 @@ const Calendar = <TData,>({
 
   const calendarApp = useNextCalendarApp(
     {
-      // biome-ignore lint/suspicious/noExplicitAny: Schedule-X background-event type uses CSSStyleDeclaration
-      backgroundEvents: sxBackgroundEvents as any,
-      // Taiv color palette → SX native `calendars` map. Events reference these
-      // via `calendarId` (set in `toSxEvent` from `event.color`), and SX paints
-      // container / border / text off `lightColors`.
-      calendars: taivSxCalendars,
+      calendars,
       callbacks: {
-        onBeforeEventUpdate: (oldE, newE) => {
+        // DnD + resize merge into one callback. Schedule-X already mutates
+        // the event's start/end before this fires, so we just forward.
+        onBeforeEventUpdate: (_old, next) => {
           if (readOnly) return false;
-          const orig = originalsRef.current.get(String(oldE.id));
-          const mappedOld = orig ?? fromSxEvent(oldE as SxEvent);
-          const mappedNew = fromSxEvent(newE as SxEvent, orig);
-          // Heuristic: DnD moves start; resize holds start and shifts end.
-          const startMoved = +mappedOld.start !== +mappedNew.start;
-          if (startMoved) onEventDrop?.(mappedNew, mappedOld);
-          else onEventResize?.(mappedNew, mappedOld);
+          onEventUpdate?.(next as CalendarEventExternal);
           return true;
         },
-        onClickDateTime: (dt) => {
-          if (!onSlotSelect) return;
-          const start = dayjs(dt, DT_FMT).toDate();
-          const end = dayjs(dt, DT_FMT).add(minuteStep, 'minute').toDate();
-          onSlotSelect({ end, start });
+        onClickDateTime: (iso) => {
+          onClickDateTime?.(iso);
         },
         onEventClick: (e) => {
-          const orig = originalsRef.current.get(String(e.id));
-          onEventSelect?.(fromSxEvent(e as SxEvent, orig));
+          onEventClick?.(e as CalendarEventExternal);
         },
         onSelectedDateUpdate: (d) => {
           const next = dayjs(d, D_FMT).toDate();
@@ -517,7 +411,7 @@ const Calendar = <TData,>({
       },
       dayBoundaries,
       defaultView: toSxView(view),
-      events: sxEvents,
+      events,
       firstDayOfWeek: firstDayOfWeek as 0 | 1 | 2 | 3 | 4 | 5 | 6,
       selectedDate: dayjs(internalDate).format(D_FMT),
       views: sxViews,
@@ -525,42 +419,38 @@ const Calendar = <TData,>({
     plugins,
   );
 
-  // ── External → Schedule-X sync ────────────────────────────────────────────
+  // ── External → Schedule-X sync ──────────────────────────────────────────
 
-  // Events: re-sync when the incoming events array identity changes.
+  // Re-sync events when the consumer-supplied array identity changes.
   useEffect(() => {
     if (!calendarApp) return;
-    calendarApp.events.set(sxEvents);
-  }, [sxEvents, calendarApp]);
+    calendarApp.events.set(events);
+  }, [events, calendarApp]);
 
-  // View: push external view changes down. Uses internalDate so the view
-  // switch lands on the toolbar's currently-focused day.
+  // Push view changes from props down into Schedule-X.
   useEffect(() => {
     if (!calendarApp) return;
     const target = toSxView(view);
-    // biome-ignore lint/suspicious/noExplicitAny: $app is private in TS but stable at runtime
+    // biome-ignore lint/suspicious/noExplicitAny: $app is private in TS but stable
     const state = (calendarApp as any).$app?.calendarState;
     if (state?.view?.value !== target) {
       state?.setView?.(target, dayjs(internalDate).format(D_FMT));
     }
   }, [view, internalDate, calendarApp]);
 
-  // Date: push internalDate into SX's selectedDate signal so prev/next/today
-  // from the built-in toolbar (and `currentDate` prop changes) both drive SX.
+  // Push internalDate into SX's selectedDate signal so the toolbar's
+  // prev/next/today buttons drive the calendar grid.
   useEffect(() => {
     if (!calendarApp) return;
     const target = dayjs(internalDate).format(D_FMT);
     // biome-ignore lint/suspicious/noExplicitAny: writing into a preact Signal
-    const selectedDateSignal = (calendarApp as any).$app?.datePickerState
-      ?.selectedDate;
-    if (selectedDateSignal && selectedDateSignal.value !== target) {
-      selectedDateSignal.value = target;
-    }
+    const sig = (calendarApp as any).$app?.datePickerState?.selectedDate;
+    if (sig && sig.value !== target) sig.value = target;
   }, [internalDate, calendarApp]);
 
-  // ── Schedule-X → External sync ────────────────────────────────────────────
+  // ── Schedule-X → External sync ──────────────────────────────────────────
 
-  // Subscribe to view changes Schedule-X drives (e.g. via its default toolbar).
+  // Subscribe to view changes Schedule-X drives internally.
   useEffect(() => {
     if (!calendarApp) return;
     // biome-ignore lint/suspicious/noExplicitAny: preact signal has .subscribe
@@ -573,7 +463,7 @@ const Calendar = <TData,>({
     return typeof unsub === 'function' ? unsub : undefined;
   }, [calendarApp, onViewChange, view]);
 
-  // ── Default toolbar helpers ───────────────────────────────────────────────
+  // ── Default toolbar ─────────────────────────────────────────────────────
 
   const shiftDate = (amount: number) => {
     const unit = view === 'day' ? 'day' : view === 'week' ? 'week' : 'month';
@@ -581,49 +471,17 @@ const Calendar = <TData,>({
     setInternalDate(next);
     onDateChange?.(next);
   };
-
   const goToday = () => {
     const next = new Date();
     setInternalDate(next);
     onDateChange?.(next);
   };
-
   const dateLabel = useMemo(
     () =>
       dayjs(internalDate).format(view === 'day' ? 'MMMM D, YYYY' : 'MMMM YYYY'),
     [internalDate, view],
   );
 
-  // ── Custom event rendering ────────────────────────────────────────────────
-  // Only register `customComponents` when the consumer provides `renderEvent`.
-  // Schedule-X's native chip rendering already honors `calendarId` → Taiv
-  // palette colors via `taivSxCalendars`, and forcing a custom component for
-  // every event type (even a passthrough) breaks SX's internal layout paths.
-
-  const customComponents = useMemo(() => {
-    if (!renderEvent) return undefined;
-    const make = (v: CalendarView) => {
-      const Comp = ({ calendarEvent }: { calendarEvent: SxEvent }) => {
-        const orig = originalsRef.current.get(String(calendarEvent.id));
-        const mapped = orig ?? fromSxEvent<TData>(calendarEvent);
-        return <>{renderEvent(mapped, v)}</>;
-      };
-      Comp.displayName = `TaivCalendarEvent(${v})`;
-      return Comp;
-    };
-    return {
-      dateGridEvent: make(view === 'day' ? 'day' : 'week'),
-      monthAgendaEvent: make('month'),
-      monthGridEvent: make('month'),
-      timeGridEvent: make(view === 'day' ? 'day' : 'week'),
-    };
-  }, [renderEvent, view]);
-
-  // ── Render ────────────────────────────────────────────────────────────────
-
-  // Schedule-X's internal header is always hidden — we own the toolbar
-  // surface. Consumers opt in to the default Taiv toolbar, compose their own,
-  // or pass `toolbar={null}` to render nothing.
   const defaultToolbar = (
     <Group
       position='apart'
@@ -665,10 +523,7 @@ const Calendar = <TData,>({
     <div className='taiv-calendar'>
       <style>{TAIV_CALENDAR_CSS}</style>
       {resolvedToolbar}
-      <ScheduleXCalendar
-        calendarApp={calendarApp}
-        customComponents={customComponents}
-      />
+      <ScheduleXCalendar calendarApp={calendarApp} />
     </div>
   );
 };
