@@ -263,21 +263,21 @@ export const componentVariants = {
   success: {
     "&:active": {
       background: "white",
-      border: `1px solid ${success[100]}`,
-      color: success[100],
+      border: `1px solid ${success[200]}`,
+      color: success[200],
     },
     "&:active:hover": {
       background: "white",
-      border: `1px solid ${success[100]}`,
-      color: success[100],
+      border: `1px solid ${success[200]}`,
+      color: success[200],
     },
     "&:disabled": disabled,
     "&:hover": {
-      background: success[100],
-      border: `1px solid ${success[100]}`,
+      background: success[200],
+      border: `1px solid ${success[200]}`,
     },
     "&:toggled": {
-      background: success[100],
+      background: success[200],
     },
     "&[data-loading]": {
       "& .mantine-Button-icon svg": {
@@ -285,8 +285,8 @@ export const componentVariants = {
       },
       "&:before": loading,
     },
-    background: success[200],
-    border: `1px solid ${success[200]}`,
+    background: success[300],
+    border: `1px solid ${success[300]}`,
     color: "white",
   },
   tertiary: {

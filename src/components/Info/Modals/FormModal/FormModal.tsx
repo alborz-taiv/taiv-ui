@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal as MantineModal } from "@mantine/core";
+import type { CSSObject } from "@mantine/core";
 import { neutral } from "../../../../constants/colors";
 import { spacing } from '../../../../constants/spacing';
 import { Stack } from "../../../Layout/Stack/Stack";
@@ -7,6 +8,21 @@ import { Center } from "../../../Layout/Center/Center";
 import { modalVariants } from "../variants";
 import { Group } from "../../../Layout/Group/Group";
 import { Button, ButtonProps } from "../../../Inputs/Buttons/Button/Button";
+
+/** Style overrides merged into Mantine `Modal` `styles` (object form only). */
+export type FormModalStylesOverride = Partial<
+  Record<
+    | "body"
+    | "close"
+    | "content"
+    | "header"
+    | "inner"
+    | "overlay"
+    | "root"
+    | "title",
+    CSSObject
+  >
+>;
 
 export interface FormModalProps {
   opened: boolean;
@@ -24,6 +40,9 @@ export interface FormModalProps {
   confirmRightIcon?: React.ReactNode;
   cancelLeftIcon?: React.ReactNode;
   confirmVariant?: ButtonProps['variant'];
+  fullScreen?: boolean;
+  /** Merged into Mantine `Modal` `styles` (e.g. lock body scroll when children use an inner `ScrollArea`). */
+  modalStyles?: FormModalStylesOverride;
 }
 
 export const FormModal = ({
@@ -42,6 +61,8 @@ export const FormModal = ({
   confirmRightIcon,
   cancelLeftIcon,
   confirmVariant,
+  modalStyles,
+  fullScreen = false,
 }: FormModalProps) => {
   const selectedVariant = modalVariants[modalVariant];
   const iconContainer = {
@@ -66,6 +87,7 @@ export const FormModal = ({
       opened={opened}
       onClose={onClose}
       centered
+      fullScreen={fullScreen}
       radius="16px"
       overlayProps={{
         opacity: 0,
@@ -85,13 +107,10 @@ export const FormModal = ({
         },
       }}
       styles={{
-        content: {
-          borderRadius: "8px",
-          border: `1px solid ${neutral[50]}`,
-          boxShadow: "0px 0px 19px 0px #00000040",
-        },
-        header: {
-          padding: spacing.sm,
+        ...modalStyles,
+        body: {
+          padding: `0 ${spacing.xxl} ${spacing.lg} ${spacing.xxl}`,
+          ...modalStyles?.body,
         },
         close: {
           borderRadius: "16px",
@@ -104,18 +123,37 @@ export const FormModal = ({
           "&:active": {
             transform: "none",
           },
+          ...modalStyles?.close,
         },
-        body: {
-          padding: `0 ${spacing.xxl} ${spacing.lg} ${spacing.xxl}`,
+        content: {
+          borderRadius: "8px",
+          border: `1px solid ${neutral[50]}`,
+          boxShadow: "0px 0px 19px 0px #00000040",
+          ...modalStyles?.content,
+          /**
+           * Mantine ModalRoot injects `overflow-y: auto` on content via a hashed class;
+           * plain `styles.content` can lose the cascade — `!important` beats it. Spread
+           * `modalStyles?.content` before this so consumer overrides still win when needed.
+           */
+          ...( {
+            overflowX: "hidden !important",
+            overflowY: "hidden !important",
+          } as unknown as CSSObject ),
+        },
+        header: {
+          padding: spacing.sm,
+          ...modalStyles?.header,
         },
       }}
     >
       <Center h="100%" w="100%">
-        <Stack gap="20px" h="100%" w="100%" align="center">
-          <Stack gap={spacing.lg} align="center">
-            <Center style={iconContainer}>{modalIcon}</Center>
+        <Stack gap="20px" h="100%" w="100%" align="stretch" style={{ minWidth: 0 }}>
+          <Stack gap={spacing.lg} align="stretch" w="100%" style={{ minWidth: 0 }}>
+            <Center mx="auto" style={iconContainer}>
+              {modalIcon}
+            </Center>
             {children && (
-              <Stack gap={spacing.xxs} align="center">
+              <Stack gap={spacing.xxs} align="stretch" w="100%" style={{ minWidth: 0, maxWidth: "100%" }}>
                 {children}
               </Stack>
             )}

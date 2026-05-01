@@ -2,7 +2,7 @@ import React from 'react';
 import { DatePickerInput as MantineDatePickerInput, DatePickerInputProps as MantineDatePickerInputProps } from '@mantine/dates';
 import { createStyles } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral } from '../../../../constants/colors';
+import { neutral, primary, white } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../../Dropdowns/shared/sizes';
@@ -64,6 +64,17 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
       '& .mantine-Day-day[data-selected="true"]': {
         fontFamily: 'Poppins, sans-serif',
         borderRadius: '50%',
+        backgroundColor: primary[200],
+        color: white,
+        boxShadow: 'none',
+        '&:hover': {
+          backgroundColor: primary[300],
+          color: white,
+        },
+        '&:focus-visible': {
+          outline: `2px solid ${primary[200]}`,
+          outlineOffset: 2,
+        },
       },
       '& .mantine-Day-day[data-in-range="true"]': {
         fontFamily: 'Poppins, sans-serif',

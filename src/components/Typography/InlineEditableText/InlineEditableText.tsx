@@ -140,7 +140,7 @@ export const InlineEditableText = ({
       style={{
         alignItems: 'center',
         display: 'inline-flex',
-        gap: spacing.xs,
+        gap: spacing.md,
         maxWidth: maxWidth ? `${maxWidth}px` : '100%',
         minWidth: 0,
       }}
@@ -175,7 +175,7 @@ export const InlineEditableText = ({
       </button>
       {hidePencil ? null : (
         <IconButton aria-label={`Edit ${ariaLabel}`} onClick={enterEdit} subtle>
-          <IconPencil />
+          <IconPencil size={20} />
         </IconButton>
       )}
     </span>

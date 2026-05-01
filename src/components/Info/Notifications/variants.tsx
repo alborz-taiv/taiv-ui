@@ -31,9 +31,9 @@ export const componentVariants = {
   },
   success: {
     autoClose: 4000,
-    color: success[200],
+    color: success[300],
     defaultTitle: 'Success!',
-    icon: <i className='fas fa-check-circle' style={{ color: success[200] }} />,
+    icon: <i className='fas fa-check-circle' style={{ color: success[300] }} />,
   },
   warning: {
     autoClose: 4000,

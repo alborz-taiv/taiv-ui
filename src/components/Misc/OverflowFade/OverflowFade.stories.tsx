@@ -25,9 +25,9 @@ const meta: Meta<typeof OverflowFade> = {
     docs: {
       description: {
         component:
-          'Wraps a horizontal-scroll strip with bidirectional gradient fades that auto-detect overflow. ' +
-          'The left fade appears once the user has scrolled away from the start; the right fade disappears ' +
-          'when scrolled to the end. Both are hidden when the content fits without scrolling.\n\n' +
+          'Bidirectional gradient fades for horizontal or vertical overflow. Horizontal (default): left/right fades ' +
+          'on `overflow-x` scroll. Vertical (`orientation="vertical"`): top/bottom fades — pass `maxHeight` so ' +
+          'the viewport clips. Fades auto-hide when content fits.\n\n' +
           'The scrollbar is hidden by design — the gradient is the affordance.',
       },
     },
@@ -138,6 +138,30 @@ export const OnNonWhiteSurface: Story = {
           </Group>
         </OverflowFade>
       </Stack>
+    </div>
+  ),
+};
+
+export const Vertical: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Vertical scroll with top/bottom fades. Requires `maxHeight` on the viewport so content can overflow.',
+      },
+    },
+  },
+  render: () => (
+    <div style={{ background: 'white', maxWidth: 360, padding: spacing.md }}>
+      <OverflowFade fadeWidth={48} maxHeight={220} orientation='vertical'>
+        <Stack gap={spacing.sm}>
+          {Array.from({ length: 14 }, (_, i) => (
+            <Text key={i} variant='body'>
+              Row {i + 1} — scroll to see top and bottom edge fades.
+            </Text>
+          ))}
+        </Stack>
+      </OverflowFade>
     </div>
   ),
 };

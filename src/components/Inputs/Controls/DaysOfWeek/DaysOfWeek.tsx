@@ -1,5 +1,4 @@
 import { UnstyledButton } from '@mantine/core';
-import React from 'react';
 import { neutral, primary, white } from '../../../../constants/colors';
 import { fontBase, fontWeight } from '../../../../constants/font';
 import { spacing } from '../../../../constants/spacing';
@@ -45,6 +44,12 @@ export interface DaysOfWeekProps {
   value: DayKey[];
   /** Omit to render as read-only display chips (used in EventCard meta). */
   onChange?: (next: DayKey[]) => void;
+  /**
+   * When true, the strip is non-interactive and styled as disabled (dimmed, no hover).
+   * `onChange` is ignored — callers do not need to unset it.
+   * Per-day {@link disabledDays} styling still applies.
+   */
+  disabled?: boolean;
   size?: keyof typeof sizes;
   /** Days that cannot be toggled — rendered grayed out with not-allowed cursor. */
   disabledDays?: DayKey[];
@@ -55,6 +60,7 @@ export interface DaysOfWeekProps {
 const DaysOfWeek = ({
   value,
   onChange,
+  disabled: stripDisabled = false,
   size = 'md',
   disabledDays,
   startOfWeek = 'mon',
@@ -62,12 +68,12 @@ const DaysOfWeek = ({
 }: DaysOfWeekProps) => {
   const order = startOfWeek === 'mon' ? ALL_DAYS_MON_FIRST : ALL_DAYS_SUN_FIRST;
   const selected = new Set(value);
-  const disabled = new Set(disabledDays ?? []);
+  const disabledDaySet = new Set(disabledDays ?? []);
   const { dim, fontSize, gap } = sizes[size];
-  const readOnly = !onChange;
+  const allowChange = Boolean(onChange) && !stripDisabled;
 
   const toggle = (day: DayKey) => {
-    if (!onChange || disabled.has(day)) return;
+    if (!onChange || stripDisabled || disabledDaySet.has(day)) return;
     if (selected.has(day)) {
       onChange(value.filter((d) => d !== day));
     } else {
@@ -76,27 +82,34 @@ const DaysOfWeek = ({
   };
 
   return (
-    <div
+    <fieldset
       className={className}
+      disabled={stripDisabled}
       style={{
         alignItems: 'center',
+        border: 'none',
         display: 'inline-flex',
         gap: `${gap}px`,
+        margin: 0,
+        minWidth: 0,
+        padding: 0,
+        ...(stripDisabled ? { opacity: 0.5 } : {}),
       }}
     >
       {order.map((day) => {
         const isActive = selected.has(day);
-        const isDisabled = disabled.has(day);
-        // Only render hover affordance when interactive AND not disabled.
-        const interactive = !readOnly && !isDisabled;
+        const isDayDisabled = disabledDaySet.has(day);
+        // Hover / click only when the strip allows changes and this day isn't disabled.
+        const interactive = allowChange && !isDayDisabled;
+        const nonInteractive = !interactive;
         return (
           <UnstyledButton
             aria-label={day}
             aria-pressed={isActive}
-            component={readOnly ? 'span' : 'button'}
+            component={interactive ? 'button' : 'span'}
             data-active={isActive || undefined}
-            data-disabled={isDisabled || undefined}
-            disabled={isDisabled || readOnly}
+            data-disabled={isDayDisabled || undefined}
+            disabled={nonInteractive}
             key={day}
             onClick={interactive ? () => toggle(day) : undefined}
             sx={{
@@ -106,12 +119,12 @@ const DaysOfWeek = ({
               borderRadius: `${spacing.xs}`,
               color: isActive
                 ? white
-                : isDisabled
+                : isDayDisabled
                   ? neutral[100]
                   : neutral[300],
               cursor: interactive
                 ? 'pointer'
-                : isDisabled
+                : isDayDisabled
                   ? 'not-allowed'
                   : 'default',
               display: 'inline-flex',
@@ -135,7 +148,7 @@ const DaysOfWeek = ({
           </UnstyledButton>
         );
       })}
-    </div>
+    </fieldset>
   );
 };
 
