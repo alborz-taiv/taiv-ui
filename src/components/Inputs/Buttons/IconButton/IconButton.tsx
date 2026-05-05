@@ -1,7 +1,7 @@
 import { ReactElement, forwardRef } from 'react';
 import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@mantine/core';
 import { componentSizes } from './sizes';
-import { componentVariants as baseVariants, subtleVariants } from '../shared/variants';
+import { HOVER_MEDIA, componentVariants as baseVariants, subtleVariants } from '../shared/variants';
 import { neutral } from '../../../../constants/colors';
 
 export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | 'rightIcon' | 'radius'> {
@@ -39,9 +39,11 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({ onCl
         ...subtleVariants[variant],
         border: `1px solid ${neutral[50]}`,
         background: 'white',
-        '&:hover': {
-          background: neutral[50],
-          border: `1px solid ${neutral[50]}`,
+        [HOVER_MEDIA]: {
+          '&:hover': {
+            background: neutral[50],
+            border: `1px solid ${neutral[50]}`,
+          },
         },
         '&:active': {
           background: 'white',

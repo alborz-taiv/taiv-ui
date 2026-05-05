@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@mantine/core';
 import { fontBase, fontWeight } from '../../../../constants/font';
 import { componentSizes } from './sizes';
-import { componentVariants, subtleVariants } from '../shared/variants';
+import { HOVER_MEDIA, componentVariants, subtleVariants } from '../shared/variants';
 import { neutral } from '../../../../constants/colors';
 
 export interface ButtonProps extends MantineButtonProps {
@@ -21,10 +21,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ onClick, siz
 
   const getVariantStyles = () => {
     if (toggled) {
+      // Toggled hover override is gated behind HOVER_MEDIA so it doesn't
+      // contribute to sticky-hover on touch devices. `:hover` never fires
+      // on touch anyway, so no behavior change there — this just keeps the
+      // CSS cohesive.
       return {
         ...selectedVariant,
         ...selectedVariant['&:toggled'],
-        '&:hover': selectedVariant['&:toggled'],
+        [HOVER_MEDIA]: {
+          '&:hover': selectedVariant['&:toggled'],
+        },
       };
     }
     return selectedVariant;
@@ -36,9 +42,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ onClick, siz
         ...subtleVariants[variant],
         border: `1px solid ${neutral[50]}`,
         background: 'white',
-        '&:hover': {
-          background: neutral[50],
-          border: `1px solid ${neutral[50]}`,
+        [HOVER_MEDIA]: {
+          '&:hover': {
+            background: neutral[50],
+            border: `1px solid ${neutral[50]}`,
+          },
         },
         '&:active': {
           background: 'white',

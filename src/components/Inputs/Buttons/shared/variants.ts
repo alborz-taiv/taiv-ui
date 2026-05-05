@@ -33,6 +33,15 @@ const ghostDisabled = {
   color: "rgba(255, 255, 255, 0.4)",
 } as const;
 
+// Hover styles are gated behind this media query so they only apply to
+// devices with a true hover-capable pointer (mouse / trackpad). Touch
+// devices — iOS Safari especially — preserve `:hover` after a tap ends
+// ("sticky hover"), which makes buttons look stuck in their pressed
+// state until the user taps elsewhere. Wrapping `:hover` and
+// `:active:hover` in this query is the standard fix; `:active` still
+// fires during the tap so users still get press feedback.
+export const HOVER_MEDIA = "@media (hover: hover) and (pointer: fine)";
+
 export const componentVariants = {
   cancel: {
     "&:active": {
@@ -40,16 +49,7 @@ export const componentVariants = {
       border: `1px solid ${error[100]}`,
       color: error[100],
     },
-    "&:active:hover": {
-      background: "white",
-      border: `1px solid ${error[100]}`,
-      color: error[100],
-    },
     "&:disabled": disabled,
-    "&:hover": {
-      background: error[100],
-      border: `1px solid ${error[100]}`,
-    },
     "&:toggled": {
       background: error[100],
       color: "white",
@@ -59,6 +59,17 @@ export const componentVariants = {
         stroke: "white",
       },
       "&:before": loading,
+    },
+    [HOVER_MEDIA]: {
+      "&:active:hover": {
+        background: "white",
+        border: `1px solid ${error[100]}`,
+        color: error[100],
+      },
+      "&:hover": {
+        background: error[100],
+        border: `1px solid ${error[100]}`,
+      },
     },
     background: error[200],
     border: `1px solid ${error[200]}`,
@@ -70,17 +81,7 @@ export const componentVariants = {
       border: "1px solid rgba(255, 255, 255, 0.32)",
       color: "white",
     },
-    "&:active:hover": {
-      background: "rgba(255, 255, 255, 0.18)",
-      border: "1px solid rgba(255, 255, 255, 0.32)",
-      color: "white",
-    },
     "&:disabled": ghostDisabled,
-    "&:hover": {
-      background: "rgba(255, 255, 255, 0.14)",
-      border: "1px solid rgba(255, 255, 255, 0.24)",
-      color: "white",
-    },
     "&:toggled": {
       background: "rgba(255, 255, 255, 0.18)",
       border: "1px solid rgba(255, 255, 255, 0.32)",
@@ -91,6 +92,18 @@ export const componentVariants = {
         stroke: "white",
       },
       "&:before": loading,
+    },
+    [HOVER_MEDIA]: {
+      "&:active:hover": {
+        background: "rgba(255, 255, 255, 0.18)",
+        border: "1px solid rgba(255, 255, 255, 0.32)",
+        color: "white",
+      },
+      "&:hover": {
+        background: "rgba(255, 255, 255, 0.14)",
+        border: "1px solid rgba(255, 255, 255, 0.24)",
+        color: "white",
+      },
     },
     background: "rgba(255, 255, 255, 0.08)",
     border: "1px solid rgba(255, 255, 255, 0.16)",
@@ -104,19 +117,10 @@ export const componentVariants = {
       background: neutral[25],
       color: primary[200],
     },
-    "&:active:hover": {
-      background: neutral[25],
-      color: primary[200],
-    },
     "&:disabled": {
       background: "transparent",
       color: neutral[100],
     },
-    "&:hover": {
-      background: "transparent",
-      color: neutral[200],
-    },
-
     "&:toggled": {
       background: neutral[25],
       color: primary[200],
@@ -126,6 +130,16 @@ export const componentVariants = {
         stroke: neutral[200],
       },
       "&:before": loading,
+    },
+    [HOVER_MEDIA]: {
+      "&:active:hover": {
+        background: neutral[25],
+        color: primary[200],
+      },
+      "&:hover": {
+        background: "transparent",
+        color: neutral[200],
+      },
     },
     background: "transparent",
     border: "none",
@@ -140,17 +154,9 @@ export const componentVariants = {
       background: error[25],
       color: error[200],
     },
-    "&:active:hover": {
-      background: error[25],
-      color: error[200],
-    },
     "&:disabled": {
       background: "transparent",
       color: neutral[100],
-    },
-    "&:hover": {
-      background: "transparent",
-      color: error[100],
     },
     "&:toggled": {
       background: error[25],
@@ -161,6 +167,16 @@ export const componentVariants = {
         stroke: error[200],
       },
       "&:before": loading,
+    },
+    [HOVER_MEDIA]: {
+      "&:active:hover": {
+        background: error[25],
+        color: error[200],
+      },
+      "&:hover": {
+        background: "transparent",
+        color: error[100],
+      },
     },
     background: "transparent",
     border: "none",
@@ -173,16 +189,8 @@ export const componentVariants = {
       border: `1px solid ${primary[200]}`,
       color: primary[200],
     },
-    "&:active:hover": {
-      background: "white",
-      border: `1px solid ${primary[200]}`,
-      color: primary[200],
-    },
     "&:disabled": {
       ...disabled,
-    },
-    "&:hover": {
-      background: `linear-gradient(to right, ${primary[300]}, ${primary[300]})`,
     },
     "&:toggled": {
       background: `${primary[200]}`,
@@ -194,6 +202,16 @@ export const componentVariants = {
       },
       "&:before": loading,
     },
+    [HOVER_MEDIA]: {
+      "&:active:hover": {
+        background: "white",
+        border: `1px solid ${primary[200]}`,
+        color: primary[200],
+      },
+      "&:hover": {
+        background: `linear-gradient(to right, ${primary[300]}, ${primary[300]})`,
+      },
+    },
     background: `linear-gradient(to right, ${primary[200]}, ${primary[200]})`,
     border: `1px solid ${primary[200]}`,
     color: "white",
@@ -204,17 +222,7 @@ export const componentVariants = {
       border: `1px solid ${neutral[200]}`,
       color: neutral[200],
     },
-    "&:active:hover": {
-      background: neutral[100],
-      border: `1px solid ${neutral[200]}`,
-      color: neutral[200],
-    },
     "&:disabled": disabled,
-    "&:hover": {
-      background: neutral[100],
-      border: `1px solid ${neutral[100]}`,
-      color: "white",
-    },
     "&:toggled": {
       background: neutral[100],
       color: "neutral[200]",
@@ -224,6 +232,18 @@ export const componentVariants = {
         stroke: neutral[200],
       },
       "&:before": loading,
+    },
+    [HOVER_MEDIA]: {
+      "&:active:hover": {
+        background: neutral[100],
+        border: `1px solid ${neutral[200]}`,
+        color: neutral[200],
+      },
+      "&:hover": {
+        background: neutral[100],
+        border: `1px solid ${neutral[100]}`,
+        color: "white",
+      },
     },
     background: "white",
     border: `1px solid ${neutral[200]}`,
@@ -235,17 +255,7 @@ export const componentVariants = {
       border: `1px solid ${error[200]}`,
       color: error[200],
     },
-    "&:active:hover": {
-      background: "white",
-      border: `1px solid ${error[200]}`,
-      color: error[200],
-    },
     "&:disabled": disabled,
-    "&:hover": {
-      background: error[25],
-      border: `1px solid ${error[100]}`,
-      color: error[200],
-    },
     "&:toggled": {
       background: error[100],
       color: "white",
@@ -255,6 +265,18 @@ export const componentVariants = {
         stroke: error[200],
       },
       "&:before": loading,
+    },
+    [HOVER_MEDIA]: {
+      "&:active:hover": {
+        background: "white",
+        border: `1px solid ${error[200]}`,
+        color: error[200],
+      },
+      "&:hover": {
+        background: error[25],
+        border: `1px solid ${error[100]}`,
+        color: error[200],
+      },
     },
     background: "white",
     border: `1px solid ${error[200]}`,
@@ -266,16 +288,7 @@ export const componentVariants = {
       border: `1px solid ${success[200]}`,
       color: success[200],
     },
-    "&:active:hover": {
-      background: "white",
-      border: `1px solid ${success[200]}`,
-      color: success[200],
-    },
     "&:disabled": disabled,
-    "&:hover": {
-      background: success[200],
-      border: `1px solid ${success[200]}`,
-    },
     "&:toggled": {
       background: success[200],
     },
@@ -284,6 +297,17 @@ export const componentVariants = {
         stroke: "white",
       },
       "&:before": loading,
+    },
+    [HOVER_MEDIA]: {
+      "&:active:hover": {
+        background: "white",
+        border: `1px solid ${success[200]}`,
+        color: success[200],
+      },
+      "&:hover": {
+        background: success[200],
+        border: `1px solid ${success[200]}`,
+      },
     },
     background: success[300],
     border: `1px solid ${success[300]}`,
@@ -295,17 +319,7 @@ export const componentVariants = {
       border: `1px solid ${primary[200]}`,
       color: primary[200],
     },
-    "&:active:hover": {
-      background: primary[100],
-      border: `1px solid ${primary[200]}`,
-      color: primary[200],
-    },
     "&:disabled": disabled,
-    "&:hover": {
-      background: primary[100],
-      border: `1px solid ${primary[100]}`,
-      color: "white",
-    },
     "&:toggled": {
       background: primary[100],
       color: primary[200],
@@ -316,6 +330,18 @@ export const componentVariants = {
       },
       "&:before": loading,
     },
+    [HOVER_MEDIA]: {
+      "&:active:hover": {
+        background: primary[100],
+        border: `1px solid ${primary[200]}`,
+        color: primary[200],
+      },
+      "&:hover": {
+        background: primary[100],
+        border: `1px solid ${primary[100]}`,
+        color: "white",
+      },
+    },
     background: "white",
     border: `1px solid ${primary[200]}`,
     color: primary[200],
@@ -325,17 +351,9 @@ export const componentVariants = {
       background: "transparent",
       color: primary[200],
     },
-    "&:active:hover": {
-      background: "transparent",
-      color: primary[200],
-    },
     "&:disabled": {
       background: "transparent",
       color: neutral[100],
-    },
-    "&:hover": {
-      background: "transparent",
-      color: primary[200],
     },
     "&:toggled": {
       background: "transparent",
@@ -346,6 +364,16 @@ export const componentVariants = {
         stroke: neutral[200],
       },
       "&:before": loading,
+    },
+    [HOVER_MEDIA]: {
+      "&:active:hover": {
+        background: "transparent",
+        color: primary[200],
+      },
+      "&:hover": {
+        background: "transparent",
+        color: primary[200],
+      },
     },
     background: "transparent",
     border: "none",
@@ -360,16 +388,7 @@ export const componentVariants = {
       border: `1px solid ${warning[100]}`,
       color: warning[100],
     },
-    "&:active:hover": {
-      background: "white",
-      border: `1px solid ${warning[100]}`,
-      color: warning[100],
-    },
     "&:disabled": disabled,
-    "&:hover": {
-      background: warning[100],
-      border: `1px solid ${warning[100]}`,
-    },
     "&:toggled": {
       background: warning[100],
     },
@@ -378,6 +397,17 @@ export const componentVariants = {
         stroke: "white",
       },
       "&:before": loading,
+    },
+    [HOVER_MEDIA]: {
+      "&:active:hover": {
+        background: "white",
+        border: `1px solid ${warning[100]}`,
+        color: warning[100],
+      },
+      "&:hover": {
+        background: warning[100],
+        border: `1px solid ${warning[100]}`,
+      },
     },
     background: warning[200],
     border: `1px solid ${warning[200]}`,

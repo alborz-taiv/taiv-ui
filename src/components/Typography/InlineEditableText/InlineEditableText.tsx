@@ -1,5 +1,6 @@
 import { IconPencil } from '@tabler/icons-react';
 import { useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import { neutral, primary, white } from '../../../constants/colors';
 import { fontStyle } from '../../../constants/font';
 import { spacing } from '../../../constants/spacing';
@@ -74,11 +75,21 @@ export const InlineEditableText = ({
 
   const enterEdit = () => {
     setDraft(value);
-    setEditing(true);
-    requestAnimationFrame(() => {
-      inputRef.current?.focus();
-      inputRef.current?.select();
-    });
+    // `flushSync` forces React to render the input synchronously so it's in
+    // the DOM before this function returns — letting us call focus/select
+    // INSIDE the original click handler. Critical on iOS Safari, which only
+    // honors programmatic `input.focus()` (and opens the on-screen keyboard)
+    // when the call is inside an active user-gesture window. The previous
+    // `requestAnimationFrame` deferral fired ~16ms later, outside the window,
+    // so the keyboard never appeared and the user had to tap multiple times.
+    flushSync(() => setEditing(true));
+    const el = inputRef.current;
+    if (!el) return;
+    el.focus();
+    // `el.select()` is unreliable on iOS Safari — it focuses but doesn't
+    // actually highlight the text. `setSelectionRange` is the supported
+    // equivalent on every browser.
+    el.setSelectionRange(0, el.value.length);
   };
 
   const commit = () => {
