@@ -84,11 +84,6 @@ const meta: Meta<typeof StepperModal> = {
       description: 'Labels shown next to the step badge. One string per step.',
       table: { type: { summary: 'string[]' } },
     },
-    steps: {
-      control: false,
-      description: 'Total number of steps. Controls the progress badge and determines when the Confirm button appears.',
-      table: { type: { summary: 'number' } },
-    },
     subtitle: {
       control: { type: 'text' },
       description: 'Optional subtitle below the title.',
@@ -125,7 +120,6 @@ export const Default: Story = {
     confirmLabel: 'Create Account',
     nextLabel: 'Continue',
     stepLabels: ['Your Info', 'Contact', 'Additional Info'],
-    steps: 3,
     subtitle: 'Complete all steps to get started',
     title: 'Create Account',
     width: '500px',
@@ -201,7 +195,6 @@ export const TwoSteps: Story = {
           onConfirm={() => setOpened(false)}
           opened={opened}
           stepLabels={['Configure', 'Confirm']}
-          steps={2}
           title='Quick Setup'
         >
           {[
@@ -252,7 +245,6 @@ export const ConfirmButtonLoading: Story = {
           onConfirm={handleConfirm}
           opened={opened}
           stepLabels={['Prepare', 'Submit']}
-          steps={2}
           title='Submit Data'
         >
           {[
@@ -287,7 +279,6 @@ export const CustomLabels: Story = {
           onConfirm={() => setOpened(false)}
           opened={opened}
           stepLabels={['Step 1', 'Step 2', 'Step 3']}
-          steps={3}
           title='Custom Button Labels'
         >
           {[

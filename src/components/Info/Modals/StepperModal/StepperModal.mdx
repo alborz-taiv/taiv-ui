@@ -18,7 +18,7 @@ import { StepperModal } from '@taiv/ui';
 
 ### ✍️ Basic Usage
 
-Manage `opened` with `useState`. Pass `steps` as the total number of steps and `children` as an array of `ReactNode` — one element per step. Lift all form state to the parent so values persist as the user navigates.
+Manage `opened` with `useState`. Pass `children` as an array of `ReactNode` — one element per step. Lift all form state to the parent so values persist as the user navigates.
 
 ```tsx
 const [opened, setOpened] = useState(false);
@@ -30,7 +30,6 @@ const [email, setEmail] = useState('');
   onClose={() => setOpened(false)}
   onConfirm={() => submitForm({ name, email })}
   title='Create Account'
-  steps={2}
   stepLabels={['Your Info', 'Contact']}
 >
   {[
@@ -73,7 +72,7 @@ Use `confirmButtonLoading` to show a loading state on the confirm button while a
 
 1. **Lift form state to the parent**: Each step unmounts when navigating away, so any uncontrolled state inside a step will reset. Keep all form values in `useState` at the parent level and pass them down as controlled props.
 
-2. **Match `steps` and `children` lengths**: `steps` is a number that controls the badge count and button behavior. The `children` array must have the same length — each index maps to the corresponding step's content.
+2. **`children` length drives step count**: The number of elements in the `children` array determines the total steps shown in the badge and controls button behavior. Each index maps to the corresponding step's content.
 
 3. **Use `stepLabels` for context**: Pass a `string[]` to `stepLabels` to show a short description next to the progress badge (e.g. `— Schedule`). The label updates automatically as the user navigates.
 

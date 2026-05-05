@@ -17,7 +17,6 @@ interface StepperModalProps {
   title: string;
   subtitle?: string;
   width?: string | number;
-  steps: number;
   stepLabels?: string[];
   children: React.ReactNode[];
   onConfirm: () => void;
@@ -36,7 +35,6 @@ export const StepperModal = ({
   title,
   subtitle,
   width = '500px',
-  steps,
   stepLabels,
   children,
   onConfirm,
@@ -49,6 +47,7 @@ export const StepperModal = ({
   nextButtonDisabled = false,
 }: StepperModalProps) => {
   const [activeStep, setActiveStep] = useState(0);
+  const stepCount = children.length;
 
   useEffect(() => {
     if (!opened) setActiveStep(0);
@@ -99,7 +98,7 @@ export const StepperModal = ({
         <Stack gap='20px' h='100%' w='100%'>
           <Group align='center' gap='8px'>
             <Badge variant='outline'>
-              Step {activeStep + 1} of {steps}
+              Step {activeStep + 1} of {stepCount}
             </Badge>
             {stepLabels?.[activeStep] && (
               <Text size='sm'>— {stepLabels[activeStep]}</Text>
@@ -136,7 +135,7 @@ export const StepperModal = ({
                   {backLabel}
                 </Button>
               )}
-              {activeStep === steps - 1 ? (
+              {activeStep === stepCount - 1 ? (
                 <Button
                   disabled={confirmButtonDisabled}
                   loading={confirmButtonLoading}
