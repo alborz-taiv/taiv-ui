@@ -12,6 +12,7 @@ export { Progress } from './Data/Progress/Progress';
 //Info
 export { Modal } from './Info/Modals/Modal/Modal';
 export { FormModal } from './Info/Modals/FormModal/FormModal';
+export { StepperModal } from './Info/Modals/StepperModal/StepperModal';
 export { ModalProvider } from './Info/Modals/ModalProvider/ModalProvider';
 export { NotificationProvider } from './Info/Notifications/NotificationProvider/NotificationProvider';
 export { Badge } from './Info/Badge/Badge';
