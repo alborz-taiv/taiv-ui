@@ -1,42 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { NumberInput } from './NumberInput';
 import { Group } from '../../../Layout/Group/Group';
+import { NumberInput } from './NumberInput';
 
 const meta: Meta<typeof NumberInput> = {
-  title: 'Components/Inputs/TextInputs/NumberInput',
-  component: NumberInput,
-  parameters: {
-    layout: 'centered',
-  },
   argTypes: {
-    size: {
-      control: { type: 'select' },
-      options: ['sm', 'md', 'lg'],
-      description: 'Controls the number input size',
-      table: {
-        type: { summary: "'sm' | 'md' | 'lg'" },
-        defaultValue: { summary: "'md'" },
-      },
-    },
-    placeholder: {
-      control: { type: 'text' },
-      description: 'Placeholder text',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    label: {
-      control: { type: 'text' },
-      description: 'Number input label',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
     description: {
       control: { type: 'text' },
       description: 'Description text',
       table: {
         type: { summary: 'string' },
+      },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Disabled state',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
       },
     },
     error: {
@@ -46,42 +26,27 @@ const meta: Meta<typeof NumberInput> = {
         type: { summary: 'string' },
       },
     },
-    disabled: {
+    exposed: {
       control: { type: 'boolean' },
-      description: 'Disabled state',
+      description: 'Shows external increment/decrement buttons',
       table: {
-        type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
-      },
-    },
-    required: {
-      control: { type: 'boolean' },
-      description: 'Required field',
-      table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
       },
     },
     fullWidth: {
       control: { type: 'boolean' },
       description: 'Full width of container',
       table: {
-        type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
       },
     },
-    width: {
+    label: {
       control: { type: 'text' },
-      description: 'Custom width',
+      description: 'Number input label',
       table: {
-        type: { summary: 'string | number' },
-      },
-    },
-    min: {
-      control: { type: 'number' },
-      description: 'Minimum value',
-      table: {
-        type: { summary: 'number' },
+        type: { summary: 'string' },
       },
     },
     max: {
@@ -91,18 +56,56 @@ const meta: Meta<typeof NumberInput> = {
         type: { summary: 'number' },
       },
     },
-    step: {
+    min: {
       control: { type: 'number' },
-      description: 'Step value for increment/decrement',
+      description: 'Minimum value',
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: '1' },
+      },
+    },
+    onChange: {
+      action: 'changed',
+      description: 'Change handler function',
+      table: {
+        type: { summary: '(value: number | string) => void' },
+      },
+    },
+    placeholder: {
+      control: { type: 'text' },
+      description: 'Placeholder text',
+      table: {
+        type: { summary: 'string' },
       },
     },
     precision: {
       control: { type: 'number' },
       description: 'Number of decimal places',
       table: {
+        type: { summary: 'number' },
+      },
+    },
+    required: {
+      control: { type: 'boolean' },
+      description: 'Required field',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    size: {
+      control: { type: 'select' },
+      description: 'Controls the number input size',
+      options: ['sm', 'md', 'lg'],
+      table: {
+        defaultValue: { summary: "'md'" },
+        type: { summary: "'sm' | 'md' | 'lg'" },
+      },
+    },
+    step: {
+      control: { type: 'number' },
+      description: 'Step value for increment/decrement',
+      table: {
+        defaultValue: { summary: '1' },
         type: { summary: 'number' },
       },
     },
@@ -113,14 +116,19 @@ const meta: Meta<typeof NumberInput> = {
         type: { summary: 'Record<string, CSSObject>' },
       },
     },
-    onChange: {
-      action: 'changed',
-      description: 'Change handler function',
+    width: {
+      control: { type: 'text' },
+      description: 'Custom width',
       table: {
-        type: { summary: '(value: number | string) => void' },
+        type: { summary: 'string | number' },
       },
     },
   },
+  component: NumberInput,
+  parameters: {
+    layout: 'centered',
+  },
+  title: 'Components/Inputs/TextInputs/NumberInput',
 };
 
 export default meta;
@@ -128,15 +136,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: 'Age',
-    placeholder: 'Enter your age',
-    size: 'md',
     disabled: false,
-    required: false,
     fullWidth: false,
-    step: 1,
-    min: 0,
+    label: 'Age',
     max: 120,
+    min: 0,
+    placeholder: 'Enter your age',
+    required: false,
+    size: 'md',
+    step: 1,
   },
   parameters: {
     docs: {
@@ -156,13 +164,6 @@ export const Default: Story = {
 };
 
 export const Variants: Story = {
-  render: () => (
-    <Group gap="20px">
-      <NumberInput label="Basic Number Input" />
-      <NumberInput label="With Placeholder" placeholder="Enter a value" />
-      <NumberInput label="With Description" description="Enter a value between 0 and 100" min={0} max={100} />
-    </Group>
-  ),
   parameters: {
     docs: {
       source: {
@@ -170,16 +171,22 @@ export const Variants: Story = {
       },
     },
   },
+  render: () => (
+    <Group gap='20px'>
+      <NumberInput label='Basic Number Input' />
+      <NumberInput label='With Placeholder' placeholder='Enter a value' />
+      <NumberInput
+        description='Enter a value between 0 and 100'
+        label='With Description'
+        max={100}
+        min={0}
+      />
+      <NumberInput exposed label='Exposed'  />
+    </Group>
+  ),
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <Group gap="20px">
-      <NumberInput size="sm" label="Small Number Input" placeholder="Small value" />
-      <NumberInput size="md" label="Medium Number Input (Default)" placeholder="Medium value" />
-      <NumberInput size="lg" label="Large Number Input" placeholder="Large value" />
-    </Group>
-  ),
   parameters: {
     docs: {
       source: {
@@ -188,18 +195,28 @@ export const Sizes: Story = {
       },
     },
   },
+  render: () => (
+    <Group gap='20px'>
+      <NumberInput
+        label='Small Number Input'
+        placeholder='Small value'
+        size='sm'
+      />
+      <NumberInput
+        label='Medium Number Input (Default)'
+        placeholder='Medium value'
+        size='md'
+      />
+      <NumberInput
+        label='Large Number Input'
+        placeholder='Large value'
+        size='lg'
+      />
+    </Group>
+  ),
 };
 
 export const States: Story = {
-  render: () => (
-    <Group gap="20px">
-      <NumberInput label="Normal Number Input" />
-      <NumberInput label="Disabled Number Input" disabled />
-      <NumberInput label="Required Number Input" required />
-      <NumberInput label="Number Input with Description" description="Please enter a numeric value" />
-      <NumberInput label="Number Input with Error" error="Value is required" />
-    </Group>
-  ),
   parameters: {
     docs: {
       source: {
@@ -207,17 +224,21 @@ export const States: Story = {
       },
     },
   },
+  render: () => (
+    <Group gap='20px'>
+      <NumberInput label='Normal Number Input' />
+      <NumberInput disabled label='Disabled Number Input' />
+      <NumberInput label='Required Number Input' required />
+      <NumberInput
+        description='Please enter a numeric value'
+        label='Number Input with Description'
+      />
+      <NumberInput error='Value is required' label='Number Input with Error' />
+    </Group>
+  ),
 };
 
 export const AdditionalFunctionality: Story = {
-  render: () => (
-    <Group gap="20px">
-      <NumberInput label="Step of 1" placeholder="Integer values" step={1} />
-      <NumberInput label="Step of 0.5" placeholder="Decimal values" step={0.5} precision={1} />
-      <NumberInput label="With Min/Max" placeholder="Between 0 and 10" min={0} max={10} step={1} />
-      <NumberInput label="Custom Width" placeholder="Custom width" width="3000px" />
-    </Group>
-  ),
   parameters: {
     docs: {
       source: {
@@ -242,20 +263,50 @@ export const AdditionalFunctionality: Story = {
       },
     },
   },
+  render: () => (
+    <Group gap='20px'>
+      <NumberInput label='Step of 1' placeholder='Integer values' step={1} />
+      <NumberInput
+        label='Step of 0.5'
+        placeholder='Decimal values'
+        precision={1}
+        step={0.5}
+      />
+      <NumberInput
+        label='With Min/Max'
+        max={10}
+        min={0}
+        placeholder='Between 0 and 10'
+        step={1}
+      />
+      <NumberInput
+        label='Custom Width'
+        placeholder='Custom width'
+        width='3000px'
+      />
+    </Group>
+  ),
 };
 
 export const CustomStyling: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: false,
+      },
+    },
+  },
   render: () => (
-    <Group gap="20px">
+    <Group gap='20px'>
       <NumberInput
-        label="Custom Styled Number Input"
+        label='Custom Styled Number Input'
         styles={{
           input: {
-            borderColor: '#ff6b6b',
             '&:focus': {
               borderColor: '#ff6b6b',
               boxShadow: '0 0 0 2px rgba(255, 107, 107, 0.2)',
             },
+            borderColor: '#ff6b6b',
           },
           label: {
             color: '#ff6b6b',
@@ -264,15 +315,15 @@ export const CustomStyling: Story = {
         }}
       />
       <NumberInput
-        label="Another Custom Style"
+        label='Another Custom Style'
         styles={{
           input: {
-            backgroundColor: '#f8f9fa',
-            borderColor: '#4CAF50',
             '&:focus': {
               borderColor: '#4CAF50',
               boxShadow: '0 0 0 2px rgba(76, 175, 80, 0.2)',
             },
+            backgroundColor: '#f8f9fa',
+            borderColor: '#4CAF50',
           },
           label: {
             color: '#4CAF50',
@@ -282,11 +333,4 @@ export const CustomStyling: Story = {
       />
     </Group>
   ),
-  parameters: {
-    docs: {
-      source: {
-        code: false,
-      },
-    },
-  },
 };
