@@ -40,6 +40,12 @@ export interface FormModalProps {
   confirmRightIcon?: React.ReactNode;
   cancelLeftIcon?: React.ReactNode;
   confirmVariant?: ButtonProps['variant'];
+  /** Optional destructive footer action (e.g. Delete on edit modals). Rendered before Cancel. */
+  onDelete?: () => void;
+  deleteLabel?: string;
+  deleteButtonDisabled?: boolean;
+  deleteButtonLoading?: boolean;
+  deleteLeftIcon?: React.ReactNode;
   fullScreen?: boolean;
   /** Merged into Mantine `Modal` `styles` (e.g. lock body scroll when children use an inner `ScrollArea`). */
   modalStyles?: FormModalStylesOverride;
@@ -61,6 +67,11 @@ export const FormModal = ({
   confirmRightIcon,
   cancelLeftIcon,
   confirmVariant,
+  onDelete,
+  deleteLabel = "Delete",
+  deleteButtonDisabled = false,
+  deleteButtonLoading = false,
+  deleteLeftIcon,
   modalStyles,
   fullScreen = false,
 }: FormModalProps) => {
@@ -163,6 +174,17 @@ export const FormModal = ({
               <Button onClick={onCancel} variant="secondary" leftIcon={cancelLeftIcon}>
                 {cancelLabel || selectedVariant.cancelLabel}
               </Button>
+              {onDelete && (
+                <Button
+                  onClick={onDelete}
+                  variant="cancel"
+                  disabled={deleteButtonDisabled}
+                  loading={deleteButtonLoading}
+                  leftIcon={deleteLeftIcon}
+                >
+                  {deleteLabel}
+                </Button>
+              )}
               <Button
                 onClick={onConfirm}
                 variant={confirmVariant || selectedVariant.buttonVariant}

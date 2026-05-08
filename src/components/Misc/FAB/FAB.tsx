@@ -39,16 +39,31 @@ export interface FABProps {
   'data-testid'?: string;
 }
 
-const positionStyle = (position: FABPosition, offset: number | string): React.CSSProperties => {
+// Bottom-anchored FABs additively read `--app-bottom-inset` from the
+// document so apps with a fixed bottom chrome (e.g. mobile nav) can lift
+// every FAB clear of the bar without each consumer threading an explicit
+// offset. Defaults to `0px` when the variable isn't set, so apps without
+// bottom chrome see no behavior change.
+const APP_BOTTOM_INSET_VAR = 'var(--app-bottom-inset, 0px)';
+
+const toCssLength = (offset: number | string): string =>
+  typeof offset === 'number' ? `${offset}px` : offset;
+
+const positionStyle = (
+  position: FABPosition,
+  offset: number | string,
+): React.CSSProperties => {
+  const o = toCssLength(offset);
+  const bottomWithInset = `calc(${o} + ${APP_BOTTOM_INSET_VAR})`;
   switch (position) {
     case 'bottom-right':
-      return { bottom: offset, right: offset };
+      return { bottom: bottomWithInset, right: o };
     case 'bottom-left':
-      return { bottom: offset, left: offset };
+      return { bottom: bottomWithInset, left: o };
     case 'top-right':
-      return { top: offset, right: offset };
+      return { top: o, right: o };
     case 'top-left':
-      return { top: offset, left: offset };
+      return { top: o, left: o };
   }
 };
 
