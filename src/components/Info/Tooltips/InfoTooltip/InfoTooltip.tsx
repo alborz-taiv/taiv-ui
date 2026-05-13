@@ -2,7 +2,7 @@ import React from 'react';
 import { CSSObject } from '@mantine/styles';
 import { error, neutral, warning } from '../../../../constants/colors';
 import { Tooltip } from '../Tooltip/Tooltip';
-import { useMediaQuery } from '../../../../hooks';
+import { useTouchDevice } from '../../../../hooks/useMediaQuery';
 import { Popover } from '../Popover/Popover';
 
 interface InfoTooltipProps {
@@ -48,7 +48,7 @@ const InfoTooltip = ({ text, content, position = 'top-start', size = 'md', offse
     ...styles,
   };
 
-  const isTouchDevice = useMediaQuery('(pointer: coarse)');
+  const isTouchDevice = useTouchDevice();
 
   return (
     <>
