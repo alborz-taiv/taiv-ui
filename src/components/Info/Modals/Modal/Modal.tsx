@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal as MantineModal } from '@mantine/core';
 import { neutral } from '../../../../constants/colors';
 import { spacing } from '../../../../constants/spacing';
+import { useMobile } from '../../../../hooks/useMediaQuery';
 import { Title } from '../../../Typography/Title/Title';
 import { Stack } from '../../../Layout/Stack/Stack';
 import { Center } from '../../../Layout/Center/Center';
@@ -18,6 +19,13 @@ interface ModalProps {
 
 // Base modal is intended to be extended and customized - use InfoModal or ConfirmationModal for common use cases
 export const Modal = ({ opened, onClose, icon, title, subtitle, children, width = '400px' }: ModalProps) => {
+  // On mobile the modal usually fills the viewport (consumers pass
+  // `width='100%'`), so the desktop body's 32px side padding eats real
+  // estate that grid pickers and 4-segment SegmentedControls need. Tighten
+  // to `spacing.md` (12px) on mobile so children get an extra ~40px of
+  // usable width without making desktop look cramped.
+  const isMobile = useMobile();
+  const bodyPaddingX = isMobile ? spacing.md : spacing.xxl;
   return (
     <MantineModal
       opened={opened}
@@ -59,7 +67,7 @@ export const Modal = ({ opened, onClose, icon, title, subtitle, children, width 
           },
         },
         body: {
-          padding: `0 ${spacing.xxl} ${spacing.lg} ${spacing.xxl}`,
+          padding: `0 ${bodyPaddingX} ${spacing.lg} ${bodyPaddingX}`,
         },
       }}
     >
