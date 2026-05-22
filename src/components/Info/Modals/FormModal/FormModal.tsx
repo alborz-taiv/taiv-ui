@@ -121,6 +121,11 @@ export const FormModal = ({
         ...modalStyles,
         body: {
           padding: `0 ${spacing.xxl} ${spacing.lg} ${spacing.xxl}`,
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          minHeight: 0,
+          overflow: "hidden",
           ...modalStyles?.body,
         },
         close: {
@@ -140,16 +145,9 @@ export const FormModal = ({
           borderRadius: "8px",
           border: `1px solid ${neutral[50]}`,
           boxShadow: "0px 0px 19px 0px #00000040",
+          display: "flex",
+          flexDirection: "column",
           ...modalStyles?.content,
-          /**
-           * Mantine ModalRoot injects `overflow-y: auto` on content via a hashed class;
-           * plain `styles.content` can lose the cascade — `!important` beats it. Spread
-           * `modalStyles?.content` before this so consumer overrides still win when needed.
-           */
-          ...( {
-            overflowX: "hidden !important",
-            overflowY: "hidden !important",
-          } as unknown as CSSObject ),
         },
         header: {
           padding: spacing.sm,
@@ -157,47 +155,59 @@ export const FormModal = ({
         },
       }}
     >
-      <Center h="100%" w="100%">
-        <Stack gap="20px" h="100%" w="100%" align="stretch" style={{ minWidth: 0 }}>
-          <Stack gap={spacing.lg} align="stretch" w="100%" style={{ minWidth: 0 }}>
-            <Center mx="auto" style={iconContainer}>
-              {modalIcon}
-            </Center>
-            {children && (
-              <Stack gap={spacing.xxs} align="stretch" w="100%" style={{ minWidth: 0, maxWidth: "100%" }}>
-                {children}
-              </Stack>
-            )}
+      <Stack
+        gap="20px"
+        w="100%"
+        align="stretch"
+        style={{ minWidth: 0, flex: 1, minHeight: 0 }}
+      >
+        <Center mx="auto" style={{ ...iconContainer, flexShrink: 0 }}>
+          {modalIcon}
+        </Center>
+        {children && (
+          <Stack
+            gap={spacing.xxs}
+            align="stretch"
+            w="100%"
+            style={{
+              minWidth: 0,
+              maxWidth: "100%",
+              flex: 1,
+              minHeight: 0,
+              overflow: "hidden",
+            }}
+          >
+            {children}
           </Stack>
-          <Center h="100%" w="100%">
-            <Group gap="10px" align="center">
-              <Button onClick={onCancel} variant="secondary" leftIcon={cancelLeftIcon}>
-                {cancelLabel || selectedVariant.cancelLabel}
-              </Button>
-              {onDelete && (
-                <Button
-                  onClick={onDelete}
-                  variant="cancel"
-                  disabled={deleteButtonDisabled}
-                  loading={deleteButtonLoading}
-                  leftIcon={deleteLeftIcon}
-                >
-                  {deleteLabel}
-                </Button>
-              )}
+        )}
+        <Center w="100%" style={{ flexShrink: 0 }}>
+          <Group gap="10px" align="center">
+            <Button onClick={onCancel} variant="secondary" leftIcon={cancelLeftIcon}>
+              {cancelLabel || selectedVariant.cancelLabel}
+            </Button>
+            {onDelete && (
               <Button
-                onClick={onConfirm}
-                variant={confirmVariant || selectedVariant.buttonVariant}
-                disabled={confirmButtonDisabled}
-                loading={confirmButtonLoading}
-                rightIcon={confirmRightIcon}
+                onClick={onDelete}
+                variant="cancel"
+                disabled={deleteButtonDisabled}
+                loading={deleteButtonLoading}
+                leftIcon={deleteLeftIcon}
               >
-                {confirmLabel || selectedVariant.confirmLabel}
+                {deleteLabel}
               </Button>
-            </Group>
-          </Center>
-        </Stack>
-      </Center>
+            )}
+            <Button
+              onClick={onConfirm}
+              variant={confirmVariant || selectedVariant.buttonVariant}
+              disabled={confirmButtonDisabled}
+              loading={confirmButtonLoading}
+              rightIcon={confirmRightIcon}
+            >
+              {confirmLabel || selectedVariant.confirmLabel}
+            </Button>
+          </Group>
+        </Center>
+      </Stack>
     </MantineModal>
   );
 };
