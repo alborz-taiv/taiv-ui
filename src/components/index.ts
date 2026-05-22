@@ -130,6 +130,8 @@ export { TextInput } from "./Inputs/TextInputs/TextInput/TextInput";
 export { Accordion } from "./Layout/Accordion/Accordion";
 export type { AutoGridProps, ResponsiveCols } from "./Layout/AutoGrid/AutoGrid";
 export { AutoGrid } from "./Layout/AutoGrid/AutoGrid";
+export type { VirtualGridProps } from "./Layout/VirtualGrid/VirtualGrid";
+export { VirtualGrid } from "./Layout/VirtualGrid/VirtualGrid";
 export type {
   BottomActionBarItem,
   BottomActionBarProps,
