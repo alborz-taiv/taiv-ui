@@ -5,22 +5,13 @@ import { spacing } from '../../../../constants/spacing';
 
 export type DayKey = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun';
 
-const ALL_DAYS_MON_FIRST: DayKey[] = [
-  'mon',
-  'tue',
-  'wed',
-  'thu',
-  'fri',
-  'sat',
-  'sun',
-];
-const ALL_DAYS_SUN_FIRST: DayKey[] = [
-  'sun',
-  'mon',
-  'tue',
-  'wed',
-  'thu',
-  'fri',
+const ALL_DAYS: DayKey[] = [
+  'sun', 
+  'mon', 
+  'tue', 
+  'wed', 
+  'thu', 
+  'fri', 
   'sat',
 ];
 
@@ -53,7 +44,6 @@ export interface DaysOfWeekProps {
   size?: keyof typeof sizes;
   /** Days that cannot be toggled — rendered grayed out with not-allowed cursor. */
   disabledDays?: DayKey[];
-  startOfWeek?: 'mon' | 'sun';
   className?: string;
 }
 
@@ -63,10 +53,9 @@ const DaysOfWeek = ({
   disabled: stripDisabled = false,
   size = 'md',
   disabledDays,
-  startOfWeek = 'mon',
   className,
 }: DaysOfWeekProps) => {
-  const order = startOfWeek === 'mon' ? ALL_DAYS_MON_FIRST : ALL_DAYS_SUN_FIRST;
+  const order = ALL_DAYS;
   const selected = new Set(value);
   const disabledDaySet = new Set(disabledDays ?? []);
   const { dim, fontSize, gap } = sizes[size];
