@@ -110,6 +110,7 @@ export const DatePicker = <T extends 'default' | 'multiple' | 'range' = 'default
       }}
       placeholder={placeholder}
       popoverProps={{ radius: 'lg' }}
+      firstDayOfWeek={0}
       {...props}
     />
   );
