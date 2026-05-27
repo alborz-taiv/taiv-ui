@@ -2,6 +2,8 @@ import React from 'react';
 import { CSSObject } from '@mantine/styles';
 import { error, neutral, warning } from '../../../../constants/colors';
 import { Tooltip } from '../Tooltip/Tooltip';
+import { useTouchDevice } from '../../../../hooks/useMediaQuery';
+import { Popover } from '../Popover/Popover';
 
 interface InfoTooltipProps {
   text?: React.ReactNode;
@@ -46,10 +48,20 @@ const InfoTooltip = ({ text, content, position = 'top-start', size = 'md', offse
     ...styles,
   };
 
+  const isTouchDevice = useTouchDevice();
+
   return (
-    <Tooltip text={text || content} position={position} offset={offset} className={className} maxWidth={maxWidth}>
-      <i className={componentVariants[variant].icon} style={style.icon} />
-    </Tooltip>
+    <>
+      {isTouchDevice ?
+        <Popover text={text || content} position={position} offset={offset} className={className} maxWidth={maxWidth}>
+          <i className={componentVariants[variant].icon} style={style.icon} />
+        </Popover>
+        : 
+        <Tooltip text={text || content} position={position} offset={offset} className={className} maxWidth={maxWidth}>
+          <i className={componentVariants[variant].icon} style={style.icon} />
+        </Tooltip>
+      }
+    </>
   );
 };
 
