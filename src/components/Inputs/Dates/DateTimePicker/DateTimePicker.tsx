@@ -114,6 +114,7 @@ export const DateTimePicker = ({
       }}
       placeholder={placeholder}
       popoverProps={{ radius: 'lg' }}
+      firstDayOfWeek={0}
       {...props}
     />
   );
