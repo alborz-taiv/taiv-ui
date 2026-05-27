@@ -65,6 +65,16 @@ export const modalVariants = {
     message: 'Operation completed successfully!',
     title: 'Success',
   },
+  remove: {
+    buttonVariant: 'cancel',
+    cancelLabel: 'Cancel',
+    confirmLabel: 'Remove',
+    icon: 'fas fa-circle-minus',
+    iconBackgroundColor: error[25],
+    iconColor: error[100],
+    message: 'This item will be removed.',
+    title: 'Remove item?',
+  },
   warning: {
     buttonVariant: 'warning',
     cancelLabel: 'Cancel',

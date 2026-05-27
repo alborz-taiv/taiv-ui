@@ -1,4 +1,11 @@
-import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  forwardRef,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { Virtuoso, VirtuosoGrid } from 'react-virtuoso';
 import { breakpoints } from '../../../constants/breakpoints';
 import { spacing as spacingTokens } from '../../../constants/spacing';
@@ -77,10 +84,11 @@ const resolveGap = (gap?: SpacingToken | number): number => {
 
 /**
  * Walk the ancestor chain looking for the nearest element that scrolls —
- * `overflow-y: auto | scroll`. When found, we'll hand it to virtuoso as
- * its `customScrollParent`, so the drawer/modal's existing scroll IS the
+ * `overflow-y: auto | scroll`. When found, we hand it to virtuoso as its
+ * `customScrollParent`, so the drawer/modal's existing scroll IS the
  * virtualization scroll (single scroll, no double-scroll fight). When not
- * found, virtuoso uses its own internal scroll (library, rotation pages).
+ * found, the page itself is the scroller and virtuoso runs in window-scroll
+ * mode (library, rotation pages) — see `useWindowScroll` below.
  */
 const findScrollableAncestor = (el: HTMLElement): HTMLElement | null => {
   let p = el.parentElement;
@@ -92,49 +100,33 @@ const findScrollableAncestor = (el: HTMLElement): HTMLElement | null => {
   return null;
 };
 
-/** Hook returning the nearest scrollable ancestor, re-resolved on mount. */
+/**
+ * Resolve the nearest scrollable ancestor synchronously after mount but
+ * before paint. Critical: virtuoso commits to a scroll strategy on its
+ * first render — if we hand it `customScrollParent=undefined` initially
+ * (because `useEffect` runs post-paint), it picks window-scroll and never
+ * re-attaches when the ancestor arrives a render later. Symptom: pickers
+ * inside modals/drawers render only the first 1–2 items.
+ *
+ * Returning `{ resolved }` lets the caller hold off mounting virtuoso
+ * until we know what to pass — so virtuoso always mounts exactly once
+ * with the correct prop.
+ */
 const useScrollableAncestor = (
   containerRef: React.RefObject<HTMLDivElement | null>,
 ) => {
-  const [ancestor, setAncestor] = useState<HTMLElement | null>(null);
-  useEffect(() => {
+  const [state, setState] = useState<{
+    resolved: boolean;
+    ancestor: HTMLElement | null;
+  }>({ resolved: false, ancestor: null });
+  useLayoutEffect(() => {
     const el = containerRef.current;
-    if (!el) return;
-    setAncestor(findScrollableAncestor(el));
+    setState({
+      resolved: true,
+      ancestor: el ? findScrollableAncestor(el) : null,
+    });
   }, [containerRef]);
-  return ancestor;
-};
-
-/**
- * Self-sizing height — only used when there's no scrollable ancestor (the
- * grid IS the scroll surface for the page). Measures `viewport - top - 16`
- * so naturally-flowing pages can drop `VirtualGrid` in without restructuring
- * ancestors. When there IS a scrollable ancestor, virtuoso uses
- * `customScrollParent` and this height is ignored.
- */
-const useResolvedHeight = (
-  containerRef: React.RefObject<HTMLDivElement | null>,
-  enabled: boolean,
-) => {
-  const [height, setHeight] = useState(0);
-  useEffect(() => {
-    if (!enabled) return;
-    const el = containerRef.current;
-    if (!el) return;
-    const update = () => {
-      const rect = el.getBoundingClientRect();
-      setHeight(Math.max(100, window.innerHeight - rect.top - 16));
-    };
-    const obs = new ResizeObserver(update);
-    obs.observe(el);
-    window.addEventListener('resize', update);
-    update();
-    return () => {
-      obs.disconnect();
-      window.removeEventListener('resize', update);
-    };
-  }, [containerRef, enabled]);
-  return height;
+  return state;
 };
 
 /**
@@ -167,12 +159,16 @@ export function VirtualGrid<T>({
   onItemsRendered,
 }: VirtualGridProps<T>) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const scrollAncestor = useScrollableAncestor(containerRef);
-  // Self-sizing height only matters when we're driving our own scroll. When
-  // a scrollable ancestor exists we hand the scroll to virtuoso via
-  // `customScrollParent` — the ancestor's existing scroll IS the scroll.
+  const { resolved: ancestorResolved, ancestor: scrollAncestor } =
+    useScrollableAncestor(containerRef);
+  // Two scroll modes, decided by whether a scrollable ancestor exists:
+  //  - ancestor found (drawer/modal body) → hand it to virtuoso as
+  //    `customScrollParent`; the ancestor's scrollbar drives virtualization.
+  //  - no ancestor (full pages) → the page/window is the scroller, so run
+  //    virtuoso in `useWindowScroll` mode. The grid then participates in the
+  //    single document scroll instead of carving out its own internal
+  //    scrollbar (which would nest a second scroll inside the page scroll).
   const usesAncestorScroll = scrollAncestor !== null;
-  const viewportHeight = useResolvedHeight(containerRef, !usesAncestorScroll);
   const [windowWidth, setWindowWidth] = useState(() =>
     typeof window !== 'undefined' ? window.innerWidth : 0,
   );
@@ -235,21 +231,18 @@ export function VirtualGrid<T>({
     <div
       ref={containerRef}
       className={className}
-      style={{
-        width: '100%',
-        // When we're driving our own scroll, the wrapper takes the measured
-        // viewport-remaining height. When the scroll lives on an ancestor
-        // (drawer body, modal), the wrapper is content-sized — virtuoso
-        // pads the ancestor's scrollHeight to match the virtualized list.
-        height: usesAncestorScroll
-          ? 'auto'
-          : viewportHeight > 0
-            ? `${viewportHeight}px`
-            : '100%',
-        ...style,
-      }}
+      // Content-sized in both modes: virtuoso pads its own scroller to the
+      // full virtualized height, so the wrapper just grows to fit — the
+      // ancestor (or the window) provides the actual scroll.
+      style={{ width: '100%', ...style }}
     >
-      {colCount === 1 ? (
+      {/* Hold off mounting virtuoso until we've synchronously resolved the
+          scrollable ancestor. If we mount with customScrollParent=undefined
+          and then re-render with the real ancestor, virtuoso commits to
+          window-scroll mode on render #1 and never re-attaches — symptom:
+          only the first 1–2 items render. The container div above is enough
+          for the `useLayoutEffect` to find the ancestor on the next tick. */}
+      {!ancestorResolved ? null : colCount === 1 ? (
         <Virtuoso
           data={items}
           computeItemKey={computeItemKey}
@@ -259,12 +252,11 @@ export function VirtualGrid<T>({
             </div>
           )}
           rangeChanged={handleItemsRendered}
-          // When a scrollable ancestor exists, hand the scroll to it so the
-          // drawer/modal body's existing scrollbar drives virtualization
-          // (single scroll, no double-scroll fight). Otherwise virtuoso
-          // uses its own internal scroll inside the wrapper.
+          // Ancestor scroll (drawer/modal) → customScrollParent. No ancestor
+          // (full page) → window scroll. The two are mutually exclusive: when
+          // an ancestor exists, useWindowScroll is false and vice-versa.
           customScrollParent={scrollAncestor ?? undefined}
-          style={usesAncestorScroll ? undefined : { height: '100%' }}
+          useWindowScroll={!usesAncestorScroll}
         />
       ) : (
         <VirtuosoGrid
@@ -274,7 +266,7 @@ export function VirtualGrid<T>({
           components={{ List: ListComponent }}
           rangeChanged={handleItemsRendered}
           customScrollParent={scrollAncestor ?? undefined}
-          style={usesAncestorScroll ? undefined : { height: '100%' }}
+          useWindowScroll={!usesAncestorScroll}
         />
       )}
     </div>

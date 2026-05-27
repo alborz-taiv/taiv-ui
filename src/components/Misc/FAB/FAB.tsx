@@ -87,7 +87,7 @@ export const FAB = ({
   onClick,
   ariaLabel,
   variant = 'primary',
-  size = 'lg',
+  size = '2xl',
   position = 'bottom-right',
   offset = spacing.lg,
   mobileOnly = true,

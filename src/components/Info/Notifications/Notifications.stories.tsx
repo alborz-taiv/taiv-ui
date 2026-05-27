@@ -149,3 +149,54 @@ const AsyncDemo = () => {
 export const AsyncNotifications: Story = {
   render: () => <AsyncDemo />,
 };
+
+const ProgressDemo = () => {
+  const { showWithProgress } = useNotifications();
+  const [isRunning, setIsRunning] = useState(false);
+
+  const startUpload = (outcome: 'success' | 'failure') => {
+    setIsRunning(true);
+    const handle = showWithProgress({
+      message: 'Uploading my-content.mp4 (0%)',
+    });
+
+    let value = 0;
+    const interval = setInterval(() => {
+      value += 10;
+      if (value < 100) {
+        handle.update(value, `Uploading my-content.mp4 (${value}%)`);
+      } else {
+        clearInterval(interval);
+        if (outcome === 'success') {
+          handle.done('my-content.mp4 uploaded');
+        } else {
+          handle.fail('Upload failed. Please try again.');
+        }
+        setIsRunning(false);
+      }
+    }, 400);
+  };
+
+  return (
+    <Group gap={spacing.xs}>
+      <Button
+        variant='success'
+        onClick={() => startUpload('success')}
+        disabled={isRunning}
+      >
+        Upload (success)
+      </Button>
+      <Button
+        variant='cancel'
+        onClick={() => startUpload('failure')}
+        disabled={isRunning}
+      >
+        Upload (failure)
+      </Button>
+    </Group>
+  );
+};
+
+export const ProgressNotifications: Story = {
+  render: () => <ProgressDemo />,
+};

@@ -1,6 +1,7 @@
 import React from 'react';
 import { notifications as mantineNotifications } from '@mantine/notifications';
 import { Button } from '../components/Inputs/Buttons/Button/Button';
+import { Progress } from '../components/Data/Progress/Progress';
 import { Group } from '../components/Layout/Group/Group';
 import { Stack } from '../components/Layout/Stack/Stack';
 import { Text } from '../components/Typography/Text/Text';
@@ -111,8 +112,9 @@ export const useNotifications = () => {
 
   /** Non-blocking yes/no question. Both buttons are real answers. For
    *  high-stakes / destructive prompts that must block the user use
-   *  `useConfirmationModal` instead. Defaults to `autoClose: false` —
-   *  questions shouldn't disappear before they're answered. */
+   *  `useConfirmationModal` instead. Inherits the actionable-toast
+   *  auto-close (8s) by default — pass `autoClose: false` to pin the
+   *  question until the user answers. */
   const showWithConfirmation = (options: ConfirmationOptions) => {
     const {
       confirmLabel,
@@ -136,7 +138,7 @@ export const useNotifications = () => {
     };
 
     _show(
-      { ...rest, id, autoClose: autoClose ?? false },
+      { ...rest, id, autoClose },
       <>
         <Button size='sm' variant='cancel' onClick={handleCancel}>
           {cancelLabel}
@@ -146,6 +148,84 @@ export const useNotifications = () => {
         </Button>
       </>,
     );
+  };
+
+  /** Long-running task notification with a live progress bar. Pin until
+   *  caller signals completion via `done` / `fail`. Use for uploads,
+   *  exports, bulk operations — anything where the user benefits from
+   *  seeing percentage advance in place. */
+  const showWithProgress = (options: {
+    message: string;
+    title?: string;
+    id?: string;
+    initialValue?: number;
+  }) => {
+    const {
+      message: initialMessage,
+      title,
+      id: providedId,
+      initialValue = 0,
+    } = options;
+    const id = providedId ?? `progress-${Math.random()}-${Math.random()}`;
+    const loadingVariant = componentVariants.loading;
+
+    const renderLoading = (value: number, message: string) => ({
+      id,
+      title: title ?? loadingVariant.defaultTitle,
+      message: (
+        <Stack spacing='xs'>
+          <Text>{message}</Text>
+          <Progress value={value} scale='sm' />
+        </Stack>
+      ),
+      icon: loadingVariant.icon,
+      autoClose: false as const,
+      withCloseButton: false,
+      styles: {
+        root: { borderLeft: `4px solid ${loadingVariant.color}` },
+      },
+    });
+
+    const renderTerminal = (variant: 'success' | 'error', message: string, terminalTitle?: string) => {
+      const v = componentVariants[variant];
+      return {
+        id,
+        title: terminalTitle ?? v.defaultTitle,
+        message,
+        icon: v.icon,
+        autoClose: v.autoClose,
+        withCloseButton: true,
+        styles: {
+          root: { borderLeft: `4px solid ${v.color}` },
+        },
+      };
+    };
+
+    mantineNotifications.show(renderLoading(initialValue, initialMessage));
+
+    return {
+      id,
+      update: (value: number, message?: string) => {
+        mantineNotifications.update(
+          renderLoading(value, message ?? initialMessage),
+        );
+      },
+      done: (message?: string, terminalTitle?: string) => {
+        mantineNotifications.update(
+          renderTerminal('success', message ?? initialMessage, terminalTitle),
+        );
+      },
+      fail: (message?: string, terminalTitle?: string) => {
+        mantineNotifications.update(
+          renderTerminal(
+            'error',
+            message ??
+              'An error has occurred. Please try again. If the issue persists, please contact us at support@taiv.tv',
+            terminalTitle,
+          ),
+        );
+      },
+    };
   };
 
   const showLoading = (options: { message: string; title?: string }) => {
@@ -174,5 +254,6 @@ export const useNotifications = () => {
     showLoading,
     showWithAction,
     showWithConfirmation,
+    showWithProgress,
   };
 };

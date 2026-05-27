@@ -35,6 +35,12 @@ export const componentVariants = {
     defaultTitle: 'Success!',
     icon: <i className='fas fa-check-circle' style={{ color: success[300] }} />,
   },
+  remove: {
+    autoClose: 4000,
+    color: error[100],
+    defaultTitle: 'Removed',
+    icon: <i className='fas fa-circle-minus' style={{ color: error[100] }} />,
+  },
   warning: {
     autoClose: 4000,
     color: warning[100],

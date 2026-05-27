@@ -76,6 +76,15 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({ onCl
       '& .mantine-Button-inner': {
         justifyContent: 'center',
       },
+      // Mantine v6's Button styles only know about xs–xl; '2xl' falls back to
+      // default sizing, which leaves Tabler icons at their 24px default inside
+      // our 80px container. Explicitly size the SVG so iconSize is honored.
+      ...(size === '2xl' && {
+        '& svg': {
+          height: `${selectedSize.iconSize}px`,
+          width: `${selectedSize.iconSize}px`,
+        },
+      }),
     },
     ...styles,
   };

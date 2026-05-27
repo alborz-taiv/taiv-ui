@@ -67,10 +67,10 @@ const meta: Meta<typeof IconButton> = {
       control: { type: 'select' },
       description:
         "Controls the button's height and padding. These values are square sizes.",
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
       table: {
         defaultValue: { summary: "'md'" },
-        type: { summary: "'xs' | 'sm' | 'md' | 'lg' | 'xl'" },
+        type: { summary: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'" },
       },
     },
     styles: {
@@ -250,6 +250,9 @@ export const Sizes: Story = {
         <IconArrowsMaximize />
       </IconButton>
       <IconButton size='xl'>
+        <IconArrowsMaximize />
+      </IconButton>
+      <IconButton size='2xl'>
         <IconArrowsMaximize />
       </IconButton>
     </Group>

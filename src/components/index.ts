@@ -67,6 +67,8 @@ export { InfoCard } from "./Info/InfoCard/InfoCard";
 export type { MobileDrawerProps } from "./Info/MobileDrawer/MobileDrawer";
 export { MobileDrawer } from "./Info/MobileDrawer/MobileDrawer";
 export { FormModal } from "./Info/Modals/FormModal/FormModal";
+export { FormModalV2 } from "./Info/Modals/FormModalV2/FormModalV2";
+export type { FormModalV2Props } from "./Info/Modals/FormModalV2/FormModalV2";
 //Info
 export { Modal } from "./Info/Modals/Modal/Modal";
 export { ModalProvider } from "./Info/Modals/ModalProvider/ModalProvider";
@@ -121,6 +123,8 @@ export { VolumeSlider } from "./Inputs/Sliders/VolumeSlider/VolumeSlider";
 //Inputs
 export { AutoComplete } from "./Inputs/TextInputs/AutoComplete/AutoComplete";
 export { NumberInput } from "./Inputs/TextInputs/NumberInput/NumberInput";
+export type { ResponsiveNumberInputProps } from "./Inputs/TextInputs/NumberInput/ResponsiveNumberInput";
+export { ResponsiveNumberInput } from "./Inputs/TextInputs/NumberInput/ResponsiveNumberInput";
 export { PasswordInput } from "./Inputs/TextInputs/PasswordInput/PasswordInput";
 export { SearchBar } from "./Inputs/TextInputs/SearchBar/SearchBar";
 export { TextArea } from "./Inputs/TextInputs/TextArea/TextArea";

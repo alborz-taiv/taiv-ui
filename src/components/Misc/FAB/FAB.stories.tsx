@@ -36,8 +36,8 @@ const meta: Meta<typeof FAB> = {
     },
     size: {
       control: { type: 'select' },
-      options: ['sm', 'md', 'lg', 'xl'],
-      table: { defaultValue: { summary: "'lg'" } },
+      options: ['sm', 'md', 'lg', 'xl', '2xl'],
+      table: { defaultValue: { summary: "'2xl'" } },
     },
     variant: {
       control: { type: 'select' },
@@ -178,11 +178,18 @@ export const Sizes: Story = {
   render: () => (
     <StageBackdrop>
       <FAB
-        ariaLabel='XL (recommended for mobile FABs)'
+        ariaLabel='2XL (default, recommended for mobile FABs)'
         icon={<IconPlus />}
         mobileOnly={false}
         onClick={() => {}}
         position='bottom-right'
+      />
+      <FAB
+        ariaLabel='XL'
+        icon={<IconPlus />}
+        mobileOnly={false}
+        onClick={() => {}}
+        position='bottom-left'
         size='xl'
       />
       <FAB
@@ -190,23 +197,16 @@ export const Sizes: Story = {
         icon={<IconPlus />}
         mobileOnly={false}
         onClick={() => {}}
-        position='bottom-left'
+        position='top-left'
+        size='lg'
       />
       <FAB
         ariaLabel='Medium'
         icon={<IconPlus />}
         mobileOnly={false}
         onClick={() => {}}
-        position='top-left'
-        size='md'
-      />
-      <FAB
-        ariaLabel='Small'
-        icon={<IconPlus />}
-        mobileOnly={false}
-        onClick={() => {}}
         position='top-right'
-        size='sm'
+        size='md'
       />
     </StageBackdrop>
   ),

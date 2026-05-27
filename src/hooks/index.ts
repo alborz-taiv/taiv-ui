@@ -1,6 +1,7 @@
 export { useCopy } from './useCopy';
 export { useDisclosure } from './useDisclosure';
 export { useHeadroom } from './useHeadroom';
+export { useScrollLock } from './useScrollLock';
 export { useElementSize, useListState, useResizeObserver } from '@mantine/hooks';
 export { useMediaQuery, useScreenSize, useMobile, useTablet, useLaptop, useDesktop, useWide } from './useMediaQuery';
 export { useNotifications } from './useNotifications';
