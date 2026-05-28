@@ -4,7 +4,7 @@ import {
 } from '@mantine/core';
 import type { CSSObject } from '@mantine/styles';
 import React from 'react';
-import { neutral, primary } from '../../../../constants/colors';
+import { neutral, primary, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../shared/sizes';
@@ -50,6 +50,14 @@ export const MultiSelect = ({
       borderRadius: '8px',
       boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
     },
+    // Match the error-label typography used by TextInput/TextArea/Select so
+    // validation messages read at the same scale across all inputs (Mantine's
+    // default sizes this much smaller).
+    error: {
+      ...fontBase,
+      color: red[200],
+      fontSize: `calc(${selectedSize.fontSize} - 0.5px)`,
+    },
     input: {
       alignItems: 'center',
       cursor: 'pointer',
@@ -67,6 +75,13 @@ export const MultiSelect = ({
       color: neutral[200],
       fontSize: selectedSize.fontSize,
       transition: 'all 200ms ease-in-out',
+      '&[data-invalid]': {
+        borderColor: red[200],
+        color: neutral[200],
+        '& input::placeholder': {
+          color: red[200],
+        },
+      },
     },
     item: {
       borderRadius: '8px',

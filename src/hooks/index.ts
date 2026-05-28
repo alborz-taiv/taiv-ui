@@ -3,6 +3,8 @@ export { useDisclosure } from './useDisclosure';
 export { useHeadroom } from './useHeadroom';
 export { useScrollLock } from './useScrollLock';
 export { useElementSize, useListState, useResizeObserver } from '@mantine/hooks';
+export { useForm } from '@mantine/form';
+export type { UseFormReturnType } from '@mantine/form';
 export { useMediaQuery, useScreenSize, useMobile, useTablet, useLaptop, useDesktop, useWide, useTouchDevice } from './useMediaQuery';
 export { useNotifications } from './useNotifications';
 export { useConfirmationModal } from './useConfirmationModal';
