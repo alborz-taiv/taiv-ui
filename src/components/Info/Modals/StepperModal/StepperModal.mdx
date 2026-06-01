@@ -1,0 +1,85 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as StepperModalStories from './StepperModal.stories';
+import { AIGeneratedBanner } from '../../../../docs/AIGeneratedBanner';
+
+<Meta of={StepperModalStories} />
+
+# StepperModal
+
+<AIGeneratedBanner />
+
+A multi-step modal with a progress badge, title, and navigation buttons. The active step is tracked internally and resets to step 1 when the modal closes.
+
+### 📦 Import
+
+```tsx
+import { StepperModal } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+Manage `opened` with `useState`. Pass `children` as an array of `ReactNode` — one element per step. Lift all form state to the parent so values persist as the user navigates.
+
+```tsx
+const [opened, setOpened] = useState(false);
+const [name, setName] = useState('');
+const [email, setEmail] = useState('');
+
+<StepperModal
+  opened={opened}
+  onClose={() => setOpened(false)}
+  onConfirm={() => submitForm({ name, email })}
+  title='Create Account'
+  stepLabels={['Your Info', 'Contact']}
+>
+  {[
+    <TextInput key='step-0' label='Full Name' value={name} onChange={(e) => setName(e.target.value)} />,
+    <TextInput key='step-1' label='Email Address' value={email} onChange={(e) => setEmail(e.target.value)} />,
+  ]}
+</StepperModal>
+```
+
+<Canvas of={StepperModalStories.Default} height={900} />
+<Controls of={StepperModalStories.Default} />
+
+---
+
+### 📐 Two Steps
+
+The minimum number of steps is two. On the first step the left button is **Cancel**; on the final step the right button becomes **Confirm**.
+
+<Story of={StepperModalStories.TwoSteps} />
+
+## <br />
+
+### 🏷️ Custom Button Labels
+
+Override any of the four button labels via `cancelLabel`, `backLabel`, `nextLabel`, and `confirmLabel`.
+
+<Story of={StepperModalStories.CustomLabels} />
+
+## <br />
+
+### 🔄 Loading Confirm Button
+
+Use `confirmButtonLoading` to show a loading state on the confirm button while an async operation completes.
+
+<Story of={StepperModalStories.ConfirmButtonLoading} />
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Lift form state to the parent**: Each step unmounts when navigating away, so any uncontrolled state inside a step will reset. Keep all form values in `useState` at the parent level and pass them down as controlled props.
+
+2. **`children` length drives step count**: The number of elements in the `children` array determines the total steps shown in the badge and controls button behavior. Each index maps to the corresponding step's content.
+
+3. **Use `stepLabels` for context**: Pass a `string[]` to `stepLabels` to show a short description next to the progress badge (e.g. `— Schedule`). The label updates automatically as the user navigates.
+
+4. **Wire `onClose` and `onConfirm` separately**: `onClose` fires when the X button or Cancel is clicked; `onConfirm` fires only when the user reaches the final step and clicks Confirm. Use `onConfirm` to run your submit/save logic, which has access to all lifted state via closure.
+
+5. **Use `confirmButtonDisabled` for validation**: Disable the confirm button on the final step until all required fields are valid.
+
+6. **Use `confirmButtonLoading` for async operations**: Set `confirmButtonLoading` while your submit request is in flight to prevent double-submits and provide visual feedback.
+
+## <br />

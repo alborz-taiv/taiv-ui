@@ -1,9 +1,3 @@
-// Side-effect import: prevents iOS Safari's auto-zoom-on-input behavior
-// without altering input typography. Listens for focus on text inputs and
-// temporarily sets the viewport meta's `maximum-scale=1` for the duration
-// of the focus, restoring on blur. Documented in
-// `src/styles/iosInputZoomFix.ts`. Lives next to the components index
-// because `package.json#exports["."]` resolves there.
 import "../styles/iosInputZoomFix";
 
 //Data
@@ -63,6 +57,7 @@ export type { MobileDrawerProps } from "./Info/MobileDrawer/MobileDrawer";
 export { MobileDrawer } from "./Info/MobileDrawer/MobileDrawer";
 export { FormModal } from "./Info/Modals/FormModal/FormModal";
 export { FormModalV2 } from "./Info/Modals/FormModalV2/FormModalV2";
+export { StepperModal } from './Info/Modals/StepperModal/StepperModal';
 export type { FormModalV2Props } from "./Info/Modals/FormModalV2/FormModalV2";
 //Info
 export { Modal } from "./Info/Modals/Modal/Modal";
