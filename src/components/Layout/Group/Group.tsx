@@ -5,7 +5,9 @@ import { CSSObject } from '@mantine/styles';
 interface GroupProps extends MantineGroupProps {
   width?: string | number;
   styles?: Record<string, CSSObject>;
-  gap?: string;
+  // Maps to Mantine's `spacing`, which accepts a theme token OR a raw pixel
+  // number — keep both so callers can pass `gap={6}` for one-off spacing.
+  gap?: string | number;
 }
 
 const Group = ({ width, gap, styles, ...props }: GroupProps) => {

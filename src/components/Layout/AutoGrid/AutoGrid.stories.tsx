@@ -1,21 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { AutoGrid } from './AutoGrid';
-import { Card } from '../Card/Card';
-import { Text } from '../../Typography/Text/Text';
 import { Title } from '../../Typography/Title/Title';
+import { Card } from '../Card/Card';
+import { AutoGrid } from './AutoGrid';
 
 const meta: Meta<typeof AutoGrid> = {
-  title: 'Components/Layout/AutoGrid',
-  component: AutoGrid,
-  parameters: {
-    layout: 'centered',
-    docs: {
-      description: {
-        component:
-          "[View Mantine Docs](https://v6.mantine.dev/core/simple-grid/)\n\nThe AutoGrid component is a responsive grid where each item takes an equal amount of space. It extends Mantine v6's SimpleGrid component and provides automatic column distribution with customizable spacing.",
-      },
-    },
-  },
   argTypes: {
     children: {
       control: false,
@@ -28,24 +16,16 @@ const meta: Meta<typeof AutoGrid> = {
       control: { type: 'number' },
       description: 'Number of columns in each row',
       table: {
-        type: { summary: 'number | ResponsiveObject' },
         defaultValue: { summary: '1' },
+        type: { summary: 'number | ResponsiveObject' },
       },
     },
     spacing: {
       control: { type: 'select' },
-      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       description: 'Horizontal spacing between items',
-      table: {
-        type: { summary: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number" },
-        defaultValue: { summary: "'md'" },
-      },
-    },
-    verticalSpacing: {
-      control: { type: 'select' },
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
-      description: 'Vertical spacing between items',
       table: {
+        defaultValue: { summary: "'md'" },
         type: { summary: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number" },
       },
     },
@@ -56,26 +36,51 @@ const meta: Meta<typeof AutoGrid> = {
         type: { summary: 'Record<string, CSSObject>' },
       },
     },
+    verticalSpacing: {
+      control: { type: 'select' },
+      description: 'Vertical spacing between items',
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      table: {
+        type: { summary: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number" },
+      },
+    },
   },
+  component: AutoGrid,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "[View Mantine Docs](https://v6.mantine.dev/core/simple-grid/)\n\nThe AutoGrid component is a responsive grid where each item takes an equal amount of space. It extends Mantine v6's SimpleGrid component and provides automatic column distribution with customizable spacing.",
+      },
+    },
+    layout: 'centered',
+  },
+  title: 'Components/Layout/AutoGrid',
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const SampleCard = ({ title, description }: { title: string; description: string }) => (
-  <Card animate padding="lg">
-    <Title variant="cardHeader">{title}</Title>
-    <Title variant="cardSubheader">{description}</Title>
+const SampleCard = ({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) => (
+  <Card animate padding='lg'>
+    <Title variant='cardHeader'>{title}</Title>
+    <Title variant='cardSubheader'>{description}</Title>
   </Card>
 );
 
 const items = [
-  { id: 1, title: 'Item 1', description: 'Grid item content' },
-  { id: 2, title: 'Item 2', description: 'Grid item content' },
-  { id: 3, title: 'Item 3', description: 'Grid item content' },
-  { id: 4, title: 'Item 4', description: 'Grid item content' },
-  { id: 5, title: 'Item 5', description: 'Grid item content' },
-  { id: 6, title: 'Item 6', description: 'Grid item content' },
+  { description: 'Grid item content', id: 1, title: 'Item 1' },
+  { description: 'Grid item content', id: 2, title: 'Item 2' },
+  { description: 'Grid item content', id: 3, title: 'Item 3' },
+  { description: 'Grid item content', id: 4, title: 'Item 4' },
+  { description: 'Grid item content', id: 5, title: 'Item 5' },
+  { description: 'Grid item content', id: 6, title: 'Item 6' },
 ];
 
 export const Default: Story = {
@@ -94,7 +99,33 @@ export const Default: Story = {
   render: (args) => (
     <AutoGrid {...args}>
       {items.map((item) => (
-        <SampleCard key={item.id} title={item.title} description={item.description} />
+        <SampleCard
+          description={item.description}
+          key={item.id}
+          title={item.title}
+        />
+      ))}
+    </AutoGrid>
+  ),
+};
+
+export const ResponsiveCols: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Pass a responsive map to `cols` — Tailwind-style `base`/`sm`/`md`/`lg`/`xl`. Missing stops inherit from the next-smaller entry. Resize the viewport to see the grid reflow.',
+      },
+    },
+  },
+  render: () => (
+    <AutoGrid cols={{ base: 1, lg: 3, sm: 2 }} spacing='md'>
+      {items.map((item) => (
+        <SampleCard
+          description={item.description}
+          key={item.id}
+          title={item.title}
+        />
       ))}
     </AutoGrid>
   ),

@@ -1,0 +1,74 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Pagination } from './Pagination';
+import * as PaginationStories from './Pagination.stories';
+
+<Meta of={PaginationStories} />
+
+# Pagination
+
+[View Mantine Docs](https://v6.mantine.dev/core/pagination/)
+
+Paginates a list of items across multiple pages.
+
+### 📦 Import
+```tsx
+import { Pagination } from '@taiv/ui';
+import { usePagination } from '@taiv/ui/hooks';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={PaginationStories.Default} />
+<Controls of={PaginationStories.Default} />
+
+```tsx
+<Pagination total={10} defaultValue={1} onChange={setPage} />
+```
+
+---
+
+### 🎛️ Controlled
+
+Pass `value` and `onChange` to control the active page from outside.
+
+<Story of={PaginationStories.Controlled} />
+
+```tsx
+const [page, setPage] = useState(1);
+<Pagination total={12} value={page} onChange={setPage} />
+```
+
+---
+
+### 🪜 With Edges
+
+Add first/last navigation buttons by passing `withEdges`.
+
+<Story of={PaginationStories.WithEdges} />
+
+---
+
+### 📏 Sizes
+
+<Story of={PaginationStories.Sizes} />
+
+---
+
+### 🪝 usePagination
+
+When you need pagination logic without rendering, use the `usePagination` hook from `@taiv/ui/hooks`.
+
+```tsx
+import { usePagination } from '@taiv/ui/hooks';
+
+const pagination = usePagination({ total: 25, initialPage: 1 });
+// pagination.range, pagination.active, pagination.setPage, pagination.next, pagination.previous, pagination.first, pagination.last
+```
+
+---
+
+### 💡 Tips & Best Practices
+
+1. **Reset to page 1 on filter changes.** When the user changes a filter or sort, reset the active page so they don't land on a non-existent page.
+2. **Show context.** Pair pagination with a "Showing X–Y of Z" label so users know where they are in the list.
+3. **Page-size selector.** For data tables, expose a separate selector for rows-per-page; pagination only controls which page is visible.

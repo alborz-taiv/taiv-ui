@@ -1,35 +1,54 @@
-import React from 'react';
 import {
   SegmentedControl as MantineSegmentedControl,
-  SegmentedControlProps as MantineSegmentedControlProps,
+  type SegmentedControlProps as MantineSegmentedControlProps,
 } from '@mantine/core';
-import { CSSObject } from '@mantine/styles';
-import { primary, neutral, white } from '../../../../constants/colors';
-import { fontBase, fontSize, fontWeight } from '../../../../constants/font';
+import type { CSSObject } from '@mantine/styles';
+import React from 'react';
+import { neutral, primary, white } from '../../../../constants/colors';
+import { fontBase, fontWeight } from '../../../../constants/font';
 
 const componentSizes = {
-  sm: { mantineSize: 'md' as const, ...fontSize['xs'] },
-  md: { mantineSize: 'lg' as const, ...fontSize['sm'] },
-  lg: { mantineSize: 'xl' as const, ...fontSize['md'] },
+  sm: { mantineSize: 'md' as const, height: 28, paddingX: 12, fontSize: 12 },
+  md: { mantineSize: 'lg' as const, height: 36, paddingX: 16, fontSize: 14 },
+  lg: { mantineSize: 'xl' as const, height: 44, paddingX: 20, fontSize: 16 },
 } as const;
 
-interface SegmentedControlProps extends Omit<MantineSegmentedControlProps, 'size'> {
+interface SegmentedControlProps
+  extends Omit<MantineSegmentedControlProps, 'size'> {
   size?: keyof typeof componentSizes;
   styles?: Record<string, CSSObject>;
 }
 
-const SegmentedControl = ({ styles, size = 'md', color, ...props }: SegmentedControlProps) => {
+const SegmentedControl = ({
+  styles,
+  size = 'md',
+  color,
+  ...props
+}: SegmentedControlProps) => {
   const selectedSize = componentSizes[size];
   const style = {
     root: {
       backgroundColor: neutral[50],
+      minHeight: `${selectedSize.height}px`,
+    },
+    control: {
+      height: `${selectedSize.height}px`,
+      '&:not(:first-of-type)': {
+        borderColor: neutral[100],
+      },
     },
     controlActive: {
-        backgroundColor: white,
+      backgroundColor: white,
     },
     label: {
       ...fontBase,
-      fontSize: selectedSize.fontSize,
+      height: `${selectedSize.height}px`,
+      padding: `0 ${selectedSize.paddingX}px`,
+      fontSize: `${selectedSize.fontSize}px`,
+      lineHeight: 1,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       '&:not([data-active])': {
         color: neutral[200],
       },
@@ -40,15 +59,20 @@ const SegmentedControl = ({ styles, size = 'md', color, ...props }: SegmentedCon
         },
       },
     },
-    control: {
-      '&:not(:first-of-type)': {
-        borderColor: neutral[100],
-      },
-    },
     ...styles,
   };
 
-  return <MantineSegmentedControl radius='md' color={color} size={selectedSize.mantineSize} styles={style} transitionTimingFunction='linear' transitionDuration={300} {...props} />;
+  return (
+    <MantineSegmentedControl
+      color={color}
+      radius='md'
+      size={selectedSize.mantineSize}
+      styles={style}
+      transitionDuration={300}
+      transitionTimingFunction='linear'
+      {...props}
+    />
+  );
 };
 
 export { SegmentedControl };

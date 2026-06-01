@@ -74,14 +74,14 @@ const titleStyle = {
     ...fontBase,
     ...fontSize['3xl'],
     fontWeight: fontWeight['bold'],
-    color: 'black',
+    color: neutral[500],
   },
   sectionHeader: {
     // h2
     ...fontBase,
     ...fontSize['xl'],
     fontWeight: fontWeight['semibold'],
-    color: 'black',
+    color: neutral[500],
   },
   subheader: {
     // h3

@@ -1,20 +1,25 @@
-import { ReactElement } from 'react';
+import { ReactElement, forwardRef } from 'react';
 import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@mantine/core';
 import { componentSizes } from './sizes';
-import { componentVariants as baseVariants, subtleVariants } from '../shared/variants';
+import { HOVER_MEDIA, componentVariants as baseVariants, subtleVariants } from '../shared/variants';
 import { neutral } from '../../../../constants/colors';
 
-export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | 'rightIcon'> {
+export interface IconButtonProps extends Omit<MantineButtonProps, 'leftIcon' | 'rightIcon' | 'radius'> {
   onClick?: () => void;
   size?: keyof typeof componentSizes;
   variant?: keyof typeof baseVariants;
   toggled?: boolean;
   shadow?: boolean;
   subtle?: boolean;
+  /**
+   * Border radius. Defaults to `'8px'` (rounded square). Pass `'50%'` for a
+   * perfect circle (used by `FAB`). Accepts any CSS length.
+   */
+  radius?: number | string;
   children?: ReactElement<{ size?: number }>;
 }
 
-export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, subtle = false, styles, children, ...props }: IconButtonProps) => {
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({ onClick, size = 'md', variant = 'primary', toggled = false, shadow = false, subtle = false, radius = '8px', styles, children, ...props }, ref) => {
   const selectedVariant = baseVariants[variant];
   const selectedSize = componentSizes[size];
 
@@ -34,9 +39,11 @@ export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled 
         ...subtleVariants[variant],
         border: `1px solid ${neutral[50]}`,
         background: 'white',
-        '&:hover': {
-          background: neutral[50],
-          border: `1px solid ${neutral[50]}`,
+        [HOVER_MEDIA]: {
+          '&:hover': {
+            background: neutral[50],
+            border: `1px solid ${neutral[50]}`,
+          },
         },
         '&:active': {
           background: 'white',
@@ -51,19 +58,40 @@ export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled 
 
   const style = {
     root: {
-      borderRadius: '8px',
-      height: `${selectedSize.borderLength}px`,
-      padding: selectedSize.padding,
-      width: `${selectedSize.borderLength}px`,
-      boxShadow: shadow ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
+      // Variant colors / borders / interaction states come first.
       ...getVariantStyles(),
       ...getSubtleStyles(),
+      // IconButton's geometry contract (square button, centered icon) must
+      // win over variant styles. Variants like `text` set `height: 'auto'`
+      // and `padding: '0'` (correct for inline text Buttons, wrong for icon
+      // buttons), and `nav` sets `paddingLeft` + `inner.justifyContent:
+      // flex-start` (correct for left-aligned menu items, wrong for an
+      // icon-only square). Keep these overrides last so any variant works.
+      borderRadius: typeof radius === 'number' ? `${radius}px` : radius,
+      boxShadow: shadow ? '0px 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
+      height: `${selectedSize.borderLength}px`,
+      minWidth: 'unset',
+      padding: selectedSize.padding,
+      width: `${selectedSize.borderLength}px`,
+      '& .mantine-Button-inner': {
+        justifyContent: 'center',
+      },
+      // Mantine v6's Button styles only know about xs–xl; '2xl' falls back to
+      // default sizing, which leaves Tabler icons at their 24px default inside
+      // our 80px container. Explicitly size the SVG so iconSize is honored.
+      ...(size === '2xl' && {
+        '& svg': {
+          height: `${selectedSize.iconSize}px`,
+          width: `${selectedSize.iconSize}px`,
+        },
+      }),
     },
     ...styles,
   };
 
   const Button = (
     <MantineButton
+      ref={ref}
       styles={style}
       size={size}
       onClick={onClick}
@@ -76,4 +104,6 @@ export const IconButton = ({ onClick, size = 'md', variant = 'primary', toggled 
   );
 
   return Button;
-};
+});
+
+IconButton.displayName = 'IconButton';

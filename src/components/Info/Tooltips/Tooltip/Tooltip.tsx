@@ -13,9 +13,13 @@ interface TooltipProps {
   className?: string;
   styles?: Record<string, CSSObject>;
   maxWidth?: string;
+  /** When true, the tooltip will not render. */
+  disabled?: boolean;
+  /** When true, the wrapper fills its parent width instead of shrinking to content. */
+  fullWidth?: boolean;
 }
 
-const Tooltip = ({ children, text, position = 'top-start', offset, className, styles, maxWidth }: TooltipProps) => {
+const Tooltip = ({ children, text, position = 'top-start', offset, className, styles, maxWidth, disabled, fullWidth }: TooltipProps) => {
   const positionToTransition: Record<string, MantineTransition> = {
     'top-end': 'slide-up',
     'bottom-end': 'slide-down',
@@ -23,12 +27,14 @@ const Tooltip = ({ children, text, position = 'top-start', offset, className, st
     'bottom-start': 'slide-down',
   };
 
-  const wrapperStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 'fit-content',
-  };
+  const wrapperStyle = fullWidth
+    ? { display: 'block', width: '100%', minWidth: 0 }
+    : {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 'fit-content',
+      };
 
   const tooltipStyle = {
     tooltip: {
@@ -59,6 +65,7 @@ const Tooltip = ({ children, text, position = 'top-start', offset, className, st
       offset={offset}
       className={className}
       withinPortal={true}
+      disabled={disabled}
     >
       <Box sx={wrapperStyle}>{children}</Box>
     </MantineTooltip>

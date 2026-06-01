@@ -21,3 +21,4 @@ export const useTablet = () => useMediaQuery(`(max-width: ${breakpoints.TABLET}p
 export const useLaptop = () => useMediaQuery(`(max-width: ${breakpoints.LAPTOP}px)`);
 export const useDesktop = () => useMediaQuery(`(max-width: ${breakpoints.DESKTOP}px)`);
 export const useWide = () => useMediaQuery(`(max-width: ${breakpoints.WIDE}px)`);
+export const useTouchDevice = () => useMediaQuery('(pointer: coarse)');

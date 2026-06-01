@@ -2,13 +2,30 @@
   "author": "Taiv",
   "dependencies": {
     "@emotion/react": "^11.14.0",
+    "@mantine/carousel": "^6.0.22",
     "@mantine/core": "^6.0.0",
     "@mantine/dates": "^6.0.22",
+    "@mantine/dropzone": "^6.0.22",
+    "@mantine/form": "^6.0.22",
     "@mantine/hooks": "^6.0.0",
     "@mantine/modals": "^6.0.0",
     "@mantine/notifications": "^6.0.0",
+    "@preact/signals": "^2.0.2",
+    "@schedule-x/calendar": "^2.36.0",
+    "@schedule-x/current-time": "^2.36.0",
+    "@schedule-x/drag-and-drop": "^2.36.0",
+    "@schedule-x/events-service": "^2.36.0",
+    "@schedule-x/react": "^2.36.0",
+    "@schedule-x/resize": "^2.36.0",
+    "@schedule-x/theme-default": "^2.36.0",
     "@tabler/icons-react": "^3.41.1",
+    "@types/react-big-calendar": "^0.33.2",
     "dayjs": "^1.11.18",
+    "embla-carousel-autoplay": "^7.1.0",
+    "embla-carousel-react": "^7.1.0",
+    "preact": "^10.19.2",
+    "react-big-calendar": "^0.38.9",
+    "react-virtuoso": "^4.18.7",
     "recharts": "^2.8.0"
   },
   "description": "Taiv's web UI Toolkit built on Mantine v6",
@@ -25,6 +42,12 @@
   },
   "exports": {
     ".": "./dist/components/index.js",
+    "./assets": {
+      "default": "./dist/assets/index.js",
+      "import": "./dist/assets/index.js",
+      "types": "./dist/assets/index.d.ts"
+    },
+    "./assets/*": "./dist/assets/*",
     "./constants": "./dist/constants/index.js",
     "./hooks": "./dist/hooks/index.js",
     "./types": "./dist/types/index.js",
@@ -50,8 +73,9 @@
     "biome:check:path": "biome check",
     "biome:fix": "biome check --write src",
     "biome:fix:path": "biome check --write",
-    "build": "tsc",
+    "build": "tsc && npm run build:assets",
     "build-storybook": "storybook build",
+    "build:assets": "mkdir -p dist/assets/brand && cp -R src/assets/brand/. dist/assets/brand/",
     "clean": "rm -rf dist",
     "dev": "npm link && tsc --watch",
     "format": "biome check --linter-enabled=false --assist-enabled=false src",
@@ -61,5 +85,5 @@
     "storybook": "storybook dev -p 6006"
   },
   "types": "dist/index.d.ts",
-  "version": "1.9.1"
+  "version": "1.11.1"
 }

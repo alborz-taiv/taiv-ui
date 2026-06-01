@@ -1,19 +1,37 @@
-import taivIconBlack from './brand/taiv-icon-black.svg';
-import taivIconDark from './brand/taiv-icon-dark.svg';
-import taivIconWhite from './brand/taiv-icon-white.svg';
-import taivLogoBlack from './brand/taiv-logo-black.svg';
-import taivLogoDark from './brand/taiv-logo-dark.svg';
-import taivLogoOld from './brand/taiv-logo-old.svg';
-import taivLogoPurple from './brand/taiv-logo-purple.svg';
-import taivLogoWhite from './brand/taiv-logo-white.svg';
+import TaivFaviconDark from "./brand/taiv-favicon-dark.png";
+import TaivFaviconLight from "./brand/taiv-favicon-light.png";
+import TaivIconPurple from "./brand/taiv-icon-black.svg";
+import TaivIconBlack from "./brand/taiv-icon-dark.svg";
+import TaivIconWhite from "./brand/taiv-icon-white.svg";
+import TaivLogoHybrid from "./brand/taiv-logo-black.svg";
+import TaivLogoBlack from "./brand/taiv-logo-dark.svg";
+import TaivLogoLegacy from "./brand/taiv-logo-old.svg";
+import TaivLogoPurple from "./brand/taiv-logo-purple.svg";
+import TaivLogoWhite from "./brand/taiv-logo-white.svg";
 
+export {
+  TaivFaviconDark,
+  TaivFaviconLight,
+  TaivIconBlack,
+  TaivIconPurple,
+  TaivIconWhite,
+  TaivLogoBlack,
+  TaivLogoHybrid,
+  TaivLogoLegacy,
+  TaivLogoPurple,
+  TaivLogoWhite,
+};
+
+// Categorization for storybook
 export const brand = [
-  { src: taivIconBlack, filename: 'taiv-icon-black.svg' },
-  { src: taivIconDark, filename: 'taiv-icon-dark.svg' },
-  { src: taivIconWhite, filename: 'taiv-icon-white.svg' },
-  { src: taivLogoBlack, filename: 'taiv-logo-black.svg' },
-  { src: taivLogoDark, filename: 'taiv-logo-dark.svg' },
-  { src: taivLogoOld, filename: 'taiv-logo-old.svg' },
-  { src: taivLogoPurple, filename: 'taiv-logo-purple.svg' },
-  { src: taivLogoWhite, filename: 'taiv-logo-white.svg' },
+  { filename: "TaivIconPurple", src: TaivIconPurple },
+  { filename: "TaivIconBlack", src: TaivIconBlack },
+  { filename: "TaivIconWhite", src: TaivIconWhite },
+  { filename: "TaivLogoHybrid", src: TaivLogoHybrid },
+  { filename: "TaivLogoBlack", src: TaivLogoBlack },
+  { filename: "TaivLogoPurple", src: TaivLogoPurple },
+  { filename: "TaivLogoWhite", src: TaivLogoWhite },
+  { filename: "TaivLogoLegacy", src: TaivLogoLegacy },
+  { filename: "TaivFaviconDark", src: TaivFaviconDark },
+  { filename: "TaivFaviconLight", src: TaivFaviconLight },
 ];

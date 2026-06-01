@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { modals } from '@mantine/modals';
 import { neutral } from '../constants/colors';
 import { spacing } from '../constants/spacing';
@@ -48,6 +48,23 @@ export const useConfirmationModal = () => {
     const modalIcon = coloredIcon || <i className={selectedVariant.icon} style={{ color: selectedVariant.iconColor, fontSize: '20px' }} />;
 
     const ConfirmModalContent = () => {
+      // Enter confirms, Escape cancels. We own Escape (closeOnEscape is
+      // disabled at the modal level below) so the user's onCancel fires
+      // on Escape instead of the modal silently closing.
+      useEffect(() => {
+        const onKeyDown = (e: KeyboardEvent) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleConfirm();
+          } else if (e.key === 'Escape') {
+            e.preventDefault();
+            handleCancel();
+          }
+        };
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+      }, []);
+
       return (
         <Center h="100%" w="100%">
           <Stack gap="20px" h="100%" w="100%" align="center">
@@ -80,6 +97,8 @@ export const useConfirmationModal = () => {
     modals.open({
       children: <ConfirmModalContent />,
       size,
+      // Escape is handled inside ConfirmModalContent so it can fire onCancel.
+      closeOnEscape: false,
       styles: {
         content: {
           borderRadius: '8px',

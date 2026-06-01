@@ -1,0 +1,48 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Timeline } from './Timeline';
+import * as TimelineStories from './Timeline.stories';
+
+<Meta of={TimelineStories} />
+
+# Timeline
+
+[View Mantine Docs](https://v6.mantine.dev/core/timeline/)
+
+Displays a list of events along a vertical line — useful for payment histories, status progressions, or activity feeds.
+
+### 📦 Import
+```tsx
+import { Timeline } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={TimelineStories.Default} />
+<Controls of={TimelineStories.Default} />
+
+```tsx
+<Timeline active={1}>
+  <Timeline.Item title="Payment received" bullet={<IconCoin size={14} />}>
+    Body content here
+  </Timeline.Item>
+  <Timeline.Item title="Statement issued" bullet={<IconReceipt size={14} />}>
+    Body content here
+  </Timeline.Item>
+</Timeline>
+```
+
+The `active` prop highlights all items up to and including the given index — bullets and the connecting line take the active color.
+
+---
+
+### 🎨 Variants
+
+<Story of={TimelineStories.Variants} />
+
+---
+
+### 💡 Tips & Best Practices
+
+1. **Use bullets to convey state.** A check icon for completed, a clock for in progress, a custom icon for context.
+2. **Keep titles short.** Item titles render bold next to the bullet — full descriptions belong in the body.
+3. **Order matters.** Newest-first is the most common pattern for activity feeds; oldest-first works for step indicators.
