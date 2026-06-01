@@ -1,42 +1,55 @@
 import React from 'react';
-import { primary, error, success, warning } from '../../../constants/colors';
+import { error, primary, success, warning } from '../../../constants/colors';
 import { Loader } from '../../Layout/Loader/Loader';
 
 export const componentVariants = {
-  success: {
-    defaultTitle: 'Success!',
-    color: success[200],
-    icon: <i className="fas fa-check-circle" style={{ color: success[200] }} />,
+  copy: {
     autoClose: 4000,
+    color: primary[200],
+    defaultTitle: 'Copied to clipboard!',
+    icon: <i className='fas fa-copy' style={{ color: primary[200] }} />,
   },
   error: {
-    defaultTitle: 'Oops!',
-    color: error[100],
-    icon: <i className="fas fa-exclamation-circle" style={{ color: error[100] }} />,
     autoClose: false,
-  },
-  warning: {
-    defaultTitle: 'Warning',
-    color: warning[100],
-    icon: <i className="fas fa-exclamation-triangle" style={{ color: warning[100] }} />,
-    autoClose: 4000,
+    color: error[100],
+    defaultTitle: 'Oops!',
+    icon: (
+      <i className='fas fa-exclamation-circle' style={{ color: error[100] }} />
+    ),
   },
   info: {
-    defaultTitle: 'Note',
-    color: primary[200],
-    icon: <i className="fas fa-info-circle" style={{ color: primary[200] }} />,
     autoClose: 4000,
+    color: primary[200],
+    defaultTitle: 'Note',
+    icon: <i className='fas fa-info-circle' style={{ color: primary[200] }} />,
   },
   loading: {
-    defaultTitle: 'Loading...',
-    color: primary[200],
-    icon: <Loader size="md" color={primary[200]} />,
     autoClose: false,
+    color: primary[200],
+    defaultTitle: 'Loading...',
+    icon: <Loader color={primary[200]} size='md' />,
   },
-  copy: {
-    defaultTitle: 'Copied to clipboard!',
-    color: primary[300],
-    icon: <i className="fas fa-copy" style={{ color: primary[300] }} />,
+  success: {
     autoClose: 4000,
+    color: success[300],
+    defaultTitle: 'Success!',
+    icon: <i className='fas fa-check-circle' style={{ color: success[300] }} />,
+  },
+  remove: {
+    autoClose: 4000,
+    color: error[100],
+    defaultTitle: 'Removed',
+    icon: <i className='fas fa-circle-minus' style={{ color: error[100] }} />,
+  },
+  warning: {
+    autoClose: 4000,
+    color: warning[100],
+    defaultTitle: 'Warning',
+    icon: (
+      <i
+        className='fas fa-exclamation-triangle'
+        style={{ color: warning[100] }}
+      />
+    ),
   },
 } as const;

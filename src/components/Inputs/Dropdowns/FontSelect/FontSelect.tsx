@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Box } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
 import { neutral } from '../../../../constants/colors';
 import { componentSizes } from '../shared/sizes';
 import { Select, SelectProps } from '../Select/Select';
 import { SelectOption } from '../../../../utils/select';
+import { sortByName } from '../../../../utils/sort';
 import Fonts from './font-options';
 
 export interface FontSelectProps extends Omit<SelectProps, 'value' | 'data'> {
@@ -17,6 +18,15 @@ export interface FontSelectProps extends Omit<SelectProps, 'value' | 'data'> {
 const FontSelect = ({ data, value, placeholder = 'Select a font', size = 'md', width, fullWidth = false, styles, ...props }: FontSelectProps) => {
   const selectedSize = componentSizes[size];
   const computedWidth = fullWidth ? '100%' : width || `${selectedSize.minWidth}px`;
+
+  // Alphabetise the font dropdown so it's scannable. The bundled list ships
+  // in upload order; consumer-provided lists tend to be just as arbitrary.
+  // `sortByName` falls back to `label` for Select-style options and returns a
+  // new array (non-mutating).
+  const fontOptions = useMemo(
+    () => sortByName(data ?? Fonts.FONTS, 'asc'),
+    [data],
+  );
 
   const DropdownItem = ({ value, label, ...others }: SelectOption) => (
     <Box title={label}>
@@ -65,7 +75,7 @@ const FontSelect = ({ data, value, placeholder = 'Select a font', size = 'md', w
     },
   };
 
-  return <Select placeholder={placeholder} width={computedWidth} value={value} size={size} styles={style} itemComponent={DropdownItem} data={data || Fonts.FONTS} {...props} />;
+  return <Select placeholder={placeholder} width={computedWidth} value={value} size={size} styles={style} itemComponent={DropdownItem} data={fontOptions} {...props} />;
 };
 
 export { FontSelect };

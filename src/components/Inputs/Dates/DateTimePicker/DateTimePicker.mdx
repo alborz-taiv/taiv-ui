@@ -1,0 +1,148 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DateTimePicker } from './DateTimePicker';
+import * as DateTimePickerStories from './DateTimePicker.stories';
+import { AIGeneratedBanner } from '../../../../docs/AIGeneratedBanner';
+
+<Meta of={DateTimePickerStories} />
+
+# DateTimePicker
+
+[View Mantine Docs](https://v6.mantine.dev/dates/date-time-picker/)
+
+<AIGeneratedBanner />
+
+The DateTimePicker component is a customizable wrapper around Mantine's DateTimePicker component that lets users pick a date and a time in a single input. It shares the same styling conventions as DatePicker and extends Mantine v6's DateTimePickerProps with preset sizing and width options.
+
+### 📦 Import
+
+```tsx
+import { DateTimePicker } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={DateTimePickerStories.Default} />
+<Controls of={DateTimePickerStories.Default} />
+
+---
+
+### 📐 Sizes
+
+Three preset sizes are available to match different UI contexts and design requirements.
+
+<Story of={DateTimePickerStories.Sizes} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>Compact spaces, inline forms, mobile interfaces</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>Default size for most pickers, forms</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>Prominent forms, accessibility requirements</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 🔄 States
+
+The DateTimePicker component supports different states to provide visual feedback and control user interaction.
+
+<Story of={DateTimePickerStories.States} />
+
+## <br />
+
+### 🎨 Icon Options
+
+The DateTimePicker component supports showing or hiding the calendar icon.
+
+<Story of={DateTimePickerStories.WithAndWithoutIcon} />
+
+## <br />
+
+### ⏱️ With Seconds
+
+Enable second-level precision with the `withSeconds` prop.
+
+<Story of={DateTimePickerStories.WithSeconds} />
+
+## <br />
+
+### 📏 Full Width
+
+The DateTimePicker can be set to take the full width of its container.
+
+<Story of={DateTimePickerStories.FullWidth} />
+
+## <br />
+
+### 🛠️ Custom Styles
+
+You can pass custom styles via the `styles` prop.
+
+<Story of={DateTimePickerStories.CustomStyles} />
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Static selector</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>.mantine-DateTimePicker-root</td>
+      <td>Root element</td>
+    </tr>
+    <tr>
+      <td>input</td>
+      <td>.mantine-DateTimePicker-input</td>
+      <td>Input element</td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>.mantine-DateTimePicker-placeholder</td>
+      <td>Placeholder text</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>.mantine-DateTimePicker-label</td>
+      <td>Label</td>
+    </tr>
+    <tr>
+      <td>calendar</td>
+      <td>.mantine-DateTimePicker-calendar</td>
+      <td>Calendar popup</td>
+    </tr>
+    <tr>
+      <td>timeWrapper</td>
+      <td>.mantine-DateTimePicker-timeWrapper</td>
+      <td>Time input wrapper</td>
+    </tr>
+  </tbody>
+</table>
+
+## <br />
+
+### 💡 Best Practices
+
+1. **Provide clear labels**: Describe what date and time the user is picking.
+2. **Choose an appropriate format**: Use `valueFormat` to match how users expect dates/times to be displayed.
+3. **Handle validation**: Use the `error` prop for invalid or missing values.
+4. **Use seconds sparingly**: Only enable `withSeconds` when the extra precision is truly needed.
+5. **Consider time zones**: The picker returns local `Date` values — make sure the consuming code normalizes to the timezone your system expects.

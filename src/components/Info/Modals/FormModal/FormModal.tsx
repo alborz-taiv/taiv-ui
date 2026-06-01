@@ -1,12 +1,28 @@
 import React from "react";
 import { Modal as MantineModal } from "@mantine/core";
+import type { CSSObject } from "@mantine/core";
 import { neutral } from "../../../../constants/colors";
 import { spacing } from '../../../../constants/spacing';
 import { Stack } from "../../../Layout/Stack/Stack";
 import { Center } from "../../../Layout/Center/Center";
 import { modalVariants } from "../variants";
 import { Group } from "../../../Layout/Group/Group";
-import { Button } from "../../../Inputs/Buttons/Button/Button";
+import { Button, ButtonProps } from "../../../Inputs/Buttons/Button/Button";
+
+/** Style overrides merged into Mantine `Modal` `styles` (object form only). */
+export type FormModalStylesOverride = Partial<
+  Record<
+    | "body"
+    | "close"
+    | "content"
+    | "header"
+    | "inner"
+    | "overlay"
+    | "root"
+    | "title",
+    CSSObject
+  >
+>;
 
 export interface FormModalProps {
   opened: boolean;
@@ -21,6 +37,18 @@ export interface FormModalProps {
   onConfirm?: () => void;
   cancelLabel?: string;
   confirmLabel?: string;
+  confirmRightIcon?: React.ReactNode;
+  cancelLeftIcon?: React.ReactNode;
+  confirmVariant?: ButtonProps['variant'];
+  /** Optional destructive footer action (e.g. Delete on edit modals). Rendered before Cancel. */
+  onDelete?: () => void;
+  deleteLabel?: string;
+  deleteButtonDisabled?: boolean;
+  deleteButtonLoading?: boolean;
+  deleteLeftIcon?: React.ReactNode;
+  fullScreen?: boolean;
+  /** Merged into Mantine `Modal` `styles` (e.g. lock body scroll when children use an inner `ScrollArea`). */
+  modalStyles?: FormModalStylesOverride;
 }
 
 export const FormModal = ({
@@ -36,6 +64,16 @@ export const FormModal = ({
   onConfirm,
   cancelLabel,
   confirmLabel,
+  confirmRightIcon,
+  cancelLeftIcon,
+  confirmVariant,
+  onDelete,
+  deleteLabel = "Delete",
+  deleteButtonDisabled = false,
+  deleteButtonLoading = false,
+  deleteLeftIcon,
+  modalStyles,
+  fullScreen = false,
 }: FormModalProps) => {
   const selectedVariant = modalVariants[modalVariant];
   const iconContainer = {
@@ -60,6 +98,7 @@ export const FormModal = ({
       opened={opened}
       onClose={onClose}
       centered
+      fullScreen={fullScreen}
       radius="16px"
       overlayProps={{
         opacity: 0,
@@ -79,13 +118,15 @@ export const FormModal = ({
         },
       }}
       styles={{
-        content: {
-          borderRadius: "8px",
-          border: `1px solid ${neutral[50]}`,
-          boxShadow: "0px 0px 19px 0px #00000040",
-        },
-        header: {
-          padding: spacing.sm,
+        ...modalStyles,
+        body: {
+          padding: `0 ${spacing.xxl} ${spacing.lg} ${spacing.xxl}`,
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          minHeight: 0,
+          overflow: "hidden",
+          ...modalStyles?.body,
         },
         close: {
           borderRadius: "16px",
@@ -98,39 +139,75 @@ export const FormModal = ({
           "&:active": {
             transform: "none",
           },
+          ...modalStyles?.close,
         },
-        body: {
-          padding: `0 ${spacing.xxl} ${spacing.lg} ${spacing.xxl}`,
+        content: {
+          borderRadius: "8px",
+          border: `1px solid ${neutral[50]}`,
+          boxShadow: "0px 0px 19px 0px #00000040",
+          display: "flex",
+          flexDirection: "column",
+          ...modalStyles?.content,
+        },
+        header: {
+          padding: spacing.sm,
+          ...modalStyles?.header,
         },
       }}
     >
-      <Center h="100%" w="100%">
-        <Stack gap="20px" h="100%" w="100%" align="center">
-          <Stack gap={spacing.lg} align="center">
-            <Center style={iconContainer}>{modalIcon}</Center>
-            {children && (
-              <Stack gap={spacing.xxs} align="center">
-                {children}
-              </Stack>
-            )}
+      <Stack
+        gap="20px"
+        w="100%"
+        align="stretch"
+        style={{ minWidth: 0, flex: 1, minHeight: 0 }}
+      >
+        <Center mx="auto" style={{ ...iconContainer, flexShrink: 0 }}>
+          {modalIcon}
+        </Center>
+        {children && (
+          <Stack
+            gap={spacing.xxs}
+            align="stretch"
+            w="100%"
+            style={{
+              minWidth: 0,
+              maxWidth: "100%",
+              flex: 1,
+              minHeight: 0,
+              overflow: "hidden",
+            }}
+          >
+            {children}
           </Stack>
-          <Center h="100%" w="100%">
-            <Group gap="10px" align="center">
-              <Button onClick={onCancel} variant="secondary">
-                {cancelLabel || selectedVariant.cancelLabel}
-              </Button>
+        )}
+        <Center w="100%" style={{ flexShrink: 0 }}>
+          <Group gap="10px" align="center">
+            <Button onClick={onCancel} variant="secondary" leftIcon={cancelLeftIcon}>
+              {cancelLabel || selectedVariant.cancelLabel}
+            </Button>
+            {onDelete && (
               <Button
-                onClick={onConfirm}
-                variant={selectedVariant.buttonVariant}
-                disabled={confirmButtonDisabled}
-                loading={confirmButtonLoading}
+                onClick={onDelete}
+                variant="cancel"
+                disabled={deleteButtonDisabled}
+                loading={deleteButtonLoading}
+                leftIcon={deleteLeftIcon}
               >
-                {confirmLabel || selectedVariant.confirmLabel}
+                {deleteLabel}
               </Button>
-            </Group>
-          </Center>
-        </Stack>
-      </Center>
+            )}
+            <Button
+              onClick={onConfirm}
+              variant={confirmVariant || selectedVariant.buttonVariant}
+              disabled={confirmButtonDisabled}
+              loading={confirmButtonLoading}
+              rightIcon={confirmRightIcon}
+            >
+              {confirmLabel || selectedVariant.confirmLabel}
+            </Button>
+          </Group>
+        </Center>
+      </Stack>
     </MantineModal>
   );
 };

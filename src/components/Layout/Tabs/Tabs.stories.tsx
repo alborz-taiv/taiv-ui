@@ -1,50 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Tabs } from './Tabs';
-import { Stack } from '../Stack/Stack';
 import { primary } from '../../../constants/colors';
 import { spacing } from '../../../constants/spacing';
 import { Text } from '../../Typography/Text/Text';
+import { Stack } from '../Stack/Stack';
+import { Tabs } from './Tabs';
 
 const meta: Meta<typeof Tabs> = {
-  title: 'Components/Layout/Tabs',
-  component: Tabs,
-  parameters: {
-    layout: 'centered',
-    docs: {
-      description: {
-        component:
-          "[View Mantine Docs](https://v6.mantine.dev/core/tabs/)\n\nThe Tabs component organizes content into sections that users can switch between. It extends Mantine v6's Tabs component with custom styling and variant options.",
-      },
-    },
-  },
   argTypes: {
     children: {
       control: false,
-      description: 'Tab content — composed of Tabs.List, Tabs.Tab, and Tabs.Panel',
+      description:
+        'Tab content — composed of Tabs.List, Tabs.Tab, and Tabs.Panel',
       table: {
         type: { summary: 'ReactNode' },
       },
     },
-    variant: {
-      control: { type: 'select' },
-      options: ['default', 'outline', 'pills'],
-      description: 'The preset variant to use for styling',
-      table: {
-        type: { summary: "'default' | 'outline' | 'pills'" },
-        defaultValue: { summary: "'default'" },
-      },
-    },
     defaultValue: {
       control: { type: 'select' },
-      options: ['overview', 'details', 'settings'],
       description: 'The default tab when the component is mounted',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    value: {
-      control: { type: 'text' },
-      description: 'The currently active tab value',
+      options: ['overview', 'details', 'settings'],
       table: {
         type: { summary: 'string' },
       },
@@ -63,7 +37,34 @@ const meta: Meta<typeof Tabs> = {
         type: { summary: 'Record<string, CSSObject>' },
       },
     },
+    value: {
+      control: { type: 'text' },
+      description: 'The currently active tab value',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    variant: {
+      control: { type: 'select' },
+      description: 'The preset variant to use for styling',
+      options: ['default', 'outline', 'pills'],
+      table: {
+        defaultValue: { summary: "'default'" },
+        type: { summary: "'default' | 'outline' | 'pills'" },
+      },
+    },
   },
+  component: Tabs,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "[View Mantine Docs](https://v6.mantine.dev/core/tabs/)\n\nThe Tabs component organizes content into sections that users can switch between. It extends Mantine v6's Tabs component with custom styling and variant options.",
+      },
+    },
+    layout: 'centered',
+  },
+  title: 'Components/Layout/Tabs',
 };
 
 export default meta;
@@ -72,8 +73,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     children: undefined,
-    variant: 'default',
     defaultValue: 'overview',
+    variant: 'default',
   },
   decorators: [
     (Story) => (
@@ -85,41 +86,47 @@ export const Default: Story = {
   render: (args) => (
     <Tabs {...args}>
       <Tabs.List>
-        <Tabs.Tab value="overview">Overview</Tabs.Tab>
-        <Tabs.Tab value="details">Details</Tabs.Tab>
-        <Tabs.Tab value="settings">Settings</Tabs.Tab>
+        <Tabs.Tab value='overview'>Overview</Tabs.Tab>
+        <Tabs.Tab value='details'>Details</Tabs.Tab>
+        <Tabs.Tab value='settings'>Settings</Tabs.Tab>
       </Tabs.List>
-      <Tabs.Panel mt={spacing.lg} value="overview"><Text variant="subtle">This is the tab panel for Overview</Text></Tabs.Panel>
-      <Tabs.Panel mt={spacing.lg} value="details"><Text variant="subtle">This is the tab panel for Details</Text></Tabs.Panel>
-      <Tabs.Panel mt={spacing.lg} value="settings"><Text variant="subtle">This is the tab panel for Settings</Text></Tabs.Panel>
+      <Tabs.Panel mt={spacing.lg} value='overview'>
+        <Text variant='subtle'>This is the tab panel for Overview</Text>
+      </Tabs.Panel>
+      <Tabs.Panel mt={spacing.lg} value='details'>
+        <Text variant='subtle'>This is the tab panel for Details</Text>
+      </Tabs.Panel>
+      <Tabs.Panel mt={spacing.lg} value='settings'>
+        <Text variant='subtle'>This is the tab panel for Settings</Text>
+      </Tabs.Panel>
     </Tabs>
   ),
 };
 
 export const Variants: Story = {
   render: () => (
-    <Stack spacing="48px" py={spacing.xl} sx={{ width: '600px' }}>
-      <Tabs defaultValue="overview" variant="default">
+    <Stack py={spacing.xl} spacing='48px' sx={{ width: '600px' }}>
+      <Tabs defaultValue='overview' variant='default'>
         <Tabs.List>
-          <Tabs.Tab value="overview">Default</Tabs.Tab>
-          <Tabs.Tab value="details">Tab 2</Tabs.Tab>
-          <Tabs.Tab value="settings">Tab 3</Tabs.Tab>
+          <Tabs.Tab value='overview'>Default</Tabs.Tab>
+          <Tabs.Tab value='details'>Tab 2</Tabs.Tab>
+          <Tabs.Tab value='settings'>Tab 3</Tabs.Tab>
         </Tabs.List>
       </Tabs>
 
-      <Tabs defaultValue="overview" variant="outline">
+      <Tabs defaultValue='overview' variant='outline'>
         <Tabs.List>
-          <Tabs.Tab value="overview">Outline</Tabs.Tab>
-          <Tabs.Tab value="details">Tab 2</Tabs.Tab>
-          <Tabs.Tab value="settings">Tab 3</Tabs.Tab>
+          <Tabs.Tab value='overview'>Outline</Tabs.Tab>
+          <Tabs.Tab value='details'>Tab 2</Tabs.Tab>
+          <Tabs.Tab value='settings'>Tab 3</Tabs.Tab>
         </Tabs.List>
       </Tabs>
 
-      <Tabs defaultValue="overview" variant="pills">
+      <Tabs defaultValue='overview' variant='pills'>
         <Tabs.List>
-          <Tabs.Tab value="overview">Pills</Tabs.Tab>
-          <Tabs.Tab value="details">Tab 2</Tabs.Tab>
-          <Tabs.Tab value="settings">Tab 3</Tabs.Tab>
+          <Tabs.Tab value='overview'>Pills</Tabs.Tab>
+          <Tabs.Tab value='details'>Tab 2</Tabs.Tab>
+          <Tabs.Tab value='settings'>Tab 3</Tabs.Tab>
         </Tabs.List>
       </Tabs>
     </Stack>
@@ -130,23 +137,23 @@ export const CustomStyling: Story = {
   args: {
     defaultValue: 'overview',
     styles: {
+      panel: {
+        color: 'white',
+      },
       root: {
         background: primary[200],
-        padding: '20px',
         borderRadius: '12px',
+        padding: '20px',
       },
       tab: {
-        color: 'white',
         '&:hover': {
+          backgroundColor: primary[200],
           color: 'white',
-          backgroundColor: primary[300],
         },
         '&[data-active]': {
-          color: 'white',
           backgroundColor: primary[100],
+          color: 'white',
         },
-      },
-      panel: {
         color: 'white',
       },
     },
@@ -158,16 +165,6 @@ export const CustomStyling: Story = {
       </div>
     ),
   ],
-  render: (args) => (
-    <Tabs variant="pills" {...args}>
-      <Tabs.List>
-        <Tabs.Tab value="overview">Overview</Tabs.Tab>
-        <Tabs.Tab value="details">Details</Tabs.Tab>
-      </Tabs.List>
-      <Tabs.Panel mt={spacing.lg} value="overview">Overview</Tabs.Panel>
-      <Tabs.Panel mt={spacing.lg} value="details">Details</Tabs.Panel>
-    </Tabs>
-  ),
   parameters: {
     docs: {
       source: {
@@ -199,4 +196,18 @@ export const CustomStyling: Story = {
       },
     },
   },
+  render: (args) => (
+    <Tabs variant='pills' {...args}>
+      <Tabs.List>
+        <Tabs.Tab value='overview'>Overview</Tabs.Tab>
+        <Tabs.Tab value='details'>Details</Tabs.Tab>
+      </Tabs.List>
+      <Tabs.Panel mt={spacing.lg} value='overview'>
+        Overview
+      </Tabs.Panel>
+      <Tabs.Panel mt={spacing.lg} value='details'>
+        Details
+      </Tabs.Panel>
+    </Tabs>
+  ),
 };

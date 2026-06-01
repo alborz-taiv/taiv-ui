@@ -1,7 +1,14 @@
 import React from 'react';
 import { Card as MantineCard, CardProps as MantineCardProps } from '@mantine/core';
 
-export interface CardProps extends MantineCardProps {
+// Mantine's `CardProps` omits the native `<div>` attributes (they normally
+// arrive through its polymorphic wrapper). Since this is a plain wrapper that
+// spreads `...props` onto the rendered div, re-add them so consumers can pass
+// `onClick`, `onMouseEnter`, etc. without casting — the Card renders as a div
+// and forwards these at runtime regardless.
+export interface CardProps
+  extends MantineCardProps,
+    Omit<React.ComponentPropsWithoutRef<'div'>, keyof MantineCardProps> {
   children: React.ReactNode;
   animate?: boolean;
 }

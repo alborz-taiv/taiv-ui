@@ -1,23 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Toggle } from './Toggle';
 import { Group } from '../../../Layout/Group/Group';
+import { Toggle } from './Toggle';
 
 const meta: Meta<typeof Toggle> = {
-  title: 'Components/Inputs/Controls/Toggle',
-  component: Toggle,
-  parameters: {
-    layout: 'centered',
-  },
   argTypes: {
-    size: {
-      control: { type: 'select' },
-      options: ['sm', 'md'],
-      description: 'Controls the toggle size and label font size',
-      table: {
-        type: { summary: "'sm' | 'md'" },
-        defaultValue: { summary: "'md'" },
-      },
-    },
     checked: {
       control: { type: 'boolean' },
       description: 'Controlled checked state',
@@ -25,11 +11,14 @@ const meta: Meta<typeof Toggle> = {
         type: { summary: 'boolean' },
       },
     },
-    label: {
-      control: { type: 'text' },
-      description: 'Toggle label displayed next to the switch',
+    variant: {
+      control: { type: 'select' },
+      description:
+        'Visual variant. "error" swaps the active track to red and renders an X icon inside the thumb — use for destructive semantics (e.g. "on = blocked").',
+      options: ['primary', 'error'],
       table: {
-        type: { summary: 'string' },
+        defaultValue: { summary: "'primary'" },
+        type: { summary: "'primary' | 'error'" },
       },
     },
     description: {
@@ -39,6 +28,14 @@ const meta: Meta<typeof Toggle> = {
         type: { summary: 'ReactNode' },
       },
     },
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Disabled state',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     error: {
       control: { type: 'text' },
       description: 'Displays error message after input',
@@ -46,28 +43,20 @@ const meta: Meta<typeof Toggle> = {
         type: { summary: 'ReactNode' },
       },
     },
-    disabled: {
-      control: { type: 'boolean' },
-      description: 'Disabled state',
+    label: {
+      control: { type: 'text' },
+      description: 'Toggle label displayed next to the switch',
       table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        type: { summary: 'string' },
       },
     },
     labelPosition: {
       control: { type: 'select' },
-      options: ['left', 'right'],
       description: 'Position of label',
+      options: ['left', 'right'],
       table: {
-        type: { summary: '"left" | "right"' },
         defaultValue: { summary: '"left"' },
-      },
-    },
-    onLabel: {
-      control: { type: 'text' },
-      description: 'Inner label when Switch is in checked state',
-      table: {
-        type: { summary: 'ReactNode' },
+        type: { summary: '"left" | "right"' },
       },
     },
     offLabel: {
@@ -77,13 +66,6 @@ const meta: Meta<typeof Toggle> = {
         type: { summary: 'ReactNode' },
       },
     },
-    styles: {
-      control: { type: 'object' },
-      description: 'Custom styles object',
-      table: {
-        type: { summary: 'Record<string, CSSObject>' },
-      },
-    },
     onChange: {
       action: 'changed',
       description: 'Change handler function',
@@ -91,7 +73,35 @@ const meta: Meta<typeof Toggle> = {
         type: { summary: '(event: ChangeEvent<HTMLInputElement>) => void' },
       },
     },
+    onLabel: {
+      control: { type: 'text' },
+      description: 'Inner label when Switch is in checked state',
+      table: {
+        type: { summary: 'ReactNode' },
+      },
+    },
+    size: {
+      control: { type: 'select' },
+      description: 'Controls the toggle size and label font size',
+      options: ['sm', 'md'],
+      table: {
+        defaultValue: { summary: "'md'" },
+        type: { summary: "'sm' | 'md'" },
+      },
+    },
+    styles: {
+      control: { type: 'object' },
+      description: 'Custom styles object',
+      table: {
+        type: { summary: 'Record<string, CSSObject>' },
+      },
+    },
   },
+  component: Toggle,
+  parameters: {
+    layout: 'centered',
+  },
+  title: 'Components/Inputs/Controls/Toggle',
 };
 
 export default meta;
@@ -99,32 +109,21 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: 'Enable notifications',
     checked: false,
-    size: 'md',
     disabled: false,
+    label: 'Enable notifications',
     labelPosition: 'left',
+    onChange: () => {},
+    size: 'md',
+    styles: undefined,
+    variant: 'primary',
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Toggle
-  label="Enable notifications"
-  checked={isEnabled}
-  onChange={(event) => setIsEnabled(event.currentTarget.checked)}
-/>`,
-      },
-    },
+  render: function Render(args) {
+    return <Toggle {...args} />;
   },
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <Group gap="20px">
-      <Toggle size="sm" label="Small Toggle" checked={true} />
-      <Toggle size="md" label="Medium Toggle (Default)" checked={false} />
-    </Group>
-  ),
   parameters: {
     docs: {
       source: {
@@ -132,17 +131,15 @@ export const Sizes: Story = {
       },
     },
   },
+  render: () => (
+    <Group gap='20px'>
+      <Toggle checked={true} label='Small Toggle' size='sm' />
+      <Toggle checked={false} label='Medium Toggle (Default)' size='md' />
+    </Group>
+  ),
 };
 
 export const States: Story = {
-  render: () => (
-    <Group gap="20px">
-      <Toggle label="Normal Toggle" checked={true} />
-      <Toggle label="Disabled Toggle" checked={false} disabled />
-      <Toggle label="Toggle with Description" description="This is a description that provides additional context" checked={true} />
-      <Toggle label="Toggle with Error" error="This field is required" checked={false} />
-    </Group>
-  ),
   parameters: {
     docs: {
       source: {
@@ -150,15 +147,62 @@ export const States: Story = {
       },
     },
   },
+  render: () => (
+    <Group gap='20px'>
+      <Toggle checked={true} label='Normal Toggle' />
+      <Toggle checked={false} disabled label='Disabled Toggle' />
+      <Toggle
+        checked={true}
+        description='This is a description that provides additional context'
+        label='Toggle with Description'
+      />
+      <Toggle
+        checked={false}
+        error='This field is required'
+        label='Toggle with Error'
+      />
+    </Group>
+  ),
+};
+
+export const Variants: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use `variant="error"` when the toggled-on state has destructive semantics (e.g. a category is blocked). The active track turns red and a tabler X icon renders inside the thumb while checked.',
+      },
+      source: {
+        code: `<Toggle label="Block this category" checked={isBlocked} variant="error" onChange={...} />`,
+      },
+    },
+  },
+  render: () => (
+    <Group gap='32px'>
+      <Toggle checked={true} label='Primary (default)' variant='primary' />
+      <Toggle checked={true} label='Error — on means blocked' variant='error' />
+      <Toggle checked={false} label='Error — off state' variant='error' />
+    </Group>
+  ),
 };
 
 export const WithoutLabel: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: false,
+      },
+    },
+  },
   render: () => (
-    <Group gap="20px">
+    <Group gap='20px'>
       <Toggle checked={true} />
       <Toggle checked={false} />
     </Group>
   ),
+};
+
+export const CustomStyles: Story = {
   parameters: {
     docs: {
       source: {
@@ -166,52 +210,42 @@ export const WithoutLabel: Story = {
       },
     },
   },
-};
-
-export const CustomStyles: Story = {
   render: () => (
-    <Group gap="20px">
+    <Group gap='20px'>
       <Toggle
-        label="Custom Styled Toggle"
         checked={true}
+        label='Custom Styled Toggle'
         styles={{
-          track: {
-            backgroundColor: '#ff6b6b',
+          label: {
+            color: '#495057',
+            fontWeight: 600,
           },
           thumb: {
             backgroundColor: '#ffffff',
             border: '2px solid #dee2e6',
           },
-          label: {
-            fontWeight: 600,
-            color: '#495057',
+          track: {
+            backgroundColor: '#ff6b6b',
           },
         }}
       />
       <Toggle
-        label="Another Custom Style"
         checked={false}
+        label='Another Custom Style'
         styles={{
-          track: {
-            backgroundColor: '#4CAF50',
+          label: {
+            color: '#4CAF50',
+            fontSize: '16px',
           },
           thumb: {
             backgroundColor: '#ffffff',
             border: '2px solid #2E7D32',
           },
-          label: {
-            color: '#4CAF50',
-            fontSize: '16px',
+          track: {
+            backgroundColor: '#4CAF50',
           },
         }}
       />
     </Group>
   ),
-  parameters: {
-    docs: {
-      source: {
-        code: false,
-      },
-    },
-  },
 };
