@@ -15,3 +15,19 @@ export const pluralize = (
   if (count === 1) return word;
   return plural ?? `${word}s`;
 };
+
+/**
+ * Like {@link pluralize}, but prefixes the count — the common "{n} things"
+ * phrasing. Forwards the optional custom plural.
+ *
+ * @example
+ *   quantify('item', 1)                          // '1 item'
+ *   quantify('item', 3)                          // '3 items'
+ *   quantify('item', 0)                          // '0 items'
+ *   quantify('subcategory', 2, 'subcategories')  // '2 subcategories'
+ */
+export const quantify = (
+  word: string,
+  count: number,
+  plural?: string,
+): string => `${count} ${pluralize(word, count, plural)}`;

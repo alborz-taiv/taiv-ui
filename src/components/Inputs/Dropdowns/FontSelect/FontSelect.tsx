@@ -5,7 +5,7 @@ import { neutral } from '../../../../constants/colors';
 import { componentSizes } from '../shared/sizes';
 import { Select, SelectProps } from '../Select/Select';
 import { SelectOption } from '../../../../utils/select';
-import { compareByGenericSort } from '../../../../utils/sort';
+import { sortByName } from '../../../../utils/sort';
 import Fonts from './font-options';
 
 export interface FontSelectProps extends Omit<SelectProps, 'value' | 'data'> {
@@ -21,10 +21,10 @@ const FontSelect = ({ data, value, placeholder = 'Select a font', size = 'md', w
 
   // Alphabetise the font dropdown so it's scannable. The bundled list ships
   // in upload order; consumer-provided lists tend to be just as arbitrary.
-  // Uses the toolkit's generic name-asc comparator (which falls back to
-  // `label` for Select-style options).
+  // `sortByName` falls back to `label` for Select-style options and returns a
+  // new array (non-mutating).
   const fontOptions = useMemo(
-    () => [...(data ?? Fonts.FONTS)].sort(compareByGenericSort('name-asc')),
+    () => sortByName(data ?? Fonts.FONTS, 'asc'),
     [data],
   );
 

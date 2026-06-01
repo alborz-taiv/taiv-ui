@@ -7,6 +7,8 @@ export const gray = {
   100: "#D9D9D9",
   200: "#6D6D6D",
   300: "#3F3F3F",
+  400: "#242424",
+  500: "#141414",
 } as const;
 
 export const blue = {
@@ -72,7 +74,6 @@ export const warning = yellow;
 export const neutral = gray;
 // Primary semantic/functional color exports - for use in UI, actions, states, etc. anything that would be affected by theme changes down the line
 export const colors = {
-  blue,
   error,
   neutral,
   primary,

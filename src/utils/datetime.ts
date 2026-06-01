@@ -1,22 +1,29 @@
 /**
  * Compact "time-since" string with minute/hour granularity. Past-only —
  * use this for "edited 5m ago", "uploaded 12h ago" style metadata where
- * the value will never be in the future.
+ * the value will never be in the future. Near-now and slightly-future
+ * inputs (clock skew) collapse to 'just now'.
  *
- * For event countdowns / calendar-day offsets that need future support and
- * named labels ("tomorrow", "in 3 days"), use `formatRelativeDate` instead.
+ * @param input     The timestamp to describe.
+ * @param reference The "now" to measure against. Defaults to the current
+ *                  time; pass an explicit value to make output deterministic
+ *                  in tests.
  *
  * @example
  *   formatRelativeTime(thirtySecondsAgo) // 'just now'
  *   formatRelativeTime(twelveHoursAgo)   // '12h ago'
  *   formatRelativeTime(threeWeeksAgo)    // '3w ago'
  */
-export const formatRelativeTime = (input: string | number | Date): string => {
+export const formatRelativeTime = (
+  input: string | number | Date,
+  reference: string | number | Date = new Date(),
+): string => {
   const targetMs =
     input instanceof Date ? input.getTime() : new Date(input).getTime();
-  if (Number.isNaN(targetMs)) return '';
-  const now = Date.now();
-  const diffSeconds = Math.floor((now - targetMs) / 1000);
+  const refMs =
+    reference instanceof Date ? reference.getTime() : new Date(reference).getTime();
+  if (Number.isNaN(targetMs) || Number.isNaN(refMs)) return '';
+  const diffSeconds = Math.floor((refMs - targetMs) / 1000);
 
   if (diffSeconds < 60) return 'just now';
   const minutes = Math.floor(diffSeconds / 60);

@@ -4,12 +4,6 @@
 // of the focus, restoring on blur. Documented in
 // `src/styles/iosInputZoomFix.ts`. Lives next to the components index
 // because `package.json#exports["."]` resolves there.
-//
-// Fallback: if this approach causes issues on iOS (visual flicker on meta
-// swap, unexpected interactions with route-level viewport hooks, etc.),
-// swap the import below to `../styles/mobileInputZoomFix` — that variant
-// uses a CSS bump to 16px on mobile inputs instead. Both files are kept
-// in the repo so the swap is one line.
 import "../styles/iosInputZoomFix";
 
 //Data
@@ -52,6 +46,7 @@ export { StatsBadge } from "./Data/StatsBadge/StatsBadge";
 export type { AvatarPrimitiveColor, AvatarProps } from "./Info/Avatar/Avatar";
 export { Avatar } from "./Info/Avatar/Avatar";
 export { Badge } from "./Info/Badge/Badge";
+export type { BadgeColor } from "./Info/Badge/variants";
 export type { DrawerPosition, DrawerProps } from "./Info/Drawer/Drawer";
 export { Drawer } from "./Info/Drawer/Drawer";
 // Escape hatch: raw Mantine Drawer for cases where the @taiv/ui Drawer's
@@ -106,8 +101,6 @@ export { CascadingSelect } from "./Inputs/Dropdowns/CascadingSelect/CascadingSel
 export { FontSelect } from "./Inputs/Dropdowns/FontSelect/FontSelect";
 export { MultiSelect } from "./Inputs/Dropdowns/MultiSelect/MultiSelect";
 export { Select } from "./Inputs/Dropdowns/Select/Select";
-export type { SortSelectProps } from "./Inputs/Dropdowns/SortSelect/SortSelect";
-export { SortSelect } from "./Inputs/Dropdowns/SortSelect/SortSelect";
 export type { FileRejection, FileWithPath } from "./Inputs/Dropzone/Dropzone";
 export {
   Dropzone,

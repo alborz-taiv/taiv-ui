@@ -113,25 +113,47 @@ export interface TabProps
   icon?: React.ReactNode;
 }
 
-const Tab = ({ count, rightSection, icon, children, ...props }: TabProps) => {
-  const resolvedRightSection =
-    count !== undefined ? (
-      <Badge color='neutral' size='sm' variant='filled'>
-        {count}
-      </Badge>
-    ) : (
-      rightSection
+// `forwardRef` so consumers (and Mantine internals) can attach a ref to the
+// underlying `<button role="tab">` — focus management, scroll-into-view, and
+// intersection observers all expect this. Mirrors `TabsList` below; without
+// it, `<Tabs.Tab ref={...}>` would silently no-op.
+const Tab = forwardRef<HTMLButtonElement, TabProps>(
+  ({ count, rightSection, icon, children, ...props }, ref) => {
+    const resolvedRightSection =
+      count !== undefined ? (
+        <Badge color='neutral' size='sm' variant='filled'>
+          {count}
+        </Badge>
+      ) : (
+        rightSection
+      );
+    return (
+      <MantineTabs.Tab
+        ref={ref}
+        icon={icon}
+        rightSection={resolvedRightSection}
+        {...props}
+      >
+        {children}
+      </MantineTabs.Tab>
     );
-  return (
-    <MantineTabs.Tab icon={icon} rightSection={resolvedRightSection} {...props}>
-      {children}
-    </MantineTabs.Tab>
-  );
-};
+  },
+);
+Tab.displayName = 'Tabs.Tab';
 
 // Tabs.List wrapper: injects the OverflowFade so any horizontally-overflowing
 // tab strip (long labels, many tabs, narrow viewport) gets a bidirectional
 // gradient cue automatically — no consumer changes required.
+//
+// DOM contract: there is now an extra wrapper element above `.mantine-Tabs-tabsList`
+// (the OverflowFade div). Implications:
+//   • CSS `>` direct-child selectors against the list will skip a level.
+//   • `position: sticky` applied to `Tabs.List` resolves against the OverflowFade
+//     ancestor, not the page — sticky should be applied to the parent `<Tabs>`
+//     root instead.
+//   • The OverflowFade clips horizontal overflow; positioned descendants of
+//     `Tabs.List` (popovers/dropdowns escaping the strip) will be clipped.
+//     Anchor those off the parent `<Tabs>` root or use `Portal`.
 const TabsList = forwardRef<
   HTMLDivElement,
   ComponentPropsWithoutRef<typeof MantineTabs.List>

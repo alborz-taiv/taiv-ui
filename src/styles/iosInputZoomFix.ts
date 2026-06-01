@@ -7,9 +7,9 @@
  * there before. The page's normal pinch-to-zoom remains available
  * everywhere else.
  *
- * Why this over the previous `mobileInputZoomFix.ts` (CSS bump to 16px):
- * preserves the toolkit's input typography exactly. No visual change at
- * any breakpoint.
+ * Why the viewport-swap approach over a CSS bump to 16px on mobile inputs:
+ * this preserves the toolkit's input typography exactly. No visual change
+ * at any breakpoint.
  *
  * **Why `pointerdown` and not `focusin`:** iOS commits the auto-zoom
  * decision when focus is committed to the element, which happens BEFORE
@@ -25,10 +25,6 @@
  * taps an input — default, slide-editor-locked, future overrides — is
  * what we restore on blur. Setup-time capture would have stale state and
  * clobber other modules that lock the viewport for their own reasons.
- *
- * If we ever need to revert: change the import in `src/components/index.ts`
- * back to `../styles/mobileInputZoomFix` (Option A — the CSS-bump variant
- * is still in the repo).
  */
 
 const VIEWPORT_FOCUSED =
@@ -124,12 +120,23 @@ const setupIosInputZoomFix = (): void => {
 
   // Restore on blur. focusout bubbles, focus does not — using focusout
   // means a single document-level listener catches every input.
+  //
+  // Deferred restore (rAF), not synchronous: when the user taps straight
+  // from one text input to another, iOS fires focusout(A) BEFORE focusin(B),
+  // and `document.activeElement` is transiently `<body>` during the handoff.
+  // Restoring synchronously here would unlock the viewport in that gap —
+  // iOS then re-evaluates at focus-commit on B and zooms anyway. Deferring
+  // one frame lets focus settle, then we restore only if focus has truly
+  // left all text entries. If it landed on another input, we keep the lock
+  // and the original snapshot intact until focus leaves text entry for good.
   document.addEventListener('focusout', (e) => {
     if (!isTextEntry(e.target)) return;
-    if (snapshot !== null) {
+    requestAnimationFrame(() => {
+      if (snapshot === null) return;
+      if (isTextEntry(document.activeElement)) return;
       meta.setAttribute('content', snapshot);
       snapshot = null;
-    }
+    });
   });
 };
 

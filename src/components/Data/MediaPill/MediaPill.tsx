@@ -1,6 +1,6 @@
 import { IconPhotoFilled, IconPlayerPlayFilled } from '@tabler/icons-react';
 import type React from 'react';
-import { black, white } from '../../../constants/colors';
+import { neutral, white } from '../../../constants/colors';
 import { fontBase, fontSize } from '../../../constants/font';
 import { spacing } from '../../../constants/spacing';
 
@@ -72,7 +72,7 @@ export const MediaPill = ({
         ...fontBase,
         alignItems: 'center',
         backdropFilter: 'blur(4px)',
-        backgroundColor: `${black}B3`,
+        backgroundColor: `${neutral[500]}B3`,
         borderRadius: '999px',
         color: white,
         display: 'inline-flex',
