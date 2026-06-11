@@ -57,6 +57,44 @@ const TAIV_BIG_CALENDAR_CSS = `
   .taiv-bigcalendar .rbc-date-cell { ${stringifyFontStyle(fontStyle.body)} }
   .taiv-bigcalendar .rbc-show-more { ${stringifyFontStyle(fontStyle.caption)} font-weight: 500; }
   .taiv-bigcalendar .rbc-agenda-view table { ${stringifyFontStyle(fontStyle.body)} }
+
+  /* Taiv calendar chrome — borderless grid, compact rows, styled scrollbar.
+     Ported from the web app's calendar styles so every consumer gets the same
+     look without importing a page-level stylesheet. Deliberately NOT ported:
+     'max-height' on .rbc-time-content (a layout concern that belongs to the
+     consuming page) and any toolbar/button styling (toolbars are consumer-built
+     from Taiv UI components, which are already styled). */
+  .taiv-bigcalendar .rbc-calendar { flex: 1; }
+  .taiv-bigcalendar .rbc-time-view { border: 0; }
+  .taiv-bigcalendar .rbc-time-view > div { margin-right: 8px !important; }
+  .taiv-bigcalendar .rbc-time-view .rbc-row { min-height: 0; }
+  .taiv-bigcalendar .rbc-time-header > .rbc-row:first-child { border-bottom: 0 !important; }
+  .taiv-bigcalendar .rbc-time-header > .rbc-row.rbc-row-resource { border-bottom: 0 !important; }
+  .taiv-bigcalendar .rbc-time-header.rbc-overflowing { border-right: none; }
+  .taiv-bigcalendar .rbc-time-header .rbc-overflowing { z-index: 1; }
+  .taiv-bigcalendar .rbc-time-header .rbc-header { overflow: visible; }
+  .taiv-bigcalendar .rbc-time-header-content { border-left: none; }
+  .taiv-bigcalendar .rbc-header { padding-left: 0; padding-right: 0; border-bottom: none; }
+  .taiv-bigcalendar .rbc-header + .rbc-header { border-left: none; }
+  .taiv-bigcalendar .rbc-header.rbc-today { padding-top: 5px; padding-bottom: 5px; }
+  .taiv-bigcalendar .rbc-header > a,
+  .taiv-bigcalendar .rbc-header > a:active,
+  .taiv-bigcalendar .rbc-header > a:visited { cursor: default; }
+  .taiv-bigcalendar .rbc-header a { z-index: 1; position: relative; }
+  .taiv-bigcalendar .rbc-day-slot .rbc-time-slot { border-top: 0 !important; }
+  .taiv-bigcalendar .rbc-timeslot-group { min-height: 50px; }
+  .taiv-bigcalendar .rbc-current-time-indicator,
+  .taiv-bigcalendar .rbc-current-time-indicator::before { background-color: #44B4E6; } /* legacy web-app '--light-green' (actually light blue) */
+  .taiv-bigcalendar .rbc-current-time-indicator { height: 3px; margin: 0; }
+  .taiv-bigcalendar .rbc-event {
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  .taiv-bigcalendar .rbc-day-slot .rbc-event { border: none; min-height: 20px; }
+  .taiv-bigcalendar .rbc-time-content::-webkit-scrollbar { width: 8px; }
+  .taiv-bigcalendar .rbc-time-content::-webkit-scrollbar-thumb { background: #A3A3A3; }
+  .taiv-bigcalendar .rbc-time-content::-webkit-scrollbar-track { background: #EFEFEF; }
 `;
 
 /**

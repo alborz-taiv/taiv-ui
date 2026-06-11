@@ -10,11 +10,13 @@ export type {
 } from "./Data/Calendar/Calendar";
 export { Calendar, TAIV_CALENDAR_PALETTE } from "./Data/Calendar/Calendar";
 export type {
+  // `CalendarProps` keeps the BigCalendar prefix — the schedule-x Calendar above
+  // already exports a `CalendarProps` of its own.
   CalendarProps as BigCalendarProps,
-  Event as BigCalendarEvent,
-  EventInteractionArgs as BigCalendarEventInteractionArgs,
-  SlotInfo as BigCalendarSlotInfo,
-  View as BigCalendarView,
+  Event,
+  EventInteractionArgs,
+  SlotInfo,
+  View,
 } from "./Data/BigCalendar/BigCalendar";
 export {
   BigCalendar,

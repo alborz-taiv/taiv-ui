@@ -59,8 +59,8 @@
   "main": "dist/index.js",
   "name": "@taiv/ui",
   "peerDependencies": {
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "repository": {
     "type": "git",
