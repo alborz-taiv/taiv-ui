@@ -7,7 +7,7 @@ import { Group } from '../../../Layout/Group/Group';
 import { Stack } from '../../../Layout/Stack/Stack';
 import { IconBadge } from '../../../Misc/IconBadge/IconBadge';
 import { primitives, success, neutral } from '../../../../constants/colors';
-import { formats } from '../../../../constants/data';
+import { formats, truncation } from '../../../../constants/data';
 import { spacing } from '../../../../constants/spacing';
 
 export interface StatsCardProps extends Omit<CardProps, 'children'> {
@@ -20,9 +20,10 @@ export interface StatsCardProps extends Omit<CardProps, 'children'> {
   iconColor?: keyof typeof primitives;
   tooltip?: React.ReactNode;
   increaseDescription?: string;
+  truncateAt?: keyof typeof truncation;
 }
 
-export const StatsCard = ({ value, format = 'decimal', isDelta = false, title, description, increaseDescription, icon: Icon, iconColor = 'blue', tooltip, ...cardProps }: StatsCardProps) => {
+export const StatsCard = ({ value, format = 'decimal', isDelta = false, title, description, increaseDescription, icon: Icon, iconColor = 'blue', tooltip, truncateAt, ...cardProps }: StatsCardProps) => {
   const getDelta = () => {
     const currentDirection = isDelta ? (value > 0 ? 'positive' : value < 0 ? 'negative' : null) : null;
     return {
@@ -36,10 +37,17 @@ export const StatsCard = ({ value, format = 'decimal', isDelta = false, title, d
 
   const formatValue = (): string => {
     const config = formats[format];
-    const formattedNumber = value.toLocaleString('en-US', {
-      minimumFractionDigits: config.decimalPlaces,
-      maximumFractionDigits: config.decimalPlaces,
-    });
+
+    let formattedNumber: string;
+    if (truncateAt && value >= truncation[truncateAt].threshold) {
+      const truncConfig = truncation[truncateAt];
+      formattedNumber = `${(value / truncConfig.threshold).toFixed(1)}${truncConfig.suffix}`;
+    } else {
+      formattedNumber = value.toLocaleString('en-US', {
+        minimumFractionDigits: config.decimalPlaces,
+        maximumFractionDigits: config.decimalPlaces,
+      });
+    }
 
     let result = formattedNumber;
 
