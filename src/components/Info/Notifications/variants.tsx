@@ -52,4 +52,16 @@ export const componentVariants = {
       />
     ),
   },
+  lock: {
+    autoClose: 4000,
+    color: warning[100],
+    defaultTitle: 'Locked',
+    icon: <i className='fas fa-lock' style={{ color: warning[100] }} />,
+  },
+  unlock: {
+    autoClose: 4000,
+    color: success[300],
+    defaultTitle: 'Unlocked',
+    icon: <i className='fas fa-lock-open' style={{ color: success[300] }} />,
+  },
 } as const;
