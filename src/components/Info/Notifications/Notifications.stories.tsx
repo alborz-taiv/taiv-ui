@@ -16,10 +16,13 @@ const meta: Meta<typeof NotificationProvider> = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['success', 'error', 'warning', 'info', 'copy'],
+      options: ['success', 'error', 'warning', 'info', 'copy', 'lock', 'unlock'],
       description: 'Visual style and icon of the notification',
       table: {
-        type: { summary: "'success' | 'error' | 'warning' | 'info' | 'copy'" },
+        type: {
+          summary:
+            "'success' | 'error' | 'warning' | 'info' | 'copy' | 'lock' | 'unlock'",
+        },
         defaultValue: { summary: "'info'" },
       },
     },
@@ -89,6 +92,8 @@ const VariantsDemo = () => {
       <Button variant="warning" onClick={() => show({ variant: 'warning', message: 'Please review your input' })}>Warning</Button>
       <Button variant="primary" onClick={() => show({ variant: 'info', message: 'Here is some useful information' })}>Info</Button>
       <Button variant="secondary" onClick={() => show({ variant: 'copy', message: 'Copied to clipboard!' })}>Copy</Button>
+      <Button variant="warning" onClick={() => show({ variant: 'lock', message: 'Bar TV 3 is now locked to Demo Mode. It won\'t follow your automations until you unlock it.' })}>Lock</Button>
+      <Button variant="success" onClick={() => show({ variant: 'unlock', message: 'Bar TV 3 will now follow your venue\'s default mode and automations.' })}>Unlock</Button>
     </Group>
   );
 };
