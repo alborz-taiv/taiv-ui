@@ -217,5 +217,6 @@ export type {
   InlineEditableTextVariant,
 } from "./Typography/InlineEditableText/InlineEditableText";
 export { InlineEditableText } from "./Typography/InlineEditableText/InlineEditableText";
+export { Link } from "./Typography/Link/Link";
 export { Text } from "./Typography/Text/Text";
 export { Title } from "./Typography/Title/Title";
