@@ -38,7 +38,7 @@ const Link = ({
       style={style}
       sx={{
         textDecoration: 'none',
-        '&:hover, &:focus': { color, textDecoration: 'none' },
+        '&:hover, &:focus': { color, textDecoration: 'underline' },
       }}
       {...externalProps}
       {...props}
