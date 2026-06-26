@@ -10,6 +10,7 @@ export type SelectOption = {
 export type DataPoint = {
   key: string;
   value: string | number;
+  color?: string;
 };
 
 export type PieDataPoint = {
