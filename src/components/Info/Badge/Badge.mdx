@@ -180,6 +180,25 @@ import { IconCircleFilled } from '@tabler/icons-react';
 
 ## <br />
 
+### 👆 Clickable
+
+Badges are display elements and default to a plain cursor. When a badge is wrapped in a
+button (e.g. `UnstyledButton`), pass `clickable` so it shows the affordance — pointer
+cursor and a subtle hover darkening. The prop is visual only; the wrapping button owns
+the interaction and accessibility.
+
+<Story of={BadgeStories.Clickable} />
+
+```tsx
+<UnstyledButton aria-label="View device health" onClick={openHealth}>
+  <Badge clickable variant="filled" color="success">
+    Healthy
+  </Badge>
+</UnstyledButton>
+```
+
+## <br />
+
 ### 🛠️ Custom Styles
 
 You can provide custom styles via the `styles` prop. Use the following keys:

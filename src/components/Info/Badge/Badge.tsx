@@ -12,28 +12,37 @@ interface BadgeProps extends Omit<MantineBadgeProps, 'color' | 'leftSection'> {
   color?: BadgeColor;
   variant?: BadgeVariant;
   leftIcon?: React.ReactElement;
+  /** Shows click affordance (pointer cursor + hover feedback). Badge stays a
+   *  display element — wrap it in a button (e.g. UnstyledButton) for the
+   *  interaction itself. */
+  clickable?: boolean;
 }
 
-const Badge = ({ styles, color = 'primary', variant = 'outline', size = 'md', leftIcon, ...props }: BadgeProps) => {
+const Badge = ({ styles, color = 'primary', variant = 'outline', size = 'md', leftIcon, clickable = false, ...props }: BadgeProps) => {
   const selectedSize = badgeSizes[size];
   const variantStyles = getVariantStyles(color);
   const selectedVariant = variantStyles[variant];
+  const cursor = clickable ? 'pointer' : 'default';
 
   const style: Partial<Record<'leftSection' | 'rightSection' | 'inner' | 'root', CSSObject>> = {
     root: {
       padding: selectedSize.padding,
       height: selectedSize.height,
-      cursor: 'default',
+      cursor,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       ...selectedVariant,
+      ...(clickable && {
+        transition: 'filter 120ms ease',
+        '&:hover': { filter: 'brightness(0.96)' },
+      }),
     },
     inner: {
       ...fontBase,
       ...selectedSize.fontSize,
       textTransform: 'none',
-      cursor: 'default',
+      cursor,
     },
     leftSection: {
       display: 'flex',

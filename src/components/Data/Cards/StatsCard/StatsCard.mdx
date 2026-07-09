@@ -4,4 +4,24 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # StatsCard
 
-This component exists - but docs are still under construction 🚧
+Displays a single key metric with a title, description, optional icon badge, and delta.
+
+`value` accepts a number (formatted via `format`) or a string (rendered verbatim — for
+status-style cards like "Healthy"). Number-only props (`format`, `isDelta`, `truncateAt`)
+are ignored for string values.
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `number \| string` | — | Metric value. Numbers are formatted via `format`; strings render as-is. |
+| `valueColor` | `string` | — | Optional color applied to the value text. Use semantic tokens (e.g. `error[200]`). |
+| `title` | `string` | — | Card label. |
+| `description` | `string` | — | Supporting text below the title. |
+| `format` | `keyof typeof formats` | `'decimal'` | Number format (ignored for string values). |
+| `isDelta` | `boolean` | `false` | Prefix the value with its delta sign (ignored for string values). |
+| `icon` | `ReactNode` | — | Icon rendered in an `IconBadge`. |
+| `iconColor` | `keyof typeof primitives` | `'blue'` | Badge color key. |
+| `tooltip` | `ReactNode` | — | Tooltip content shown next to the title. |
+| `increaseDescription` | `string` | — | Extra line shown for positive deltas. |
+| `truncateAt` | `keyof typeof truncation` | — | Threshold key for number truncation (ignored for string values). |
