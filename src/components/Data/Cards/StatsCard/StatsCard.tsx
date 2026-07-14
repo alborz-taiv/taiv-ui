@@ -11,7 +11,8 @@ import { formats, truncation } from '../../../../constants/data';
 import { spacing } from '../../../../constants/spacing';
 
 export interface StatsCardProps extends Omit<CardProps, 'children'> {
-  value: number;
+  value: number | string;
+  valueColor?: string;
   title: string;
   description?: string;
   format?: keyof typeof formats;
@@ -23,9 +24,9 @@ export interface StatsCardProps extends Omit<CardProps, 'children'> {
   truncateAt?: keyof typeof truncation;
 }
 
-export const StatsCard = ({ value, format = 'decimal', isDelta = false, title, description, increaseDescription, icon: Icon, iconColor = 'blue', tooltip, truncateAt, ...cardProps }: StatsCardProps) => {
+export const StatsCard = ({ value, valueColor, format = 'decimal', isDelta = false, title, description, increaseDescription, icon: Icon, iconColor = 'blue', tooltip, truncateAt, ...cardProps }: StatsCardProps) => {
   const getDelta = () => {
-    const currentDirection = isDelta ? (value > 0 ? 'positive' : value < 0 ? 'negative' : null) : null;
+    const currentDirection = isDelta && typeof value === 'number' ? (value > 0 ? 'positive' : value < 0 ? 'negative' : null) : null;
     return {
       direction: currentDirection,
       color: currentDirection === 'positive' ? success[200] : currentDirection === 'negative' ? neutral[200] : undefined,
@@ -36,6 +37,10 @@ export const StatsCard = ({ value, format = 'decimal', isDelta = false, title, d
   const delta = getDelta();
 
   const formatValue = (): string => {
+    // String values are display text (e.g. a status word) — render verbatim,
+    // no number formatting, truncation, or delta prefix.
+    if (typeof value === 'string') return value;
+
     const config = formats[format];
 
     let formattedNumber: string;
@@ -66,7 +71,7 @@ export const StatsCard = ({ value, format = 'decimal', isDelta = false, title, d
       <Stack gap={spacing.lg}>
         <Stack gap={spacing.xxs}>
           <Group position="apart">
-            <Title size="3xl" weight="bold">
+            <Title size="3xl" weight="bold" color={valueColor}>
               {formatValue()}
             </Title>
             {Icon && <IconBadge icon={Icon} color={iconColor} />}

@@ -142,6 +142,22 @@ export const Sizes: Story = {
   ),
 };
 
+export const Clickable: Story = {
+  render: () => (
+    <Group gap={spacing.lg}>
+      <Badge clickable variant="filled" color="success" leftIcon={<IconCircleFilled />}>
+        Healthy
+      </Badge>
+      <Badge clickable variant="filled" color="error" leftIcon={<IconCircleFilled />}>
+        Offline
+      </Badge>
+      <Badge variant="filled" color="neutral">
+        Not clickable
+      </Badge>
+    </Group>
+  ),
+};
+
 export const WithLeftIcon: Story = {
   render: () => (
     <Stack gap={spacing.lg}>
