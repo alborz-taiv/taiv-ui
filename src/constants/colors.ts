@@ -60,6 +60,22 @@ export const salmon = {
   200: "#FF806F",
 } as const;
 
+export const pink = {
+  25: "#FFEBF5",
+  50: "#FFC2E0",
+  100: "#FF94CB",
+  200: "#FF69B4",
+  300: "#AB23B0",
+} as const;
+
+export const brown = {
+  25: "#F9F1E7",
+  50: "#EBD3B3",
+  100: "#CE9752",
+  200: "#A55B00",
+  300: "#6E3D00",
+} as const;
+
 export const teal = {
   25: "#E0F2F1",
   50: "#E0F2F1",
@@ -85,8 +101,10 @@ export const colors = {
 // Primitive color exports - for purely aesthetic purpose, i.e. icons, backgrounds, etc. anything that we want to hardcode to a specific color
 export const primitives = {
   blue,
+  brown,
   gray,
   green,
+  pink,
   purple,
   red,
   salmon,
