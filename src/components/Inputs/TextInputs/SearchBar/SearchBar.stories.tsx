@@ -71,6 +71,14 @@ const meta: Meta<typeof SearchBar> = {
         defaultValue: { summary: 'false' },
       },
     },
+    useHotkey: {
+      control: { type: 'boolean' },
+      description: '⌘K / Ctrl+K focuses this input from anywhere; shows a hint badge. Enable on one SearchBar per page.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     width: {
       control: { type: 'number' },
       description: 'Custom width in pixels',
@@ -112,6 +120,21 @@ export const Default: Story = {
   value={searchQuery}
   onChange={(event) => setSearchQuery(event.currentTarget.value)}
 />`,
+      },
+    },
+  },
+};
+
+export const UseHotkey: Story = {
+  args: {
+    useHotkey: true,
+    fullWidth: false,
+    placeholder: 'Search',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<SearchBar useHotkey value={query} onChange={handleSearch} />`,
       },
     },
   },
