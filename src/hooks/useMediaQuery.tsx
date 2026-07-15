@@ -1,4 +1,4 @@
-import { useMediaQuery as useMantineMediaQuery } from '@mantine/hooks';
+import { useMediaQuery as useMantineMediaQuery, useOs } from '@mantine/hooks';
 import { breakpoints } from '../constants/breakpoints';
 
 export const useMediaQuery = useMantineMediaQuery;
@@ -22,3 +22,5 @@ export const useLaptop = () => useMediaQuery(`(max-width: ${breakpoints.LAPTOP}p
 export const useDesktop = () => useMediaQuery(`(max-width: ${breakpoints.DESKTOP}px)`);
 export const useWide = () => useMediaQuery(`(max-width: ${breakpoints.WIDE}px)`);
 export const useTouchDevice = () => useMediaQuery('(pointer: coarse)');
+
+export const useIsMac = () => useOs() === 'macos';
