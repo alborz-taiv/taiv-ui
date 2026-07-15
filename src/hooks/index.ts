@@ -5,7 +5,7 @@ export { useScrollLock } from './useScrollLock';
 export { useElementSize, useIntersection, useListState, useResizeObserver, useTimeout, useDebouncedValue } from '@mantine/hooks';
 export { useForm } from '@mantine/form';
 export type { UseFormReturnType } from '@mantine/form';
-export { useMediaQuery, useScreenSize, useMobile, useTablet, useLaptop, useDesktop, useWide, useTouchDevice } from './useMediaQuery';
+export { useMediaQuery, useScreenSize, useMobile, useTablet, useLaptop, useDesktop, useWide, useTouchDevice, useIsMac } from './useMediaQuery';
 export { useNotifications } from './useNotifications';
 export { useConfirmationModal } from './useConfirmationModal';
 export { useInfoModal } from './useInfoModal';
