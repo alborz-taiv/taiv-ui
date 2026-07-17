@@ -4,7 +4,7 @@ import { Center } from '../../Layout/Center/Center';
 import { Box } from '../../Layout/Box/Box';
 import { Stack } from '../../Layout/Stack/Stack';
 import { Group } from '../../Layout/Group/Group';
-import { Area, Bar, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Area, Bar, CartesianGrid, Cell, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { formats } from '../../../constants/data';
 import { getChartFormatter } from '../../../utils/charts';
 import { fontStyle } from '../../../constants/font';
@@ -185,7 +185,15 @@ export const Chart: React.FC<ChartProps> = ({
                             barElement.style.opacity = '1';
                           }
                         }}
-                      />
+                      >
+                        {/* Handle per-bar colouring */}
+                        {s.data.map((point, pointIndex) => (
+                          <Cell
+                            key={`cell-${pointIndex}`}
+                            fill={point.color || s.color || primary[200]}
+                          />
+                        ))}
+                      </Bar>
                     );
                   } else {
                     return <Line key={s.name} type="monotone" dataKey={s.name} stroke={s.color || primary[200]} strokeWidth={2} dot={false} style={{ outline: 'none' }} />;
