@@ -48,6 +48,7 @@ const Popover = ({ children, text, position = 'top-start', offset, className, st
       withArrow
       arrowRadius={0}
       arrowSize={10}
+      arrowPosition="center"
       position={position}
       styles={popoverStyle}
       offset={offset}
