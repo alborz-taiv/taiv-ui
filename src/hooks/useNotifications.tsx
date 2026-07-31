@@ -41,6 +41,10 @@ export const useNotifications = () => {
     mantineNotifications.hide(id);
     await new Promise((resolve) => setTimeout(resolve, 200));
   };
+  
+  const clearAll = () => {
+    mantineNotifications.clean();
+  };
 
   const _show = (base: BaseOptions, footer?: React.ReactNode) => {
     const { variant = 'info', message, title, id, autoClose } = base;
@@ -249,6 +253,7 @@ export const useNotifications = () => {
 
   return {
     hide,
+    clearAll,
     show,
     showError,
     showLoading,
