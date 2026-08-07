@@ -57,6 +57,7 @@ const Tooltip = ({ children, text, position = 'top-start', offset, className, st
       withArrow
       arrowRadius={0}
       arrowSize={8}
+      arrowPosition="center"
       label={text}
       position={position}
       transitionProps={{ transition: positionToTransition[position], duration: 200 }}
