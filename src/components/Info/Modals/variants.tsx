@@ -35,7 +35,7 @@ export const modalVariants = {
     title: 'Delete Item',
   },
   error: {
-    buttonVariant: 'cancel',
+    buttonVariant: 'primary',
     cancelLabel: 'Cancel',
     confirmLabel: 'OK',
     icon: 'fas fa-circle-exclamation',
@@ -76,7 +76,7 @@ export const modalVariants = {
     title: 'Remove item?',
   },
   warning: {
-    buttonVariant: 'warning',
+    buttonVariant: 'primary',
     cancelLabel: 'Cancel',
     confirmLabel: 'Yes, proceed',
     icon: 'fas fa-triangle-exclamation',

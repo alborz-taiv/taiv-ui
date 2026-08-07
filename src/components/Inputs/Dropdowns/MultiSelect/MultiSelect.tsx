@@ -116,6 +116,11 @@ export const MultiSelect = ({
       ...fontBase,
       color: neutral[200],
       fontSize: selectedSize.fontSize,
+      // Chrome/Safari render their own clear icon inside `input[type="search"]`
+      // once it has text; `appearance: none` alone doesn't suppress it.
+      '&::-webkit-search-cancel-button': {
+        display: 'none',
+      },
     },
     value: {
       borderRadius: '25px',

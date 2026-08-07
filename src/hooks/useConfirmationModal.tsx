@@ -16,12 +16,15 @@ export const useConfirmationModal = () => {
     message?: string;
     confirmLabel?: string;
     cancelLabel?: string;
+    /** Optional alternate confirm action alongside Cancel/Confirm, e.g. a different scope of the same operation. */
+    altConfirmLabel?: string;
+    onAltConfirm?: () => void;
     icon?: React.ReactElement;
     onConfirm?: () => void;
     onCancel?: () => void;
     size?: string | number;
   }) => {
-    const { variant = 'confirm', title, message, confirmLabel, cancelLabel, icon, onConfirm, onCancel, size = '400px' } = options;
+    const { variant = 'confirm', title, message, confirmLabel, cancelLabel, altConfirmLabel, onAltConfirm, icon, onConfirm, onCancel, size = '400px' } = options;
 
     const handleConfirm = () => {
       if (onConfirm) onConfirm();
@@ -30,6 +33,11 @@ export const useConfirmationModal = () => {
 
     const handleCancel = () => {
       if (onCancel) onCancel();
+      modals.closeAll();
+    };
+
+    const handleAltConfirm = () => {
+      if (onAltConfirm) onAltConfirm();
       modals.closeAll();
     };
 
@@ -81,9 +89,18 @@ export const useConfirmationModal = () => {
             </Stack>
             <Center h="100%" w="100%">
               <Group gap="10px" align="center">
-                <Button onClick={handleCancel} variant="secondary">
-                  {cancelLabel || selectedVariant.cancelLabel}
-                </Button>
+                {/* the alt-confirm button covers the same footer real estate Escape/the header's
+                    close button already give Cancel, so it steps aside rather than crowding a third */}
+                {!altConfirmLabel && (
+                  <Button onClick={handleCancel} variant="secondary">
+                    {cancelLabel || selectedVariant.cancelLabel}
+                  </Button>
+                )}
+                {altConfirmLabel && (
+                  <Button onClick={handleAltConfirm} variant="tertiary">
+                    {altConfirmLabel}
+                  </Button>
+                )}
                 <Button onClick={handleConfirm} variant={selectedVariant.buttonVariant}>
                   {confirmLabel || selectedVariant.confirmLabel}
                 </Button>
