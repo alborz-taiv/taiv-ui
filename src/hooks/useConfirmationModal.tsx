@@ -13,7 +13,7 @@ export const useConfirmationModal = () => {
   const show = (options: {
     variant?: Exclude<keyof typeof modalVariants, 'error'>;
     title?: string;
-    message?: string;
+    message?: React.ReactNode;
     confirmLabel?: string;
     cancelLabel?: string;
     icon?: React.ReactElement;
