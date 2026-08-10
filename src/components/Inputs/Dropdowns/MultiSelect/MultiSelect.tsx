@@ -75,6 +75,11 @@ export const MultiSelect = ({
       color: neutral[200],
       fontSize: selectedSize.fontSize,
       transition: 'all 200ms ease-in-out',
+      // The search input is a nested child, not this wrapper itself — so
+      // `:focus-within` (not `:focus`) is what actually fires here.
+      '&:focus-within': {
+        borderColor: primary[200],
+      },
       '&[data-invalid]': {
         borderColor: red[200],
         color: neutral[200],
@@ -98,9 +103,9 @@ export const MultiSelect = ({
       },
       '&[data-selected]': {
         '&:hover, &[data-hovered]': {
-          backgroundColor: neutral[50],
+          backgroundColor: primary[25],
         },
-        backgroundColor: neutral[50],
+        backgroundColor: primary[25],
         color: neutral[200],
       },
       backgroundColor: 'white',

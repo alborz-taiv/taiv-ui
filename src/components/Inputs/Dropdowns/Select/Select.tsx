@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select as MantineSelect, SelectProps as MantineSelectProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral, red } from '../../../../constants/colors';
+import { neutral, primary, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../shared/sizes';
@@ -30,6 +30,11 @@ export const Select = ({ size = 'md', width, fullWidth = false, placeholder = 'S
       textOverflow: 'ellipsis',
       overflow: 'hidden',
       transition: 'all 200ms ease-in-out',
+      // Mantine's default focus border is its own theme blue — override with
+      // our primary token so focus matches the rest of the design system.
+      '&:focus': {
+        borderColor: primary[200],
+      },
       '&[data-invalid]': {
         borderColor: red[200],
         color: neutral[200],
@@ -57,14 +62,17 @@ export const Select = ({ size = 'md', width, fullWidth = false, placeholder = 'S
       borderRadius: '8px',
       backgroundColor: 'white',
       '&[data-selected]': {
-        backgroundColor: neutral[50],
+        backgroundColor: primary[25],
         color: neutral[200],
         '&:hover, &[data-hovered]': {
-          backgroundColor: neutral[50],
+          backgroundColor: primary[25],
         },
       },
       // Mantine v6 highlights the keyboard-focused item with `data-hovered`,
-      // so we mirror the mouse `:hover` style there.
+      // so we mirror the mouse `:hover` style there. Different color family
+      // than the `data-selected` tint above (primary vs. neutral), so
+      // arrowing through options reads as distinct from the item that's
+      // actually chosen.
       '&:hover, &[data-hovered]': {
         backgroundColor: neutral[50],
       },

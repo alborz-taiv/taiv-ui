@@ -4,13 +4,20 @@ import {
   type AvatarProps as MantineAvatarProps,
 } from '@mantine/core';
 import React from 'react';
-import { primitives } from '../../../constants/colors';
+import { primary, primitives, white } from '../../../constants/colors';
 
 export type AvatarPrimitiveColor = keyof typeof primitives;
 
 interface AvatarProps extends Omit<MantineAvatarProps, 'color'> {
   color?: AvatarPrimitiveColor;
 }
+
+// Default (no `color` prop) is a solid primary fill with white initials —
+// higher contrast than the light-tint convention used for explicit colors.
+const getPlaceholderColors = (primitiveColor: AvatarPrimitiveColor) =>
+  primitiveColor === 'purple'
+    ? { backgroundColor: primary[200], color: white }
+    : { backgroundColor: primitives[primitiveColor][25], color: primitives[primitiveColor][200] };
 
 const AvatarRoot = React.forwardRef<HTMLDivElement, AvatarProps>(
   ({ color: primitiveColor = 'purple', styles, ...props }, ref) => {
@@ -20,8 +27,7 @@ const AvatarRoot = React.forwardRef<HTMLDivElement, AvatarProps>(
             ...(styles ?? {}),
             placeholder: {
               ...(styles?.placeholder ?? {}),
-              backgroundColor: primitives[primitiveColor][25],
-              color: primitives[primitiveColor][200],
+              ...getPlaceholderColors(primitiveColor),
             },
           }
         : primitiveColor && typeof styles === 'function'
@@ -31,8 +37,7 @@ const AvatarRoot = React.forwardRef<HTMLDivElement, AvatarProps>(
                 ...resolved,
                 placeholder: {
                   ...resolved?.placeholder,
-                  backgroundColor: primitives[primitiveColor][25],
-                  color: primitives[primitiveColor][200],
+                  ...getPlaceholderColors(primitiveColor),
                 },
               };
             }

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Box } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral } from '../../../../constants/colors';
+import { neutral, primary } from '../../../../constants/colors';
 import { componentSizes } from '../shared/sizes';
 import { Select, SelectProps } from '../Select/Select';
 import { SelectOption } from '../../../../utils/select';
@@ -56,6 +56,9 @@ const FontSelect = ({ data, value, placeholder = 'Select a font', size = 'md', w
       height: `${selectedSize.height}px`,
       fontSize: selectedSize.fontSize,
       padding: selectedSize.inputPadding,
+      '&:focus': {
+        borderColor: primary[200],
+      },
     },
     item: {
       fontFamily: 'Poppins, sans-serif',
@@ -65,11 +68,17 @@ const FontSelect = ({ data, value, placeholder = 'Select a font', size = 'md', w
       padding: selectedSize.dropdownPadding,
       fontSize: selectedSize.fontSize,
       '&[data-selected]': {
-        backgroundColor: neutral[50],
+        backgroundColor: primary[25],
         color: neutral[200],
+        '&:hover, &[data-hovered]': {
+          backgroundColor: primary[25],
+        },
       },
-      '&[data-hovered]': {
+      '&:hover, &[data-hovered]': {
         backgroundColor: neutral[50],
+      },
+      '&:not(:hover):not([data-hovered]):not([data-selected])': {
+        backgroundColor: 'white',
       },
       ...styles,
     },

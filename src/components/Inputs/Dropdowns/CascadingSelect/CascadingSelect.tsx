@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Group } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral } from '../../../../constants/colors';
+import { neutral, primary } from '../../../../constants/colors';
 import { componentSizes } from '../shared/sizes';
 import { Select, SelectProps } from '../Select/Select';
 import { Text } from '../../../Typography/Text/Text';
@@ -75,6 +75,9 @@ const CascadingSelect = ({ data = [], value, placeholder = 'Select an option', s
       ...fontBase,
       fontSize: selectedSize.fontSize,
       padding: selectedSize.inputPadding,
+      '&:focus': {
+        borderColor: primary[200],
+      },
     },
     item: {
       color: neutral[200],
@@ -84,17 +87,19 @@ const CascadingSelect = ({ data = [], value, placeholder = 'Select an option', s
       fontSize: selectedSize.fontSize,
       marginBottom: spacing.xxs,
       '&[data-selected]': {
-        backgroundColor: neutral[50],
+        backgroundColor: primary[25],
         color: neutral[200],
+        // Nested (higher-specificity) so this wins over the plain hover rule
+        // below when a selected item also picks up keyboard/mouse focus.
+        '&:hover, &[data-hovered]': {
+          backgroundColor: primary[25],
+        },
       },
-      '&[data-hovered]': {
+      '&:hover, &[data-hovered]': {
         backgroundColor: neutral[50],
       },
-      '&:not(:hover):not([data-selected])': {
+      '&:not(:hover):not([data-hovered]):not([data-selected])': {
         backgroundColor: 'white',
-      },
-      '&[data-selected]:hover': {
-        backgroundColor: neutral[50],
       },
       ...styles,
     },

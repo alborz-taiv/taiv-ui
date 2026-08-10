@@ -114,16 +114,16 @@ export const componentVariants = {
       justifyContent: "flex-start",
     },
     "&:active": {
-      background: neutral[25],
-      color: primary[200],
+      background: primary[25],
+      color: primary[300],
     },
     "&:disabled": {
       background: "transparent",
       color: neutral[100],
     },
     "&:toggled": {
-      background: neutral[25],
-      color: primary[200],
+      background: primary[25],
+      color: primary[300],
     },
     "&[data-loading]": {
       "& .mantine-Button-icon svg": {
@@ -133,18 +133,19 @@ export const componentVariants = {
     },
     [HOVER_MEDIA]: {
       "&:active:hover": {
-        background: neutral[25],
-        color: primary[200],
+        background: primary[25],
+        color: primary[300],
       },
       "&:hover": {
-        background: "transparent",
-        color: neutral[200],
+        background: neutral[25],
+        color: primary[200],
       },
     },
     background: "transparent",
     border: "none",
     color: neutral[300],
     paddingLeft: spacing.sm,
+    transition: "none",
   },
   "nav-cancel": {
     "& .mantine-Button-inner": {
