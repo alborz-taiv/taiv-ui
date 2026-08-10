@@ -5,7 +5,7 @@ import {
 } from '@mantine/dates';
 import { createStyles } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral } from '../../../../constants/colors';
+import { neutral, primary } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../../Dropdowns/shared/sizes';
@@ -52,6 +52,9 @@ export const TimeInput = ({
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
+      '&:focus': {
+        borderColor: primary[200],
+      },
     },
     placeholder: {
       ...fontBase,

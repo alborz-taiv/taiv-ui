@@ -18,7 +18,7 @@
     "@schedule-x/react": "^2.36.0",
     "@schedule-x/resize": "^2.36.0",
     "@schedule-x/theme-default": "^2.36.0",
-    "@tabler/icons-react": "^3.41.1",
+    "@tabler/icons-react": "^3.46.0",
     "@types/react-big-calendar": "^0.33.2",
     "dayjs": "^1.11.18",
     "embla-carousel-autoplay": "^7.1.0",

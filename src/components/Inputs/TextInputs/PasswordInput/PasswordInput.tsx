@@ -1,7 +1,7 @@
 import React from 'react';
 import { PasswordInput as MantinePasswordInput, PasswordInputProps as MantinePasswordInputProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral, red } from '../../../../constants/colors';
+import { neutral, primary, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { componentSizes } from '../shared/sizes';
 
@@ -32,6 +32,11 @@ const PasswordInput = ({ size = 'md', width, fullWidth = false, styles, placehol
       height: `${selectedSize.height}px`,
       fontSize: selectedSize.fontSize,
       padding: '0 10px',
+      // The real `<input>` is nested inside this wrapper (see `innerInput`
+      // below), so `:focus-within` is what actually fires here.
+      '&:focus-within': {
+        borderColor: primary[200],
+      },
       '&[data-invalid]': {
         borderColor: red[200],
         '&::placeholder': {
