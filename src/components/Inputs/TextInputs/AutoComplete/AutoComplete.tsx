@@ -1,7 +1,7 @@
 import React from 'react';
 import { Autocomplete as MantineAutocomplete, AutocompleteProps as MantineAutocompleteProps } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
-import { neutral, red } from '../../../../constants/colors';
+import { neutral, primary, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { spacing } from '../../../../constants/spacing';
 import { componentSizes } from '../../Dropdowns/shared/sizes';
@@ -26,6 +26,9 @@ export const AutoComplete = ({ size = 'md', width, fullWidth = false, placeholde
       color: neutral[300],
       transition: 'all 200ms ease-in-out',
       borderRadius: '8px',
+      '&:focus': {
+        borderColor: primary[200],
+      },
       '&[data-invalid]': {
         borderColor: red[200],
         color: neutral[200],
@@ -53,16 +56,16 @@ export const AutoComplete = ({ size = 'md', width, fullWidth = false, placeholde
       borderRadius: '8px',
       backgroundColor: 'white',
       '&[data-selected]': {
-        backgroundColor: neutral[50],
+        backgroundColor: primary[25],
         color: neutral[200],
-        '&:hover': {
-          backgroundColor: neutral[50],
+        '&:hover, &[data-hovered]': {
+          backgroundColor: primary[25],
         },
       },
-      '&:hover': {
+      '&:hover, &[data-hovered]': {
         backgroundColor: neutral[50],
       },
-      '&:not(:hover):not([data-selected])': {
+      '&:not(:hover):not([data-hovered]):not([data-selected])': {
         backgroundColor: 'white',
       },
     },

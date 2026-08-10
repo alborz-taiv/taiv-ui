@@ -21,8 +21,9 @@ export const Page = ({
   return (
     <Container
       my='24px'
-      px={isMobile ? '12px' : '32px'}
+      px={isMobile ? '12px' : '48px'}
       size={maxWidth}
+      mx={0}
       {...props}
     >
       {children}

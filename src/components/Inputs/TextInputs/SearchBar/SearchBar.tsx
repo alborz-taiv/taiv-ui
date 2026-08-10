@@ -1,7 +1,7 @@
 import type { TextInputProps } from '@mantine/core';
 import { useHotkeys, useId } from '@mantine/hooks';
 import type React from 'react';
-import { neutral, red } from '../../../../constants/colors';
+import { neutral, primary, red } from '../../../../constants/colors';
 import { fontBase } from '../../../../constants/font';
 import { spacing } from '../../../../constants/spacing';
 import { useIsMac, useTablet, useTouchDevice } from '../../../../hooks';
@@ -75,6 +75,9 @@ const SearchBar = ({
       fontSize: selectedSize.fontSize,
       height: `${selectedSize.height}px`,
       transition: 'all 200ms ease-in-out',
+      '&:focus': {
+        borderColor: primary[200],
+      },
     },
     ...(hotkeyEnabled
       ? { rightSection: { justifyContent: 'flex-end', paddingRight: spacing.md } }

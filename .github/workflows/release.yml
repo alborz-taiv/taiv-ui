@@ -56,3 +56,10 @@ jobs:
         run: |
           npm version ${{ github.event.inputs.version_type }} -m "chore: release %s"
           git push origin main --follow-tags
+
+      - name: Merge main into staging
+        run: |
+          git fetch origin staging
+          git checkout staging
+          git merge main --no-edit
+          git push origin staging
