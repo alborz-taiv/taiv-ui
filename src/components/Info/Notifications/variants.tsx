@@ -1,4 +1,5 @@
 import React from 'react';
+import { IconPinFilled, IconPinnedOff } from '@tabler/icons-react';
 import { error, primary, success, warning } from '../../../constants/colors';
 import { Loader } from '../../Layout/Loader/Loader';
 
@@ -34,6 +35,18 @@ export const componentVariants = {
     color: success[300],
     defaultTitle: 'Success!',
     icon: <i className='fas fa-check-circle' style={{ color: success[300] }} />,
+  },
+  pin: {
+    autoClose: 4000,
+    color: primary[200],
+    defaultTitle: 'Pinned!',
+    icon: <IconPinFilled size={18} color={primary[200]} />,
+  },
+  unpin: {
+    autoClose: 4000,
+    color: primary[200],
+    defaultTitle: 'Unpinned',
+    icon: <IconPinnedOff size={18} color={primary[200]} />,
   },
   remove: {
     autoClose: 4000,
