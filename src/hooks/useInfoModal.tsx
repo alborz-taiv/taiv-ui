@@ -9,7 +9,7 @@ import { modalVariants } from '../components/Info/Modals/variants';
 import { Button } from '../components/Inputs/Buttons/Button/Button';
 
 export const useInfoModal = () => {
-  const show = (options: { variant?: keyof typeof modalVariants; title?: string; message?: string; icon?: React.ReactElement; onConfirm?: () => void; size?: string | number }) => {
+  const show = (options: { variant?: keyof typeof modalVariants; title?: string; message?: React.ReactNode; icon?: React.ReactElement; onConfirm?: () => void; size?: string | number }) => {
     const { variant = 'info', title, message, icon, onConfirm, size = '350px' } = options;
 
     const handleConfirm = () => {
