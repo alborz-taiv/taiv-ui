@@ -17,9 +17,17 @@ interface TooltipProps {
   disabled?: boolean;
   /** When true, the wrapper fills its parent width instead of shrinking to content. */
   fullWidth?: boolean;
+  /**
+   * Overrides the position-derived slide transition — e.g. 'fade' for
+   * hover-dense surfaces (status badges in table rows) where a directional
+   * slide on every hover reads as jumpy.
+   */
+  transition?: MantineTransition;
+  /** Transition duration in ms. Defaults to 200. */
+  transitionDuration?: number;
 }
 
-const Tooltip = ({ children, text, position = 'top-start', offset, className, styles, maxWidth, disabled, fullWidth }: TooltipProps) => {
+const Tooltip = ({ children, text, position = 'top-start', offset, className, styles, maxWidth, disabled, fullWidth, transition, transitionDuration }: TooltipProps) => {
   const positionToTransition: Record<string, MantineTransition> = {
     'top-end': 'slide-up',
     'bottom-end': 'slide-down',
@@ -60,7 +68,7 @@ const Tooltip = ({ children, text, position = 'top-start', offset, className, st
       arrowPosition="center"
       label={text}
       position={position}
-      transitionProps={{ transition: positionToTransition[position], duration: 200 }}
+      transitionProps={{ transition: transition ?? positionToTransition[position], duration: transitionDuration ?? 200 }}
       color="white"
       styles={tooltipStyle}
       offset={offset}
