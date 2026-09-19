@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import {
   UnstyledButton as MantineUnstyledButton,
   UnstyledButtonProps as MantineUnstyledButtonProps,
+  createPolymorphicComponent,
 } from '@mantine/core';
 import { CSSObject } from '@mantine/styles';
 
@@ -10,8 +11,13 @@ interface UnstyledButtonProps extends MantineUnstyledButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const UnstyledButton = ({ styles, onClick, ...props }: UnstyledButtonProps) => {
-  return <MantineUnstyledButton styles={styles} onClick={onClick} {...props} />;
-};
+const _UnstyledButton = forwardRef<HTMLButtonElement, UnstyledButtonProps>(
+  ({ styles, onClick, ...props }, ref) => {
+    return <MantineUnstyledButton ref={ref} styles={styles} onClick={onClick} {...props} />;
+  },
+);
+_UnstyledButton.displayName = 'UnstyledButton';
+
+const UnstyledButton = createPolymorphicComponent<'button', UnstyledButtonProps>(_UnstyledButton);
 
 export { UnstyledButton };
