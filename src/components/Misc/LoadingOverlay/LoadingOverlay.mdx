@@ -1,9 +1,85 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { LoadingOverlay } from './LoadingOverlay';
+import * as LoadingOverlayStories from './LoadingOverlay.stories';
+import { AIGeneratedBanner } from '../../../docs/AIGeneratedBanner';
 
-<Meta title="Components/Misc/LoadingOverlay" />
+<Meta of={LoadingOverlayStories} />
 
 # LoadingOverlay
 
-This component exists - but docs are still under construction 🚧
+[View Mantine Docs](https://v6.mantine.dev/core/loading-overlay/)
 
-In the meantime, you can potentially reference the [Mantine v6 LoadingOverlay documentation](https://v6.mantine.dev/core/loading-overlay/).
+<AIGeneratedBanner />
+
+LoadingOverlay dims an already-rendered container while it refetches, without unmounting
+the content underneath. It's for the "this section is stale, hang on" moment — not the
+initial load.
+
+That's the choice against its two siblings: use [Skeleton](?path=/docs/components-misc-skeleton--docs)
+when there's no content yet (an initial page load, nothing to show behind a placeholder).
+Use a bare [Loader](?path=/docs/components-misc-loader--docs) for a small, standalone
+spinner with nothing behind it to dim. Use LoadingOverlay when real content is already on
+screen and you're refreshing it in place — the user keeps their context instead of staring
+at a blank section.
+
+### 📦 Import
+
+```tsx
+import { LoadingOverlay } from '@taiv/ui';
+```
+
+### ✍️ Basic Usage
+
+<Canvas of={LoadingOverlayStories.Default} />
+<Controls of={LoadingOverlayStories.Default} />
+
+---
+
+### 🔒 Fixed Props
+
+Three props are hardcoded by this wrapper's implementation and can't be overridden, even
+though TypeScript will let you pass them:
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Fixed to</th>
+      <th>Why passing your own has no effect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>overlayBlur</code></td>
+      <td><code>3</code></td>
+      <td>Set after <code>{'{...props}'}</code> in the implementation, so it always wins.</td>
+    </tr>
+    <tr>
+      <td><code>overlayOpacity</code></td>
+      <td><code>0.5</code></td>
+      <td>Same — set after the prop spread.</td>
+    </tr>
+    <tr>
+      <td><code>loaderProps</code></td>
+      <td><code>{'{ size: \'xl\', color: primary[200] }'}</code></td>
+      <td>A plain object literal set after the spread — your value is fully replaced, not merged.</td>
+    </tr>
+  </tbody>
+</table>
+
+This is deliberate: every LoadingOverlay in the app gets the same blur, dimming, and
+Taiv-blue spinner without each call site configuring it. `visible`, `overlayColor`,
+`radius`, and `zIndex` all pass through normally.
+
+### 💡 Best Practices
+
+1. **Wrap it in a `position: relative` container.** LoadingOverlay is absolutely
+   positioned. Without a positioned ancestor, it anchors to the nearest one it can find —
+   often the whole page, not the section you meant to cover. Use `<Box pos="relative">`
+   around the content it should dim, as in the example above.
+2. **Reach for it on refetch, not first load.** If there's nothing behind it yet, you're
+   describing a Skeleton, not a LoadingOverlay — swap components rather than showing an
+   overlay over an empty container.
+3. **Don't fight the fixed styling.** If a screen genuinely needs a different blur or
+   opacity, that's a real design gap in the toolkit, not a bug to work around locally —
+   flag it rather than reaching for a raw Mantine `LoadingOverlay` to bypass this wrapper.

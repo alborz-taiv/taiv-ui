@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Button as MantineButton, ButtonProps as MantineButtonProps } from '@mantine/core';
+import { Button as MantineButton, ButtonProps as MantineButtonProps, createPolymorphicComponent } from '@mantine/core';
 import { fontBase, fontWeight } from '../../../../constants/font';
 import { componentSizes } from './sizes';
 import { HOVER_MEDIA, componentVariants, subtleVariants } from '../shared/variants';
@@ -15,7 +15,7 @@ export interface ButtonProps extends MantineButtonProps {
   subtle?: boolean;
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ onClick, size = 'md', variant = 'primary', fullWidth = false, toggled = false, shadow = false, subtle = false, styles, ...props }, ref) => {
+const _Button = forwardRef<HTMLButtonElement, ButtonProps>(({ onClick, size = 'md', variant = 'primary', fullWidth = false, toggled = false, shadow = false, subtle = false, styles, ...props }, ref) => {
   const selectedVariant = componentVariants[variant];
   const selectedSize = componentSizes[size];
 
@@ -82,4 +82,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ onClick, siz
   return <MantineButton ref={ref} styles={style} size={size} onClick={onClick} {...props} />;
 });
 
-Button.displayName = 'Button';
+_Button.displayName = 'Button';
+
+export const Button = createPolymorphicComponent<'button', ButtonProps>(_Button);
