@@ -64,8 +64,6 @@ export type { FormModalV2Props } from "./Info/Modals/FormModalV2/FormModalV2";
 //Info
 export { Modal } from "./Info/Modals/Modal/Modal";
 export { ModalProvider } from "./Info/Modals/ModalProvider/ModalProvider";
-export type { ResponsiveModalProps } from "./Info/Modals/ResponsiveModal/ResponsiveModal";
-export { ResponsiveModal } from "./Info/Modals/ResponsiveModal/ResponsiveModal";
 export { NotificationProvider } from "./Info/Notifications/NotificationProvider/NotificationProvider";
 export type {
   ResponsiveDrawerAnchor,
